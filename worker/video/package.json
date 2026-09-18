@@ -1,0 +1,8 @@
+{
+  "name": "gymramp-hf-video-worker",
+  "private": true,
+  "description": "HyperFrames CLI for the GymRamp video worker. Pinned: a Chrome or engine bump changes pixel output, so upgrades are deliberate.",
+  "dependencies": {
+    "hyperframes": "0.8.42"
+  }
+}

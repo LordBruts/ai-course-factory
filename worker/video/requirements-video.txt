@@ -1,0 +1,12 @@
+# The video worker runs on node:22-bookworm-slim, so unlike the original course
+# worker (built FROM the yt media image) it must install the web stack itself.
+fastapi==0.118.0
+uvicorn[standard]==0.37.0
+httpx==0.28.1
+pydantic==2.11.7
+edge-tts==7.2.8          # <=7.0.0 dies with a 403 on the WebSocket handshake
+requests==2.32.4
+# video-use helper dependencies (librosa powers the waveform used for cut inspection)
+librosa==0.11.0
+matplotlib==3.10.6
+numpy==2.2.6

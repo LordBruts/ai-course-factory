@@ -1,0 +1,57 @@
+# GymRamp HyperFrame video worker. Build context is the PROJECT ROOT (..), because the
+# image needs worker/, video-production/ and the vendored video-use helpers.
+#
+#   docker compose -f worker/docker-compose.video.yml up -d --build
+#
+# The original gymramp-course-worker (port 8100) keeps running untouched.
+#
+# `name` is load-bearing: without it compose derives the project name from this
+# folder ("worker"), which the original worker's compose project also uses, so the
+# two see each other's containers as orphans and `--remove-orphans` would delete them.
+name: gymramp-hf-video
+services:
+  gymramp-hf-video-worker:
+    build:
+      context: ..
+      dockerfile: worker/Dockerfile.video
+    image: gymramp-hf-video-worker:latest
+    container_name: gymramp-hf-video-worker
+    restart: unless-stopped
+    # Chrome needs >= 256 MB of /dev/shm; Docker's 64 MB default crashes renders.
+    shm_size: "1gb"
+    ports:
+      - "8101:8101"
+    env_file:
+      # Same ElevenLabs credentials as the other workers; secrets stay out of the repo.
+      - ../../yt-cross-domain-autopilot/worker/.env
+    environment:
+      TTS_PROVIDER: elevenlabs
+      MAX_TTS_CHARS: "3000"
+      MAX_VIDEO_SECONDS: "1200"
+      PUBLIC_BASE_URL: http://host.docker.internal:8101
+      VIDEO_JOBS_ROOT: /data/video-jobs
+      JOBS_ROOT: /data/course-jobs
+      # Render prefers HyperFrames' OWN browser cache and ignores the puppeteer cache the
+      # image pins chrome-headless-shell into, so without this it downloads Chrome (~100 s)
+      # into the container layer on every fresh container. Point it at the pinned build.
+      HYPERFRAMES_BROWSER_PATH: /root/.cache/puppeteer/chrome-headless-shell/linux-148.0.7778.167/chrome-headless-shell-linux64/chrome-headless-shell
+      HYPERFRAMES_FFMPEG_PATH: /usr/bin/ffmpeg
+      # Low-memory detection reads host RAM, not the container limit; the Docker VM
+      # here has 3.8 GB, so ask for the low-memory profile explicitly.
+      PRODUCER_LOW_MEMORY_MODE: "1"
+      # Page load alone takes ~8 s on this host (SwiftShader); the 10 s default makes
+      # `hyperframes snapshot` fail on any real composition.
+      PRODUCER_PAGE_NAVIGATION_TIMEOUT_MS: "60000"
+      # Project rule: no telemetry. HyperFrames reports usage unless told not to.
+      HYPERFRAMES_NO_TELEMETRY: "1"
+      DO_NOT_TRACK: "1"
+    volumes:
+      - gymramp_hf_video:/data
+      # Live pipeline code, read-only. The image also bakes a copy in, but an image
+      # rebuild costs tens of minutes here; the mount keeps code changes immediate.
+      - ../video-production:/app/video-production:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  gymramp_hf_video:

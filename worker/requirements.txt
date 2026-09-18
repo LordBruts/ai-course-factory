@@ -1,0 +1,5 @@
+# Added on top of worker-yt-media-worker, which already provides
+# fastapi, uvicorn, httpx, edge-tts (7.2.8 -- older releases 403) and ffmpeg.
+python-pptx==1.0.2
+python-docx==1.1.2
+Pillow==11.3.0

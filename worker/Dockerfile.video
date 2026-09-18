@@ -1,0 +1,78 @@
+# GymRamp HyperFrame video worker
+#
+# One container for the -hyperframe build: it does everything the original course
+# worker does (PPTX, slide PNGs, narration, DOCX) AND the video production stack
+# (HyperFrames compositions, video-use editing, ffmpeg).
+#
+# Base and Chromium setup deliberately MIRROR hyperframes/Dockerfile.test — upstream
+# pins a system Chromium plus chrome-headless-shell because Chrome stable bumps shift
+# pixel output. A different browser build is the difference between deterministic
+# renders and "it looked fine yesterday".
+#
+#   docker compose -f worker/docker-compose.video.yml up -d --build      (context: the project root)
+#
+# The original gymramp-course-worker on 8100 is untouched; this listens on 8101.
+
+FROM node:22-bookworm-slim
+
+# ── System layer: heavy and stable, kept in its own RUN so adding a Python or npm
+#    dependency later does not re-download ~150 apt packages on this machine's slow
+#    Debian mirror.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      ca-certificates curl unzip \
+      ffmpeg \
+      chromium \
+      libgbm1 libnss3 libatk-bridge2.0-0 libdrm2 libxcomposite1 libxdamage1 \
+      libxrandr2 libcups2 libasound2 libpangocairo-1.0-0 libxshmfence1 libgtk-3-0 \
+      fonts-liberation fonts-dejavu-core fonts-noto-color-emoji fontconfig \
+      python3 python3-pip python3-venv \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean && fc-cache -f
+
+# GymRamp brand face, copied from the existing worker image rather than installed,
+# so the deck, the slides and the video all use the same Montserrat files.
+COPY worker/fonts/montserrat /usr/share/fonts/truetype/montserrat
+RUN fc-cache -f
+
+# Use the system Chromium, and pin chrome-headless-shell exactly as upstream does:
+# it supports HeadlessExperimental.beginFrame, which is what makes a render
+# reproducible frame for frame.
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium \
+    CONTAINER=true \
+    PUPPETEER_CACHE_DIR=/root/.cache/puppeteer
+RUN npx --yes @puppeteer/browsers install chrome-headless-shell@148.0.7778.167 \
+      --path /root/.cache/puppeteer \
+    && find /root/.cache/puppeteer/chrome-headless-shell -name "chrome-headless-shell" -type f
+
+# ── Node layer: the HyperFrames CLI, pinned by the lockfile written at build time.
+WORKDIR /opt/hyperframes
+COPY worker/video/package.json ./package.json
+RUN npm install --omit=dev --no-audit --no-fund \
+    && ln -sf /opt/hyperframes/node_modules/.bin/hyperframes /usr/local/bin/hyperframes
+
+# ── Python layer: the course renderer's dependencies plus video-use's.
+#    PEP 668 marks the system Python as externally managed, hence the venv.
+ENV VIRTUAL_ENV=/opt/venv PATH=/opt/venv/bin:$PATH
+RUN python3 -m venv /opt/venv
+COPY worker/requirements.txt /tmp/requirements.txt
+COPY worker/video/requirements-video.txt /tmp/requirements-video.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt -r /tmp/requirements-video.txt
+
+# ── Application
+WORKDIR /app
+COPY worker/app.py /app/app.py
+COPY worker/video /app/video
+COPY video-production /app/video-production
+# video-use helpers ship as a sibling of SKILL.md; keep that shape.
+COPY video-production/vendor/video-use /opt/video-use
+
+ENV JOBS_ROOT=/data/course-jobs \
+    VIDEO_JOBS_ROOT=/data/video-jobs \
+    VIDEO_USE_HOME=/opt/video-use \
+    PYTHONUNBUFFERED=1 \
+    PORT=8101 \
+    # Project rule: no telemetry. The HyperFrames CLI reports usage by default.
+    HYPERFRAMES_NO_TELEMETRY=1 \
+    DO_NOT_TRACK=1
+EXPOSE 8101
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8101"]

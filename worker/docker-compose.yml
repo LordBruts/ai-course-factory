@@ -1,0 +1,31 @@
+# GymRamp course-media worker. n8n reaches it at http://host.docker.internal:8100
+# (NOT by container name: the default bridge network has no DNS resolver).
+# Humans download review files from http://localhost:8100 (PUBLIC_BASE_URL).
+services:
+  gymramp-course-worker:
+    build: .
+    image: gymramp-course-worker:latest
+    container_name: gymramp-course-worker
+    restart: unless-stopped
+    ports:
+      - "8100:8100"
+    volumes:
+      - gymramp_course_jobs:/data/course-jobs
+    env_file:
+      # Reuses the YT worker's gitignored .env for ELEVENLABS_API_KEY. The quota
+      # is shared with that pipeline -- MAX_TTS_CHARS below is the guard.
+      - path: ../../yt-cross-domain-autopilot/worker/.env
+        required: false
+    environment:
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://localhost:8100}
+      TTS_PROVIDER: ${TTS_PROVIDER:-elevenlabs}
+      TTS_VOICE: ${TTS_VOICE:-en-US-AriaNeural}
+      ELEVENLABS_VOICE_ID: ${ELEVENLABS_VOICE_ID:-JBFqnCBsd6RMkjVDRZzb}
+      ELEVENLABS_MODEL_ID: ${ELEVENLABS_MODEL_ID:-eleven_multilingual_v2}
+      # BLOCKING spend guard for a whole course's narration.
+      MAX_TTS_CHARS: ${MAX_TTS_CHARS:-3000}
+      MAX_SLIDES: ${MAX_SLIDES:-16}
+      BRAND_NAME: ${BRAND_NAME:-GymRamp}
+
+volumes:
+  gymramp_course_jobs:
