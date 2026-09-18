@@ -1,0 +1,10 @@
+video-production/vendor/hyperframes
+video-production/vendor/video-use/.git
+**/node_modules
+previews
+docs
+fixtures
+samples
+*.workflow.json
+config/secrets.local.env
+config/deploy.config.json

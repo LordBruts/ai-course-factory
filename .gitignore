@@ -1,0 +1,45 @@
+# Instance-specific ids and the trigger secrets. Never commit.
+config/deploy.config.json
+config/deployed.json
+config/deployed.original-ids.bak.json
+config/secrets.local.env
+
+# ---------------------------------------------------------------------------
+# Not source: render intermediates, vendored upstreams, and finished video
+# ---------------------------------------------------------------------------
+
+# Scratch space for renders in progress: ~7,800 files of frames, contact sheets,
+# per-take audio and job directories. All of it is regenerable output.
+.work/
+
+# Two FULL upstream git clones, checked out here so the worker image can bake
+# them in. They are not this project's code, they carry their own history
+# (hyperframes' pack alone is 278 MB) and several of their test fixtures exceed
+# GitHub's 100 MB hard limit. Pinned versions are recorded in the README;
+# scripts/vendor.sh re-fetches them.
+video-production/vendor/
+
+# Finished renders. preview.mp4 and the contact sheets are kept -- they show what
+# the pipeline produces at a few MB. final.mp4 runs 9-64 MB each and is output,
+# not source.
+samples/**/final.mp4
+
+# Python / Node build noise
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+npm-debug.log*
+
+# Intermediates
+.tmp/
+*.tmp
+.cache/
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
