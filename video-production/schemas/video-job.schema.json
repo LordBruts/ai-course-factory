@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gymramp.local/schemas/video-job.schema.json",
+  "title": "VideoJob",
+  "description": "State of one render, as returned by GET /video/jobs/{id} and mirrored into the video_renders table. n8n polls this, so every terminal outcome must be distinguishable: done, failed, or held for manual review.",
+  "type": "object",
+  "required": ["job_id", "status", "stage"],
+  "properties": {
+    "job_id": { "type": "string" },
+    "version_id": { "type": "integer" },
+    "course_slug": { "type": "string" },
+    "template": { "type": "string", "enum": ["faceless", "face"] },
+    "video_version": { "type": "integer", "minimum": 1 },
+    "status": { "type": "string", "enum": ["queued", "running", "done", "failed", "needs_manual_review"] },
+    "stage": {
+      "type": "string",
+      "enum": ["queued", "preparing", "transcribing", "storyboarding", "generating_assets", "composing", "rendering", "quality_check", "ready_for_review", "approved", "published", "failed"]
+    },
+    "detail": { "type": ["string", "null"], "description": "Human-readable progress, e.g. 'scene 4/12'." },
+    "attempts": { "type": "integer", "description": "Self-evaluation passes used. Capped at 3, then needs_manual_review." },
+    "reused": { "type": "boolean", "description": "True when an identical job already existed: renders are idempotent per (version, template, source hash)." },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "filename"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["final_mp4", "preview_mp4", "storyboard", "edl", "srt", "qa_json", "qa_report", "takes_packed", "project_md", "thumbnail"] },
+          "filename": { "type": "string" },
+          "path": { "type": "string" },
+          "url": { "type": "string" },
+          "bytes": { "type": "integer" },
+          "duration_seconds": { "type": "number" }
+        }
+      }
+    },
+    "duration_seconds": { "type": "number" },
+    "scene_count": { "type": "integer" },
+    "cache": {
+      "type": "object",
+      "description": "What was reused rather than recomputed. Reported so cost is visible rather than assumed.",
+      "properties": {
+        "transcript_hit": { "type": "boolean" },
+        "storyboard_hit": { "type": "boolean" },
+        "scenes_reused": { "type": "integer" },
+        "scenes_rendered": { "type": "integer" }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "properties": {
+        "scribe_seconds": { "type": "number" },
+        "tts_characters": { "type": "integer" },
+        "llm_calls": { "type": "integer" },
+        "heygen_credits": { "type": "number" }
+      }
+    },
+    "qa_passed": { "type": ["boolean", "null"] },
+    "failure_stage": { "type": ["string", "null"] },
+    "failure_reason": { "type": ["string", "null"] },
+    "retryable": { "type": ["boolean", "null"] },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "_comment": "Montserrat matches the PPTX and PNG deck rendered by worker/app.py. Sizes are for a 1920x1080 canvas; scale linearly for other resolutions. Minimum on-screen size is 28px so text stays readable on a phone.",
+  "family": {
+    "display": "Montserrat, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+    "body": "Montserrat, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+    "mono": "'JetBrains Mono', 'Cascadia Mono', Consolas, monospace"
+  },
+  "weight": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700 },
+  "scale": {
+    "courseTitle": { "size": 96, "weight": 700, "lineHeight": 1.05, "tracking": "-0.02em" },
+    "sectionTitle": { "size": 72, "weight": 700, "lineHeight": 1.1, "tracking": "-0.015em" },
+    "cardTitle": { "size": 52, "weight": 600, "lineHeight": 1.15 },
+    "statistic": { "size": 150, "weight": 700, "lineHeight": 1.0, "tracking": "-0.03em" },
+    "lead": { "size": 44, "weight": 500, "lineHeight": 1.35 },
+    "body": { "size": 36, "weight": 400, "lineHeight": 1.45 },
+    "label": { "size": 28, "weight": 600, "lineHeight": 1.2, "tracking": "0.08em", "transform": "uppercase" },
+    "citation": { "size": 26, "weight": 400, "lineHeight": 1.3 },
+    "caption": { "size": 56, "weight": 700, "lineHeight": 1.2, "tracking": "0.01em" }
+  },
+  "minimumOnScreenSize": 26,
+  "maxCharactersPerLine": { "lead": 46, "body": 62, "cardTitle": 34 }
+}

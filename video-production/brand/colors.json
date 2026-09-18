@@ -1,0 +1,51 @@
+{
+  "_comment": "Single source of brand colour for video. Seeded from code/email-kit.js KIT and worker/app.py LAYOUT so video, deck and email are one brand. No component may hard-code a hex value.",
+  "ink": {
+    "navy": "#0B1F33",
+    "text": "#1B2733",
+    "muted": "#5B6673",
+    "inverse": "#FFFFFF"
+  },
+  "accent": {
+    "primary": "#FF6B2C",
+    "primarySoft": "#FFE6D9",
+    "primaryDeep": "#C74E17"
+  },
+  "surface": {
+    "page": "#F2F4F7",
+    "card": "#FFFFFF",
+    "cardAlt": "#FBFCFD",
+    "dark": "#0B1F33",
+    "darkAlt": "#14304B",
+    "rule": "#E4E8EE"
+  },
+  "status": {
+    "ok": "#1E7F4F",
+    "warn": "#B26A00",
+    "bad": "#B3261E"
+  },
+  "evidence": {
+    "systematic_review": "#0E5C8A",
+    "rct": "#1E7F4F",
+    "controlled_trial": "#3E7C59",
+    "observational": "#B26A00",
+    "review": "#5B6673",
+    "case_or_other": "#8A6D3B",
+    "trial_registration": "#6B4FA1",
+    "unassessed": "#5B6673"
+  },
+  "chart": {
+    "series": ["#FF6B2C", "#0E5C8A", "#1E7F4F", "#B26A00", "#6B4FA1"],
+    "gridline": "#E4E8EE",
+    "axis": "#5B6673"
+  },
+  "caption": {
+    "text": "#FFFFFF",
+    "shadow": "rgba(11,31,51,0.55)",
+    "emphasis": "#FFB183"
+  },
+  "scrim": {
+    "soft": "rgba(11,31,51,0.35)",
+    "strong": "rgba(11,31,51,0.72)"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gymramp.local/schemas/presenter-video-source.schema.json",
+  "title": "PresenterVideoSource",
+  "description": "A presenter clip, normalised. Everything downstream of this point — transcription, cutting, overlays, composition, QA — is identical whether HeyGen generated the footage or a person recorded it.",
+  "type": "object",
+  "required": ["source_type", "video_path"],
+  "additionalProperties": false,
+  "properties": {
+    "source_type": { "type": "string", "enum": ["heygen", "human"] },
+    "video_path": { "type": "string" },
+    "audio_path": { "type": "string", "description": "Extracted audio. Populated by the adapter when the source carries a single mixed track." },
+    "duration": { "type": "number", "minimum": 0 },
+    "speaker": { "type": "string" },
+    "transcript_id": { "type": "string", "description": "video_transcripts.audio_hash — the cached word-level transcript for this source." },
+    "width": { "type": "integer" },
+    "height": { "type": "integer" },
+    "fps": { "type": "number" },
+    "has_alpha": { "type": "boolean", "description": "True for a transparent-background avatar render, which can be composited over a designed background instead of a flat frame." },
+    "face_region": {
+      "type": "object",
+      "description": "Where the presenter actually is in frame. Overlays are placed outside it, so the face is never covered.",
+      "properties": {
+        "x": { "type": "number" }, "y": { "type": "number" },
+        "width": { "type": "number" }, "height": { "type": "number" },
+        "detected": { "type": "boolean" }
+      }
+    },
+    "heygen": {
+      "type": "object",
+      "description": "Present only for source_type heygen.",
+      "properties": {
+        "video_id": { "type": "string" },
+        "avatar_id": { "type": "string" },
+        "voice_id": { "type": "string" },
+        "credits_used": { "type": "number" }
+      }
+    },
+    "takes": {
+      "type": "array",
+      "description": "Multiple recordings of the same script. The editor picks the best take per line rather than assuming one continuous performance.",
+      "items": {
+        "type": "object",
+        "required": ["video_path"],
+        "properties": {
+          "video_path": { "type": "string" },
+          "label": { "type": "string" },
+          "duration": { "type": "number" }
+        }
+      }
+    }
+  }
+}

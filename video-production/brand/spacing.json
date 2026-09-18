@@ -1,0 +1,16 @@
+{
+  "_comment": "Layout geometry for the 1920x1080 canvas. safeArea keeps content clear of player chrome; captionZone is reserved so overlays can never sit where captions will be drawn (captions are applied last).",
+  "canvas": { "width": 1920, "height": 1080, "fps": 30 },
+  "grid": { "columns": 12, "gutter": 32, "margin": 120 },
+  "unit": 8,
+  "step": { "xs": 8, "sm": 16, "md": 24, "lg": 40, "xl": 64, "xxl": 96 },
+  "safeArea": { "top": 80, "right": 120, "bottom": 140, "left": 120 },
+  "captionZone": { "bottom": 96, "height": 180, "maxWidth": 1400 },
+  "presenterSafeZone": {
+    "_comment": "Region an overlay must not cover in the face template. Defaults assume a centred or right-thirds framing; the face detector narrows it per source.",
+    "x": 560, "y": 120, "width": 800, "height": 960
+  },
+  "card": { "radius": 24, "padding": 48, "borderWidth": 2, "shadow": "0 24px 64px rgba(11,31,51,0.18)" },
+  "lowerThird": { "x": 120, "y": 760, "maxWidth": 900, "padding": 32, "radius": 20 },
+  "sidePanel": { "width": 640, "padding": 48, "radius": 24 }
+}

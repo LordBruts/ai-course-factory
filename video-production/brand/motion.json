@@ -1,0 +1,107 @@
+{
+  "_comment": "Restraint is the rule: motion carries meaning (entry, emphasis, progression, comparison) or it does not happen. Durations are seconds. All animation must be seekable (HyperFrames renders by seeking each frame), so nothing may depend on wall-clock time.",
+  "duration": {
+    "instant": 0.18,
+    "quick": 0.32,
+    "base": 0.5,
+    "slow": 0.8,
+    "sceneIn": 0.6,
+    "sceneOut": 0.4,
+    "rise": 0.7,
+    "dock": 0.8,
+    "reflow": 0.6,
+    "draw": 0.7,
+    "dim": 0.35,
+    "stagger": 0.14
+  },
+  "easing": {
+    "standard": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+    "entrance": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "exit": "cubic-bezier(0.4, 0, 1, 1)",
+    "emphasis": "cubic-bezier(0.34, 1.26, 0.64, 1)"
+  },
+  "presets": {
+    "subtle_reveal": {
+      "opacity": [
+        0,
+        1
+      ],
+      "translateY": [
+        24,
+        0
+      ],
+      "duration": 0.6,
+      "easing": "entrance"
+    },
+    "fade": {
+      "opacity": [
+        0,
+        1
+      ],
+      "duration": 0.5,
+      "easing": "standard"
+    },
+    "wipe_up": {
+      "clipPath": "inset(100% 0 0 0) \u2192 inset(0 0 0 0)",
+      "duration": 0.6,
+      "easing": "entrance"
+    },
+    "count_up": {
+      "duration": 0.9,
+      "easing": "standard",
+      "_comment": "numbers only; never for text"
+    },
+    "stagger_children": {
+      "stagger": 0.12,
+      "duration": 0.5,
+      "easing": "entrance"
+    },
+    "highlight_sweep": {
+      "duration": 0.45,
+      "easing": "emphasis",
+      "_comment": "keyword emphasis, once per keyword"
+    },
+    "draw_connector": {
+      "duration": 0.7,
+      "easing": "standard",
+      "_comment": "process arrows, in sequence"
+    }
+  },
+  "sceneHold": {
+    "_comment": "Minimum seconds a scene stays on screen after its entry finishes, so a viewer can actually read it.",
+    "minimum": 2.2,
+    "perWordRead": 0.28,
+    "statisticMinimum": 2.8,
+    "evidenceMinimum": 3.4
+  },
+  "transition": {
+    "_comment": "Between scenes inside a section: none by default. A transition is for a section change, not for every cut.",
+    "withinSection": "none",
+    "betweenSections": {
+      "type": "cross_dissolve",
+      "duration": 0.4
+    },
+    "maximumPerMinute": 6
+  },
+  "forbidden": [
+    "zoom on every scene",
+    "random transition per cut",
+    "animating an entire sentence of text",
+    "looping decorative motion behind text",
+    "bouncing or spinning typography",
+    "motion with no instructional reason"
+  ],
+  "board": {
+    "_comment": "Boards build up: nothing already on the page leaves until the board ends. First item enters large, then rises to its slot when the next arrives; a study enters as the focus, then shrinks to its dock slot.",
+    "firstItemHero": true,
+    "focusMinimumSeconds": 3.4,
+    "dockOrder": [
+      "top_right",
+      "bottom_right",
+      "top_left",
+      "bottom_left"
+    ],
+    "boardOut": 0.4,
+    "maxChangeGapSeconds": 14
+  }
+}

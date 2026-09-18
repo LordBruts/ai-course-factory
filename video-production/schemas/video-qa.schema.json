@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gymramp.local/schemas/video-qa.schema.json",
+  "title": "VideoQaReport",
+  "description": "video_qa.json — written for every render before a human is asked to look at it. A check may pass, warn or fail; any fail keeps the render out of review until the self-evaluation loop fixes it or gives up honestly.",
+  "type": "object",
+  "required": ["status", "checks"],
+  "properties": {
+    "status": { "type": "string", "enum": ["pass", "warn", "fail"] },
+    "job_id": { "type": "string" },
+    "version_id": { "type": "integer" },
+    "template": { "type": "string", "enum": ["faceless", "face"] },
+    "attempt": { "type": "integer" },
+    "checks": {
+      "type": "object",
+      "description": "Four families: technical, editorial, visual, content. Each value is pass | warn | fail | skipped.",
+      "additionalProperties": { "type": "string", "enum": ["pass", "warn", "fail", "skipped"] },
+      "properties": {
+        "container_valid": { "type": "string" },
+        "video_stream": { "type": "string" },
+        "audio_stream": { "type": "string" },
+        "duration_matches_edl": { "type": "string" },
+        "frame_rate": { "type": "string" },
+        "resolution": { "type": "string" },
+        "assets_present": { "type": "string" },
+        "narration_matches_script": { "type": "string" },
+        "captions_match_narration": { "type": "string" },
+        "no_clipped_sentences": { "type": "string" },
+        "no_duplicated_audio": { "type": "string" },
+        "cut_boundaries": { "type": "string" },
+        "audio_pops": { "type": "string" },
+        "captions_visible": { "type": "string" },
+        "caption_occlusion": { "type": "string" },
+        "text_overflow": { "type": "string" },
+        "overlay_timing": { "type": "string" },
+        "presenter_visible": { "type": "string" },
+        "black_frames": { "type": "string" },
+        "frozen_frames": { "type": "string" },
+        "citations_supported": { "type": "string" },
+        "no_new_claims": { "type": "string" },
+        "approved_wording_intact": { "type": "string" }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "duration_seconds": { "type": "number" },
+        "expected_seconds": { "type": "number" },
+        "transcript_similarity": { "type": "number", "description": "Rendered narration vs approved script, 0-1." },
+        "black_frame_count": { "type": "integer" },
+        "longest_frozen_seconds": { "type": "number" },
+        "caption_cue_count": { "type": "integer" },
+        "scene_count": { "type": "integer" },
+        "words_checked": { "type": "integer" }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["check", "message"],
+        "properties": {
+          "check": { "type": "string" },
+          "message": { "type": "string" },
+          "at_seconds": { "type": "number" },
+          "segment_id": { "type": "string" }
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["check", "message"],
+        "properties": {
+          "check": { "type": "string" },
+          "message": { "type": "string" },
+          "at_seconds": { "type": "number" },
+          "segment_id": { "type": "string" },
+          "evidence_path": { "type": "string", "description": "Frame or waveform image proving the finding, so a human can see it rather than take the check's word." },
+          "auto_correctable": { "type": "boolean" }
+        }
+      }
+    },
+    "corrections_applied": {
+      "type": "array",
+      "description": "What the self-evaluation loop changed between attempts, so a passing render still shows its history.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "attempt": { "type": "integer" },
+          "check": { "type": "string" },
+          "action": { "type": "string" }
+        }
+      }
+    },
+    "generated_at": { "type": "string" }
+  }
+}
