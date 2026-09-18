@@ -1,0 +1,277 @@
+{
+  "name": "GymRamp HF · Evidence Analysis",
+  "nodes": [
+    {
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "7af91ddd-d664-52f0-8261-5626949ab6b5"
+    },
+    {
+      "name": "Load Existing Courses",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT COALESCE(json_agg(json_build_object('slug', slug, 'title', title, 'status', status, 'version', current_version)\n         ORDER BY updated_at DESC), '[]'::json) AS courses\nFROM courses\nWHERE slug IS DISTINCT FROM $1::text AND status NOT IN ('failed', 'no_action');",
+        "options": {
+          "queryReplacement": "={{ [($('Start').first().json.slug) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "id": "aec43d76-949a-5962-84e3-8f0c780bcf3d"
+    },
+    {
+      "name": "Build Analysis Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// n8n Code node: \"Build Analysis Prompt\"   (GymRamp · Evidence Analysis)\n// MODE: Run Once for All Items\n//\n// Renders the evidence list and the existing course catalogue as plain text\n// for the analyst model.\n//\n// Curly braces are stripped from everything interpolated: the LLM chain builds\n// LangChain prompt templates, where a stray \"{\" in an abstract is read as a\n// template variable and the call fails with \"Missing value for input variable\".\n\nconst start = $('Start').first().json;\nconst db = $input.first().json || {};\nconst courses = typeof db.courses === 'string' ? JSON.parse(db.courses) : db.courses || [];\nconst safe = (s) => String(s == null ? '' : s).replace(/[{}]/g, '');\n\nconst evidence = start.evidence || [];\nif (!evidence.length) {\n  return [{ json: { prompt: '', empty: true }, pairedItem: { item: 0 } }];\n}\n\nconst sourceText = evidence\n  .map((e) =>\n    [\n      '[' + e.marker + '] ' + safe(e.title),\n      '  Type: ' + safe((e.pub_types || []).join(', ') || e.source_type) + ' | Year: ' + (e.year || 'n/a') +\n        ' | ' + safe(e.journal || ''),\n      '  Abstract: ' + safe(e.abstract).slice(0, 1800),\n    ].join('\\n')\n  )\n  .join('\\n\\n');\n\nconst catalogue = courses.length\n  ? courses.map((c) => '- ' + safe(c.slug) + ': ' + safe(c.title) + ' (status ' + safe(c.status) + ', v' + c.version + ')').join('\\n')\n  : '- none yet';\n\nconst prompt = [\n  'TOPIC: ' + safe(start.topic),\n  'AUDIENCE: ' + safe(start.audience),\n  'MODE: ' + (start.mode === 'radar'\n    ? 'radar -- these sources are NEW since the last scan; decide whether they justify action.'\n    : 'course -- an administrator requested a course on this topic; assess whether the evidence supports it.'),\n  '',\n  'EXISTING GYMRAMP COURSES:',\n  catalogue,\n  '',\n  'SOURCES (' + evidence.length + '):',\n  sourceText,\n  '',\n  'Assess every source by its marker and return the json object.',\n].join('\\n');\n\nreturn [{ json: { prompt, empty: false }, pairedItem: { item: 0 } }];\n"
+      },
+      "id": "176a1969-16e6-5031-85b5-55372171efef"
+    },
+    {
+      "name": "Has Evidence?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        720,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "c0",
+              "leftValue": "={{ $json.empty === false }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "23a56570-a395-5bb0-803d-55fa8e417975"
+    },
+    {
+      "name": "Analyse Evidence",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        960,
+        -100
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.prompt }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are the evidence analyst for GymRamp, an education and certification platform for fitness, wellness, recovery and rejuvenation businesses such as health clubs, recovery centres and boutique studios. You assess research so GymRamp can decide whether to create or update professional education. You do not give medical advice.\n\nJudge each source ONLY from the title, publication type and abstract shown. Never add facts from your own knowledge.\n\nFor every source, by its marker:\n- evidence_level: systematic_review (includes meta-analyses), rct, controlled_trial, observational, review (narrative), case_or_other, or trial_registration (a registry entry without results).\n- relevance: high when it studies the topic in exercise, sport, recovery, wellness or generally healthy adults; medium when the population or outcome is related; low when it is off-topic for a fitness business (for example oncology, dentistry, a specific disease treatment) or is a registration that cannot inform practice.\n- key_findings: 0 to 3 short paraphrases of results the abstract actually states, each with a strength of strong, moderate, limited or conflicting. If the abstract states no clear result, return an empty list.\n\nThen decide for the topic as a whole:\n- new_course: at least three high or medium relevance sources support practical, teachable content, and no existing GymRamp course covers it.\n- update_course: an existing course covers the topic and these sources add something material. Set target_course_slug to that course.\n- flag_review: the evidence conflicts, is safety-relevant, involves prescription drugs, injections, IV therapy, peptides or regulatory questions, or is promising but too thin.\n- no_action: nothing here justifies GymRamp's attention.\n\nrationale: two or three sentences a busy administrator can act on.\nsafety_flags: contraindications, regulatory or scope-of-practice concerns a fitness business must know. Empty list if none.\nproposed_title: a professional course title.\nlearning_objectives: 3 to 5 measurable objectives a trainee could achieve from this evidence.\n\nReturn the json object only."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 5000,
+      "id": "dd95096e-3bb8-54d8-855c-1494ba25f33d"
+    },
+    {
+      "name": "Analyse Evidence · Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        880,
+        120
+      ],
+      "parameters": {
+        "model": "openai/gpt-5.4-mini",
+        "options": {
+          "temperature": 0.1,
+          "timeout": 240000,
+          "maxRetries": 2
+        }
+      },
+      "id": "f65efc14-f477-589d-81db-573f3b0c707c"
+    },
+    {
+      "name": "Analyse Evidence · Schema",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1080,
+        120
+      ],
+      "parameters": {
+        "schemaType": "manual",
+        "autoFix": true,
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"sources\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"marker\": {\n            \"type\": \"string\"\n          },\n          \"evidence_level\": {\n            \"type\": \"string\",\n            \"enum\": [\n              \"systematic_review\",\n              \"rct\",\n              \"controlled_trial\",\n              \"observational\",\n              \"review\",\n              \"case_or_other\",\n              \"trial_registration\"\n            ]\n          },\n          \"relevance\": {\n            \"type\": \"string\",\n            \"enum\": [\n              \"high\",\n              \"medium\",\n              \"low\"\n            ]\n          },\n          \"key_findings\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"object\",\n              \"properties\": {\n                \"claim\": {\n                  \"type\": \"string\"\n                },\n                \"strength\": {\n                  \"type\": \"string\",\n                  \"enum\": [\n                    \"strong\",\n                    \"moderate\",\n                    \"limited\",\n                    \"conflicting\"\n                  ]\n                }\n              },\n              \"required\": [\n                \"claim\",\n                \"strength\"\n              ],\n              \"additionalProperties\": false\n            },\n            \"maxItems\": 3\n          }\n        },\n        \"required\": [\n          \"marker\",\n          \"evidence_level\",\n          \"relevance\",\n          \"key_findings\"\n        ],\n        \"additionalProperties\": false\n      }\n    },\n    \"decision\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"new_course\",\n        \"update_course\",\n        \"flag_review\",\n        \"no_action\"\n      ]\n    },\n    \"target_course_slug\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ]\n    },\n    \"rationale\": {\n      \"type\": \"string\"\n    },\n    \"safety_flags\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    },\n    \"proposed_title\": {\n      \"type\": \"string\"\n    },\n    \"learning_objectives\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"minItems\": 1,\n      \"maxItems\": 6\n    }\n  },\n  \"required\": [\n    \"sources\",\n    \"decision\",\n    \"target_course_slug\",\n    \"rationale\",\n    \"safety_flags\",\n    \"proposed_title\",\n    \"learning_objectives\"\n  ],\n  \"additionalProperties\": false\n}"
+      },
+      "id": "06c833ac-2ea5-500d-8597-a8488d9b4515"
+    },
+    {
+      "name": "Analyse Evidence · Fixer",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        320
+      ],
+      "parameters": {
+        "model": "openai/gpt-5.4-mini",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "af7614de-aec0-56ed-8678-96ed19111647"
+    },
+    {
+      "name": "Return Analysis",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// n8n Code node: \"Return Analysis\"   (GymRamp · Evidence Analysis)\n// MODE: Run Once for All Items\n//\n// The model PROPOSES a decision; this node applies policy deterministically on\n// top of it, and records every override so a reviewer can see why.\n//\n//   * Findings are kept only for markers that exist in the evidence pack.\n//   * new_course / update_course need at least min_relevant_sources relevant\n//     sources, otherwise they are downgraded (flag_review, or no_action if none).\n//   * In course mode, new vs update is a FACT (does a prior version exist?),\n//     not a model judgement.\n//\n// Output (return contract):\n//   { topic, slug, run_id, analysis: {...}, evidence: [all, enriched], relevant_evidence: [...] }\n\nconst start = $('Start').first().json;\nconst cfg = start.config || {};\nconst llmOut = $('Analyse Evidence').isExecuted ? $('Analyse Evidence').first().json : {};\nconst a = llmOut.output && typeof llmOut.output === 'object' ? llmOut.output : llmOut;\n\nconst DECISIONS = ['new_course', 'update_course', 'flag_review', 'no_action'];\nconst LEVELS = ['systematic_review', 'rct', 'controlled_trial', 'observational', 'review', 'case_or_other', 'trial_registration'];\nconst evidence = start.evidence || [];\nconst known = new Set(evidence.map((e) => e.marker));\nconst overrides = [];\n\nconst assessed = new Map();\nfor (const s of Array.isArray(a.sources) ? a.sources : []) {\n  if (!s || !known.has(s.marker)) {\n    if (s && s.marker) overrides.push('ignored assessment for unknown marker ' + s.marker);\n    continue;\n  }\n  assessed.set(s.marker, s);\n}\n\nconst enriched = evidence.map((e) => {\n  const s = assessed.get(e.marker);\n  return {\n    ...e,\n    evidence_level: s && LEVELS.includes(s.evidence_level) ? s.evidence_level : 'unassessed',\n    relevance: s && ['high', 'medium', 'low'].includes(s.relevance) ? s.relevance : 'low',\n    key_findings: s && Array.isArray(s.key_findings) ? s.key_findings.slice(0, 3) : [],\n  };\n});\nconst relevant = enriched.filter((e) => e.relevance !== 'low');\n\nlet decision = DECISIONS.includes(a.decision) ? a.decision : null;\nif (!decision) {\n  overrides.push(evidence.length ? 'model returned no valid decision' : 'no evidence to analyse');\n  decision = evidence.length ? 'flag_review' : 'no_action';\n}\n\nconst min = Number(cfg.min_relevant_sources || 3);\nif ((decision === 'new_course' || decision === 'update_course') && relevant.length < min) {\n  overrides.push('only ' + relevant.length + ' relevant source(s), policy minimum is ' + min);\n  decision = relevant.length ? 'flag_review' : 'no_action';\n}\n\n// An update needs a course to update. First radar run: \"update_course\" for Longevity,\n// with no longevity course in the catalogue at all.\nlet courses = [];\ntry {\n  const raw = $('Load Existing Courses').first().json.courses;\n  courses = typeof raw === 'string' ? JSON.parse(raw) : raw || [];\n} catch (e) { courses = []; }\nconst target = a.target_course_slug && courses.some((c) => c.slug === a.target_course_slug) ? a.target_course_slug : null;\nif (start.mode === 'radar' && decision === 'update_course' && !target) {\n  overrides.push('update proposed for \"' + (a.target_course_slug || 'no course') + '\", which is not an existing course; treated as new_course');\n  decision = 'new_course';\n}\n\nif (start.mode !== 'radar' && (decision === 'new_course' || decision === 'update_course')) {\n  const fact = Number(start.existing_version || 0) > 1 ? 'update_course' : 'new_course';\n  if (fact !== decision) {\n    overrides.push('decision ' + decision + ' corrected to ' + fact + ' from the course history');\n    decision = fact;\n  }\n}\n\nreturn [{\n  json: {\n    topic: start.topic,\n    slug: start.slug || null,\n    run_id: start.run_id || null,\n    analysis: {\n      decision,\n      model_decision: a.decision || null,\n      overrides,\n      rationale: String(a.rationale || ''),\n      target_course_slug: target,\n      safety_flags: Array.isArray(a.safety_flags) ? a.safety_flags : [],\n      proposed_title: String(a.proposed_title || start.topic),\n      learning_objectives: Array.isArray(a.learning_objectives) ? a.learning_objectives.slice(0, 6) : [],\n      counts: { total: evidence.length, assessed: assessed.size, relevant: relevant.length },\n    },\n    evidence: enriched,\n    relevant_evidence: relevant,\n  },\n  pairedItem: { item: 0 },\n}];\n"
+      },
+      "id": "aa400d7a-bc1c-5647-8f2b-d2e79d016398"
+    }
+  ],
+  "connections": {
+    "Analyse Evidence · Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Analyse Evidence",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyse Evidence · Schema": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Analyse Evidence",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyse Evidence · Fixer": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Analyse Evidence · Schema",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Load Existing Courses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Existing Courses": {
+      "main": [
+        [
+          {
+            "node": "Build Analysis Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Analysis Prompt": {
+      "main": [
+        [
+          {
+            "node": "Has Evidence?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Evidence?": {
+      "main": [
+        [
+          {
+            "node": "Analyse Evidence",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyse Evidence": {
+      "main": [
+        [
+          {
+            "node": "Return Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Sub-workflow. Grades each source (evidence level, relevance, key findings from the abstract only) and decides new_course | update_course | flag_review | no_action, with deterministic policy overrides. IN: topic, audience, slug, mode (course|radar), existing_version, run_id, evidence[], config. OUT: { topic, slug, run_id, analysis, evidence[], relevant_evidence[] }. Read-only."
+  }
+}

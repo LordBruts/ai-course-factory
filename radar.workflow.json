@@ -1,0 +1,503 @@
+{
+  "name": "GymRamp HF · Research Radar",
+  "nodes": [
+    {
+      "name": "Weekly Radar",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "weeksInterval": 1,
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 7
+            }
+          ]
+        }
+      },
+      "id": "c0549b5a-b173-5d69-8a4f-368e1a5a9ad1"
+    },
+    {
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"worker_url\": \"http://host.docker.internal:8100\",\n  \"review_channel\": \"gmail\",\n  \"reviewer_email\": \"iyushau3@gmail.com\",\n  \"slack_channel_id\": \"\",\n  \"storage_backend\": \"local\",\n  \"supabase_url\": \"\",\n  \"supabase_bucket\": \"course-assets\",\n  \"default_audience\": \"Fitness, wellness and recovery professionals (health clubs, recovery centres, boutique studios)\",\n  \"max_sources\": 20,\n  \"min_relevant_sources\": 3,\n  \"max_slides\": 16,\n  \"max_tts_chars\": 3000,\n  \"tts_provider\": \"elevenlabs\",\n  \"quiz_questions\": 10,\n  \"exam_questions\": 20,\n  \"exam_pass_mark\": 80,\n  \"auto_produce\": false\n}",
+        "options": {}
+      },
+      "id": "63d5c1e9-7323-562b-8079-17dd810f16c8"
+    },
+    {
+      "name": "Load Watch Topics",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        480,
+        0
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH t AS (SELECT id, topic, search_hint, last_run_at FROM watch_topics WHERE active ORDER BY id),\nu AS (UPDATE watch_topics w SET last_run_at = now() FROM t WHERE w.id = t.id RETURNING w.id)\nSELECT COALESCE(json_agg(json_build_object('topic', t.topic, 'search_hint', t.search_hint,\n         'since_date', to_char(COALESCE(t.last_run_at - interval '7 days', now() - interval '365 days'), 'YYYY-MM-DD'))), '[]'::json) AS topics,\n       now() AS run_started_at,\n       (SELECT count(*) FROM u) AS topics_marked\nFROM t;",
+        "options": {}
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "id": "ff3101db-7557-5a09-85b3-4ed7da8267f7"
+    },
+    {
+      "name": "Split Topics",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        720,
+        0
+      ],
+      "parameters": {
+        "fieldToSplitOut": "topics",
+        "include": "noOtherFields",
+        "options": {}
+      },
+      "id": "94a05135-fd44-528c-8d25-592d5bc8a775"
+    },
+    {
+      "name": "Research Topic",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        960,
+        0
+      ],
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "__WF_RESEARCH__"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ $json.topic }}",
+            "search_hint": "={{ $json.search_hint }}",
+            "since_date": "={{ $json.since_date }}",
+            "audience": "={{ $('Config').first().json.default_audience }}",
+            "trigger": "radar",
+            "max_sources": 15,
+            "config": "={{ $('Config').first().json }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "onError": "continueRegularOutput",
+      "id": "6bc01ccc-3518-5474-8ccf-a69bb079169e"
+    },
+    {
+      "name": "Keep New Sources",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// n8n Code node: \"Keep New Sources\"   (GymRamp · Research Radar)\n// MODE: Run Once for All Items\n//\n// This is where \"don't reprocess research\" pays off. Research Topic upserts\n// every candidate into `sources`; only rows that did not exist before come back\n// with is_new = true. A topic with nothing new costs no analysis call at all.\n//\n// A topic whose research failed arrives as { error } (the call runs with\n// continueRegularOutput so one bad topic cannot sink the weekly scan). It is\n// logged, not analysed.\n//\n// Always returns at least one item so the digest still runs on a quiet week.\n\nconst topics = $('Load Watch Topics').first().json.topics || [];\nconst out = [];\nconst failed = [];\n\n$input.all().forEach((item, i) => {\n  const r = item.json || {};\n  const topic = r.topic || (topics[i] && topics[i].topic) || 'unknown topic';\n  if (r.error || !Array.isArray(r.evidence)) {\n    failed.push({ topic, error: String((r.error && r.error.message) || r.error || 'no evidence returned').slice(0, 200) });\n    return;\n  }\n  const fresh = r.evidence.filter((e) => e.is_new === true);\n  if (!fresh.length) return;\n  out.push({ json: { topic, run_id: r.run_id, evidence: fresh, skip: false }, pairedItem: { item: i } });\n});\n\nif (!out.length) return [{ json: { skip: true, failed }, pairedItem: { item: 0 } }];\nout[0].json.failed = failed;\nreturn out;\n"
+      },
+      "id": "897e5173-5fc3-54e3-88d3-0761300cbaab"
+    },
+    {
+      "name": "Has New Sources?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1440,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "c0",
+              "leftValue": "={{ $json.skip !== true }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "ae580868-82f8-5877-8320-51a2c650533c"
+    },
+    {
+      "name": "Analyse New Evidence",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        1680,
+        -100
+      ],
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "__WF_ANALYSIS__"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ $json.topic }}",
+            "audience": "={{ $('Config').first().json.default_audience }}",
+            "mode": "radar",
+            "existing_version": 0,
+            "run_id": "={{ $json.run_id }}",
+            "evidence": "={{ $json.evidence }}",
+            "config": "={{ $('Config').first().json }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "onError": "continueRegularOutput",
+      "id": "275b0bbd-2160-5c59-8e02-501db30fa9b5"
+    },
+    {
+      "name": "Record Findings",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        1920,
+        -100
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH f AS (\n  INSERT INTO research_findings (run_id, topic, decision, rationale, course_id, source_ids)\n  VALUES ($1, $2, $3, $4, (SELECT id FROM courses WHERE slug = $5::text), $6::jsonb)\n  RETURNING id\n)\nSELECT (SELECT id FROM f) AS finding_id, $2::text AS topic, $3::text AS decision;",
+        "options": {
+          "queryReplacement": "={{ [($json.run_id) ?? null, ($json.topic || 'unknown topic') ?? null, ($json.analysis?.decision ?? 'flag_review') ?? null, ($json.analysis?.rationale ?? ('Analysis failed: ' + String($json.error?.message ?? $json.error ?? 'unknown'))) ?? null, ($json.analysis?.target_course_slug) ?? null, (JSON.stringify(($json.relevant_evidence || []).map((e) => e.source_id))) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "onError": "continueRegularOutput",
+      "id": "8b85b27e-a8b2-5485-818f-12ac63e9ee80"
+    },
+    {
+      "name": "Auto Produce?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2160,
+        -200
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "c0",
+              "leftValue": "={{ $('Config').first().json.auto_produce === true && ['new_course', 'update_course'].includes($json.decision) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "5b6aac53-ae6f-5fed-89c3-56348ac527ce"
+    },
+    {
+      "name": "Start Course Production",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        2400,
+        -200
+      ],
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "__WF_FACTORY__"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ $json.topic }}",
+            "trigger": "radar",
+            "force": false,
+            "finding_id": "={{ $json.finding_id }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": false
+        }
+      },
+      "onError": "continueRegularOutput",
+      "id": "9447ab33-2193-5772-85c3-577aa71f1680"
+    },
+    {
+      "name": "Load Radar Summary",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        2160,
+        100
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  (SELECT COALESCE(json_agg(json_build_object('topic', topic, 'found', found, 'new', new_sources) ORDER BY topic), '[]'::json)\n     FROM research_runs WHERE trigger = 'radar' AND started_at >= $1::timestamptz) AS runs,\n  (SELECT COALESCE(json_agg(json_build_object('topic', topic, 'decision', decision, 'rationale', rationale) ORDER BY decision), '[]'::json)\n     FROM research_findings WHERE run_id IS NOT NULL AND created_at >= $1::timestamptz) AS findings;",
+        "options": {
+          "queryReplacement": "={{ [($('Load Watch Topics').first().json.run_started_at) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "executeOnce": true,
+      "id": "da411cf8-364d-56e7-8c94-963ebf449b8b"
+    },
+    {
+      "name": "Build Digest",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2400,
+        100
+      ],
+      "parameters": {
+        "jsCode": "// ---- GymRamp email kit ------------------------------------------------------\n// Prepended by build-workflows.js to every Code node that writes an email, so all\n// messages share one look. Same rules as the earlier newsletter projects, because\n// email clients are hostile: inline styles only (Gmail strips <style>), nested\n// tables (no flexbox/grid), a centred 640px container on a soft background,\n// web-safe fonts, no external images. Everything interpolated is HTML-escaped.\n\nconst KIT = {\n  font: \"system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif\",\n  navy: '#0B1F33', accent: '#FF6B2C', page: '#F2F4F7', card: '#FFFFFF',\n  text: '#1B2733', muted: '#5B6673', rule: '#E4E8EE',\n  ok: '#1E7F4F', warn: '#B26A00', bad: '#B3261E',\n};\n\nfunction esc(s) {\n  return String(s == null ? '' : s).replace(/[&<>\"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' })[c]);\n}\n\nfunction p(text, opts) {\n  const o = opts || {};\n  return '<p style=\"margin:0 0 ' + (o.gap == null ? 14 : o.gap) + 'px;font-size:' + (o.size || 15) + 'px;line-height:1.6;color:' +\n    (o.color || KIT.text) + ';\">' + (o.html ? text : esc(text)) + '</p>';\n}\n\nfunction list(items, opts) {\n  const o = opts || {};\n  const rows = items.filter(Boolean).map((it) =>\n    '<li style=\"margin:0 0 8px;font-size:' + (o.size || 15) + 'px;line-height:1.55;color:' + KIT.text + ';\">' + (o.html ? it : esc(it)) + '</li>').join('');\n  return rows ? '<ul style=\"margin:0 0 14px;padding-left:20px;\">' + rows + '</ul>' : '';\n}\n\nfunction section(label, inner) {\n  return '<tr><td style=\"padding:26px 32px 4px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:1.4px;font-weight:700;color:' + KIT.navy + ';text-transform:uppercase;\">' + esc(label) + '</div>' +\n    '<div style=\"width:40px;height:3px;background:' + KIT.accent + ';margin:8px 0 14px;line-height:3px;font-size:0;\">&nbsp;</div>' +\n    inner + '</td></tr>';\n}\n\nfunction callout(title, inner, tone) {\n  const color = { ok: KIT.ok, warn: KIT.warn, bad: KIT.bad }[tone] || KIT.accent;\n  const tint = { ok: '#EEF7F1', warn: '#FFF6E8', bad: '#FCEDEC' }[tone] || '#FFF3EC';\n  return '<tr><td style=\"padding:22px 32px 0;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;\">' +\n    '<tr><td style=\"background:' + tint + ';border-left:4px solid ' + color + ';padding:14px 18px;\">' +\n    '<div style=\"font-size:14px;font-weight:700;color:' + color + ';margin-bottom:6px;\">' + esc(title) + '</div>' + inner +\n    '</td></tr></table></td></tr>';\n}\n\nfunction button(label, href) {\n  return '<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:6px 0 4px;\"><tr>' +\n    '<td style=\"background:' + KIT.accent + ';border-radius:6px;\">' +\n    '<a href=\"' + esc(href) + '\" style=\"display:inline-block;padding:13px 26px;font-family:' + KIT.font +\n    ';font-size:15px;font-weight:700;color:#FFFFFF;text-decoration:none;\">' + esc(label) + '</a></td></tr></table>';\n}\n\n// rows: [[label, valueHtml]]\nfunction facts(rows) {\n  return '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:0 0 10px;\">' +\n    rows.filter(Boolean).map(([k, v]) =>\n      '<tr><td style=\"padding:7px 12px 7px 0;border-bottom:1px solid ' + KIT.rule + ';font-size:13px;color:' + KIT.muted +\n      ';width:38%;vertical-align:top;\">' + esc(k) + '</td><td style=\"padding:7px 0;border-bottom:1px solid ' + KIT.rule +\n      ';font-size:14px;color:' + KIT.text + ';vertical-align:top;\">' + v + '</td></tr>').join('') + '</table>';\n}\n\nfunction link(label, href) {\n  return '<a href=\"' + esc(href) + '\" style=\"color:' + KIT.accent + ';text-decoration:none;font-weight:600;\">' + esc(label) + '</a>';\n}\n\n// blocks are <tr> strings from section()/callout(); intro is plain text paragraphs.\nfunction emailLayout(o) {\n  const intro = (o.intro || []).map((t) => p(t)).join('');\n  return '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"></head>' +\n    '<body style=\"margin:0;padding:0;background:' + KIT.page + ';\">' +\n    '<div style=\"display:none;max-height:0;overflow:hidden;opacity:0;\">' + esc(o.preheader || '') + '</div>' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:' + KIT.page + ';border-collapse:collapse;\"><tr><td align=\"center\" style=\"padding:28px 12px;\">' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:640px;background:' + KIT.card +\n    ';border-collapse:collapse;font-family:' + KIT.font + ';border-radius:8px;overflow:hidden;\">' +\n    '<tr><td style=\"background:' + KIT.navy + ';padding:22px 32px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:2px;font-weight:700;color:' + KIT.accent + ';\">GYMRAMP' + (o.eyebrow ? ' &middot; ' + esc(o.eyebrow).toUpperCase() : '') + '</div>' +\n    '<div style=\"font-size:22px;line-height:1.3;font-weight:700;color:#FFFFFF;margin-top:8px;\">' + esc(o.title) + '</div>' +\n    (o.subtitle ? '<div style=\"font-size:14px;color:#C9D3DD;margin-top:6px;\">' + esc(o.subtitle) + '</div>' : '') +\n    '</td></tr>' +\n    '<tr><td style=\"padding:26px 32px 0;\">' + intro + '</td></tr>' +\n    (o.blocks || []).join('') +\n    '<tr><td style=\"padding:26px 32px 28px;\">' + (o.closing || []).map((t) => p(t)).join('') +\n    p('GymRamp Course Factory', { color: KIT.muted, size: 14, gap: 0 }) + '</td></tr>' +\n    '<tr><td style=\"background:' + KIT.page + ';padding:14px 32px;font-size:12px;line-height:1.5;color:' + KIT.muted + ';\">' +\n    esc(o.footer || 'Automated message from the GymRamp Course Factory. Course content is educational and is never published without human approval.') +\n    '</td></tr></table></td></tr></table></body></html>';\n}\n// ---- end email kit ------------------------------------------------------------\n\n// n8n Code node: \"Build Digest\"   (GymRamp · Research Radar)\n// MODE: Run Once for All Items\n//\n// The weekly research email: what was scanned, how much was genuinely new, and what\n// the radar proposes. Built from the rows written THIS run, so it reports what the\n// database recorded, not what the workflow believes it did. Email kit prepended.\n\nconst summary = $input.first().json || {};\nconst parse = (v) => (typeof v === 'string' ? JSON.parse(v) : v || []);\nconst runs = parse(summary.runs);\nconst findings = parse(summary.findings);\nconst cfg = $('Config').first().json;\nconst clean = (s) => String(s == null ? '' : s).replace(/\\s+/g, ' ').trim();\n\nlet failed = [];\ntry { failed = $('Keep New Sources').first().json.failed || []; } catch (e) { failed = []; }\n\nconst totalNew = runs.reduce((n, r) => n + Number(r.new || 0), 0);\nconst LABEL = { new_course: 'Worth a new course', update_course: 'Worth updating a course', flag_review: 'Needs a closer look', no_action: 'Nothing to act on' };\nconst TONE = { new_course: 'ok', update_course: 'ok', flag_review: 'warn', no_action: '' };\nconst actionable = findings.filter((f) => f.decision !== 'no_action');\n\nconst table = '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:0 0 8px;\">' +\n  '<tr><td style=\"padding:8px 0;font-size:12px;color:' + KIT.muted + ';border-bottom:2px solid ' + KIT.rule + ';\">Topic</td>' +\n  '<td align=\"right\" style=\"padding:8px 0;font-size:12px;color:' + KIT.muted + ';border-bottom:2px solid ' + KIT.rule + ';\">Found</td>' +\n  '<td align=\"right\" style=\"padding:8px 0 8px 16px;font-size:12px;color:' + KIT.muted + ';border-bottom:2px solid ' + KIT.rule + ';\">New</td></tr>' +\n  runs.map((r) => '<tr><td style=\"padding:8px 0;font-size:14px;color:' + KIT.text + ';border-bottom:1px solid ' + KIT.rule + ';\">' + esc(r.topic) + '</td>' +\n    '<td align=\"right\" style=\"padding:8px 0;font-size:14px;color:' + KIT.muted + ';border-bottom:1px solid ' + KIT.rule + ';\">' + r.found + '</td>' +\n    '<td align=\"right\" style=\"padding:8px 0 8px 16px;font-size:14px;font-weight:700;color:' + (r.new ? KIT.accent : KIT.muted) + ';border-bottom:1px solid ' + KIT.rule + ';\">' + r.new + '</td></tr>').join('') +\n  '</table>';\n\nconst proposals = findings.map((f) => callout(LABEL[f.decision] + ': ' + clean(f.topic), p(clean(f.rationale), { gap: 0, size: 14 }), TONE[f.decision]));\n\nconst html = emailLayout({\n  preheader: totalNew + ' new sources this week, ' + actionable.length + ' worth your attention.',\n  eyebrow: 'Research radar',\n  title: 'This week in recovery and wellness research',\n  subtitle: runs.length + ' topics scanned · ' + totalNew + ' new sources · ' + actionable.length + ' to consider',\n  intro: [\n    'Hi,',\n    totalNew\n      ? 'Here is what the weekly scan turned up. Only studies we had never seen before were reviewed, so everything below is new since the last run.'\n      : 'The weekly scan found nothing new this week. Every study it came across had already been reviewed in an earlier run, so there is nothing to decide.',\n  ],\n  blocks: [\n    section('What was scanned', table),\n    ...(findings.length ? [section('What we suggest', p('Each topic with new research was assessed. Suggestions only; nothing is produced without you.', { size: 14, color: KIT.muted }))].concat(proposals) : []),\n    failed.length ? callout('Topics we could not scan', list(failed.map((f) => clean(f.topic) + ': ' + clean(f.error)), { size: 14 }), 'bad') : '',\n  ],\n  closing: [cfg.auto_produce\n    ? 'Automatic production is on, so topics marked for a new or updated course have already been sent to the Course Factory. You will get a review email for each.'\n    : 'To turn a suggestion into a course, submit its topic on the Course Request form. You will get the draft for review as usual.'],\n});\n\nreturn [{\n  json: { subject: 'Research radar: ' + totalNew + ' new sources, ' + actionable.length + ' to consider', html },\n  pairedItem: { item: 0 },\n}];\n"
+      },
+      "id": "6f6662d4-a45c-563a-8487-a067e51ab578"
+    },
+    {
+      "name": "Email · Radar Digest",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2640,
+        100
+      ],
+      "parameters": {
+        "sendTo": "={{ $('Config').first().json.reviewer_email }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "html",
+        "message": "={{ $json.html }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "GymRamp Course Factory"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "id": "ccc3783d-2d6d-5ef3-85ed-ce6b93dfb398"
+    }
+  ],
+  "connections": {
+    "Weekly Radar": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Load Watch Topics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Watch Topics": {
+      "main": [
+        [
+          {
+            "node": "Split Topics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Topics": {
+      "main": [
+        [
+          {
+            "node": "Research Topic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Research Topic": {
+      "main": [
+        [
+          {
+            "node": "Keep New Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keep New Sources": {
+      "main": [
+        [
+          {
+            "node": "Has New Sources?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has New Sources?": {
+      "main": [
+        [
+          {
+            "node": "Analyse New Evidence",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Load Radar Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyse New Evidence": {
+      "main": [
+        [
+          {
+            "node": "Record Findings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Record Findings": {
+      "main": [
+        [
+          {
+            "node": "Auto Produce?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Load Radar Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto Produce?": {
+      "main": [
+        [
+          {
+            "node": "Start Course Production",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Radar Summary": {
+      "main": [
+        [
+          {
+            "node": "Build Digest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Digest": {
+      "main": [
+        [
+          {
+            "node": "Email · Radar Digest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "errorWorkflow": "__WF_ERRORS__",
+    "executionTimeout": 3600
+  },
+  "meta": {
+    "description": "Scheduled weekly. For every active watch topic: research (recent records only), keep ONLY sources never seen before, analyse them, record new_course / update_course / flag_review / no_action findings, and email a digest. With auto_produce on, new/update findings are sent to the Course Factory."
+  }
+}

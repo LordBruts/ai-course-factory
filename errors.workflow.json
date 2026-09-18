@@ -1,0 +1,115 @@
+{
+  "name": "GymRamp HF · Error Handler",
+  "nodes": [
+    {
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {},
+      "id": "84e495de-a338-5634-84d9-6c7d4d3729a8"
+    },
+    {
+      "name": "Mark Version Failed",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH v AS (UPDATE course_versions SET status = 'failed', failure = $2, updated_at = now()\n           WHERE n8n_execution_id = $1 AND status NOT IN ('approved', 'published') RETURNING course_id),\nc AS (UPDATE courses SET status = 'failed', updated_at = now() WHERE id IN (SELECT course_id FROM v) RETURNING id)\nSELECT (SELECT count(*) FROM v) AS marked;",
+        "options": {
+          "queryReplacement": "={{ [(String($json.execution?.id ?? '')) ?? null, (String($json.execution?.error?.message ?? 'unknown error').slice(0, 2000)) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "onError": "continueRegularOutput",
+      "id": "310f55d2-3c5a-5574-87b1-64248722487a"
+    },
+    {
+      "name": "Write Error Email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// ---- GymRamp email kit ------------------------------------------------------\n// Prepended by build-workflows.js to every Code node that writes an email, so all\n// messages share one look. Same rules as the earlier newsletter projects, because\n// email clients are hostile: inline styles only (Gmail strips <style>), nested\n// tables (no flexbox/grid), a centred 640px container on a soft background,\n// web-safe fonts, no external images. Everything interpolated is HTML-escaped.\n\nconst KIT = {\n  font: \"system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif\",\n  navy: '#0B1F33', accent: '#FF6B2C', page: '#F2F4F7', card: '#FFFFFF',\n  text: '#1B2733', muted: '#5B6673', rule: '#E4E8EE',\n  ok: '#1E7F4F', warn: '#B26A00', bad: '#B3261E',\n};\n\nfunction esc(s) {\n  return String(s == null ? '' : s).replace(/[&<>\"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' })[c]);\n}\n\nfunction p(text, opts) {\n  const o = opts || {};\n  return '<p style=\"margin:0 0 ' + (o.gap == null ? 14 : o.gap) + 'px;font-size:' + (o.size || 15) + 'px;line-height:1.6;color:' +\n    (o.color || KIT.text) + ';\">' + (o.html ? text : esc(text)) + '</p>';\n}\n\nfunction list(items, opts) {\n  const o = opts || {};\n  const rows = items.filter(Boolean).map((it) =>\n    '<li style=\"margin:0 0 8px;font-size:' + (o.size || 15) + 'px;line-height:1.55;color:' + KIT.text + ';\">' + (o.html ? it : esc(it)) + '</li>').join('');\n  return rows ? '<ul style=\"margin:0 0 14px;padding-left:20px;\">' + rows + '</ul>' : '';\n}\n\nfunction section(label, inner) {\n  return '<tr><td style=\"padding:26px 32px 4px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:1.4px;font-weight:700;color:' + KIT.navy + ';text-transform:uppercase;\">' + esc(label) + '</div>' +\n    '<div style=\"width:40px;height:3px;background:' + KIT.accent + ';margin:8px 0 14px;line-height:3px;font-size:0;\">&nbsp;</div>' +\n    inner + '</td></tr>';\n}\n\nfunction callout(title, inner, tone) {\n  const color = { ok: KIT.ok, warn: KIT.warn, bad: KIT.bad }[tone] || KIT.accent;\n  const tint = { ok: '#EEF7F1', warn: '#FFF6E8', bad: '#FCEDEC' }[tone] || '#FFF3EC';\n  return '<tr><td style=\"padding:22px 32px 0;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;\">' +\n    '<tr><td style=\"background:' + tint + ';border-left:4px solid ' + color + ';padding:14px 18px;\">' +\n    '<div style=\"font-size:14px;font-weight:700;color:' + color + ';margin-bottom:6px;\">' + esc(title) + '</div>' + inner +\n    '</td></tr></table></td></tr>';\n}\n\nfunction button(label, href) {\n  return '<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:6px 0 4px;\"><tr>' +\n    '<td style=\"background:' + KIT.accent + ';border-radius:6px;\">' +\n    '<a href=\"' + esc(href) + '\" style=\"display:inline-block;padding:13px 26px;font-family:' + KIT.font +\n    ';font-size:15px;font-weight:700;color:#FFFFFF;text-decoration:none;\">' + esc(label) + '</a></td></tr></table>';\n}\n\n// rows: [[label, valueHtml]]\nfunction facts(rows) {\n  return '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:0 0 10px;\">' +\n    rows.filter(Boolean).map(([k, v]) =>\n      '<tr><td style=\"padding:7px 12px 7px 0;border-bottom:1px solid ' + KIT.rule + ';font-size:13px;color:' + KIT.muted +\n      ';width:38%;vertical-align:top;\">' + esc(k) + '</td><td style=\"padding:7px 0;border-bottom:1px solid ' + KIT.rule +\n      ';font-size:14px;color:' + KIT.text + ';vertical-align:top;\">' + v + '</td></tr>').join('') + '</table>';\n}\n\nfunction link(label, href) {\n  return '<a href=\"' + esc(href) + '\" style=\"color:' + KIT.accent + ';text-decoration:none;font-weight:600;\">' + esc(label) + '</a>';\n}\n\n// blocks are <tr> strings from section()/callout(); intro is plain text paragraphs.\nfunction emailLayout(o) {\n  const intro = (o.intro || []).map((t) => p(t)).join('');\n  return '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"></head>' +\n    '<body style=\"margin:0;padding:0;background:' + KIT.page + ';\">' +\n    '<div style=\"display:none;max-height:0;overflow:hidden;opacity:0;\">' + esc(o.preheader || '') + '</div>' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:' + KIT.page + ';border-collapse:collapse;\"><tr><td align=\"center\" style=\"padding:28px 12px;\">' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:640px;background:' + KIT.card +\n    ';border-collapse:collapse;font-family:' + KIT.font + ';border-radius:8px;overflow:hidden;\">' +\n    '<tr><td style=\"background:' + KIT.navy + ';padding:22px 32px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:2px;font-weight:700;color:' + KIT.accent + ';\">GYMRAMP' + (o.eyebrow ? ' &middot; ' + esc(o.eyebrow).toUpperCase() : '') + '</div>' +\n    '<div style=\"font-size:22px;line-height:1.3;font-weight:700;color:#FFFFFF;margin-top:8px;\">' + esc(o.title) + '</div>' +\n    (o.subtitle ? '<div style=\"font-size:14px;color:#C9D3DD;margin-top:6px;\">' + esc(o.subtitle) + '</div>' : '') +\n    '</td></tr>' +\n    '<tr><td style=\"padding:26px 32px 0;\">' + intro + '</td></tr>' +\n    (o.blocks || []).join('') +\n    '<tr><td style=\"padding:26px 32px 28px;\">' + (o.closing || []).map((t) => p(t)).join('') +\n    p('GymRamp Course Factory', { color: KIT.muted, size: 14, gap: 0 }) + '</td></tr>' +\n    '<tr><td style=\"background:' + KIT.page + ';padding:14px 32px;font-size:12px;line-height:1.5;color:' + KIT.muted + ';\">' +\n    esc(o.footer || 'Automated message from the GymRamp Course Factory. Course content is educational and is never published without human approval.') +\n    '</td></tr></table></td></tr></table></body></html>';\n}\n// ---- end email kit ------------------------------------------------------------\n\n// n8n Code node: \"Write Error Email\"   (GymRamp · Error Handler)\n// MODE: Run Once for All Items\n//\n// For failures nothing else caught (a crash between nodes, a timeout, an unwired\n// failure). Names the workflow, the node and the real error. Email kit prepended.\n\nconst t = $('Error Trigger').first().json || {};\nconst ex = t.execution || {};\nconst wf = t.workflow || {};\nconst marked = Number(($input.first().json || {}).marked || 0);\nconst clean = (s) => String(s == null ? '' : s).replace(/\\s+/g, ' ').trim();\n\nconst html = emailLayout({\n  preheader: clean(wf.name) + ' stopped with an error.',\n  eyebrow: 'Workflow error',\n  title: 'Something went wrong in ' + clean(wf.name),\n  intro: [\n    'Hi,',\n    'The workflow \"' + clean(wf.name) + '\" stopped with an error that was not handled inside the workflow itself.' +\n      (marked ? ' The course version it was producing has been marked as failed.' : ''),\n  ],\n  blocks: [\n    callout('The error', p(clean((ex.error || {}).message || 'No error message was recorded.'), { gap: 0, size: 14 }), 'bad'),\n    section('Details', facts([\n      ['Stopped at', esc(clean(ex.lastNodeExecuted || 'unknown'))],\n      ['Execution', ex.url ? link('Open in n8n', ex.url) : esc(String(ex.id || 'unknown'))],\n    ])),\n  ],\n  closing: ['Once the cause is fixed, the run can be retried from n8n or the topic submitted again.'],\n});\n\nreturn [{ json: { subject: 'Workflow error: ' + clean(wf.name), html }, pairedItem: { item: 0 } }];\n"
+      },
+      "id": "cf5a4880-b664-545e-87de-c92d2aee1e4a"
+    },
+    {
+      "name": "Email · Workflow Error",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        720,
+        0
+      ],
+      "parameters": {
+        "sendTo": "iyushau3@gmail.com",
+        "subject": "={{ $json.subject }}",
+        "emailType": "html",
+        "message": "={{ $json.html }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "GymRamp Course Factory"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput",
+      "id": "fb7b9493-2b9d-5346-885e-028f89a9f590"
+    }
+  ],
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Mark Version Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Version Failed": {
+      "main": [
+        [
+          {
+            "node": "Write Error Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Error Email": {
+      "main": [
+        [
+          {
+            "node": "Email · Workflow Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Error workflow for the Course Factory and Research Radar. Marks the course version of the failed execution as failed and emails the reviewer the real error, node and execution link."
+  }
+}

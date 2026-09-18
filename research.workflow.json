@@ -1,0 +1,288 @@
+{
+  "name": "GymRamp HF · Research Topic",
+  "nodes": [
+    {
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "cd669f23-26b0-5bce-8452-7be194162d48"
+    },
+    {
+      "name": "Plan Searches",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "=Topic: {{ String($json.topic).replace(/[{}]/g, '') }}\nAudience: {{ String($json.audience || '').replace(/[{}]/g, '') }}\nAdministrator search terms: {{ String($json.search_hint || 'none').replace(/[{}]/g, '') }}\n{{ $json.since_date ? 'Only records published since ' + $json.since_date + ' matter.' : '' }}\n\nReturn the json object.",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You plan literature searches for GymRamp, an education and certification platform for the fitness, wellness, recovery and rejuvenation industries. Current date: {{ $now.toISODate() }}.\n\nProduce search queries for Europe PMC, which uses boolean syntax: AND, OR, NOT, parentheses and \"quoted phrases\". Do not use field tags.\n\nRules:\n- 3 to 5 queries. Each must be specific enough to return relevant human research, not everything mentioning a keyword.\n- Cover different angles: effectiveness for exercise recovery or performance, use in healthy or athletic populations, safety and contraindications, mechanisms, and practical protocols.\n- Include common synonyms of the modality inside OR groups.\n- Prefer terms used in sports science and exercise physiology.\n- year_floor: the earliest publication year worth teaching from, normally 8 to 12 years ago.\n- trials_query: 2 to 4 plain words for searching a clinical trial registry.\n- core_terms: 2 to 8 lowercase names of the modality itself, including synonyms and abbreviations (for red light therapy: photobiomodulation, red light, near-infrared, low-level laser, lllt). A record that mentions none of them is discarded, so include every common name but never generic words like exercise or recovery.\n- context_terms: 4 to 10 lowercase words that mark a record as relevant to GymRamp learners rather than to clinical medicine (for example exercise, athletes, muscle, soreness, performance, training, recovery, fitness). Records containing them rank higher.\n\nReturn the json object only."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 5000,
+      "id": "de3337ec-3ed1-5aaa-8674-8ceba3d4bb08"
+    },
+    {
+      "name": "Plan Searches · Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        160,
+        220
+      ],
+      "parameters": {
+        "model": "openai/gpt-5.4-mini",
+        "options": {
+          "temperature": 0.2,
+          "timeout": 240000,
+          "maxRetries": 2
+        }
+      },
+      "id": "af94b65c-f343-5311-86be-838a0c0ee895"
+    },
+    {
+      "name": "Plan Searches · Schema",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        360,
+        220
+      ],
+      "parameters": {
+        "schemaType": "manual",
+        "autoFix": true,
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"queries\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"query\": {\n            \"type\": \"string\"\n          },\n          \"focus\": {\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"query\",\n          \"focus\"\n        ],\n        \"additionalProperties\": false\n      },\n      \"minItems\": 1,\n      \"maxItems\": 6\n    },\n    \"year_floor\": {\n      \"type\": \"integer\"\n    },\n    \"trials_query\": {\n      \"type\": \"string\"\n    },\n    \"core_terms\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"minItems\": 1,\n      \"maxItems\": 8\n    },\n    \"context_terms\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"minItems\": 1,\n      \"maxItems\": 10\n    }\n  },\n  \"required\": [\n    \"queries\",\n    \"year_floor\",\n    \"trials_query\",\n    \"core_terms\",\n    \"context_terms\"\n  ],\n  \"additionalProperties\": false\n}"
+      },
+      "id": "641f11b0-7271-578a-8497-51bee87fb201"
+    },
+    {
+      "name": "Plan Searches · Fixer",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        360,
+        420
+      ],
+      "parameters": {
+        "model": "openai/gpt-5.4-mini",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "e48717d0-0089-5b68-8809-bb308bfcbb01"
+    },
+    {
+      "name": "Build Search Requests",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// n8n Code node: \"Build Search Requests\"   (GymRamp · Research Topic)\n// MODE: Run Once for All Items\n//\n// Fans the query planner's output into one item per HTTP request: Europe PMC\n// for the literature (resultType=core carries abstract, DOI, PMID, OA flag and\n// publication types in ONE call) and ClinicalTrials.gov for registered trials.\n//\n// Search is a plain, always-executed HTTP step -- not an agent tool -- so the\n// model never decides what evidence exists or whether to look for it.\n//\n// A Basic LLM Chain with an output parser returns its object UNWRAPPED\n// ($json.queries), while an Agent nests it under $json.output. Both are read.\n\nconst start = $('Start').first().json;\nconst planned = $input.first().json || {};\nconst plan = planned.output && typeof planned.output === 'object' ? planned.output : planned;\n\nconst thisYear = new Date().getFullYear();\nlet yearFloor = Number(plan.year_floor);\nif (!(yearFloor > 1990 && yearFloor <= thisYear)) yearFloor = thisYear - 10;\n\n// The radar passes since_date so a weekly run only asks for recent records.\n// Dedupe does NOT depend on it -- the sources table does that -- it just keeps\n// each call small.\nconst since = /^\\d{4}-\\d{2}-\\d{2}$/.test(String(start.since_date || '')) ? start.since_date : null;\n\nconst seen = new Set();\nconst queries = [];\nfor (const q of Array.isArray(plan.queries) ? plan.queries : []) {\n  const text = String((q && q.query) || q || '').replace(/\\s+/g, ' ').trim();\n  if (text.length < 3 || seen.has(text.toLowerCase())) continue;\n  seen.add(text.toLowerCase());\n  queries.push(text);\n}\n// A planner that returns nothing must not silently produce an empty pack:\n// fall back to the watch-topic hint, then the topic itself.\nif (!queries.length) queries.push(String(start.search_hint || start.topic));\n\nconst enc = encodeURIComponent;\nconst EPMC = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search';\nconst out = queries.slice(0, 6).map((q) => {\n  let query = '(' + q + ') AND HAS_ABSTRACT:Y AND PUB_YEAR:[' + yearFloor + ' TO 3000]';\n  if (since) query += ' AND FIRST_PDATE:[' + since + ' TO 3000-12-31]';\n  return {\n    json: {\n      kind: 'epmc',\n      query: q,\n      url: EPMC + '?query=' + enc(query) + '&resultType=core&pageSize=25&format=json',\n    },\n  };\n});\n\nconst trialTerm = String(plan.trials_query || start.search_hint || start.topic).replace(/\"/g, '');\nlet ct = 'https://clinicaltrials.gov/api/v2/studies?format=json&pageSize=10&sort=' + enc('LastUpdatePostDate:desc') +\n  '&query.term=' + enc(trialTerm);\nif (since) ct += '&filter.advanced=' + enc('AREA[LastUpdatePostDate]RANGE[' + since + ',MAX]');\nout.push({ json: { kind: 'ctgov', query: trialTerm, url: ct } });\n\nreturn out;\n"
+      },
+      "id": "51ab2b27-69fc-5776-8907-d2505a579cde"
+    },
+    {
+      "name": "Fetch Evidence",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        720,
+        0
+      ],
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 45000
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000,
+      "onError": "continueRegularOutput",
+      "id": "cbe97822-ddbe-5db5-81b5-c51592c3f9c1"
+    },
+    {
+      "name": "Normalize & Rank",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// n8n Code node: \"Normalize & Rank\"   (GymRamp · Research Topic)\n// MODE: Run Once for All Items\n//\n// Turns raw Europe PMC and ClinicalTrials.gov responses into ONE canonical\n// source record shape, drops anything without an abstract, dedupes, ranks by\n// evidence strength, caps the set and assigns the stable marker (E01, E02...)\n// that every writer must cite by.\n//\n// Writers never see an author-year string, so they cannot invent one. They\n// emit [E07]; only the Citation Gate turns that into a reference.\n//\n// Input : every HTTP response (a failed request arrives as {error}, ignored)\n// Output: ONE item { topic, candidates[], found_total, dropped }\n\nconst start = $('Start').first().json;\nconst cfg = start.config || {};\nconst MAX = Number(start.max_sources || cfg.max_sources || 20);\nconst MAX_TRIALS = 3;\n\nconst clean = (s) => String(s || '').replace(/<[^>]+>/g, ' ').replace(/\\s+/g, ' ').trim();\nconst lower = (a) => (a || []).map((t) => String(t).toLowerCase());\n\nfunction fromEpmc(r) {\n  const ji = r.journalInfo || {};\n  const doi = r.doi ? String(r.doi).toLowerCase().trim() : null;\n  return {\n    source_type: 'literature',\n    doi,\n    pmid: r.pmid || null,\n    pmcid: r.pmcid || null,\n    nct_id: null,\n    title: clean(r.title).replace(/\\.$/, ''),\n    authors: ((r.authorList || {}).author || []).map((a) => ({\n      last: a.lastName || a.collectiveName || a.fullName || null,\n      initials: a.initials || null,\n    })),\n    journal: (ji.journal || {}).title || r.journalTitle || null,\n    year: parseInt(r.pubYear || ji.yearOfPublication, 10) || null,\n    pub_types: lower((r.pubTypeList || {}).pubType),\n    abstract: clean(r.abstractText).slice(0, 4000),\n    url: doi ? 'https://doi.org/' + doi : r.pmid ? 'https://pubmed.ncbi.nlm.nih.gov/' + r.pmid + '/' : null,\n    is_open_access: r.isOpenAccess === 'Y',\n    cited_by: parseInt(r.citedByCount, 10) || 0,\n  };\n}\n\nfunction fromTrial(s) {\n  const p = s.protocolSection || {};\n  const id = p.identificationModule || {};\n  const st = p.statusModule || {};\n  const design = p.designModule || {};\n  const sponsor = ((p.sponsorCollaboratorsModule || {}).leadSponsor || {}).name || 'ClinicalTrials.gov';\n  const date = (st.lastUpdatePostDateStruct || {}).date || (st.studyFirstPostDateStruct || {}).date || '';\n  return {\n    source_type: 'clinical_trial',\n    doi: null,\n    pmid: null,\n    pmcid: null,\n    nct_id: id.nctId || null,\n    title: clean(id.briefTitle || id.officialTitle),\n    authors: [{ last: sponsor, initials: null }],\n    journal: 'ClinicalTrials.gov',\n    year: parseInt(String(date).slice(0, 4), 10) || null,\n    pub_types: lower(['trial registration', design.studyType, st.overallStatus].concat(design.phases || []).filter(Boolean)),\n    abstract: clean((p.descriptionModule || {}).briefSummary).slice(0, 4000),\n    url: id.nctId ? 'https://clinicaltrials.gov/study/' + id.nctId : null,\n    is_open_access: true,\n    cited_by: 0,\n  };\n}\n\n// The planner names the modality itself (core_terms). A record mentioning none of them\n// is about something else that merely shares the outcome words -- tart cherry juice for\n// exercise recovery came back for a red light therapy topic on the first live run.\nconst planOut = $('Plan Searches').first().json || {};\nconst plan = planOut.output && typeof planOut.output === 'object' ? planOut.output : planOut;\nconst core = (Array.isArray(plan.core_terms) ? plan.core_terms : [])\n  .map((t) => String(t).toLowerCase().trim()).filter((t) => t.length >= 3);\n\nlet found = 0;\nconst dropped = { no_abstract: 0, retracted: 0, duplicate: 0, off_topic: 0 };\nconst records = [];\nfor (const item of $input.all()) {\n  const body = item.json || {};\n  for (const r of ((body.resultList || {}).result) || []) { found++; records.push(fromEpmc(r)); }\n  for (const s of body.studies || []) { found++; records.push(fromTrial(s)); }\n}\n\nconst keyOf = (r) => (r.doi ? 'doi:' + r.doi : r.pmid ? 'pmid:' + r.pmid : r.nct_id ? 'nct:' + r.nct_id : null);\nconst byKey = new Map();\nfor (const r of records) {\n  r.source_key = keyOf(r);\n  if (!r.source_key || !r.title) continue;\n  if (!r.abstract || r.abstract.length < 150) { dropped.no_abstract++; continue; }\n  if (r.pub_types.some((t) => t.includes('retract')) || /^retract/i.test(r.title)) { dropped.retracted++; continue; }\n  if (core.length) {\n    const text = (r.title + ' ' + r.abstract).toLowerCase();\n    if (!core.some((t) => text.includes(t))) { dropped.off_topic++; continue; }\n  }\n  const prev = byKey.get(r.source_key);\n  if (prev) { dropped.duplicate++; if (r.abstract.length <= prev.abstract.length) continue; }\n  byKey.set(r.source_key, r);\n}\n\n// Evidence-strength first, then recency, then (damped) influence.\nfunction strength(r) {\n  const t = r.pub_types.join(' ') + ' ' + r.title.toLowerCase();\n  if (/meta-analysis|systematic review/.test(t)) return 6;\n  if (/randomi[sz]ed controlled trial/.test(t)) return 5;\n  if (r.source_type === 'clinical_trial') return 1.5;\n  if (/clinical trial|controlled trial/.test(t)) return 4;\n  if (/review/.test(t)) return 3;\n  return 2;\n}\n// Topical fit. Without it, recency and review status dominate and a 2026 meta-analysis\n// on thyroiditis outranks a 2024 trial on post-exercise soreness (first live run).\n// Words from the topic, the search hint and the planner's context_terms, matched in the title (strong) and abstract (weak).\nconst STOP = new Set(['about', 'after', 'among', 'based', 'effect', 'effects', 'their', 'therapy', 'these', 'those', 'using', 'versus', 'which', 'while', 'with', 'within']);\nconst terms = [...new Set(\n  (String(start.topic || '') + ' ' + String(start.search_hint || '') + ' ' + (Array.isArray(plan.context_terms) ? plan.context_terms.join(' ') : ''))\n    .toLowerCase().replace(/[^a-z0-9 -]/g, ' ').split(/\\s+/)\n    .filter((w) => w.length > 4 && !STOP.has(w))\n    .map((w) => w.replace(/(ies|es|s)$/, ''))\n)];\nfunction topical(r) {\n  if (!terms.length) return 0;\n  const title = r.title.toLowerCase();\n  const abs = r.abstract.toLowerCase();\n  const inTitle = terms.filter((t) => title.includes(t)).length;\n  const inAbstract = terms.filter((t) => abs.includes(t)).length;\n  return Math.min(8, inTitle * 2.5) + Math.min(3, inAbstract * 0.75);\n}\n\nconst thisYear = new Date().getFullYear();\nconst score = (r) =>\n  strength(r) * 1.5 +\n  topical(r) +\n  Math.max(0, 8 - (thisYear - (r.year || thisYear - 20))) * 0.25 +\n  Math.min(3, Math.log10(r.cited_by + 1) * 1.5) +\n  (r.is_open_access ? 0.5 : 0);\n\nlet trials = 0;\nconst candidates = Array.from(byKey.values())\n  .map((r) => ({ r, s: score(r) }))\n  .sort((a, b) => b.s - a.s || (b.r.year || 0) - (a.r.year || 0))\n  .filter(({ r }) => (r.source_type !== 'clinical_trial' ? true : ++trials <= MAX_TRIALS))\n  .slice(0, MAX)\n  .map(({ r, s }, i) => ({ ...r, marker: 'E' + String(i + 1).padStart(2, '0'), rank_score: Math.round(s * 100) / 100 }));\n\nreturn [{ json: { topic: start.topic, candidates, found_total: found, dropped }, pairedItem: { item: 0 } }];\n"
+      },
+      "id": "b7653e1e-1503-5bcb-8209-af89eeb0f163"
+    },
+    {
+      "name": "Upsert Sources",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        1200,
+        0
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH input AS (\n  SELECT * FROM jsonb_to_recordset($1::jsonb) AS x(\n    source_key text, source_type text, doi text, pmid text, pmcid text, nct_id text, title text,\n    authors jsonb, journal text, year int, pub_types jsonb, abstract text, url text, is_open_access boolean)\n),\nins AS (\n  INSERT INTO sources (source_key, source_type, doi, pmid, pmcid, nct_id, title, authors, journal,\n                       year, pub_types, abstract, url, is_open_access, first_topic)\n  SELECT source_key, source_type, doi, pmid, pmcid, nct_id, title, COALESCE(authors, '[]'), journal,\n         year, COALESCE(pub_types, '[]'), abstract, url, COALESCE(is_open_access, false), $2\n  FROM input\n  ON CONFLICT DO NOTHING\n  RETURNING id, source_key\n),\nrun AS (\n  INSERT INTO research_runs (topic, trigger, found, new_sources)\n  VALUES ($2, $3, (SELECT count(*) FROM input), (SELECT count(*) FROM ins))\n  RETURNING id\n),\nresolved AS (\n  SELECT i.source_key, COALESCE(n.id, e.id) AS id, (n.id IS NOT NULL) AS is_new\n  FROM input i\n  LEFT JOIN ins n ON n.source_key = i.source_key\n  LEFT JOIN LATERAL (\n    SELECT s.id FROM sources s\n    WHERE s.source_key = i.source_key\n       OR (i.doi IS NOT NULL AND lower(s.doi) = lower(i.doi))\n       OR (i.pmid IS NOT NULL AND s.pmid = i.pmid)\n       OR (i.nct_id IS NOT NULL AND s.nct_id = i.nct_id)\n    LIMIT 1\n  ) e ON true\n)\nSELECT (SELECT id FROM run) AS run_id,\n       COALESCE((SELECT json_agg(row_to_json(r)) FROM resolved r), '[]'::json) AS rows,\n       (SELECT count(*) FROM ins) AS new_count;",
+        "options": {
+          "queryReplacement": "={{ [(JSON.stringify($json.candidates)) ?? null, ($('Start').first().json.topic) ?? null, ($('Start').first().json.trigger || 'course_factory') ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "id": "70557c93-1393-5fe4-822f-06e6377f4a25"
+    },
+    {
+      "name": "Return Evidence Pack",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// n8n Code node: \"Return Evidence Pack\"   (GymRamp · Research Topic)\n// MODE: Run Once for All Items\n//\n// Joins the ranked candidates with the database ids returned by the upsert,\n// and builds each citation string from the STRUCTURED record. A citation is\n// computed here, once, and never written by a model.\n//\n// Output (the sub-workflow's return contract):\n//   { topic, run_id, found_total, new_count, evidence: [{ marker, source_id,\n//     is_new, source_type, title, authors_short, year, journal, doi, pmid,\n//     nct_id, url, pub_types, abstract, citation }] }\n\nconst ranked = $('Normalize & Rank').first().json;\nconst db = $input.first().json || {};\nconst rows = typeof db.rows === 'string' ? JSON.parse(db.rows) : db.rows || [];\nconst byKey = new Map(rows.map((r) => [r.source_key, r]));\n\nfunction initials(raw) {\n  const s = String(raw || '').replace(/[.\\s-]/g, '');\n  return s ? s.toUpperCase().split('').map((c) => c + '.').join(' ') : '';\n}\n\nfunction apaAuthors(authors) {\n  const names = (authors || [])\n    .filter((a) => a && a.last)\n    .map((a) => (a.initials ? a.last + ', ' + initials(a.initials) : a.last));\n  if (!names.length) return '';\n  if (names.length === 1) return names[0];\n  if (names.length <= 20) return names.slice(0, -1).join(', ') + ', & ' + names[names.length - 1];\n  return names.slice(0, 19).join(', ') + ', ... ' + names[names.length - 1];\n}\n\nfunction citation(r) {\n  const year = r.year ? '(' + r.year + ')' : '(n.d.)';\n  if (r.source_type === 'clinical_trial') {\n    return apaAuthors(r.authors) + '. ' + year + '. ' + r.title +\n      ' (ClinicalTrials.gov Identifier ' + r.nct_id + '). ' + r.url;\n  }\n  const journal = r.journal ? ' ' + r.journal + '.' : '';\n  const link = r.doi ? ' https://doi.org/' + r.doi : r.url ? ' ' + r.url : '';\n  return (apaAuthors(r.authors) || 'Anonymous') + ' ' + year + '. ' + r.title + '.' + journal + link;\n}\n\nconst shortAuthors = (a) =>\n  !a || !a.length ? '' : a.length === 1 ? a[0].last : a.length === 2 ? a[0].last + ' & ' + a[1].last : a[0].last + ' et al.';\n\nlet unresolved = 0;\nconst evidence = [];\nfor (const c of ranked.candidates || []) {\n  const row = byKey.get(c.source_key);\n  if (!row || !row.id) {\n    // The upsert returns every input key. A key with no id means two candidates in one\n    // batch collided on a secondary key (same PMID, different DOI). Never cite a source\n    // that has no row -- drop it and count it.\n    unresolved++;\n    continue;\n  }\n  evidence.push({\n    marker: c.marker,\n    source_id: Number(row.id),\n    is_new: row.is_new === true,\n    source_type: c.source_type,\n    title: c.title,\n    authors_short: shortAuthors(c.authors),\n    year: c.year,\n    journal: c.journal,\n    doi: c.doi,\n    pmid: c.pmid,\n    nct_id: c.nct_id,\n    url: c.url,\n    pub_types: c.pub_types,\n    abstract: c.abstract,\n    citation: citation(c),\n  });\n}\n\nreturn [{\n  json: {\n    topic: ranked.topic,\n    run_id: db.run_id ? Number(db.run_id) : null,\n    found_total: ranked.found_total,\n    new_count: evidence.filter((e) => e.is_new).length,\n    unresolved,\n    evidence,\n  },\n  pairedItem: { item: 0 },\n}];\n"
+      },
+      "id": "a3ba3001-9ddb-5b49-8e75-8ffdaa0d5de3"
+    }
+  ],
+  "connections": {
+    "Plan Searches · Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Plan Searches",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Plan Searches · Schema": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Plan Searches",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Plan Searches · Fixer": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Plan Searches · Schema",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Plan Searches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Plan Searches": {
+      "main": [
+        [
+          {
+            "node": "Build Search Requests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Search Requests": {
+      "main": [
+        [
+          {
+            "node": "Fetch Evidence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Evidence": {
+      "main": [
+        [
+          {
+            "node": "Normalize & Rank",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize & Rank": {
+      "main": [
+        [
+          {
+            "node": "Upsert Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert Sources": {
+      "main": [
+        [
+          {
+            "node": "Return Evidence Pack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Sub-workflow. Searches Europe PMC + ClinicalTrials.gov for a topic, ranks by evidence strength, upserts every source into Postgres (dedupe by DOI/PMID/NCT) and returns an evidence pack with E01.. markers and computed citations. IN: topic, audience, search_hint, since_date, trigger, max_sources, config. OUT: { topic, run_id, found_total, new_count, evidence[] }. Writes: sources, research_runs."
+  }
+}

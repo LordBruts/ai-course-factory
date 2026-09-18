@@ -1,0 +1,1368 @@
+{
+  "name": "GymRamp HF · Course Factory",
+  "nodes": [
+    {
+      "name": "Course Request Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        -200
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "gymramp/course",
+        "authentication": "headerAuth",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "webhookId": "57768d43-4536-570e-88f3-cdf7cec265a8",
+      "id": "a1643e4e-b18c-5167-84ba-ae3701cdc24a"
+    },
+    {
+      "name": "Course Request Form",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "3bc87e52-79ad-5449-8235-521ab02c2a01",
+      "parameters": {
+        "authentication": "basicAuth",
+        "formTitle": "Request a GymRamp course",
+        "formDescription": "The factory researches the topic, writes and produces the course, and emails it for approval. Nothing is published without your sign-off.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Topic",
+              "placeholder": "e.g. Red light therapy for exercise recovery",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Audience",
+              "placeholder": "Leave blank for fitness, wellness and recovery professionals"
+            },
+            {
+              "fieldLabel": "Search terms (optional)",
+              "placeholder": "e.g. photobiomodulation OR \"low-level laser therapy\""
+            },
+            {
+              "fieldLabel": "Produce even if evidence is thin",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "No"
+                  },
+                  {
+                    "option": "Yes"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "responseMode": "onReceived",
+        "options": {
+          "appendAttribution": false,
+          "respondWithOptions": {
+            "values": {
+              "respondWith": "text",
+              "formSubmittedText": "Received. The course will be researched and produced, then emailed for review."
+            }
+          }
+        }
+      },
+      "id": "f1f53335-c700-5d73-82a8-a4f7a663069e"
+    },
+    {
+      "name": "Called By Radar",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        200
+      ],
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "c5287636-ce2f-51a3-869e-76e7c01732b5"
+    },
+    {
+      "name": "Normalize Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// n8n Code node: \"Normalize Request\"   (GymRamp · Course Factory)\n// MODE: Run Once for All Items\n//\n// Three entry points, one request shape:\n//   Webhook            -> $json.body.{topic, audience, search_hint, force}\n//   Course Request Form -> $json['Topic'], $json['Audience'], ...  (keys are field labels)\n//   Called by Radar     -> $json.{topic, audience, search_hint, force, trigger, finding_id}\n\nconst src = $input.first().json || {};\nlet r;\nlet trigger;\nif (src.body && typeof src.body === 'object' && !Array.isArray(src.body)) {\n  r = src.body;\n  trigger = 'webhook';\n} else if ('Topic' in src) {\n  r = {\n    topic: src['Topic'],\n    audience: src['Audience'],\n    search_hint: src['Search terms (optional)'],\n    force: src['Produce even if evidence is thin'] === 'Yes',\n  };\n  trigger = 'form';\n} else {\n  r = src;\n  trigger = r.trigger || 'radar';\n}\n\nconst topic = String(r.topic || '').replace(/\\s+/g, ' ').trim();\nif (topic.length < 5 || topic.length > 200) {\n  throw new Error('A course request needs a topic of 5-200 characters. Received: \"' + topic.slice(0, 80) + '\"');\n}\n\nconst slug = String(r.slug || topic)\n  .toLowerCase()\n  .normalize('NFKD')\n  .replace(/\\p{M}+/gu, '')\n  .replace(/[^a-z0-9]+/g, '-')\n  .replace(/^-+|-+$/g, '')\n  .slice(0, 60);\n\nreturn [{\n  json: {\n    topic,\n    slug,\n    audience: String(r.audience || '').trim() || null,\n    search_hint: String(r.search_hint || '').trim() || null,\n    force: r.force === true || r.force === 'true',\n    trigger,\n    finding_id: r.finding_id != null ? Number(r.finding_id) : null,\n  },\n  pairedItem: { item: 0 },\n}];\n"
+      },
+      "id": "b87f3603-eb9a-56ad-8316-27b25c82e682"
+    },
+    {
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        480,
+        0
+      ],
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"worker_url\": \"http://host.docker.internal:8100\",\n  \"review_channel\": \"gmail\",\n  \"reviewer_email\": \"iyushau3@gmail.com\",\n  \"slack_channel_id\": \"\",\n  \"storage_backend\": \"local\",\n  \"supabase_url\": \"\",\n  \"supabase_bucket\": \"course-assets\",\n  \"default_audience\": \"Fitness, wellness and recovery professionals (health clubs, recovery centres, boutique studios)\",\n  \"max_sources\": 20,\n  \"min_relevant_sources\": 3,\n  \"max_slides\": 16,\n  \"max_tts_chars\": 3000,\n  \"tts_provider\": \"elevenlabs\",\n  \"quiz_questions\": 10,\n  \"exam_questions\": 20,\n  \"exam_pass_mark\": 80,\n  \"auto_produce\": false\n}",
+        "options": {}
+      },
+      "id": "9455fc7b-dafc-5b48-883f-0da7a4754f06"
+    },
+    {
+      "name": "Create Course",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        720,
+        0
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH c AS (\n  INSERT INTO courses (slug, title, topic, audience, status, current_version)\n  VALUES ($1, $2, $2, $3, 'researching', 1)\n  ON CONFLICT (slug) DO UPDATE SET status = 'researching', audience = EXCLUDED.audience,\n    current_version = courses.current_version + 1, updated_at = now()\n  RETURNING id, slug, topic, current_version\n),\nv AS (\n  INSERT INTO course_versions (course_id, version, status, n8n_execution_id)\n  SELECT id, current_version, 'researching', $4 FROM c\n  RETURNING id, course_id, version\n)\nSELECT v.id AS version_id, v.course_id, v.version, c.slug, c.topic FROM v JOIN c ON c.id = v.course_id;",
+        "options": {
+          "queryReplacement": "={{ [($('Normalize Request').first().json.slug) ?? null, ($('Normalize Request').first().json.topic) ?? null, ($('Normalize Request').first().json.audience || $('Config').first().json.default_audience) ?? null, ($execution.id) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "onError": "continueErrorOutput",
+      "id": "2f31d442-7135-5796-8848-a5dab5465d8d"
+    },
+    {
+      "name": "Research Topic",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        960,
+        0
+      ],
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "__WF_RESEARCH__"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ $('Normalize Request').first().json.topic }}",
+            "audience": "={{ $('Normalize Request').first().json.audience || $('Config').first().json.default_audience }}",
+            "slug": "={{ $('Create Course').first().json.slug }}",
+            "config": "={{ $('Config').first().json }}",
+            "search_hint": "={{ $('Normalize Request').first().json.search_hint }}",
+            "trigger": "course_factory",
+            "max_sources": "={{ $('Config').first().json.max_sources }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "once",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "onError": "continueErrorOutput",
+      "id": "a0a63165-4eaf-5e66-81b8-a931d4bb7828"
+    },
+    {
+      "name": "Analyse Evidence",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        1200,
+        0
+      ],
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "__WF_ANALYSIS__"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ $('Normalize Request').first().json.topic }}",
+            "audience": "={{ $('Normalize Request').first().json.audience || $('Config').first().json.default_audience }}",
+            "slug": "={{ $('Create Course').first().json.slug }}",
+            "config": "={{ $('Config').first().json }}",
+            "mode": "course",
+            "existing_version": "={{ $('Create Course').first().json.version }}",
+            "run_id": "={{ $json.run_id }}",
+            "evidence": "={{ $json.evidence }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "once",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "onError": "continueErrorOutput",
+      "id": "31e5dcac-830f-54bb-8db3-95d60e3ed925"
+    },
+    {
+      "name": "Save Analysis",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        1440,
+        0
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH v AS (UPDATE course_versions SET analysis = $2::jsonb, status = 'analysed', updated_at = now() WHERE id = $1 RETURNING id, course_id),\nc AS (UPDATE courses SET status = 'analysed', title = $3, updated_at = now() WHERE id = (SELECT course_id FROM v) RETURNING id),\ncs AS (\n  INSERT INTO course_sources (version_id, source_id, marker, evidence_level)\n  SELECT $1, x.source_id, x.marker, x.evidence_level\n  FROM jsonb_to_recordset($4::jsonb) AS x(source_id bigint, marker text, evidence_level text)\n  ON CONFLICT DO NOTHING RETURNING source_id\n)\nSELECT (SELECT count(*) FROM cs) AS linked_sources, (SELECT id FROM v) AS version_id;",
+        "options": {
+          "queryReplacement": "={{ [($('Create Course').first().json.version_id) ?? null, (JSON.stringify($json.analysis)) ?? null, ($json.analysis.proposed_title) ?? null, (JSON.stringify($json.evidence)) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "onError": "continueErrorOutput",
+      "id": "c91331c2-f080-5497-8319-03171221791f"
+    },
+    {
+      "name": "Produce Course?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1680,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "c0",
+              "leftValue": "={{ (() => { const a = $('Analyse Evidence').first().json; const d = a.analysis.decision; const n = a.relevant_evidence.length; const min = $('Config').first().json.min_relevant_sources || 3; return ['new_course', 'update_course'].includes(d) || (d === 'flag_review' && n >= min) || ($('Normalize Request').first().json.force && n > 0); })() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "a766022e-8198-52af-8f95-014dd741ec17"
+    },
+    {
+      "name": "Record Not Produced",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        1920,
+        400
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH v AS (UPDATE course_versions SET status = $2, updated_at = now() WHERE id = $1 RETURNING course_id),\nc AS (UPDATE courses SET status = $2, updated_at = now() WHERE id = (SELECT course_id FROM v) RETURNING id),\nf AS (\n  INSERT INTO research_findings (topic, decision, rationale, course_id, source_ids)\n  SELECT $3, $4, $5, (SELECT course_id FROM v), $6::jsonb RETURNING id\n)\nSELECT (SELECT id FROM f) AS finding_id;",
+        "options": {
+          "queryReplacement": "={{ [($('Create Course').first().json.version_id) ?? null, ($('Analyse Evidence').first().json.analysis.decision === 'flag_review' ? 'flagged' : 'no_action') ?? null, ($('Normalize Request').first().json.topic) ?? null, ($('Analyse Evidence').first().json.analysis.decision) ?? null, ($('Analyse Evidence').first().json.analysis.rationale) ?? null, (JSON.stringify($('Analyse Evidence').first().json.relevant_evidence.map((e) => e.source_id))) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "onError": "continueErrorOutput",
+      "id": "a6f777b2-eebe-565c-8af7-a8e8522d6824"
+    },
+    {
+      "name": "Write Not Produced Email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2160,
+        400
+      ],
+      "parameters": {
+        "jsCode": "// ---- GymRamp email kit ------------------------------------------------------\n// Prepended by build-workflows.js to every Code node that writes an email, so all\n// messages share one look. Same rules as the earlier newsletter projects, because\n// email clients are hostile: inline styles only (Gmail strips <style>), nested\n// tables (no flexbox/grid), a centred 640px container on a soft background,\n// web-safe fonts, no external images. Everything interpolated is HTML-escaped.\n\nconst KIT = {\n  font: \"system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif\",\n  navy: '#0B1F33', accent: '#FF6B2C', page: '#F2F4F7', card: '#FFFFFF',\n  text: '#1B2733', muted: '#5B6673', rule: '#E4E8EE',\n  ok: '#1E7F4F', warn: '#B26A00', bad: '#B3261E',\n};\n\nfunction esc(s) {\n  return String(s == null ? '' : s).replace(/[&<>\"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' })[c]);\n}\n\nfunction p(text, opts) {\n  const o = opts || {};\n  return '<p style=\"margin:0 0 ' + (o.gap == null ? 14 : o.gap) + 'px;font-size:' + (o.size || 15) + 'px;line-height:1.6;color:' +\n    (o.color || KIT.text) + ';\">' + (o.html ? text : esc(text)) + '</p>';\n}\n\nfunction list(items, opts) {\n  const o = opts || {};\n  const rows = items.filter(Boolean).map((it) =>\n    '<li style=\"margin:0 0 8px;font-size:' + (o.size || 15) + 'px;line-height:1.55;color:' + KIT.text + ';\">' + (o.html ? it : esc(it)) + '</li>').join('');\n  return rows ? '<ul style=\"margin:0 0 14px;padding-left:20px;\">' + rows + '</ul>' : '';\n}\n\nfunction section(label, inner) {\n  return '<tr><td style=\"padding:26px 32px 4px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:1.4px;font-weight:700;color:' + KIT.navy + ';text-transform:uppercase;\">' + esc(label) + '</div>' +\n    '<div style=\"width:40px;height:3px;background:' + KIT.accent + ';margin:8px 0 14px;line-height:3px;font-size:0;\">&nbsp;</div>' +\n    inner + '</td></tr>';\n}\n\nfunction callout(title, inner, tone) {\n  const color = { ok: KIT.ok, warn: KIT.warn, bad: KIT.bad }[tone] || KIT.accent;\n  const tint = { ok: '#EEF7F1', warn: '#FFF6E8', bad: '#FCEDEC' }[tone] || '#FFF3EC';\n  return '<tr><td style=\"padding:22px 32px 0;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;\">' +\n    '<tr><td style=\"background:' + tint + ';border-left:4px solid ' + color + ';padding:14px 18px;\">' +\n    '<div style=\"font-size:14px;font-weight:700;color:' + color + ';margin-bottom:6px;\">' + esc(title) + '</div>' + inner +\n    '</td></tr></table></td></tr>';\n}\n\nfunction button(label, href) {\n  return '<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:6px 0 4px;\"><tr>' +\n    '<td style=\"background:' + KIT.accent + ';border-radius:6px;\">' +\n    '<a href=\"' + esc(href) + '\" style=\"display:inline-block;padding:13px 26px;font-family:' + KIT.font +\n    ';font-size:15px;font-weight:700;color:#FFFFFF;text-decoration:none;\">' + esc(label) + '</a></td></tr></table>';\n}\n\n// rows: [[label, valueHtml]]\nfunction facts(rows) {\n  return '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:0 0 10px;\">' +\n    rows.filter(Boolean).map(([k, v]) =>\n      '<tr><td style=\"padding:7px 12px 7px 0;border-bottom:1px solid ' + KIT.rule + ';font-size:13px;color:' + KIT.muted +\n      ';width:38%;vertical-align:top;\">' + esc(k) + '</td><td style=\"padding:7px 0;border-bottom:1px solid ' + KIT.rule +\n      ';font-size:14px;color:' + KIT.text + ';vertical-align:top;\">' + v + '</td></tr>').join('') + '</table>';\n}\n\nfunction link(label, href) {\n  return '<a href=\"' + esc(href) + '\" style=\"color:' + KIT.accent + ';text-decoration:none;font-weight:600;\">' + esc(label) + '</a>';\n}\n\n// blocks are <tr> strings from section()/callout(); intro is plain text paragraphs.\nfunction emailLayout(o) {\n  const intro = (o.intro || []).map((t) => p(t)).join('');\n  return '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"></head>' +\n    '<body style=\"margin:0;padding:0;background:' + KIT.page + ';\">' +\n    '<div style=\"display:none;max-height:0;overflow:hidden;opacity:0;\">' + esc(o.preheader || '') + '</div>' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:' + KIT.page + ';border-collapse:collapse;\"><tr><td align=\"center\" style=\"padding:28px 12px;\">' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:640px;background:' + KIT.card +\n    ';border-collapse:collapse;font-family:' + KIT.font + ';border-radius:8px;overflow:hidden;\">' +\n    '<tr><td style=\"background:' + KIT.navy + ';padding:22px 32px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:2px;font-weight:700;color:' + KIT.accent + ';\">GYMRAMP' + (o.eyebrow ? ' &middot; ' + esc(o.eyebrow).toUpperCase() : '') + '</div>' +\n    '<div style=\"font-size:22px;line-height:1.3;font-weight:700;color:#FFFFFF;margin-top:8px;\">' + esc(o.title) + '</div>' +\n    (o.subtitle ? '<div style=\"font-size:14px;color:#C9D3DD;margin-top:6px;\">' + esc(o.subtitle) + '</div>' : '') +\n    '</td></tr>' +\n    '<tr><td style=\"padding:26px 32px 0;\">' + intro + '</td></tr>' +\n    (o.blocks || []).join('') +\n    '<tr><td style=\"padding:26px 32px 28px;\">' + (o.closing || []).map((t) => p(t)).join('') +\n    p('GymRamp Course Factory', { color: KIT.muted, size: 14, gap: 0 }) + '</td></tr>' +\n    '<tr><td style=\"background:' + KIT.page + ';padding:14px 32px;font-size:12px;line-height:1.5;color:' + KIT.muted + ';\">' +\n    esc(o.footer || 'Automated message from the GymRamp Course Factory. Course content is educational and is never published without human approval.') +\n    '</td></tr></table></td></tr></table></body></html>';\n}\n// ---- end email kit ------------------------------------------------------------\n\n// n8n Code node: \"Write ... Email\"   (GymRamp · Course Factory)\n// MODE: Run Once for All Items\n//\n// One composer for every notification the factory sends, so the voice stays\n// consistent: a short, specific note -- what happened, why, and exactly what to do\n// next. Internal codes (flag_review, needs_revision, CURE_PROMISE) never reach the\n// reader; they are translated here. The build script prepends the email kit and\n// sets KIND for each node.\n//\n// Output: { subject, html }\n\nconst KIND = 'not_produced';\n\nconst had = (name) => { try { return $(name).isExecuted; } catch (e) { return false; } };\nconst first = (name) => (had(name) ? $(name).first().json : {});\nconst req = first('Normalize Request');\nconst clean = (s) => String(s == null ? '' : s).replace(/\\s+/g, ' ').trim();\n\nconst REASON = {\n  UNKNOWN_MARKER: 'Cites a source that is not part of the research for this course.',\n  FREETEXT_CITATION: 'Uses a citation that did not come from the research.',\n  CURE_PROMISE: 'Reads as a promise or guarantee of results.',\n  DISEASE_TREATMENT_CLAIM: 'Claims to treat or prevent a medical condition.',\n  MEDICATION_INSTRUCTION: 'Gives advice about medication.',\n  DOSE_STATED: 'States a dose without a supporting source.',\n  UNCITED_STATISTIC: 'Quotes a figure without a source.',\n  INVENTED_EXPERIENCE: 'Describes client or personal experience that cannot be verified.',\n  NARRATION_TOO_LONG: 'The narration is longer than the voice budget allows.',\n  QUESTION_INVALID: 'A quiz or exam question cannot be answered as written.',\n  ASSESSMENT_EMPTY: 'The quiz or exam has no questions.',\n  WORKSHEET_EMPTY: 'The worksheet is missing.',\n  SLIDE_COUNT: 'The course has the wrong number of slides.',\n  SLIDE_INVALID: 'A slide is missing its title, bullets or narration.',\n  NO_CITATIONS: 'The course does not cite any of the research.',\n};\nconst place = (w) => String(w || '')\n  .replace(/^slide (\\d+) bullet$/, 'Slide $1, on screen').replace(/^slide (\\d+)$/, 'Slide $1, narration')\n  .replace(/^intro$/, 'Introduction').replace(/^takeaways$/, 'Key takeaways')\n  .replace(/^(quiz|exam) Q(\\d+)$/, (m, a, n) => (a === 'quiz' ? 'Quiz' : 'Exam') + ' question ' + n)\n  .replace(/^course$/, 'Whole course').replace(/^script$/, 'Script').replace(/^worksheet$/, 'Worksheet');\n\nlet subject;\nlet html;\n\nif (KIND === 'not_produced') {\n  const a = first('Analyse Evidence').analysis || {};\n  const counts = a.counts || {};\n  const flagged = a.decision === 'flag_review';\n  subject = 'No course produced yet: ' + clean(req.topic);\n  html = emailLayout({\n    preheader: 'The research did not support producing this course yet.',\n    eyebrow: 'Course request',\n    title: 'We held off on this course',\n    subtitle: clean(req.topic),\n    intro: [\n      'Hi,',\n      'We looked into your request for a course on \"' + clean(req.topic) + '\" and decided not to produce it yet. ' +\n        (flagged\n          ? 'The evidence review raised concerns, and there were not enough relevant studies to go ahead with confidence.'\n          : 'The research we found does not support a course at this stage.'),\n    ],\n    blocks: [\n      section('What the review found', p(clean(a.rationale)) + facts([\n        ['Sources reviewed', String(counts.total || 0)],\n        ['Relevant to fitness and recovery', String(counts.relevant || 0)],\n      ])),\n      (a.safety_flags || []).length ? section('Worth knowing before revisiting it', list(a.safety_flags.map(clean))) : '',\n      (a.overrides || []).length ? callout('Policy check', p(a.overrides.map(clean).join('. ') + '.', { gap: 0, size: 14 }), 'warn') : '',\n    ],\n    closing: ['If you would still like it produced, submit the request again with \"Produce even if evidence is thin\" set to Yes, and the course will be written and sent to you for review as usual.'],\n  });\n} else if (KIND === 'gate_blocked') {\n  const c = first('Build Course Content');\n  const title = clean((c.package || {}).title || req.topic);\n  const issues = ((c.gate || {}).blocking || []).map((f) =>\n    '<b>' + esc(place(f.where)) + '.</b> ' + esc(REASON[f.code] || f.code) +\n    (f.detail && !/^\\d+ /.test(f.detail) ? '<br><span style=\"color:' + KIT.muted + ';\">&ldquo;' + esc(clean(f.detail)) + '&rdquo;</span>' : ' <span style=\"color:' + KIT.muted + ';\">(' + esc(clean(f.detail)) + ')</span>'));\n  subject = 'Needs changes before production: ' + title;\n  html = emailLayout({\n    preheader: issues.length + ' issue(s) stopped this draft before any narration or video was made.',\n    eyebrow: 'Content check',\n    title: 'This draft needs changes',\n    subtitle: title,\n    intro: [\n      'Hi,',\n      'The draft of \"' + title + '\" was written, but it did not pass our content checks, so production stopped before any narration or video was made. No voice credits were used.',\n    ],\n    blocks: [\n      callout('What needs changing', list(issues, { html: true, size: 14 }), 'bad'),\n    ],\n    closing: ['This version is saved as needing revision. Submitting the topic again will write a fresh draft with the same checks applied.'],\n  });\n} else if (KIND === 'published') {\n  const c = first('Build Course Content');\n  const course = first('Create Course');\n  const media = first('Produce Media');\n  const decision = first('Normalize Decision');\n  const title = clean((c.package || {}).title);\n  const LABEL = { pptx: 'Slides (PowerPoint)', mp4: 'Training video', worksheet: 'Worksheet', quiz: 'Knowledge-check quiz', exam: 'Certification exam', answer_key: 'Answer key', sources: 'Reference list' };\n  subject = 'Published: ' + title + ' (version ' + course.version + ')';\n  html = emailLayout({\n    preheader: 'Version ' + course.version + ' is live in the LMS.',\n    eyebrow: 'Published',\n    title: title,\n    subtitle: 'Version ' + course.version + ' is now published',\n    intro: [\n      'Hi,',\n      'Thanks for approving \"' + title + '\". Version ' + course.version + ' has been published to the LMS. For now that is the test target, until the GymRamp LMS connection is set up.',\n    ],\n    blocks: [\n      decision.comments ? callout('Your review notes', p(clean(decision.comments), { gap: 0, size: 14 }), 'ok') : '',\n      section('Course files', facts((media.files || []).map((f) => [LABEL[f.kind] || f.kind, link('Download', f.url)]))),\n    ],\n    closing: [],\n  });\n} else if (KIND === 'failure') {\n  const failed = first('Mark Failed');\n  const url = 'http://localhost:5678/workflow/' + $workflow.id + '/executions/' + $execution.id;\n  subject = 'Course production stopped: ' + clean(req.topic);\n  html = emailLayout({\n    preheader: 'An error stopped production partway through.',\n    eyebrow: 'Production error',\n    title: 'Production stopped partway through',\n    subtitle: clean(req.topic),\n    intro: [\n      'Hi,',\n      'Production of \"' + clean(req.topic) + '\" hit an error and stopped, so this version has been marked as failed. Nothing was sent for review or published.',\n    ],\n    blocks: [\n      callout('The error', p(clean(failed.failure || 'No error message was recorded.'), { gap: 0, size: 14 }), 'bad'),\n      section('Next steps', p('The full run, node by node, is in the ' + link('n8n execution log', url) + '. Once the cause is fixed, submit the topic again to start a new version.', { html: true })),\n    ],\n    closing: [],\n  });\n} else {\n  throw new Error('compose-email: unknown KIND ' + KIND);\n}\n\nreturn [{ json: { subject, html }, pairedItem: { item: 0 } }];\n"
+      },
+      "id": "75c7d1b3-efe6-5018-821f-64cdcc6db023"
+    },
+    {
+      "name": "Email · Not Produced",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2400,
+        400
+      ],
+      "parameters": {
+        "sendTo": "={{ $('Config').first().json.reviewer_email }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "html",
+        "message": "={{ $json.html }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "GymRamp Course Factory"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput",
+      "id": "2304bd3d-60d6-5a96-8fcf-ce396bb451d3"
+    },
+    {
+      "name": "Build Course Content",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        1920,
+        0
+      ],
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "__WF_CONTENT__"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ $('Normalize Request').first().json.topic }}",
+            "audience": "={{ $('Normalize Request').first().json.audience || $('Config').first().json.default_audience }}",
+            "slug": "={{ $('Create Course').first().json.slug }}",
+            "config": "={{ $('Config').first().json }}",
+            "version": "={{ $('Create Course').first().json.version }}",
+            "title": "={{ $('Analyse Evidence').first().json.analysis.proposed_title }}",
+            "evidence": "={{ $('Analyse Evidence').first().json.relevant_evidence }}",
+            "analysis": "={{ $('Analyse Evidence').first().json.analysis }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "once",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "onError": "continueErrorOutput",
+      "id": "28e6a1c6-d9d2-55af-8a9c-0ab907cb117b"
+    },
+    {
+      "name": "Save Content",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        2160,
+        0
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH v AS (\n  UPDATE course_versions SET outline = $2::jsonb, slides = $3::jsonb, worksheet = $4::jsonb, quiz = $5::jsonb,\n    exam = $6::jsonb, gate_report = $7::jsonb, status = $8, updated_at = now()\n  WHERE id = $1 RETURNING id, course_id\n),\nc AS (UPDATE courses SET status = $8, title = $9, updated_at = now() WHERE id = (SELECT course_id FROM v) RETURNING id),\ncl AS (\n  INSERT INTO claims (version_id, slide_no, text, markers, status)\n  SELECT $1, x.slide_no, x.text, x.markers, x.status\n  FROM jsonb_to_recordset($10::jsonb) AS x(slide_no int, text text, markers jsonb, status text)\n  RETURNING id\n),\ncs AS (\n  UPDATE course_sources SET cited = true\n  WHERE version_id = $1 AND marker IN (SELECT jsonb_array_elements_text($11::jsonb))\n  RETURNING source_id\n)\nSELECT (SELECT count(*) FROM cl) AS claims, (SELECT count(*) FROM cs) AS cited_sources;",
+        "options": {
+          "queryReplacement": "={{ [($('Create Course').first().json.version_id) ?? null, (JSON.stringify($json.outline)) ?? null, (JSON.stringify($json.package.slides)) ?? null, (JSON.stringify($json.package.worksheet)) ?? null, (JSON.stringify($json.package.quiz)) ?? null, (JSON.stringify($json.package.exam)) ?? null, (JSON.stringify($json.gate)) ?? null, ($json.gate.passed ? 'producing' : 'needs_revision') ?? null, ($json.package.title) ?? null, (JSON.stringify($json.claims)) ?? null, (JSON.stringify($json.references.map((r) => r.marker))) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "onError": "continueErrorOutput",
+      "id": "ad2860c9-dd96-57f7-8450-148ea2040d4d"
+    },
+    {
+      "name": "Gate Passed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2400,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "c0",
+              "leftValue": "={{ $('Build Course Content').first().json.gate.passed }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "0d2fe7eb-a6a5-5f9f-83ff-a466e10aa57d"
+    },
+    {
+      "name": "Write Gate Blocked Email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2640,
+        400
+      ],
+      "parameters": {
+        "jsCode": "// ---- GymRamp email kit ------------------------------------------------------\n// Prepended by build-workflows.js to every Code node that writes an email, so all\n// messages share one look. Same rules as the earlier newsletter projects, because\n// email clients are hostile: inline styles only (Gmail strips <style>), nested\n// tables (no flexbox/grid), a centred 640px container on a soft background,\n// web-safe fonts, no external images. Everything interpolated is HTML-escaped.\n\nconst KIT = {\n  font: \"system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif\",\n  navy: '#0B1F33', accent: '#FF6B2C', page: '#F2F4F7', card: '#FFFFFF',\n  text: '#1B2733', muted: '#5B6673', rule: '#E4E8EE',\n  ok: '#1E7F4F', warn: '#B26A00', bad: '#B3261E',\n};\n\nfunction esc(s) {\n  return String(s == null ? '' : s).replace(/[&<>\"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' })[c]);\n}\n\nfunction p(text, opts) {\n  const o = opts || {};\n  return '<p style=\"margin:0 0 ' + (o.gap == null ? 14 : o.gap) + 'px;font-size:' + (o.size || 15) + 'px;line-height:1.6;color:' +\n    (o.color || KIT.text) + ';\">' + (o.html ? text : esc(text)) + '</p>';\n}\n\nfunction list(items, opts) {\n  const o = opts || {};\n  const rows = items.filter(Boolean).map((it) =>\n    '<li style=\"margin:0 0 8px;font-size:' + (o.size || 15) + 'px;line-height:1.55;color:' + KIT.text + ';\">' + (o.html ? it : esc(it)) + '</li>').join('');\n  return rows ? '<ul style=\"margin:0 0 14px;padding-left:20px;\">' + rows + '</ul>' : '';\n}\n\nfunction section(label, inner) {\n  return '<tr><td style=\"padding:26px 32px 4px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:1.4px;font-weight:700;color:' + KIT.navy + ';text-transform:uppercase;\">' + esc(label) + '</div>' +\n    '<div style=\"width:40px;height:3px;background:' + KIT.accent + ';margin:8px 0 14px;line-height:3px;font-size:0;\">&nbsp;</div>' +\n    inner + '</td></tr>';\n}\n\nfunction callout(title, inner, tone) {\n  const color = { ok: KIT.ok, warn: KIT.warn, bad: KIT.bad }[tone] || KIT.accent;\n  const tint = { ok: '#EEF7F1', warn: '#FFF6E8', bad: '#FCEDEC' }[tone] || '#FFF3EC';\n  return '<tr><td style=\"padding:22px 32px 0;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;\">' +\n    '<tr><td style=\"background:' + tint + ';border-left:4px solid ' + color + ';padding:14px 18px;\">' +\n    '<div style=\"font-size:14px;font-weight:700;color:' + color + ';margin-bottom:6px;\">' + esc(title) + '</div>' + inner +\n    '</td></tr></table></td></tr>';\n}\n\nfunction button(label, href) {\n  return '<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:6px 0 4px;\"><tr>' +\n    '<td style=\"background:' + KIT.accent + ';border-radius:6px;\">' +\n    '<a href=\"' + esc(href) + '\" style=\"display:inline-block;padding:13px 26px;font-family:' + KIT.font +\n    ';font-size:15px;font-weight:700;color:#FFFFFF;text-decoration:none;\">' + esc(label) + '</a></td></tr></table>';\n}\n\n// rows: [[label, valueHtml]]\nfunction facts(rows) {\n  return '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:0 0 10px;\">' +\n    rows.filter(Boolean).map(([k, v]) =>\n      '<tr><td style=\"padding:7px 12px 7px 0;border-bottom:1px solid ' + KIT.rule + ';font-size:13px;color:' + KIT.muted +\n      ';width:38%;vertical-align:top;\">' + esc(k) + '</td><td style=\"padding:7px 0;border-bottom:1px solid ' + KIT.rule +\n      ';font-size:14px;color:' + KIT.text + ';vertical-align:top;\">' + v + '</td></tr>').join('') + '</table>';\n}\n\nfunction link(label, href) {\n  return '<a href=\"' + esc(href) + '\" style=\"color:' + KIT.accent + ';text-decoration:none;font-weight:600;\">' + esc(label) + '</a>';\n}\n\n// blocks are <tr> strings from section()/callout(); intro is plain text paragraphs.\nfunction emailLayout(o) {\n  const intro = (o.intro || []).map((t) => p(t)).join('');\n  return '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"></head>' +\n    '<body style=\"margin:0;padding:0;background:' + KIT.page + ';\">' +\n    '<div style=\"display:none;max-height:0;overflow:hidden;opacity:0;\">' + esc(o.preheader || '') + '</div>' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:' + KIT.page + ';border-collapse:collapse;\"><tr><td align=\"center\" style=\"padding:28px 12px;\">' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:640px;background:' + KIT.card +\n    ';border-collapse:collapse;font-family:' + KIT.font + ';border-radius:8px;overflow:hidden;\">' +\n    '<tr><td style=\"background:' + KIT.navy + ';padding:22px 32px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:2px;font-weight:700;color:' + KIT.accent + ';\">GYMRAMP' + (o.eyebrow ? ' &middot; ' + esc(o.eyebrow).toUpperCase() : '') + '</div>' +\n    '<div style=\"font-size:22px;line-height:1.3;font-weight:700;color:#FFFFFF;margin-top:8px;\">' + esc(o.title) + '</div>' +\n    (o.subtitle ? '<div style=\"font-size:14px;color:#C9D3DD;margin-top:6px;\">' + esc(o.subtitle) + '</div>' : '') +\n    '</td></tr>' +\n    '<tr><td style=\"padding:26px 32px 0;\">' + intro + '</td></tr>' +\n    (o.blocks || []).join('') +\n    '<tr><td style=\"padding:26px 32px 28px;\">' + (o.closing || []).map((t) => p(t)).join('') +\n    p('GymRamp Course Factory', { color: KIT.muted, size: 14, gap: 0 }) + '</td></tr>' +\n    '<tr><td style=\"background:' + KIT.page + ';padding:14px 32px;font-size:12px;line-height:1.5;color:' + KIT.muted + ';\">' +\n    esc(o.footer || 'Automated message from the GymRamp Course Factory. Course content is educational and is never published without human approval.') +\n    '</td></tr></table></td></tr></table></body></html>';\n}\n// ---- end email kit ------------------------------------------------------------\n\n// n8n Code node: \"Write ... Email\"   (GymRamp · Course Factory)\n// MODE: Run Once for All Items\n//\n// One composer for every notification the factory sends, so the voice stays\n// consistent: a short, specific note -- what happened, why, and exactly what to do\n// next. Internal codes (flag_review, needs_revision, CURE_PROMISE) never reach the\n// reader; they are translated here. The build script prepends the email kit and\n// sets KIND for each node.\n//\n// Output: { subject, html }\n\nconst KIND = 'gate_blocked';\n\nconst had = (name) => { try { return $(name).isExecuted; } catch (e) { return false; } };\nconst first = (name) => (had(name) ? $(name).first().json : {});\nconst req = first('Normalize Request');\nconst clean = (s) => String(s == null ? '' : s).replace(/\\s+/g, ' ').trim();\n\nconst REASON = {\n  UNKNOWN_MARKER: 'Cites a source that is not part of the research for this course.',\n  FREETEXT_CITATION: 'Uses a citation that did not come from the research.',\n  CURE_PROMISE: 'Reads as a promise or guarantee of results.',\n  DISEASE_TREATMENT_CLAIM: 'Claims to treat or prevent a medical condition.',\n  MEDICATION_INSTRUCTION: 'Gives advice about medication.',\n  DOSE_STATED: 'States a dose without a supporting source.',\n  UNCITED_STATISTIC: 'Quotes a figure without a source.',\n  INVENTED_EXPERIENCE: 'Describes client or personal experience that cannot be verified.',\n  NARRATION_TOO_LONG: 'The narration is longer than the voice budget allows.',\n  QUESTION_INVALID: 'A quiz or exam question cannot be answered as written.',\n  ASSESSMENT_EMPTY: 'The quiz or exam has no questions.',\n  WORKSHEET_EMPTY: 'The worksheet is missing.',\n  SLIDE_COUNT: 'The course has the wrong number of slides.',\n  SLIDE_INVALID: 'A slide is missing its title, bullets or narration.',\n  NO_CITATIONS: 'The course does not cite any of the research.',\n};\nconst place = (w) => String(w || '')\n  .replace(/^slide (\\d+) bullet$/, 'Slide $1, on screen').replace(/^slide (\\d+)$/, 'Slide $1, narration')\n  .replace(/^intro$/, 'Introduction').replace(/^takeaways$/, 'Key takeaways')\n  .replace(/^(quiz|exam) Q(\\d+)$/, (m, a, n) => (a === 'quiz' ? 'Quiz' : 'Exam') + ' question ' + n)\n  .replace(/^course$/, 'Whole course').replace(/^script$/, 'Script').replace(/^worksheet$/, 'Worksheet');\n\nlet subject;\nlet html;\n\nif (KIND === 'not_produced') {\n  const a = first('Analyse Evidence').analysis || {};\n  const counts = a.counts || {};\n  const flagged = a.decision === 'flag_review';\n  subject = 'No course produced yet: ' + clean(req.topic);\n  html = emailLayout({\n    preheader: 'The research did not support producing this course yet.',\n    eyebrow: 'Course request',\n    title: 'We held off on this course',\n    subtitle: clean(req.topic),\n    intro: [\n      'Hi,',\n      'We looked into your request for a course on \"' + clean(req.topic) + '\" and decided not to produce it yet. ' +\n        (flagged\n          ? 'The evidence review raised concerns, and there were not enough relevant studies to go ahead with confidence.'\n          : 'The research we found does not support a course at this stage.'),\n    ],\n    blocks: [\n      section('What the review found', p(clean(a.rationale)) + facts([\n        ['Sources reviewed', String(counts.total || 0)],\n        ['Relevant to fitness and recovery', String(counts.relevant || 0)],\n      ])),\n      (a.safety_flags || []).length ? section('Worth knowing before revisiting it', list(a.safety_flags.map(clean))) : '',\n      (a.overrides || []).length ? callout('Policy check', p(a.overrides.map(clean).join('. ') + '.', { gap: 0, size: 14 }), 'warn') : '',\n    ],\n    closing: ['If you would still like it produced, submit the request again with \"Produce even if evidence is thin\" set to Yes, and the course will be written and sent to you for review as usual.'],\n  });\n} else if (KIND === 'gate_blocked') {\n  const c = first('Build Course Content');\n  const title = clean((c.package || {}).title || req.topic);\n  const issues = ((c.gate || {}).blocking || []).map((f) =>\n    '<b>' + esc(place(f.where)) + '.</b> ' + esc(REASON[f.code] || f.code) +\n    (f.detail && !/^\\d+ /.test(f.detail) ? '<br><span style=\"color:' + KIT.muted + ';\">&ldquo;' + esc(clean(f.detail)) + '&rdquo;</span>' : ' <span style=\"color:' + KIT.muted + ';\">(' + esc(clean(f.detail)) + ')</span>'));\n  subject = 'Needs changes before production: ' + title;\n  html = emailLayout({\n    preheader: issues.length + ' issue(s) stopped this draft before any narration or video was made.',\n    eyebrow: 'Content check',\n    title: 'This draft needs changes',\n    subtitle: title,\n    intro: [\n      'Hi,',\n      'The draft of \"' + title + '\" was written, but it did not pass our content checks, so production stopped before any narration or video was made. No voice credits were used.',\n    ],\n    blocks: [\n      callout('What needs changing', list(issues, { html: true, size: 14 }), 'bad'),\n    ],\n    closing: ['This version is saved as needing revision. Submitting the topic again will write a fresh draft with the same checks applied.'],\n  });\n} else if (KIND === 'published') {\n  const c = first('Build Course Content');\n  const course = first('Create Course');\n  const media = first('Produce Media');\n  const decision = first('Normalize Decision');\n  const title = clean((c.package || {}).title);\n  const LABEL = { pptx: 'Slides (PowerPoint)', mp4: 'Training video', worksheet: 'Worksheet', quiz: 'Knowledge-check quiz', exam: 'Certification exam', answer_key: 'Answer key', sources: 'Reference list' };\n  subject = 'Published: ' + title + ' (version ' + course.version + ')';\n  html = emailLayout({\n    preheader: 'Version ' + course.version + ' is live in the LMS.',\n    eyebrow: 'Published',\n    title: title,\n    subtitle: 'Version ' + course.version + ' is now published',\n    intro: [\n      'Hi,',\n      'Thanks for approving \"' + title + '\". Version ' + course.version + ' has been published to the LMS. For now that is the test target, until the GymRamp LMS connection is set up.',\n    ],\n    blocks: [\n      decision.comments ? callout('Your review notes', p(clean(decision.comments), { gap: 0, size: 14 }), 'ok') : '',\n      section('Course files', facts((media.files || []).map((f) => [LABEL[f.kind] || f.kind, link('Download', f.url)]))),\n    ],\n    closing: [],\n  });\n} else if (KIND === 'failure') {\n  const failed = first('Mark Failed');\n  const url = 'http://localhost:5678/workflow/' + $workflow.id + '/executions/' + $execution.id;\n  subject = 'Course production stopped: ' + clean(req.topic);\n  html = emailLayout({\n    preheader: 'An error stopped production partway through.',\n    eyebrow: 'Production error',\n    title: 'Production stopped partway through',\n    subtitle: clean(req.topic),\n    intro: [\n      'Hi,',\n      'Production of \"' + clean(req.topic) + '\" hit an error and stopped, so this version has been marked as failed. Nothing was sent for review or published.',\n    ],\n    blocks: [\n      callout('The error', p(clean(failed.failure || 'No error message was recorded.'), { gap: 0, size: 14 }), 'bad'),\n      section('Next steps', p('The full run, node by node, is in the ' + link('n8n execution log', url) + '. Once the cause is fixed, submit the topic again to start a new version.', { html: true })),\n    ],\n    closing: [],\n  });\n} else {\n  throw new Error('compose-email: unknown KIND ' + KIND);\n}\n\nreturn [{ json: { subject, html }, pairedItem: { item: 0 } }];\n"
+      },
+      "id": "d7c6b6e7-4bbc-5d74-85a2-8762b19917b8"
+    },
+    {
+      "name": "Email · Gate Blocked",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2880,
+        400
+      ],
+      "parameters": {
+        "sendTo": "={{ $('Config').first().json.reviewer_email }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "html",
+        "message": "={{ $json.html }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "GymRamp Course Factory"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput",
+      "id": "83ae2a90-1fad-56ee-8796-71bf898b7a85"
+    },
+    {
+      "name": "Produce Media",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        2640,
+        0
+      ],
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "__WF_MEDIA__"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "version_id": "={{ $('Create Course').first().json.version_id }}",
+            "package": "={{ $('Build Course Content').first().json.package }}",
+            "config": "={{ $('Config').first().json }}"
+          },
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "once",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "onError": "continueErrorOutput",
+      "id": "9160fd9c-8a66-598a-8b6a-5fe0477ef5f0"
+    },
+    {
+      "name": "Mark In Review",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        2880,
+        0
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH v AS (UPDATE course_versions SET status = 'in_review', updated_at = now() WHERE id = $1 RETURNING course_id),\nc AS (UPDATE courses SET status = 'in_review', updated_at = now() WHERE id = (SELECT course_id FROM v) RETURNING id)\nSELECT (SELECT count(*) FROM c) AS updated;",
+        "options": {
+          "queryReplacement": "={{ [($('Create Course').first().json.version_id) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "onError": "continueErrorOutput",
+      "id": "50f2fe63-abae-5b0c-89c8-d7dca10e709c"
+    },
+    {
+      "name": "Build Review Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3120,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// ---- GymRamp email kit ------------------------------------------------------\n// Prepended by build-workflows.js to every Code node that writes an email, so all\n// messages share one look. Same rules as the earlier newsletter projects, because\n// email clients are hostile: inline styles only (Gmail strips <style>), nested\n// tables (no flexbox/grid), a centred 640px container on a soft background,\n// web-safe fonts, no external images. Everything interpolated is HTML-escaped.\n\nconst KIT = {\n  font: \"system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif\",\n  navy: '#0B1F33', accent: '#FF6B2C', page: '#F2F4F7', card: '#FFFFFF',\n  text: '#1B2733', muted: '#5B6673', rule: '#E4E8EE',\n  ok: '#1E7F4F', warn: '#B26A00', bad: '#B3261E',\n};\n\nfunction esc(s) {\n  return String(s == null ? '' : s).replace(/[&<>\"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' })[c]);\n}\n\nfunction p(text, opts) {\n  const o = opts || {};\n  return '<p style=\"margin:0 0 ' + (o.gap == null ? 14 : o.gap) + 'px;font-size:' + (o.size || 15) + 'px;line-height:1.6;color:' +\n    (o.color || KIT.text) + ';\">' + (o.html ? text : esc(text)) + '</p>';\n}\n\nfunction list(items, opts) {\n  const o = opts || {};\n  const rows = items.filter(Boolean).map((it) =>\n    '<li style=\"margin:0 0 8px;font-size:' + (o.size || 15) + 'px;line-height:1.55;color:' + KIT.text + ';\">' + (o.html ? it : esc(it)) + '</li>').join('');\n  return rows ? '<ul style=\"margin:0 0 14px;padding-left:20px;\">' + rows + '</ul>' : '';\n}\n\nfunction section(label, inner) {\n  return '<tr><td style=\"padding:26px 32px 4px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:1.4px;font-weight:700;color:' + KIT.navy + ';text-transform:uppercase;\">' + esc(label) + '</div>' +\n    '<div style=\"width:40px;height:3px;background:' + KIT.accent + ';margin:8px 0 14px;line-height:3px;font-size:0;\">&nbsp;</div>' +\n    inner + '</td></tr>';\n}\n\nfunction callout(title, inner, tone) {\n  const color = { ok: KIT.ok, warn: KIT.warn, bad: KIT.bad }[tone] || KIT.accent;\n  const tint = { ok: '#EEF7F1', warn: '#FFF6E8', bad: '#FCEDEC' }[tone] || '#FFF3EC';\n  return '<tr><td style=\"padding:22px 32px 0;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;\">' +\n    '<tr><td style=\"background:' + tint + ';border-left:4px solid ' + color + ';padding:14px 18px;\">' +\n    '<div style=\"font-size:14px;font-weight:700;color:' + color + ';margin-bottom:6px;\">' + esc(title) + '</div>' + inner +\n    '</td></tr></table></td></tr>';\n}\n\nfunction button(label, href) {\n  return '<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:6px 0 4px;\"><tr>' +\n    '<td style=\"background:' + KIT.accent + ';border-radius:6px;\">' +\n    '<a href=\"' + esc(href) + '\" style=\"display:inline-block;padding:13px 26px;font-family:' + KIT.font +\n    ';font-size:15px;font-weight:700;color:#FFFFFF;text-decoration:none;\">' + esc(label) + '</a></td></tr></table>';\n}\n\n// rows: [[label, valueHtml]]\nfunction facts(rows) {\n  return '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:0 0 10px;\">' +\n    rows.filter(Boolean).map(([k, v]) =>\n      '<tr><td style=\"padding:7px 12px 7px 0;border-bottom:1px solid ' + KIT.rule + ';font-size:13px;color:' + KIT.muted +\n      ';width:38%;vertical-align:top;\">' + esc(k) + '</td><td style=\"padding:7px 0;border-bottom:1px solid ' + KIT.rule +\n      ';font-size:14px;color:' + KIT.text + ';vertical-align:top;\">' + v + '</td></tr>').join('') + '</table>';\n}\n\nfunction link(label, href) {\n  return '<a href=\"' + esc(href) + '\" style=\"color:' + KIT.accent + ';text-decoration:none;font-weight:600;\">' + esc(label) + '</a>';\n}\n\n// blocks are <tr> strings from section()/callout(); intro is plain text paragraphs.\nfunction emailLayout(o) {\n  const intro = (o.intro || []).map((t) => p(t)).join('');\n  return '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"></head>' +\n    '<body style=\"margin:0;padding:0;background:' + KIT.page + ';\">' +\n    '<div style=\"display:none;max-height:0;overflow:hidden;opacity:0;\">' + esc(o.preheader || '') + '</div>' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:' + KIT.page + ';border-collapse:collapse;\"><tr><td align=\"center\" style=\"padding:28px 12px;\">' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:640px;background:' + KIT.card +\n    ';border-collapse:collapse;font-family:' + KIT.font + ';border-radius:8px;overflow:hidden;\">' +\n    '<tr><td style=\"background:' + KIT.navy + ';padding:22px 32px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:2px;font-weight:700;color:' + KIT.accent + ';\">GYMRAMP' + (o.eyebrow ? ' &middot; ' + esc(o.eyebrow).toUpperCase() : '') + '</div>' +\n    '<div style=\"font-size:22px;line-height:1.3;font-weight:700;color:#FFFFFF;margin-top:8px;\">' + esc(o.title) + '</div>' +\n    (o.subtitle ? '<div style=\"font-size:14px;color:#C9D3DD;margin-top:6px;\">' + esc(o.subtitle) + '</div>' : '') +\n    '</td></tr>' +\n    '<tr><td style=\"padding:26px 32px 0;\">' + intro + '</td></tr>' +\n    (o.blocks || []).join('') +\n    '<tr><td style=\"padding:26px 32px 28px;\">' + (o.closing || []).map((t) => p(t)).join('') +\n    p('GymRamp Course Factory', { color: KIT.muted, size: 14, gap: 0 }) + '</td></tr>' +\n    '<tr><td style=\"background:' + KIT.page + ';padding:14px 32px;font-size:12px;line-height:1.5;color:' + KIT.muted + ';\">' +\n    esc(o.footer || 'Automated message from the GymRamp Course Factory. Course content is educational and is never published without human approval.') +\n    '</td></tr></table></td></tr></table></body></html>';\n}\n// ---- end email kit ------------------------------------------------------------\n\n// n8n Code node: \"Build Review Message\"   (GymRamp · Course Factory)\n// MODE: Run Once for All Items\n//\n// Everything an administrator needs to approve AI-written health education, in one\n// email: what the course is, any concerns up front, the files, the statements worth\n// a second look, and every claim beside the source it rests on.\n//\n// The decision button points at the Wait node's form. Its URL only exists at run\n// time, so the HTML carries %%REVIEW_URL%% and the send node substitutes\n// $execution.resumeFormUrl. The email kit is prepended by the build script.\n//\n// Output: { subject, html, text (for Slack), channel }\n\nconst cfg = $('Config').first().json;\nconst course = $('Create Course').first().json;\nconst a = $('Analyse Evidence').first().json.analysis || {};\nconst content = $('Build Course Content').first().json;\nconst media = $('Produce Media').first().json;\n\nconst gate = content.gate || {};\nconst stats = gate.stats || {};\nconst pkg = content.package || {};\nconst clean = (s) => String(s == null ? '' : s).replace(/\\s+/g, ' ').trim();\nconst title = clean(pkg.title);\n\nconst LABEL = { pptx: 'Slides (PowerPoint)', mp4: 'Training video', worksheet: 'Worksheet', quiz: 'Knowledge-check quiz', exam: 'Certification exam', answer_key: 'Answer key', sources: 'Reference list' };\nconst minutes = media.video_seconds ? Math.floor(media.video_seconds / 60) + ' min ' + Math.round(media.video_seconds % 60) + ' s' : '';\nconst voice = media.tts_provider === 'elevenlabs' ? 'ElevenLabs' : media.tts_provider === 'edge' ? 'Microsoft neural voice' : 'unknown';\n\nconst CHECK = {\n  UNCITED_CLAIM: 'Sounds like a research finding but has no source attached.',\n  DOSE_STATED: 'Mentions a dose. It is cited, but worth confirming against the source.',\n  DISEASE_TREATMENT_CLAIM: 'Talks about treating a condition. It is cited, but check the wording stays within scope.',\n  ASSESSMENT_SHORT: 'Has fewer questions than planned.',\n};\nconst place = (w) => String(w || '').replace(/^slide (\\d+) bullet$/, 'Slide $1, on screen').replace(/^slide (\\d+)$/, 'Slide $1')\n  .replace(/^intro$/, 'Introduction').replace(/^takeaways$/, 'Key takeaways').replace(/^(quiz|exam)$/, (m) => m[0].toUpperCase() + m.slice(1));\n\nconst advisories = (gate.advisory || []).slice(0, 15).map((f) =>\n  '<b>' + esc(place(f.where)) + '.</b> ' + esc(CHECK[f.code] || f.code) +\n  (/^\\d+ of \\d+/.test(f.detail) ? ' <span style=\"color:' + KIT.muted + ';\">(' + esc(f.detail) + ')</span>' : '<br><span style=\"color:' + KIT.muted + ';\">&ldquo;' + esc(clean(f.detail)) + '&rdquo;</span>'));\n\n// Claims grouped by where they appear, each with its numbered sources.\nconst bySlide = new Map();\nfor (const c of content.claims || []) {\n  const key = c.slide_no === 0 ? 'Introduction' : c.slide_no > (pkg.slides || []).length ? 'Key takeaways' : 'Slide ' + c.slide_no + ': ' + clean((pkg.slides[c.slide_no - 1] || {}).title);\n  if (!bySlide.has(key)) bySlide.set(key, []);\n  const tag = c.status === 'cited' ? '' : ' <span style=\"color:' + KIT.warn + ';font-weight:600;\">(no source)</span>';\n  bySlide.get(key).push(esc(clean(c.text)) + tag);\n}\nconst claimsHtml = [...bySlide.entries()].map(([k, items]) =>\n  '<div style=\"font-size:13px;font-weight:700;color:' + KIT.navy + ';margin:10px 0 6px;\">' + esc(k) + '</div>' + list(items, { html: true, size: 14 })).join('');\n\nconst refsHtml = (content.references || []).map((r) =>\n  '<p style=\"margin:0 0 10px;font-size:13px;line-height:1.5;color:' + KIT.text + ';\"><b>[' + r.n + ']</b> ' + esc(r.citation) +\n  (r.url ? ' ' + link('Open', r.url) : '') + '</p>').join('');\n\nconst flagged = a.decision === 'flag_review';\nconst html = emailLayout({\n  preheader: 'Ready for your review: ' + title + '. Nothing is published until you approve it.',\n  eyebrow: 'Ready for review',\n  title: title,\n  subtitle: clean(pkg.subtitle) + ' · Version ' + course.version,\n  intro: [\n    'Hi,',\n    'A new draft of \"' + title + '\" is ready for you. It has been researched, written, narrated and packaged, and it is waiting on your decision. Nothing reaches the LMS until you approve it.',\n  ],\n  blocks: [\n    flagged\n      ? callout('Please read this first: the evidence review flagged this topic',\n          p(clean(a.rationale), { size: 14 }) + ((a.safety_flags || []).length ? list(a.safety_flags.map(clean), { size: 14 }) : ''), 'warn')\n      : ((a.safety_flags || []).length ? callout('Points to keep in mind', list(a.safety_flags.map(clean), { size: 14 }), 'warn') : ''),\n    '<tr><td style=\"padding:24px 32px 0;\">' + button('Approve or request changes', '%%REVIEW_URL%%') +\n      p('Opens a short form (sign in with the GymRamp form login). If you request changes, tell us what should be different.', { size: 13, color: KIT.muted, gap: 0 }) + '</td></tr>',\n    section('What is in this version', facts([\n      ['Slides', (stats.slides || 0) + ' content slides, plus title, takeaways and references'],\n      ['Training video', esc(minutes) + ', narrated with ' + esc(voice) + (media.tts_fallback_reason ? ' <span style=\"color:' + KIT.warn + ';\">(ElevenLabs was unavailable)</span>' : '')],\n      ['Assessments', 'Worksheet, ' + (stats.quiz_questions || 0) + '-question quiz, ' + (stats.exam_questions || 0) + '-question certification exam (pass mark ' + (pkg.exam && pkg.exam.pass_mark_percent || 80) + '%)'],\n      ['Sources', (stats.references || 0) + ' studies cited; ' + (stats.claims_cited || 0) + ' statements carry a source'],\n    ].map(([k, v]) => [k, v]))),\n    section('Files', facts((media.files || []).map((f) => [LABEL[f.kind] || f.kind, link('Open', f.url)])) +\n      p('These links open on the GymRamp computer running the factory.', { size: 13, color: KIT.muted })),\n    advisories.length ? section('Worth a second look', list(advisories, { html: true, size: 14 })) : '',\n    section('Every statement and its source', claimsHtml || p('No statements were recorded.')),\n    section('References', refsHtml),\n  ],\n  closing: ['Thanks for reviewing.'],\n});\n\n// Slack gets a short text version; the full review lives in the same form link.\nconst text = 'Ready for review: ' + title + ' (version ' + course.version + ')\\n' +\n  (flagged ? 'Flagged by the evidence review: ' + clean(a.rationale) + '\\n' : '') +\n  (stats.slides || 0) + ' slides, ' + minutes + ' video, ' + (stats.references || 0) + ' sources, ' + (advisories.length) + ' item(s) worth a second look.\\n' +\n  (media.files || []).map((f) => (LABEL[f.kind] || f.kind) + ': ' + f.url).join('\\n') +\n  '\\nApprove or request changes: %%REVIEW_URL%%';\n\nreturn [{\n  json: {\n    subject: (flagged ? 'Review needed (flagged): ' : 'Ready for your review: ') + title,\n    html,\n    text,\n    channel: String(cfg.review_channel || 'gmail').toLowerCase(),\n  },\n  pairedItem: { item: 0 },\n}];\n"
+      },
+      "id": "c70be08c-ee9f-58cc-8f3f-990dafc63a7b"
+    },
+    {
+      "name": "Review Channel",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        3360,
+        0
+      ],
+      "parameters": {
+        "mode": "rules",
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "gmail",
+                    "leftValue": "={{ $json.channel }}",
+                    "rightValue": "gmail",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "gmail"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "slack",
+                    "leftValue": "={{ $json.channel }}",
+                    "rightValue": "slack",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "slack"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "13aad833-101d-5fa3-8685-36ca61644a6d"
+    },
+    {
+      "name": "Unknown Review Channel",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        3600,
+        400
+      ],
+      "parameters": {
+        "errorMessage": "={{ 'review_channel must be gmail or slack, got: ' + $json.channel }}"
+      },
+      "id": "56c434ea-2412-5286-8129-842cfe75ce19"
+    },
+    {
+      "name": "Gmail · Send Review Pack",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3600,
+        -200
+      ],
+      "parameters": {
+        "sendTo": "={{ $('Config').first().json.reviewer_email }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "html",
+        "message": "={{ $json.html.replace('%%REVIEW_URL%%', $execution.resumeFormUrl) }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "GymRamp Course Factory"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "onError": "continueErrorOutput",
+      "id": "815cca95-b0b1-5b72-84d2-3da99d08c961"
+    },
+    {
+      "name": "Slack · Send Review Link",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.5,
+      "position": [
+        3600,
+        100
+      ],
+      "parameters": {
+        "authentication": "accessToken",
+        "resource": "message",
+        "operation": "post",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $('Config').first().json.slack_channel_id }}"
+        },
+        "messageType": "text",
+        "text": "={{ $json.text.replace('%%REVIEW_URL%%', $execution.resumeFormUrl) }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "onError": "continueErrorOutput",
+      "id": "c462a6a9-fea7-5547-8941-2563956d0628"
+    },
+    {
+      "name": "Wait For Decision",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3840,
+        0
+      ],
+      "webhookId": "bbf5924f-669d-5bdd-8914-9cdbe00f59d5",
+      "parameters": {
+        "resume": "form",
+        "incomingAuthentication": "basicAuth",
+        "formTitle": "GymRamp course review",
+        "formDescription": "Approving publishes this version to the LMS. Requesting changes sends it back with your notes.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Decision",
+              "fieldType": "dropdown",
+              "requiredField": true,
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Approve and publish"
+                  },
+                  {
+                    "option": "Request changes"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Comments",
+              "fieldType": "textarea",
+              "placeholder": "What should change? Optional when approving."
+            }
+          ]
+        },
+        "limitWaitTime": true,
+        "limitType": "afterTimeInterval",
+        "resumeAmount": 7,
+        "resumeUnit": "days",
+        "responseMode": "onReceived",
+        "options": {
+          "appendAttribution": false,
+          "respondWithOptions": {
+            "values": {
+              "respondWith": "text",
+              "formSubmittedText": "Thank you. Your decision has been recorded."
+            }
+          }
+        }
+      },
+      "id": "a860a8c3-5872-5ca0-8d5f-5b25113f26d6"
+    },
+    {
+      "name": "Normalize Decision",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3840,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// n8n Code node: \"Normalize Decision\"   (GymRamp · Course Factory)\n// MODE: Run Once for All Items\n//\n// The Wait node resumes with the submitted form fields at the top level of the item\n// (keys are the field LABELS). A send-and-wait node would nest them under `data`, so\n// both are read. A wait that times out after 7 days resumes with the item it was\n// given -- no Decision field at all -- which is recorded as 'expired', never mistaken\n// for an approval. The same holds when the Slack node is disabled (no credential):\n// nobody receives a link, so the review expires rather than passing.\n\nconst item = $input.first().json || {};\nconst data = item.data && typeof item.data === 'object' ? item.data : item;\nconst pick = (name) => {\n  const key = Object.keys(data).find((k) => k.toLowerCase().trim() === name);\n  return key ? data[key] : undefined;\n};\n\nconst raw = String(pick('decision') || '').toLowerCase();\nconst decision = raw.startsWith('approve') ? 'approved' : raw.startsWith('request') || raw.startsWith('reject') ? 'rejected' : 'expired';\n\nreturn [{\n  json: {\n    decision,\n    approved: decision === 'approved',\n    comments: String(pick('comments') || '').trim() || null,\n    channel: $('Build Review Message').first().json.channel,\n    responded_at: data.submittedAt || data.respondedAt || null,\n    status: { approved: 'approved', rejected: 'needs_revision', expired: 'review_expired' }[decision],\n  },\n  pairedItem: { item: 0 },\n}];\n"
+      },
+      "id": "7be14e99-8c4d-50b6-86ce-c79bb7132bc7"
+    },
+    {
+      "name": "Record Review",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        4080,
+        0
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH r AS (INSERT INTO reviews (version_id, channel, decision, comments) VALUES ($1, $2, $3, $4) RETURNING id),\nv AS (UPDATE course_versions SET status = $5, updated_at = now() WHERE id = $1 RETURNING course_id),\nc AS (UPDATE courses SET status = $5, updated_at = now() WHERE id = (SELECT course_id FROM v) RETURNING id)\nSELECT (SELECT id FROM r) AS review_id;",
+        "options": {
+          "queryReplacement": "={{ [($('Create Course').first().json.version_id) ?? null, ($json.channel) ?? null, ($json.decision) ?? null, ($json.comments) ?? null, ($json.status) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "onError": "continueErrorOutput",
+      "id": "12cb0925-b8d7-54c1-8087-7bfac91ff68c"
+    },
+    {
+      "name": "Approved?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        4320,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "c0",
+              "leftValue": "={{ $('Normalize Decision').first().json.approved }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "ad791723-4b46-51db-8947-6f741c0f4c92"
+    },
+    {
+      "name": "Publish To LMS (Mock)",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        4560,
+        0
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH p AS (\n  INSERT INTO lms_publications (version_id, target, payload) VALUES ($1, 'mock-lms', $2::jsonb)\n  ON CONFLICT (version_id) DO UPDATE SET payload = EXCLUDED.payload, published_at = now()\n  RETURNING id, published_at\n),\nv AS (UPDATE course_versions SET status = 'published', updated_at = now() WHERE id = $1 RETURNING course_id),\nc AS (UPDATE courses SET status = 'published', updated_at = now() WHERE id = (SELECT course_id FROM v) RETURNING id)\nSELECT (SELECT id FROM p) AS publication_id, (SELECT published_at FROM p) AS published_at;",
+        "options": {
+          "queryReplacement": "={{ [($('Create Course').first().json.version_id) ?? null, (JSON.stringify({ course_slug: $('Create Course').first().json.slug, version: $('Create Course').first().json.version, title: $('Build Course Content').first().json.package.title, learning_objectives: $('Build Course Content').first().json.outline.learning_objectives, files: $('Produce Media').first().json.files, references: $('Build Course Content').first().json.references, exam_pass_mark: $('Build Course Content').first().json.package.exam.pass_mark_percent, approved_via: $('Normalize Decision').first().json.channel })) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "onError": "continueErrorOutput",
+      "id": "26d8f69c-fd14-5d05-8b88-f78730f1a38d"
+    },
+    {
+      "name": "Write Published Email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4800,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// ---- GymRamp email kit ------------------------------------------------------\n// Prepended by build-workflows.js to every Code node that writes an email, so all\n// messages share one look. Same rules as the earlier newsletter projects, because\n// email clients are hostile: inline styles only (Gmail strips <style>), nested\n// tables (no flexbox/grid), a centred 640px container on a soft background,\n// web-safe fonts, no external images. Everything interpolated is HTML-escaped.\n\nconst KIT = {\n  font: \"system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif\",\n  navy: '#0B1F33', accent: '#FF6B2C', page: '#F2F4F7', card: '#FFFFFF',\n  text: '#1B2733', muted: '#5B6673', rule: '#E4E8EE',\n  ok: '#1E7F4F', warn: '#B26A00', bad: '#B3261E',\n};\n\nfunction esc(s) {\n  return String(s == null ? '' : s).replace(/[&<>\"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' })[c]);\n}\n\nfunction p(text, opts) {\n  const o = opts || {};\n  return '<p style=\"margin:0 0 ' + (o.gap == null ? 14 : o.gap) + 'px;font-size:' + (o.size || 15) + 'px;line-height:1.6;color:' +\n    (o.color || KIT.text) + ';\">' + (o.html ? text : esc(text)) + '</p>';\n}\n\nfunction list(items, opts) {\n  const o = opts || {};\n  const rows = items.filter(Boolean).map((it) =>\n    '<li style=\"margin:0 0 8px;font-size:' + (o.size || 15) + 'px;line-height:1.55;color:' + KIT.text + ';\">' + (o.html ? it : esc(it)) + '</li>').join('');\n  return rows ? '<ul style=\"margin:0 0 14px;padding-left:20px;\">' + rows + '</ul>' : '';\n}\n\nfunction section(label, inner) {\n  return '<tr><td style=\"padding:26px 32px 4px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:1.4px;font-weight:700;color:' + KIT.navy + ';text-transform:uppercase;\">' + esc(label) + '</div>' +\n    '<div style=\"width:40px;height:3px;background:' + KIT.accent + ';margin:8px 0 14px;line-height:3px;font-size:0;\">&nbsp;</div>' +\n    inner + '</td></tr>';\n}\n\nfunction callout(title, inner, tone) {\n  const color = { ok: KIT.ok, warn: KIT.warn, bad: KIT.bad }[tone] || KIT.accent;\n  const tint = { ok: '#EEF7F1', warn: '#FFF6E8', bad: '#FCEDEC' }[tone] || '#FFF3EC';\n  return '<tr><td style=\"padding:22px 32px 0;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;\">' +\n    '<tr><td style=\"background:' + tint + ';border-left:4px solid ' + color + ';padding:14px 18px;\">' +\n    '<div style=\"font-size:14px;font-weight:700;color:' + color + ';margin-bottom:6px;\">' + esc(title) + '</div>' + inner +\n    '</td></tr></table></td></tr>';\n}\n\nfunction button(label, href) {\n  return '<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:6px 0 4px;\"><tr>' +\n    '<td style=\"background:' + KIT.accent + ';border-radius:6px;\">' +\n    '<a href=\"' + esc(href) + '\" style=\"display:inline-block;padding:13px 26px;font-family:' + KIT.font +\n    ';font-size:15px;font-weight:700;color:#FFFFFF;text-decoration:none;\">' + esc(label) + '</a></td></tr></table>';\n}\n\n// rows: [[label, valueHtml]]\nfunction facts(rows) {\n  return '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:0 0 10px;\">' +\n    rows.filter(Boolean).map(([k, v]) =>\n      '<tr><td style=\"padding:7px 12px 7px 0;border-bottom:1px solid ' + KIT.rule + ';font-size:13px;color:' + KIT.muted +\n      ';width:38%;vertical-align:top;\">' + esc(k) + '</td><td style=\"padding:7px 0;border-bottom:1px solid ' + KIT.rule +\n      ';font-size:14px;color:' + KIT.text + ';vertical-align:top;\">' + v + '</td></tr>').join('') + '</table>';\n}\n\nfunction link(label, href) {\n  return '<a href=\"' + esc(href) + '\" style=\"color:' + KIT.accent + ';text-decoration:none;font-weight:600;\">' + esc(label) + '</a>';\n}\n\n// blocks are <tr> strings from section()/callout(); intro is plain text paragraphs.\nfunction emailLayout(o) {\n  const intro = (o.intro || []).map((t) => p(t)).join('');\n  return '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"></head>' +\n    '<body style=\"margin:0;padding:0;background:' + KIT.page + ';\">' +\n    '<div style=\"display:none;max-height:0;overflow:hidden;opacity:0;\">' + esc(o.preheader || '') + '</div>' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:' + KIT.page + ';border-collapse:collapse;\"><tr><td align=\"center\" style=\"padding:28px 12px;\">' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:640px;background:' + KIT.card +\n    ';border-collapse:collapse;font-family:' + KIT.font + ';border-radius:8px;overflow:hidden;\">' +\n    '<tr><td style=\"background:' + KIT.navy + ';padding:22px 32px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:2px;font-weight:700;color:' + KIT.accent + ';\">GYMRAMP' + (o.eyebrow ? ' &middot; ' + esc(o.eyebrow).toUpperCase() : '') + '</div>' +\n    '<div style=\"font-size:22px;line-height:1.3;font-weight:700;color:#FFFFFF;margin-top:8px;\">' + esc(o.title) + '</div>' +\n    (o.subtitle ? '<div style=\"font-size:14px;color:#C9D3DD;margin-top:6px;\">' + esc(o.subtitle) + '</div>' : '') +\n    '</td></tr>' +\n    '<tr><td style=\"padding:26px 32px 0;\">' + intro + '</td></tr>' +\n    (o.blocks || []).join('') +\n    '<tr><td style=\"padding:26px 32px 28px;\">' + (o.closing || []).map((t) => p(t)).join('') +\n    p('GymRamp Course Factory', { color: KIT.muted, size: 14, gap: 0 }) + '</td></tr>' +\n    '<tr><td style=\"background:' + KIT.page + ';padding:14px 32px;font-size:12px;line-height:1.5;color:' + KIT.muted + ';\">' +\n    esc(o.footer || 'Automated message from the GymRamp Course Factory. Course content is educational and is never published without human approval.') +\n    '</td></tr></table></td></tr></table></body></html>';\n}\n// ---- end email kit ------------------------------------------------------------\n\n// n8n Code node: \"Write ... Email\"   (GymRamp · Course Factory)\n// MODE: Run Once for All Items\n//\n// One composer for every notification the factory sends, so the voice stays\n// consistent: a short, specific note -- what happened, why, and exactly what to do\n// next. Internal codes (flag_review, needs_revision, CURE_PROMISE) never reach the\n// reader; they are translated here. The build script prepends the email kit and\n// sets KIND for each node.\n//\n// Output: { subject, html }\n\nconst KIND = 'published';\n\nconst had = (name) => { try { return $(name).isExecuted; } catch (e) { return false; } };\nconst first = (name) => (had(name) ? $(name).first().json : {});\nconst req = first('Normalize Request');\nconst clean = (s) => String(s == null ? '' : s).replace(/\\s+/g, ' ').trim();\n\nconst REASON = {\n  UNKNOWN_MARKER: 'Cites a source that is not part of the research for this course.',\n  FREETEXT_CITATION: 'Uses a citation that did not come from the research.',\n  CURE_PROMISE: 'Reads as a promise or guarantee of results.',\n  DISEASE_TREATMENT_CLAIM: 'Claims to treat or prevent a medical condition.',\n  MEDICATION_INSTRUCTION: 'Gives advice about medication.',\n  DOSE_STATED: 'States a dose without a supporting source.',\n  UNCITED_STATISTIC: 'Quotes a figure without a source.',\n  INVENTED_EXPERIENCE: 'Describes client or personal experience that cannot be verified.',\n  NARRATION_TOO_LONG: 'The narration is longer than the voice budget allows.',\n  QUESTION_INVALID: 'A quiz or exam question cannot be answered as written.',\n  ASSESSMENT_EMPTY: 'The quiz or exam has no questions.',\n  WORKSHEET_EMPTY: 'The worksheet is missing.',\n  SLIDE_COUNT: 'The course has the wrong number of slides.',\n  SLIDE_INVALID: 'A slide is missing its title, bullets or narration.',\n  NO_CITATIONS: 'The course does not cite any of the research.',\n};\nconst place = (w) => String(w || '')\n  .replace(/^slide (\\d+) bullet$/, 'Slide $1, on screen').replace(/^slide (\\d+)$/, 'Slide $1, narration')\n  .replace(/^intro$/, 'Introduction').replace(/^takeaways$/, 'Key takeaways')\n  .replace(/^(quiz|exam) Q(\\d+)$/, (m, a, n) => (a === 'quiz' ? 'Quiz' : 'Exam') + ' question ' + n)\n  .replace(/^course$/, 'Whole course').replace(/^script$/, 'Script').replace(/^worksheet$/, 'Worksheet');\n\nlet subject;\nlet html;\n\nif (KIND === 'not_produced') {\n  const a = first('Analyse Evidence').analysis || {};\n  const counts = a.counts || {};\n  const flagged = a.decision === 'flag_review';\n  subject = 'No course produced yet: ' + clean(req.topic);\n  html = emailLayout({\n    preheader: 'The research did not support producing this course yet.',\n    eyebrow: 'Course request',\n    title: 'We held off on this course',\n    subtitle: clean(req.topic),\n    intro: [\n      'Hi,',\n      'We looked into your request for a course on \"' + clean(req.topic) + '\" and decided not to produce it yet. ' +\n        (flagged\n          ? 'The evidence review raised concerns, and there were not enough relevant studies to go ahead with confidence.'\n          : 'The research we found does not support a course at this stage.'),\n    ],\n    blocks: [\n      section('What the review found', p(clean(a.rationale)) + facts([\n        ['Sources reviewed', String(counts.total || 0)],\n        ['Relevant to fitness and recovery', String(counts.relevant || 0)],\n      ])),\n      (a.safety_flags || []).length ? section('Worth knowing before revisiting it', list(a.safety_flags.map(clean))) : '',\n      (a.overrides || []).length ? callout('Policy check', p(a.overrides.map(clean).join('. ') + '.', { gap: 0, size: 14 }), 'warn') : '',\n    ],\n    closing: ['If you would still like it produced, submit the request again with \"Produce even if evidence is thin\" set to Yes, and the course will be written and sent to you for review as usual.'],\n  });\n} else if (KIND === 'gate_blocked') {\n  const c = first('Build Course Content');\n  const title = clean((c.package || {}).title || req.topic);\n  const issues = ((c.gate || {}).blocking || []).map((f) =>\n    '<b>' + esc(place(f.where)) + '.</b> ' + esc(REASON[f.code] || f.code) +\n    (f.detail && !/^\\d+ /.test(f.detail) ? '<br><span style=\"color:' + KIT.muted + ';\">&ldquo;' + esc(clean(f.detail)) + '&rdquo;</span>' : ' <span style=\"color:' + KIT.muted + ';\">(' + esc(clean(f.detail)) + ')</span>'));\n  subject = 'Needs changes before production: ' + title;\n  html = emailLayout({\n    preheader: issues.length + ' issue(s) stopped this draft before any narration or video was made.',\n    eyebrow: 'Content check',\n    title: 'This draft needs changes',\n    subtitle: title,\n    intro: [\n      'Hi,',\n      'The draft of \"' + title + '\" was written, but it did not pass our content checks, so production stopped before any narration or video was made. No voice credits were used.',\n    ],\n    blocks: [\n      callout('What needs changing', list(issues, { html: true, size: 14 }), 'bad'),\n    ],\n    closing: ['This version is saved as needing revision. Submitting the topic again will write a fresh draft with the same checks applied.'],\n  });\n} else if (KIND === 'published') {\n  const c = first('Build Course Content');\n  const course = first('Create Course');\n  const media = first('Produce Media');\n  const decision = first('Normalize Decision');\n  const title = clean((c.package || {}).title);\n  const LABEL = { pptx: 'Slides (PowerPoint)', mp4: 'Training video', worksheet: 'Worksheet', quiz: 'Knowledge-check quiz', exam: 'Certification exam', answer_key: 'Answer key', sources: 'Reference list' };\n  subject = 'Published: ' + title + ' (version ' + course.version + ')';\n  html = emailLayout({\n    preheader: 'Version ' + course.version + ' is live in the LMS.',\n    eyebrow: 'Published',\n    title: title,\n    subtitle: 'Version ' + course.version + ' is now published',\n    intro: [\n      'Hi,',\n      'Thanks for approving \"' + title + '\". Version ' + course.version + ' has been published to the LMS. For now that is the test target, until the GymRamp LMS connection is set up.',\n    ],\n    blocks: [\n      decision.comments ? callout('Your review notes', p(clean(decision.comments), { gap: 0, size: 14 }), 'ok') : '',\n      section('Course files', facts((media.files || []).map((f) => [LABEL[f.kind] || f.kind, link('Download', f.url)]))),\n    ],\n    closing: [],\n  });\n} else if (KIND === 'failure') {\n  const failed = first('Mark Failed');\n  const url = 'http://localhost:5678/workflow/' + $workflow.id + '/executions/' + $execution.id;\n  subject = 'Course production stopped: ' + clean(req.topic);\n  html = emailLayout({\n    preheader: 'An error stopped production partway through.',\n    eyebrow: 'Production error',\n    title: 'Production stopped partway through',\n    subtitle: clean(req.topic),\n    intro: [\n      'Hi,',\n      'Production of \"' + clean(req.topic) + '\" hit an error and stopped, so this version has been marked as failed. Nothing was sent for review or published.',\n    ],\n    blocks: [\n      callout('The error', p(clean(failed.failure || 'No error message was recorded.'), { gap: 0, size: 14 }), 'bad'),\n      section('Next steps', p('The full run, node by node, is in the ' + link('n8n execution log', url) + '. Once the cause is fixed, submit the topic again to start a new version.', { html: true })),\n    ],\n    closing: [],\n  });\n} else {\n  throw new Error('compose-email: unknown KIND ' + KIND);\n}\n\nreturn [{ json: { subject, html }, pairedItem: { item: 0 } }];\n"
+      },
+      "id": "d71649b6-8f78-5a07-888e-2fb81065add1"
+    },
+    {
+      "name": "Email · Published",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        5040,
+        0
+      ],
+      "parameters": {
+        "sendTo": "={{ $('Config').first().json.reviewer_email }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "html",
+        "message": "={{ $json.html }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "GymRamp Course Factory"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput",
+      "id": "5e309c4d-941d-5a7d-8209-e1e9d222d21d"
+    },
+    {
+      "name": "Mark Failed",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        2400,
+        600
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH v AS (UPDATE course_versions SET status = 'failed', failure = $2, updated_at = now() WHERE id = $1 RETURNING course_id),\nc AS (UPDATE courses SET status = 'failed', updated_at = now() WHERE id = (SELECT course_id FROM v) RETURNING id)\nSELECT (SELECT count(*) FROM v) AS marked, $2::text AS failure;",
+        "options": {
+          "queryReplacement": "={{ [($('Create Course').isExecuted ? $('Create Course').first().json.version_id : null) ?? null, (String($json.error?.message ?? $json.error ?? $json.message ?? 'unknown error').slice(0, 2000)) ?? null] }}"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "onError": "continueRegularOutput",
+      "id": "4a34a7b5-edac-598e-8b5b-b5bd5ed54f56"
+    },
+    {
+      "name": "Write Failure Email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2640,
+        600
+      ],
+      "parameters": {
+        "jsCode": "// ---- GymRamp email kit ------------------------------------------------------\n// Prepended by build-workflows.js to every Code node that writes an email, so all\n// messages share one look. Same rules as the earlier newsletter projects, because\n// email clients are hostile: inline styles only (Gmail strips <style>), nested\n// tables (no flexbox/grid), a centred 640px container on a soft background,\n// web-safe fonts, no external images. Everything interpolated is HTML-escaped.\n\nconst KIT = {\n  font: \"system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif\",\n  navy: '#0B1F33', accent: '#FF6B2C', page: '#F2F4F7', card: '#FFFFFF',\n  text: '#1B2733', muted: '#5B6673', rule: '#E4E8EE',\n  ok: '#1E7F4F', warn: '#B26A00', bad: '#B3261E',\n};\n\nfunction esc(s) {\n  return String(s == null ? '' : s).replace(/[&<>\"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' })[c]);\n}\n\nfunction p(text, opts) {\n  const o = opts || {};\n  return '<p style=\"margin:0 0 ' + (o.gap == null ? 14 : o.gap) + 'px;font-size:' + (o.size || 15) + 'px;line-height:1.6;color:' +\n    (o.color || KIT.text) + ';\">' + (o.html ? text : esc(text)) + '</p>';\n}\n\nfunction list(items, opts) {\n  const o = opts || {};\n  const rows = items.filter(Boolean).map((it) =>\n    '<li style=\"margin:0 0 8px;font-size:' + (o.size || 15) + 'px;line-height:1.55;color:' + KIT.text + ';\">' + (o.html ? it : esc(it)) + '</li>').join('');\n  return rows ? '<ul style=\"margin:0 0 14px;padding-left:20px;\">' + rows + '</ul>' : '';\n}\n\nfunction section(label, inner) {\n  return '<tr><td style=\"padding:26px 32px 4px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:1.4px;font-weight:700;color:' + KIT.navy + ';text-transform:uppercase;\">' + esc(label) + '</div>' +\n    '<div style=\"width:40px;height:3px;background:' + KIT.accent + ';margin:8px 0 14px;line-height:3px;font-size:0;\">&nbsp;</div>' +\n    inner + '</td></tr>';\n}\n\nfunction callout(title, inner, tone) {\n  const color = { ok: KIT.ok, warn: KIT.warn, bad: KIT.bad }[tone] || KIT.accent;\n  const tint = { ok: '#EEF7F1', warn: '#FFF6E8', bad: '#FCEDEC' }[tone] || '#FFF3EC';\n  return '<tr><td style=\"padding:22px 32px 0;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;\">' +\n    '<tr><td style=\"background:' + tint + ';border-left:4px solid ' + color + ';padding:14px 18px;\">' +\n    '<div style=\"font-size:14px;font-weight:700;color:' + color + ';margin-bottom:6px;\">' + esc(title) + '</div>' + inner +\n    '</td></tr></table></td></tr>';\n}\n\nfunction button(label, href) {\n  return '<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:6px 0 4px;\"><tr>' +\n    '<td style=\"background:' + KIT.accent + ';border-radius:6px;\">' +\n    '<a href=\"' + esc(href) + '\" style=\"display:inline-block;padding:13px 26px;font-family:' + KIT.font +\n    ';font-size:15px;font-weight:700;color:#FFFFFF;text-decoration:none;\">' + esc(label) + '</a></td></tr></table>';\n}\n\n// rows: [[label, valueHtml]]\nfunction facts(rows) {\n  return '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;margin:0 0 10px;\">' +\n    rows.filter(Boolean).map(([k, v]) =>\n      '<tr><td style=\"padding:7px 12px 7px 0;border-bottom:1px solid ' + KIT.rule + ';font-size:13px;color:' + KIT.muted +\n      ';width:38%;vertical-align:top;\">' + esc(k) + '</td><td style=\"padding:7px 0;border-bottom:1px solid ' + KIT.rule +\n      ';font-size:14px;color:' + KIT.text + ';vertical-align:top;\">' + v + '</td></tr>').join('') + '</table>';\n}\n\nfunction link(label, href) {\n  return '<a href=\"' + esc(href) + '\" style=\"color:' + KIT.accent + ';text-decoration:none;font-weight:600;\">' + esc(label) + '</a>';\n}\n\n// blocks are <tr> strings from section()/callout(); intro is plain text paragraphs.\nfunction emailLayout(o) {\n  const intro = (o.intro || []).map((t) => p(t)).join('');\n  return '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"></head>' +\n    '<body style=\"margin:0;padding:0;background:' + KIT.page + ';\">' +\n    '<div style=\"display:none;max-height:0;overflow:hidden;opacity:0;\">' + esc(o.preheader || '') + '</div>' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:' + KIT.page + ';border-collapse:collapse;\"><tr><td align=\"center\" style=\"padding:28px 12px;\">' +\n    '<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:640px;background:' + KIT.card +\n    ';border-collapse:collapse;font-family:' + KIT.font + ';border-radius:8px;overflow:hidden;\">' +\n    '<tr><td style=\"background:' + KIT.navy + ';padding:22px 32px;\">' +\n    '<div style=\"font-size:12px;letter-spacing:2px;font-weight:700;color:' + KIT.accent + ';\">GYMRAMP' + (o.eyebrow ? ' &middot; ' + esc(o.eyebrow).toUpperCase() : '') + '</div>' +\n    '<div style=\"font-size:22px;line-height:1.3;font-weight:700;color:#FFFFFF;margin-top:8px;\">' + esc(o.title) + '</div>' +\n    (o.subtitle ? '<div style=\"font-size:14px;color:#C9D3DD;margin-top:6px;\">' + esc(o.subtitle) + '</div>' : '') +\n    '</td></tr>' +\n    '<tr><td style=\"padding:26px 32px 0;\">' + intro + '</td></tr>' +\n    (o.blocks || []).join('') +\n    '<tr><td style=\"padding:26px 32px 28px;\">' + (o.closing || []).map((t) => p(t)).join('') +\n    p('GymRamp Course Factory', { color: KIT.muted, size: 14, gap: 0 }) + '</td></tr>' +\n    '<tr><td style=\"background:' + KIT.page + ';padding:14px 32px;font-size:12px;line-height:1.5;color:' + KIT.muted + ';\">' +\n    esc(o.footer || 'Automated message from the GymRamp Course Factory. Course content is educational and is never published without human approval.') +\n    '</td></tr></table></td></tr></table></body></html>';\n}\n// ---- end email kit ------------------------------------------------------------\n\n// n8n Code node: \"Write ... Email\"   (GymRamp · Course Factory)\n// MODE: Run Once for All Items\n//\n// One composer for every notification the factory sends, so the voice stays\n// consistent: a short, specific note -- what happened, why, and exactly what to do\n// next. Internal codes (flag_review, needs_revision, CURE_PROMISE) never reach the\n// reader; they are translated here. The build script prepends the email kit and\n// sets KIND for each node.\n//\n// Output: { subject, html }\n\nconst KIND = 'failure';\n\nconst had = (name) => { try { return $(name).isExecuted; } catch (e) { return false; } };\nconst first = (name) => (had(name) ? $(name).first().json : {});\nconst req = first('Normalize Request');\nconst clean = (s) => String(s == null ? '' : s).replace(/\\s+/g, ' ').trim();\n\nconst REASON = {\n  UNKNOWN_MARKER: 'Cites a source that is not part of the research for this course.',\n  FREETEXT_CITATION: 'Uses a citation that did not come from the research.',\n  CURE_PROMISE: 'Reads as a promise or guarantee of results.',\n  DISEASE_TREATMENT_CLAIM: 'Claims to treat or prevent a medical condition.',\n  MEDICATION_INSTRUCTION: 'Gives advice about medication.',\n  DOSE_STATED: 'States a dose without a supporting source.',\n  UNCITED_STATISTIC: 'Quotes a figure without a source.',\n  INVENTED_EXPERIENCE: 'Describes client or personal experience that cannot be verified.',\n  NARRATION_TOO_LONG: 'The narration is longer than the voice budget allows.',\n  QUESTION_INVALID: 'A quiz or exam question cannot be answered as written.',\n  ASSESSMENT_EMPTY: 'The quiz or exam has no questions.',\n  WORKSHEET_EMPTY: 'The worksheet is missing.',\n  SLIDE_COUNT: 'The course has the wrong number of slides.',\n  SLIDE_INVALID: 'A slide is missing its title, bullets or narration.',\n  NO_CITATIONS: 'The course does not cite any of the research.',\n};\nconst place = (w) => String(w || '')\n  .replace(/^slide (\\d+) bullet$/, 'Slide $1, on screen').replace(/^slide (\\d+)$/, 'Slide $1, narration')\n  .replace(/^intro$/, 'Introduction').replace(/^takeaways$/, 'Key takeaways')\n  .replace(/^(quiz|exam) Q(\\d+)$/, (m, a, n) => (a === 'quiz' ? 'Quiz' : 'Exam') + ' question ' + n)\n  .replace(/^course$/, 'Whole course').replace(/^script$/, 'Script').replace(/^worksheet$/, 'Worksheet');\n\nlet subject;\nlet html;\n\nif (KIND === 'not_produced') {\n  const a = first('Analyse Evidence').analysis || {};\n  const counts = a.counts || {};\n  const flagged = a.decision === 'flag_review';\n  subject = 'No course produced yet: ' + clean(req.topic);\n  html = emailLayout({\n    preheader: 'The research did not support producing this course yet.',\n    eyebrow: 'Course request',\n    title: 'We held off on this course',\n    subtitle: clean(req.topic),\n    intro: [\n      'Hi,',\n      'We looked into your request for a course on \"' + clean(req.topic) + '\" and decided not to produce it yet. ' +\n        (flagged\n          ? 'The evidence review raised concerns, and there were not enough relevant studies to go ahead with confidence.'\n          : 'The research we found does not support a course at this stage.'),\n    ],\n    blocks: [\n      section('What the review found', p(clean(a.rationale)) + facts([\n        ['Sources reviewed', String(counts.total || 0)],\n        ['Relevant to fitness and recovery', String(counts.relevant || 0)],\n      ])),\n      (a.safety_flags || []).length ? section('Worth knowing before revisiting it', list(a.safety_flags.map(clean))) : '',\n      (a.overrides || []).length ? callout('Policy check', p(a.overrides.map(clean).join('. ') + '.', { gap: 0, size: 14 }), 'warn') : '',\n    ],\n    closing: ['If you would still like it produced, submit the request again with \"Produce even if evidence is thin\" set to Yes, and the course will be written and sent to you for review as usual.'],\n  });\n} else if (KIND === 'gate_blocked') {\n  const c = first('Build Course Content');\n  const title = clean((c.package || {}).title || req.topic);\n  const issues = ((c.gate || {}).blocking || []).map((f) =>\n    '<b>' + esc(place(f.where)) + '.</b> ' + esc(REASON[f.code] || f.code) +\n    (f.detail && !/^\\d+ /.test(f.detail) ? '<br><span style=\"color:' + KIT.muted + ';\">&ldquo;' + esc(clean(f.detail)) + '&rdquo;</span>' : ' <span style=\"color:' + KIT.muted + ';\">(' + esc(clean(f.detail)) + ')</span>'));\n  subject = 'Needs changes before production: ' + title;\n  html = emailLayout({\n    preheader: issues.length + ' issue(s) stopped this draft before any narration or video was made.',\n    eyebrow: 'Content check',\n    title: 'This draft needs changes',\n    subtitle: title,\n    intro: [\n      'Hi,',\n      'The draft of \"' + title + '\" was written, but it did not pass our content checks, so production stopped before any narration or video was made. No voice credits were used.',\n    ],\n    blocks: [\n      callout('What needs changing', list(issues, { html: true, size: 14 }), 'bad'),\n    ],\n    closing: ['This version is saved as needing revision. Submitting the topic again will write a fresh draft with the same checks applied.'],\n  });\n} else if (KIND === 'published') {\n  const c = first('Build Course Content');\n  const course = first('Create Course');\n  const media = first('Produce Media');\n  const decision = first('Normalize Decision');\n  const title = clean((c.package || {}).title);\n  const LABEL = { pptx: 'Slides (PowerPoint)', mp4: 'Training video', worksheet: 'Worksheet', quiz: 'Knowledge-check quiz', exam: 'Certification exam', answer_key: 'Answer key', sources: 'Reference list' };\n  subject = 'Published: ' + title + ' (version ' + course.version + ')';\n  html = emailLayout({\n    preheader: 'Version ' + course.version + ' is live in the LMS.',\n    eyebrow: 'Published',\n    title: title,\n    subtitle: 'Version ' + course.version + ' is now published',\n    intro: [\n      'Hi,',\n      'Thanks for approving \"' + title + '\". Version ' + course.version + ' has been published to the LMS. For now that is the test target, until the GymRamp LMS connection is set up.',\n    ],\n    blocks: [\n      decision.comments ? callout('Your review notes', p(clean(decision.comments), { gap: 0, size: 14 }), 'ok') : '',\n      section('Course files', facts((media.files || []).map((f) => [LABEL[f.kind] || f.kind, link('Download', f.url)]))),\n    ],\n    closing: [],\n  });\n} else if (KIND === 'failure') {\n  const failed = first('Mark Failed');\n  const url = 'http://localhost:5678/workflow/' + $workflow.id + '/executions/' + $execution.id;\n  subject = 'Course production stopped: ' + clean(req.topic);\n  html = emailLayout({\n    preheader: 'An error stopped production partway through.',\n    eyebrow: 'Production error',\n    title: 'Production stopped partway through',\n    subtitle: clean(req.topic),\n    intro: [\n      'Hi,',\n      'Production of \"' + clean(req.topic) + '\" hit an error and stopped, so this version has been marked as failed. Nothing was sent for review or published.',\n    ],\n    blocks: [\n      callout('The error', p(clean(failed.failure || 'No error message was recorded.'), { gap: 0, size: 14 }), 'bad'),\n      section('Next steps', p('The full run, node by node, is in the ' + link('n8n execution log', url) + '. Once the cause is fixed, submit the topic again to start a new version.', { html: true })),\n    ],\n    closing: [],\n  });\n} else {\n  throw new Error('compose-email: unknown KIND ' + KIND);\n}\n\nreturn [{ json: { subject, html }, pairedItem: { item: 0 } }];\n"
+      },
+      "id": "ab173092-805d-59b3-8fff-223daf46b5cc"
+    },
+    {
+      "name": "Email · Failure Alert",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2880,
+        600
+      ],
+      "parameters": {
+        "sendTo": "={{ $('Config').first().json.reviewer_email }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "html",
+        "message": "={{ $json.html }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "GymRamp Course Factory"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput",
+      "id": "e953a6cc-1a8c-53ec-88b5-f77a33fcd827"
+    }
+  ],
+  "connections": {
+    "Course Request Webhook": {
+      "main": [
+        [
+          {
+            "node": "Normalize Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Course Request Form": {
+      "main": [
+        [
+          {
+            "node": "Normalize Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Called By Radar": {
+      "main": [
+        [
+          {
+            "node": "Normalize Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Request": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Create Course",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Course": {
+      "main": [
+        [
+          {
+            "node": "Research Topic",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Research Topic": {
+      "main": [
+        [
+          {
+            "node": "Analyse Evidence",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyse Evidence": {
+      "main": [
+        [
+          {
+            "node": "Save Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Analysis": {
+      "main": [
+        [
+          {
+            "node": "Produce Course?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Produce Course?": {
+      "main": [
+        [
+          {
+            "node": "Build Course Content",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Record Not Produced",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Record Not Produced": {
+      "main": [
+        [
+          {
+            "node": "Write Not Produced Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Not Produced Email": {
+      "main": [
+        [
+          {
+            "node": "Email · Not Produced",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Course Content": {
+      "main": [
+        [
+          {
+            "node": "Save Content",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Content": {
+      "main": [
+        [
+          {
+            "node": "Gate Passed?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gate Passed?": {
+      "main": [
+        [
+          {
+            "node": "Produce Media",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Write Gate Blocked Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Gate Blocked Email": {
+      "main": [
+        [
+          {
+            "node": "Email · Gate Blocked",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Produce Media": {
+      "main": [
+        [
+          {
+            "node": "Mark In Review",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark In Review": {
+      "main": [
+        [
+          {
+            "node": "Build Review Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Review Message": {
+      "main": [
+        [
+          {
+            "node": "Review Channel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Review Channel": {
+      "main": [
+        [
+          {
+            "node": "Gmail · Send Review Pack",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Slack · Send Review Link",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Unknown Review Channel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail · Send Review Pack": {
+      "main": [
+        [
+          {
+            "node": "Wait For Decision",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack · Send Review Link": {
+      "main": [
+        [
+          {
+            "node": "Wait For Decision",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait For Decision": {
+      "main": [
+        [
+          {
+            "node": "Normalize Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Decision": {
+      "main": [
+        [
+          {
+            "node": "Record Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Record Review": {
+      "main": [
+        [
+          {
+            "node": "Approved?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Approved?": {
+      "main": [
+        [
+          {
+            "node": "Publish To LMS (Mock)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish To LMS (Mock)": {
+      "main": [
+        [
+          {
+            "node": "Write Published Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Published Email": {
+      "main": [
+        [
+          {
+            "node": "Email · Published",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Failed": {
+      "main": [
+        [
+          {
+            "node": "Write Failure Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Failure Email": {
+      "main": [
+        [
+          {
+            "node": "Email · Failure Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "errorWorkflow": "__WF_ERRORS__",
+    "executionTimeout": 3600
+  },
+  "meta": {
+    "description": "Main pipeline. Topic -> research -> evidence analysis -> course content + citation gate -> PPTX/MP4/worksheet/exam -> human approval (Gmail or Slack) -> mock LMS publish. Triggers: webhook POST /webhook/gymramp/course (header auth), Course Request form (basic auth), or the Research Radar."
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "name": "GymRamp HF · Build Course Content",
+  "nodes": [
+    {
+      "name": "Start",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "7dc3ddbc-edb4-5d91-8b5b-e402636ee7bf"
+    },
+    {
+      "name": "Prepare Evidence Brief",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// n8n Code node: \"Prepare Evidence Brief\"   (GymRamp · Build Course Content)\n// MODE: Run Once for All Items\n//\n// The writers' ONLY knowledge source. They get no search tools and no memory,\n// so anything they state has to come from this brief or from general\n// professional practice -- and the Citation & Claim Gate checks which.\n//\n// Braces are stripped: LangChain prompt templates read \"{\" as a variable.\n\nconst start = $('Start').first().json;\nconst safe = (s) => String(s == null ? '' : s).replace(/[{}]/g, '');\nconst evidence = start.evidence || [];\n\nif (!evidence.length) {\n  throw new Error('Build Course Content called with no evidence. Refusing to write a course with nothing to cite.');\n}\n\nconst brief = evidence\n  .map((e) => {\n    const findings = (e.key_findings || [])\n      .map((f) => '    - ' + safe(f.claim) + (f.strength ? ' (' + f.strength + ')' : ''))\n      .join('\\n');\n    const lines = [\n      '[' + e.marker + '] ' + safe(e.title),\n      '  ' + [e.authors_short, e.year, e.evidence_level, e.journal].filter(Boolean).map(safe).join(' | '),\n      findings ? '  Key findings:\\n' + findings : '  Key findings: none extracted',\n      '  Abstract excerpt: ' + safe(e.abstract).slice(0, 900),\n    ];\n    return lines.join('\\n');\n  })\n  .join('\\n\\n');\n\nconst a = start.analysis || {};\nreturn [{\n  json: {\n    brief,\n    markers: evidence.map((e) => e.marker),\n    safety_flags: (a.safety_flags || []).map(safe),\n    objectives: (a.learning_objectives || []).map(safe),\n  },\n  pairedItem: { item: 0 },\n}];\n"
+      },
+      "id": "9db57aad-c83a-5e4b-8f1f-5faf0ea4c3c6"
+    },
+    {
+      "name": "Write Course Script",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        480,
+        0
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "=COURSE TOPIC: {{ String($('Start').first().json.topic).replace(/[{}]/g, '') }}\nAUDIENCE: {{ String($('Start').first().json.audience || '').replace(/[{}]/g, '') }}\nWORKING TITLE: {{ String($('Start').first().json.title || '').replace(/[{}]/g, '') }}\n\nLEARNING OBJECTIVES FROM THE EVIDENCE REVIEW:\n{{ $json.objectives.join('\\n') || 'none' }}\n\nSAFETY FLAGS FROM THE EVIDENCE REVIEW:\n{{ $json.safety_flags.join('\\n') || 'none' }}\n\nEVIDENCE BRIEF. Cite only these markers: {{ $json.markers.join(', ') }}\n\n{{ $json.brief }}\n\nWrite the course and return the json object.",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You write GymRamp professional education courses. GymRamp trains staff at health clubs, recovery centres, wellness centres and boutique fitness studios. The course becomes narrated slides, so write for the ear: clear, confident, plain sentences.\n\nTRUTHFULNESS RULES. These override every other instruction.\n1. Every factual statement about effects, outcomes, mechanisms, safety, prevalence or research findings must be supported by the evidence brief and must end with its marker or markers, exactly like [E03] or [E02, E05], placed BEFORE the full stop: \"...muscle soreness [E03].\" Use only markers that appear in the brief.\n2. Never write author names, years or journal names as citations. Markers only.\n3. Do not state any number, percentage, dose, duration or effect size unless it appears in the cited source, and cite it.\n4. Never claim a modality cures, treats, heals, prevents or reverses a disease or condition. Say what studies examined and what they reported. Never say clinically proven. When evidence is mixed or limited, say so plainly.\n5. No medical instructions. Never tell anyone to start, stop or change medication, and never give drug, supplement, injection or IV doses. Device settings may be described only as what studies used, with a marker.\n6. No invented case studies, testimonials, client stories, statistics or first-person experiences.\n7. General professional practice needs no marker: how to explain a service to members, screening questions, when to refer to a doctor, scope of practice, hygiene and consent. Keep such statements general, not claims about outcomes.\n\nSTRUCTURE\n- Exactly 6 content slides. Title at most 60 characters. 2 to 4 bullets per slide, each at most 100 characters. Bullets may carry markers.\n- notes is the narration for that slide: 35 to 50 words, spoken sentences, a marker after each factual sentence.\n- Required slides: what the modality is and how it is thought to work; what the evidence shows for recovery or performance; safety, contraindications and scope of practice; how to discuss it with members or clients honestly. Use the remaining slides for practical application.\n- intro_notes: at most 45 words welcoming the learner and stating what they will learn.\n- takeaways: 3 or 4 items, each at most 90 characters. takeaways_notes: at most 45 words.\n- Total narration (intro_notes, every notes field and takeaways_notes) must stay under 2300 characters.\n- learning_objectives: 3 to 5 measurable objectives.\n\nReturn the json object only."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 5000,
+      "id": "5f9f31ce-c4d2-57b5-82e2-1041ddcf63ac"
+    },
+    {
+      "name": "Write Course Script · Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        400,
+        220
+      ],
+      "parameters": {
+        "model": "openai/gpt-5.4",
+        "options": {
+          "temperature": 0.4,
+          "timeout": 240000,
+          "maxRetries": 2
+        }
+      },
+      "id": "517409cd-8799-51c1-8a8c-ef8c31d594fa"
+    },
+    {
+      "name": "Write Course Script · Schema",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        600,
+        220
+      ],
+      "parameters": {
+        "schemaType": "manual",
+        "autoFix": true,
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"title\": {\n      \"type\": \"string\"\n    },\n    \"subtitle\": {\n      \"type\": \"string\"\n    },\n    \"learning_objectives\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"minItems\": 3,\n      \"maxItems\": 5\n    },\n    \"intro_notes\": {\n      \"type\": \"string\"\n    },\n    \"slides\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"title\": {\n            \"type\": \"string\"\n          },\n          \"bullets\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"string\"\n            },\n            \"minItems\": 2,\n            \"maxItems\": 4\n          },\n          \"notes\": {\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"title\",\n          \"bullets\",\n          \"notes\"\n        ],\n        \"additionalProperties\": false\n      },\n      \"minItems\": 3,\n      \"maxItems\": 12\n    },\n    \"takeaways\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"minItems\": 3,\n      \"maxItems\": 4\n    },\n    \"takeaways_notes\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n    \"title\",\n    \"subtitle\",\n    \"learning_objectives\",\n    \"intro_notes\",\n    \"slides\",\n    \"takeaways\",\n    \"takeaways_notes\"\n  ],\n  \"additionalProperties\": false\n}"
+      },
+      "id": "4401f72d-a0d4-5862-8498-9d8e34a0370a"
+    },
+    {
+      "name": "Write Course Script · Fixer",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        600,
+        420
+      ],
+      "parameters": {
+        "model": "openai/gpt-5.4-mini",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "81dffccb-849c-55b8-8918-f7b7011357f0"
+    },
+    {
+      "name": "Format Script For Assessor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// Renders the written script as plain text for the assessment writer.\n// Plain text, not JSON: braces in the prompt would be read as template variables.\nconst r = $input.first().json;\nconst s = r.output && typeof r.output === \"object\" ? r.output : r;\nconst clean = (t) => String(t == null ? '' : t).replace(/[{}]/g, '');\nconst slides = (s.slides || []).map((x, i) =>\n  'SLIDE ' + (i + 1) + ': ' + clean(x.title) + '\\n' + (x.bullets || []).map((b) => '- ' + clean(b)).join('\\n') +\n  '\\nNARRATION: ' + clean(x.notes)).join('\\n\\n');\nconst text = 'TITLE: ' + clean(s.title) + '\\n\\n' + slides + '\\n\\nTAKEAWAYS:\\n' + (s.takeaways || []).map(clean).join('\\n');\nreturn [{ json: { script_text: text }, pairedItem: { item: 0 } }];"
+      },
+      "id": "316aa19e-8db7-526d-89b2-26e613819b95"
+    },
+    {
+      "name": "Write Assessments",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        960,
+        0
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "=COURSE SCRIPT\n\n{{ $json.script_text }}\n\nWrite the worksheet, quiz and certification exam and return the json object.",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You write assessments for a GymRamp professional course. Base every item ONLY on the course script you are given. The learner has seen nothing else.\n\nWORKSHEET: exactly 3 sections, each with 2 or 3 open prompts. Section 1 checks understanding. Section 2 applies the content to realistic situations in a gym, recovery centre or studio. Section 3 covers safety screening, contraindications and when to refer to a healthcare professional.\n\nQUIZ: exactly 10 multiple-choice knowledge-check questions.\nCERTIFICATION EXAM: exactly 20 multiple-choice questions, harder than the quiz, including scenario questions. pass_mark_percent is 80.\n\nEvery question:\n- has exactly 4 distinct options and exactly one correct answer; answer_index is its position counting from 0;\n- spreads correct answers across positions 0 to 3 rather than favouring one;\n- uses plausible distractors, no trick wording, and no \"all of the above\" or \"none of the above\";\n- has a rationale of at most 30 words explaining why the answer is correct;\n- has markers: the evidence markers from the script that support the correct answer, like E03. Use an empty list for questions about general professional practice.\n\nNever introduce facts, numbers or claims that are not in the course script. Never ask about doses of drugs, supplements or IV therapies.\n\nReturn the json object only."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 5000,
+      "id": "98a2fccb-6218-5cbf-806d-5f676598ec1a"
+    },
+    {
+      "name": "Write Assessments · Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        880,
+        220
+      ],
+      "parameters": {
+        "model": "openai/gpt-5.4",
+        "options": {
+          "temperature": 0.3,
+          "timeout": 240000,
+          "maxRetries": 2
+        }
+      },
+      "id": "fe93e2b5-a9fb-55a0-8db7-19af8b87f9a5"
+    },
+    {
+      "name": "Write Assessments · Schema",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1080,
+        220
+      ],
+      "parameters": {
+        "schemaType": "manual",
+        "autoFix": true,
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"worksheet\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"instructions\": {\n          \"type\": \"string\"\n        },\n        \"sections\": {\n          \"type\": \"array\",\n          \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"heading\": {\n                \"type\": \"string\"\n              },\n              \"prompts\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"string\"\n                },\n                \"minItems\": 1,\n                \"maxItems\": 4\n              }\n            },\n            \"required\": [\n              \"heading\",\n              \"prompts\"\n            ],\n            \"additionalProperties\": false\n          },\n          \"minItems\": 1,\n          \"maxItems\": 4\n        }\n      },\n      \"required\": [\n        \"title\",\n        \"instructions\",\n        \"sections\"\n      ],\n      \"additionalProperties\": false\n    },\n    \"quiz\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"instructions\": {\n          \"type\": \"string\"\n        },\n        \"questions\": {\n          \"type\": \"array\",\n          \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"question\": {\n                \"type\": \"string\"\n              },\n              \"options\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"string\"\n                },\n                \"minItems\": 4,\n                \"maxItems\": 4\n              },\n              \"answer_index\": {\n                \"type\": \"integer\",\n                \"minimum\": 0,\n                \"maximum\": 3\n              },\n              \"rationale\": {\n                \"type\": \"string\"\n              },\n              \"markers\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"string\"\n                }\n              }\n            },\n            \"required\": [\n              \"question\",\n              \"options\",\n              \"answer_index\",\n              \"rationale\",\n              \"markers\"\n            ],\n            \"additionalProperties\": false\n          },\n          \"minItems\": 1\n        }\n      },\n      \"required\": [\n        \"title\",\n        \"instructions\",\n        \"questions\"\n      ],\n      \"additionalProperties\": false\n    },\n    \"exam\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"instructions\": {\n          \"type\": \"string\"\n        },\n        \"pass_mark_percent\": {\n          \"type\": \"integer\"\n        },\n        \"questions\": {\n          \"type\": \"array\",\n          \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"question\": {\n                \"type\": \"string\"\n              },\n              \"options\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"string\"\n                },\n                \"minItems\": 4,\n                \"maxItems\": 4\n              },\n              \"answer_index\": {\n                \"type\": \"integer\",\n                \"minimum\": 0,\n                \"maximum\": 3\n              },\n              \"rationale\": {\n                \"type\": \"string\"\n              },\n              \"markers\": {\n                \"type\": \"array\",\n                \"items\": {\n                  \"type\": \"string\"\n                }\n              }\n            },\n            \"required\": [\n              \"question\",\n              \"options\",\n              \"answer_index\",\n              \"rationale\",\n              \"markers\"\n            ],\n            \"additionalProperties\": false\n          },\n          \"minItems\": 1\n        }\n      },\n      \"required\": [\n        \"title\",\n        \"instructions\",\n        \"pass_mark_percent\",\n        \"questions\"\n      ],\n      \"additionalProperties\": false\n    }\n  },\n  \"required\": [\n    \"worksheet\",\n    \"quiz\",\n    \"exam\"\n  ],\n  \"additionalProperties\": false\n}"
+      },
+      "id": "be097419-c578-5a49-8781-af144cfc5bd3"
+    },
+    {
+      "name": "Write Assessments · Fixer",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        420
+      ],
+      "parameters": {
+        "model": "openai/gpt-5.4-mini",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "baf340e8-fc16-50a1-8d1e-ab7df185486d"
+    },
+    {
+      "name": "Citation & Claim Gate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// n8n Code node: \"Citation & Claim Gate\"   (GymRamp · Build Course Content)\n// MODE: Run Once for All Items\n//\n// The deterministic control between AI-written health content and anything a\n// human is asked to approve. Zero LLM calls.\n//\n// 1. Citations. Writers may only cite with evidence markers ([E03]). This node\n//    rejects unknown markers, renumbers the real ones by first appearance\n//    ([1], [2]...), and COMPUTES the reference list from the structured source\n//    records -- an invented reference is unrepresentable, not just discouraged.\n// 2. Claims. Every narration sentence is classified cited / uncited / blocked\n//    and stored, so each claim in the course traces back to a source row.\n// 3. Forbidden claim classes are blocked outright rather than fact-checked:\n//    cure promises, uncited statistics, uncited doses, medication instructions,\n//    invented first-person experience, author-year citations the writer made up.\n// 4. Structure: slide/question validity and the narration spend budget, checked\n//    BEFORE any TTS character is paid for.\n//\n// Blocking findings stop production; advisory findings travel to the reviewer.\n\nconst start = $('Start').first().json;\nconst cfg = start.config || {};\nconst unwrap = (j) => (j && j.output && typeof j.output === 'object' ? j.output : j || {});\nconst script = unwrap($('Write Course Script').first().json);\nconst assess = unwrap($('Write Assessments').first().json);\n\nconst evidence = start.evidence || [];\nconst byMarker = new Map(evidence.map((e) => [e.marker, e]));\nconst MAX_SLIDES = Number(cfg.max_slides || 16);\nconst MAX_TTS = Number(cfg.max_tts_chars || 3000);\n// Fixed narration the worker adds: one intro sentence on the first references slide,\n// plus \"References, continued.\" on each further page (4 references per slide).\nconst referencesNarration = (count) => 160 + Math.max(0, Math.ceil(count / 4) - 1) * 25;\n\nconst blocking = [];\nconst advisory = [];\nconst flag = (list, code, where, detail) => list.push({ code, where, detail: String(detail).slice(0, 300) });\n\n// ------------------------------------------------------------- markers ----\nconst order = [];\nconst GROUP = /\\[\\s*(E\\d{1,3}(?:\\s*[,;&]\\s*E\\d{1,3})*)\\s*\\]/gi;\nconst pad = (m) => 'E' + String(parseInt(m.slice(1), 10)).padStart(2, '0');\n\n// Returns { text (markers renumbered), markers: ['E03', ...] }.\nfunction resolve(text, where) {\n  const found = [];\n  const out = String(text || '').replace(GROUP, (_, inner) => {\n    const nums = [];\n    for (const raw of inner.split(/[,;&]/)) {\n      const m = pad(raw.trim().toUpperCase());\n      if (!byMarker.has(m)) {\n        flag(blocking, 'UNKNOWN_MARKER', where, m + ' is not in the evidence pack');\n        continue;\n      }\n      if (!order.includes(m)) order.push(m);\n      if (!found.includes(m)) found.push(m);\n      nums.push(order.indexOf(m) + 1);\n    }\n    return nums.length ? '[' + [...new Set(nums)].sort((a, b) => a - b).join(', ') + ']' : '';\n  });\n  return { text: out.replace(/\\s+([.,;:])/g, '$1').replace(/\\s{2,}/g, ' ').trim(), markers: found };\n}\n\nconst spoken = (t) => String(t || '').replace(/\\s*\\[[\\d,\\s]+\\]/g, '').trim();\n// Writers often put the marker AFTER the full stop (\"...tissue. [E02]\"). Split as-is and\n// the citation lands on the NEXT sentence, leaving the one it supports looking uncited\n// (first live run: 4 of 6 slides). Move a trailing marker back inside its sentence first.\nconst TRAILING = /([.!?])\\s*(\\[\\s*E\\d{1,3}(?:\\s*[,;&]\\s*E\\d{1,3})*\\s*\\])/gi;\nconst tidy = (t) => String(t || '').replace(TRAILING, ' $2$1');\nconst sentences = (t) => tidy(t).split(/(?<=[.!?])\\s+/).map((s) => s.trim()).filter(Boolean);\nconst hasMarker = (s) => /\\[\\s*E\\d{1,3}/i.test(s);\n\n// --------------------------------------------------------- claim rules ----\nconst RULES = [\n  { code: 'FREETEXT_CITATION', re: /\\(([A-Z][A-Za-z'’-]+(?:\\s+et al\\.?|\\s*(?:&|and)\\s*[A-Z][A-Za-z'’-]+)?),?\\s+(?:19|20)\\d{2}[a-z]?\\)/, level: () => 'blocking' },\n  // Negated forms are exactly what a responsible course SHOULD say (\"a recovery service,\n  // not a cure\", \"benefits are not guaranteed\"), and blocking them flagged the most careful\n  // sentences in the first two live runs.\n  { code: 'CURE_PROMISE', re: /\\b(cures?|curing|guarantee[sd]?|miracle|clinically proven|scientifically proven|proven to)\\b/i,\n    level: (cited, s) => (/\\b(not|never|no|nor|isn't|aren't|without|rather than|instead of)\\s+(?:\\w+\\s+){0,3}(cures?|curing|guarantee[sd]?|miracle|clinically|scientifically|proven)\\b/i.test(s) ? null : 'blocking') },\n  { code: 'DISEASE_TREATMENT_CLAIM', re: /\\b(treats?|treating|prevents?|reverses?|heals?)\\s+(?:[a-z'-]+\\s+){0,3}(disease|diabetes|cancer|arthritis|depression|obesity|dementia|alzheimer'?s|infection|hypertension|injur(?:y|ies))\\b/i, level: (cited) => (cited ? 'advisory' : 'blocking') },\n  { code: 'MEDICATION_INSTRUCTION', re: /\\b(stop|start|change|reduce|increase|replace|skip)\\s+(?:taking\\s+)?(?:your\\s+|their\\s+)?(medication|medicine|prescription|insulin|drugs?)\\b/i, level: () => 'blocking' },\n  { code: 'DOSE_STATED', re: /\\b\\d+(?:\\.\\d+)?\\s?(mg|mcg|µg|ug|iu|ml|units?)\\b/i, level: (cited) => (cited ? 'advisory' : 'blocking') },\n  { code: 'UNCITED_STATISTIC', re: /\\d+(?:\\.\\d+)?\\s?%|\\b\\d+(?:\\.\\d+)?[- ]fold\\b|\\bp\\s?[<=]\\s?0?\\.\\d+/i, level: (cited) => (cited ? null : 'blocking') },\n  { code: 'INVENTED_EXPERIENCE', re: /\\b(our|my)\\s+(clients?|members?|patients?|gym|studio|clinic|facility|centre|center)\\b|\\bat our\\b|\\bI(?:'ve| have)?\\s+(?:seen|used|treated|worked)\\b/i, level: () => 'blocking' },\n];\nconst CLAIMISH = /\\b(improv|reduc|increas|decreas|enhanc|boost|lower|accelerat|effective|benefit|evidence|stud(?:y|ies)|research|trial|found|shown|showed|demonstrat|associated|linked)\\w*/i;\n\nconst claims = [];\nfunction checkNarration(text, where, slideNo) {\n  const resolvedSentences = [];\n  for (const s of sentences(text)) {\n    const cited = hasMarker(s);\n    let status = cited ? 'cited' : null;\n    for (const rule of RULES) {\n      if (!rule.re.test(s)) continue;\n      const level = rule.level(cited, s);\n      if (!level) continue;\n      flag(level === 'blocking' ? blocking : advisory, rule.code, where, s);\n      if (level === 'blocking') status = 'blocked';\n    }\n    const r = resolve(s, where);\n    if (!status && CLAIMISH.test(s)) {\n      status = 'uncited';\n      flag(advisory, 'UNCITED_CLAIM', where, s);\n    }\n    if (status) claims.push({ slide_no: slideNo, text: r.text, markers: r.markers, status });\n    resolvedSentences.push(r.text);\n  }\n  return resolvedSentences.join(' ');\n}\n\n// ------------------------------------------------------------- script -----\nconst rawSlides = Array.isArray(script.slides) ? script.slides : [];\nif (rawSlides.length < 3 || rawSlides.length > MAX_SLIDES) {\n  flag(blocking, 'SLIDE_COUNT', 'script', rawSlides.length + ' content slides (allowed 3-' + MAX_SLIDES + ')');\n}\n\nconst introNotes = checkNarration(script.intro_notes, 'intro', 0);\nconst slides = rawSlides.map((s, i) => {\n  const where = 'slide ' + (i + 1);\n  if (!s || !s.title) flag(blocking, 'SLIDE_INVALID', where, 'missing title');\n  const bullets = (Array.isArray(s && s.bullets) ? s.bullets : []).map(tidy).map((b) => {\n    for (const rule of RULES) {\n      if (rule.re.test(b)) {\n        const level = rule.level(hasMarker(b), b);\n        if (level) flag(level === 'blocking' ? blocking : advisory, rule.code, where + ' bullet', b);\n      }\n    }\n    return resolve(b, where + ' bullet');\n  });\n  if (!bullets.length) flag(blocking, 'SLIDE_INVALID', where, 'no bullets');\n  if (!String((s && s.notes) || '').trim()) flag(blocking, 'SLIDE_INVALID', where, 'no narration notes');\n  const notes = checkNarration(s && s.notes, where, i + 1);\n  const markerSet = new Set(bullets.flatMap((b) => b.markers));\n  for (const c of claims.filter((c) => c.slide_no === i + 1)) c.markers.forEach((m) => markerSet.add(m));\n  return {\n    title: String((s && s.title) || '').trim(),\n    bullets: bullets.map((b) => b.text),\n    notes,\n    refs: [...markerSet].map((m) => order.indexOf(m) + 1).sort((a, b) => a - b),\n  };\n});\nconst takeaways = (Array.isArray(script.takeaways) ? script.takeaways : []).map((t) => resolve(t, 'takeaways').text);\nconst takeawaysNotes = checkNarration(script.takeaways_notes, 'takeaways', slides.length + 1);\n\n// --------------------------------------------------------- assessments ----\nfunction questions(list, label, expected) {\n  const qs = Array.isArray(list) ? list : [];\n  if (!qs.length) flag(blocking, 'ASSESSMENT_EMPTY', label, 'no questions');\n  else if (expected && qs.length < expected) flag(advisory, 'ASSESSMENT_SHORT', label, qs.length + ' of ' + expected + ' questions');\n  return qs.map((q, i) => {\n    const where = label + ' Q' + (i + 1);\n    const options = (Array.isArray(q && q.options) ? q.options : []).map((o) => String(o).trim());\n    const idx = Number(q && q.answer_index);\n    if (!q || !String(q.question || '').trim()) flag(blocking, 'QUESTION_INVALID', where, 'missing question text');\n    if (options.length < 3) flag(blocking, 'QUESTION_INVALID', where, 'fewer than 3 options');\n    if (new Set(options.map((o) => o.toLowerCase())).size !== options.length) flag(blocking, 'QUESTION_INVALID', where, 'duplicate options');\n    if (!Number.isInteger(idx) || idx < 0 || idx >= options.length) flag(blocking, 'QUESTION_INVALID', where, 'answer_index ' + (q && q.answer_index) + ' out of range');\n    const refs = [];\n    for (const raw of Array.isArray(q && q.markers) ? q.markers : []) {\n      const m = pad(String(raw).replace(/[\\[\\]\\s]/g, '').toUpperCase());\n      if (!byMarker.has(m)) { flag(blocking, 'UNKNOWN_MARKER', where, m + ' is not in the evidence pack'); continue; }\n      if (!order.includes(m)) order.push(m);\n      refs.push(order.indexOf(m) + 1);\n    }\n    return {\n      question: resolve(q && q.question, where).text,\n      options,\n      answer_index: idx,\n      rationale: resolve(q && q.rationale, where).text,\n      refs: [...new Set(refs)].sort((a, b) => a - b),\n    };\n  });\n}\n\nconst quiz = assess.quiz || {};\nconst exam = assess.exam || {};\nconst worksheet = assess.worksheet || {};\nconst quizQs = questions(quiz.questions, 'quiz', Number(cfg.quiz_questions || 0));\nconst examQs = questions(exam.questions, 'exam', Number(cfg.exam_questions || 0));\nif (!Array.isArray(worksheet.sections) || !worksheet.sections.length) flag(blocking, 'WORKSHEET_EMPTY', 'worksheet', 'no sections');\n\n// ---------------------------------------------------------- references ----\nconst references = order.map((m, i) => {\n  const e = byMarker.get(m);\n  return { n: i + 1, marker: m, source_id: e.source_id, citation: e.citation, url: e.url || null };\n});\nif (!references.length) flag(blocking, 'NO_CITATIONS', 'course', 'the course cites no evidence at all');\n\n// ------------------------------------------------------- spend budget -----\nconst narrationChars =\n  spoken(introNotes).length + slides.reduce((n, s) => n + spoken(s.notes).length, 0) +\n  spoken(takeawaysNotes).length + referencesNarration(references.length);\nif (narrationChars > MAX_TTS) {\n  flag(blocking, 'NARRATION_TOO_LONG', 'course', narrationChars + ' narration characters, budget ' + MAX_TTS);\n}\n\nconst pkg = {\n  course_slug: start.slug,\n  version: Number(start.version || 1),\n  title: String(script.title || start.title || start.topic).trim(),\n  subtitle: String(script.subtitle || '').trim(),\n  audience: String(start.audience || ''),\n  intro_notes: introNotes,\n  slides,\n  takeaways,\n  takeaways_notes: takeawaysNotes,\n  references: references.map(({ n, citation, url }) => ({ n, citation, url })),\n  worksheet: {\n    title: String(worksheet.title || ''),\n    instructions: String(worksheet.instructions || ''),\n    sections: (worksheet.sections || []).map((s) => ({ heading: String(s.heading || ''), prompts: (s.prompts || []).map(String) })),\n  },\n  quiz: { title: String(quiz.title || ''), instructions: String(quiz.instructions || ''), questions: quizQs },\n  exam: {\n    title: String(exam.title || ''),\n    instructions: String(exam.instructions || ''),\n    pass_mark_percent: Number(exam.pass_mark_percent || cfg.exam_pass_mark || 80),\n    questions: examQs,\n  },\n  tts_provider: cfg.tts_provider || null,\n};\n\nreturn [{\n  json: {\n    package: pkg,\n    gate: {\n      passed: blocking.length === 0,\n      blocking,\n      advisory,\n      stats: {\n        slides: slides.length,\n        narration_chars: narrationChars,\n        references: references.length,\n        claims_cited: claims.filter((c) => c.status === 'cited').length,\n        claims_uncited: claims.filter((c) => c.status === 'uncited').length,\n        claims_blocked: claims.filter((c) => c.status === 'blocked').length,\n        quiz_questions: quizQs.length,\n        exam_questions: examQs.length,\n      },\n    },\n    claims,\n    references,\n    outline: {\n      title: pkg.title,\n      subtitle: pkg.subtitle,\n      learning_objectives: Array.isArray(script.learning_objectives) ? script.learning_objectives : [],\n      slide_titles: slides.map((s) => s.title),\n    },\n  },\n  pairedItem: { item: 0 },\n}];\n"
+      },
+      "id": "170b88d5-47fb-598e-83b6-8ca2f611bf98"
+    }
+  ],
+  "connections": {
+    "Write Course Script · Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Write Course Script",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Course Script · Schema": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Write Course Script",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Course Script · Fixer": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Write Course Script · Schema",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Assessments · Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Write Assessments",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Assessments · Schema": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Write Assessments",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Assessments · Fixer": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Write Assessments · Schema",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Prepare Evidence Brief",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Evidence Brief": {
+      "main": [
+        [
+          {
+            "node": "Write Course Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Course Script": {
+      "main": [
+        [
+          {
+            "node": "Format Script For Assessor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Script For Assessor": {
+      "main": [
+        [
+          {
+            "node": "Write Assessments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Assessments": {
+      "main": [
+        [
+          {
+            "node": "Citation & Claim Gate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Sub-workflow. Writes the course script (slides + narration citing evidence markers), worksheet, quiz and certification exam from the evidence brief only, then runs the Citation & Claim Gate. IN: topic, audience, slug, version, title, evidence[], analysis, config. OUT: { package, gate, claims[], references[], outline }. Read-only."
+  }
+}
