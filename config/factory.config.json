@@ -1,0 +1,35 @@
+{
+  "_comment": "Non-secret settings. 'runtime' is copied into each workflow's Config node, where it can also be edited in the n8n UI. 'models' and 'content' are baked into prompts and model nodes at build time. Secrets live only in n8n credentials.",
+  "runtime": {
+    "worker_url": "http://host.docker.internal:8100",
+    "review_channel": "gmail",
+    "reviewer_email": "iyushau3@gmail.com",
+    "slack_channel_id": "",
+    "storage_backend": "local",
+    "supabase_url": "",
+    "supabase_bucket": "course-assets",
+    "default_audience": "Fitness, wellness and recovery professionals (health clubs, recovery centres, boutique studios)",
+    "max_sources": 20,
+    "min_relevant_sources": 3,
+    "max_slides": 16,
+    "max_tts_chars": 3000,
+    "tts_provider": "elevenlabs",
+    "quiz_questions": 10,
+    "exam_questions": 20,
+    "exam_pass_mark": 80,
+    "auto_produce": false
+  },
+  "models": {
+    "planner": "openai/gpt-5.4-mini",
+    "analyst": "openai/gpt-5.4-mini",
+    "writer": "openai/gpt-5.4",
+    "fixer": "openai/gpt-5.4-mini"
+  },
+  "content": {
+    "slides_target": 6,
+    "notes_words_min": 35,
+    "notes_words_max": 50,
+    "narration_chars_target": 2300
+  },
+  "schedule": { "radar_weekday": 1, "radar_hour": 7 }
+}
