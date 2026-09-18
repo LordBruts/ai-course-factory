@@ -1,0 +1,1082 @@
+{
+  "Start": {
+    "linked_sources": "20",
+    "version_id": "2",
+    "topic": "Red light therapy (photobiomodulation) for exercise recovery",
+    "audience": "Fitness, wellness and recovery professionals (health clubs, recovery centres, boutique studios)",
+    "slug": "red-light-therapy-photobiomodulation-for-exercise-recovery",
+    "config": {
+      "worker_url": "http://host.docker.internal:8100",
+      "review_channel": "gmail",
+      "reviewer_email": "iyushau3@gmail.com",
+      "slack_channel_id": "",
+      "storage_backend": "local",
+      "supabase_url": "",
+      "supabase_bucket": "course-assets",
+      "default_audience": "Fitness, wellness and recovery professionals (health clubs, recovery centres, boutique studios)",
+      "max_sources": 20,
+      "min_relevant_sources": 3,
+      "max_slides": 16,
+      "max_tts_chars": 3000,
+      "tts_provider": "elevenlabs",
+      "quiz_questions": 10,
+      "exam_questions": 20,
+      "exam_pass_mark": 80,
+      "auto_produce": false
+    },
+    "version": 1,
+    "title": "Photobiomodulation for Exercise Recovery: Evidence, Protocols, and Practical Application",
+    "evidence": [
+      {
+        "marker": "E01",
+        "source_id": 18,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "Combined effects of photobiomodulation and osteopathic manipulation on the physical performance of young adults subjected to exercise-induced muscle damage: a randomized placebo-controlled trial",
+        "authors_short": "Freitas et al.",
+        "year": 2026,
+        "journal": "Lasers in medical science",
+        "doi": "10.1007/s10103-026-04907-3",
+        "pmid": "42271035",
+        "nct_id": null,
+        "url": "https://doi.org/10.1007/s10103-026-04907-3",
+        "pub_types": [
+          "research-article",
+          "randomized controlled trial",
+          "journal article"
+        ],
+        "abstract": "The aim of this study was to investigate the combined effects of photobiomodulation (PBM) and osteopathic manipulation (OM) on the physical performance of young adults subjected to exercise-induced muscle damage (EIMD). The study is a randomized, placebo-controlled clinical trial. Forty-five physically active male individuals were included and randomized into four groups: placebo (PL), PBM, OM, and PBM + OM. A red-light emitting diode (LED) (λ = 650 nm) was used. Participants in the PBM and PBM + OM groups received 144 J of energy in the right lower limb and/or underwent bilateral lumbar and pelvic manipulation (OM and PBM + OM) before the EIMD protocol. The following variables were analyzed before, immediately after, and 24, 48, and 72 h post-intervention: creatine kinase (CK), muscle strength, flexibility, and horizontal jump performance. Data normality was assessed using the Kolmogorov-Smirnov test. CK levels were evaluated using the Friedman test, and repeated measures ANOVA was used for the other variables, p < 0.05. A distinct recovery pattern was observed in the combined PBM + OM group, with increased CK levels only at 24 h, followed by a pronounced reduction at 72 h (p = 0.001). Only the PBM + OM group presented percentage values near to baseline within 48 h (-1.4%), in addition to a trend toward early improvement in the horizontal jump within 24 h. In conclusion, PBM + OM may have contributed to improved CK kinetics and selected functional outcomes; however, strength recovery should be interpreted strictly as a non-significant and exploratory trend.",
+        "citation": "Freitas, J. C., Bocchi, M., Rodrigues Junior, B. A., Machado, M. R. F., Rezende, H. H. A., de Oliveira, D. M., & Fernandes, E. V. (2026). Combined effects of photobiomodulation and osteopathic manipulation on the physical performance of young adults subjected to exercise-induced muscle damage: a randomized placebo-controlled trial. Lasers in medical science. https://doi.org/10.1007/s10103-026-04907-3",
+        "evidence_level": "rct",
+        "relevance": "medium",
+        "key_findings": [
+          {
+            "claim": "PBM plus osteopathic manipulation showed a distinct recovery pattern in CK, with CK near baseline by 48 hours and a pronounced reduction by 72 hours.",
+            "strength": "limited"
+          },
+          {
+            "claim": "The combined PBM + OM group showed a trend toward earlier improvement in horizontal jump performance within 24 hours.",
+            "strength": "limited"
+          },
+          {
+            "claim": "Strength recovery was reported as a non-significant exploratory trend.",
+            "strength": "limited"
+          }
+        ]
+      },
+      {
+        "marker": "E02",
+        "source_id": 16,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "Effects of resistance training with/without Photobiomodulation on muscle and respiratory function in difficult-to-control asthma: a randomized trial",
+        "authors_short": "Costa et al.",
+        "year": 2026,
+        "journal": "Lasers in medical science",
+        "doi": "10.1007/s10103-026-04880-x",
+        "pmid": "42059974",
+        "nct_id": null,
+        "url": "https://doi.org/10.1007/s10103-026-04880-x",
+        "pub_types": [
+          "research-article",
+          "randomized controlled trial",
+          "journal article"
+        ],
+        "abstract": "Difficult-to-Control Asthma (DTCA) is characterized by persistent symptoms, frequent exacerbations, and reduced functional capacity despite optimized pharmacological therapy. Patients with DTCA commonly exhibit peripheral muscle dysfunction, making strategies that may potentiate the effects of resistance training clinically relevant. Photobiomodulation therapy (PBMT) has been investigated as a modality capable of improving muscle performance and exercise tolerance. The aim of this study was to determine whether combining resistance training with LED-based PBMT (RT+LEDT) results in greater improvements in peripheral muscle strength and functional exercise capacity compared with resistance training alone in adults with DTCA. This randomized, triple-blind controlled trial included 30 adults with DTCA who met predefined inclusion and exclusion criteria. Participants were allocated equally to an experimental group (RT+LEDT; n = 15) or a control group (RT; n = 15). Both groups completed supervised resistance training twice weekly for 12 weeks. The experimental group received active PBMT before each session, while the control group received placebo PBMT. The primary outcome was peripheral muscle strength assessed by one-repetition maximum (1RM). Secondary outcomes included cardiopulmonary exercise test variables, shuttle walk test performance, spirometry, physical activity level, and asthma control. Post-intervention group comparisons were performed using independent t-tests. Compared with RT alone, RT+LEDT produced greater post-treatment gains in 1RM strength across major muscle groups, along with significant improvements in oxygen consumption at the anaerobic threshold and shuttle walk test distance. No between-group differences were observed in pulmonary function or asthma control. PBMT combined with resistance training yielded clinically meaningful improvements in muscle strength and functional capacity, suggesting its potential as an adjunctive strategy in rehabilitation programs for DTCA.",
+        "citation": "Costa, I. P., Nascimento, E. R., Cahalin, L. P., Carvalho, E. F. T., Braz Araujo Silva, E. A., Stirbulov, R., Paula Vieira, R., Corso, S. D., Parizotto, N. A., Mesquita-Ferrari, R. A., & Sampaio, L. M. M. (2026). Effects of resistance training with/without Photobiomodulation on muscle and respiratory function in difficult-to-control asthma: a randomized trial. Lasers in medical science. https://doi.org/10.1007/s10103-026-04880-x",
+        "evidence_level": "rct",
+        "relevance": "medium",
+        "key_findings": [
+          {
+            "claim": "Resistance training plus LED PBMT produced greater gains in one-repetition maximum strength than resistance training alone.",
+            "strength": "moderate"
+          },
+          {
+            "claim": "RT plus LED PBMT improved oxygen consumption at the anaerobic threshold and shuttle walk distance versus resistance training alone.",
+            "strength": "moderate"
+          }
+        ]
+      },
+      {
+        "marker": "E03",
+        "source_id": 17,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "A randomised crossover trial comparing photobiomodulation therapy with other recovery strategies in CrossFit athletes",
+        "authors_short": "Martins et al.",
+        "year": 2026,
+        "journal": "PloS one",
+        "doi": "10.1371/journal.pone.0349880",
+        "pmid": "42172262",
+        "nct_id": null,
+        "url": "https://doi.org/10.1371/journal.pone.0349880",
+        "pub_types": [
+          "comparative study",
+          "research-article",
+          "randomized controlled trial",
+          "journal article"
+        ],
+        "abstract": "Background This study compared the effects of different therapeutic modalities on recovery following the workout of the day (WOD) in CrossFit athletes, focusing on reducing muscle damage and improving functional performance. Methods In a randomised, controlled, crossover design, twelve CrossFit athletes underwent four post-WOD recovery interventions across four weeks: passive recovery (PR), intermittent pneumatic compression (IPC), extracorporeal shock wave therapy (ESWT), and photobiomodulation therapy combined with a static magnetic field (PBMT-sMF). Assessments were conducted at baseline, and at 1, 24, and 48 hours post-WOD. The primary outcome was vertical jump performance (countermovement jump [CMJ] height) at 1-hour post-WOD; secondary outcomes included lactate dehydrogenase (LDH) levels, superoxide dismutase (SOD) and catalase (CAT) activity, thiobarbituric acid reactive substances (TBARS), carbonylated proteins, perceived exertion, and intervention satisfaction. Results There was no significant difference between interventions in CMJ height at 1-hour post-WOD. In contrast, PBMT-sMF outperformed the other interventions in the secondary outcomes. PBMT-sMF significantly improved CMJ height at 24 and 48 hours compared with PR (p Conclusions PBMT-sMF may be an effective recovery strategy for CrossFit athletes, with its benefits possibly related to the modulation of oxidative stress as an underlying mechanism. Trial registration Trial registration number: NCT06628609.",
+        "citation": "Martins, P. H. G. N., Tomazoni, S. S., Machado, C. D. S. M., Pereira, A. L., Pinto, H. D., Lino, M. M. A., Ribeiro, N. F., Dias, L. B., Aleixo Junior, I. O., de Oliveira, M. F. D., de Araújo-Silva, O. M., De Marchi, T., Casalechi, H. L., & Leal-Junior, E. C. P. (2026). A randomised crossover trial comparing photobiomodulation therapy with other recovery strategies in CrossFit athletes. PloS one. https://doi.org/10.1371/journal.pone.0349880",
+        "evidence_level": "rct",
+        "relevance": "high",
+        "key_findings": [
+          {
+            "claim": "PBMT combined with a static magnetic field did not differ from other recovery interventions for countermovement jump height at 1 hour post-WOD.",
+            "strength": "moderate"
+          },
+          {
+            "claim": "PBMT-sMF outperformed passive recovery, intermittent pneumatic compression, and extracorporeal shock wave therapy on several secondary oxidative-stress outcomes.",
+            "strength": "moderate"
+          },
+          {
+            "claim": "PBMT-sMF significantly improved countermovement jump height at 24 and 48 hours compared with passive recovery.",
+            "strength": "limited"
+          }
+        ]
+      },
+      {
+        "marker": "E04",
+        "source_id": 41,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "Photobiomodulation as Medicine: Low-Level Laser Therapy (LLLT) for Acute Tissue Injury or Sport Performance Recovery",
+        "authors_short": "Lawrence & Sorra",
+        "year": 2024,
+        "journal": "Journal of functional morphology and kinesiology",
+        "doi": "10.3390/jfmk9040181",
+        "pmid": "39449475",
+        "nct_id": null,
+        "url": "https://doi.org/10.3390/jfmk9040181",
+        "pub_types": [
+          "review-article",
+          "review",
+          "journal article"
+        ],
+        "abstract": "Background/Objectives : Low-level laser therapy (LLLT) has gained traction in sports and exercise medicine as a non-invasive therapeutic for preconditioning the body, exertion recovery, repair and injury rehabilitation. LLLT is hypothesized to modulate cellular metabolism, tissue microenvironment(s) and to decrease inflammation while posing few adverse risks. This review critically examines the evidence-base for LLLT effectiveness focusing on immediate care settings and acute/subacute applications ( Methods : A comprehensive literature search was conducted, prioritizing systematic reviews, meta-analyses and their primary research papers. Results : Findings are relevant to trainers and athletes as they manage a wide range of issues from superficial abrasions to deeper tissue concerns. LLLT parameters in the research literature include wide ranges. For body surface structures, studies show that LLLT holds promise in accelerating wound healing. In sport performance studies, LLLT is typically delivered pre-exercise and reveals beneficial effects on exertion recovery, improvements in muscle strength, endurance and reduced fatigue. Evidence is less convincing for acute, deep tissue injury models, where most studies do not report significant benefits for functional outcomes over conventional therapeutic modalities. Conclusions : Variability in LLLT delivery parameters and findings across studies underscores a need for clear treatment guidelines for the profession. Technical properties of laser light delivery to the body also differ materially from LED devices. Sport physiotherapists, team physicians, trainers and athletes should understand limitations in the current evidence-base informing photobiomodulation use in high-performance sport settings and weigh potential benefits versus shortcomings of LLLT use in the mentioned therapeutic contexts.",
+        "citation": "Lawrence, J., & Sorra, K. (2024). Photobiomodulation as Medicine: Low-Level Laser Therapy (LLLT) for Acute Tissue Injury or Sport Performance Recovery. Journal of functional morphology and kinesiology. https://doi.org/10.3390/jfmk9040181",
+        "evidence_level": "review",
+        "relevance": "high",
+        "key_findings": [
+          {
+            "claim": "In sports performance studies, low-level laser therapy is described as showing beneficial effects on exertion recovery, muscle strength, endurance, and reduced fatigue.",
+            "strength": "limited"
+          },
+          {
+            "claim": "The review states evidence is less convincing for acute deep tissue injury models, with many studies not showing significant functional benefits over conventional modalities.",
+            "strength": "moderate"
+          },
+          {
+            "claim": "The abstract notes wide variability in photobiomodulation delivery parameters and calls for clear treatment guidelines.",
+            "strength": "moderate"
+          }
+        ]
+      },
+      {
+        "marker": "E06",
+        "source_id": 10,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "Photobiomodulation as an Adjunct to Resistance Training in Older Adults: A Systematic Review and Meta-Analysis",
+        "authors_short": "Chen et al.",
+        "year": 2026,
+        "journal": "Photobiomodulation, photomedicine, and laser surgery",
+        "doi": "10.1177/25785478261469320",
+        "pmid": "42473844",
+        "nct_id": null,
+        "url": "https://doi.org/10.1177/25785478261469320",
+        "pub_types": [
+          "meta-analysis",
+          "systematic review",
+          "journal article"
+        ],
+        "abstract": "Background Photobiomodulation (PBM) has been proposed as an adjunct to resistance training to enhance strength adaptations; however, findings from randomized controlled trials (RCTs) remain inconsistent. This study aimed to evaluate whether adjunctive PBM improves maximal strength gains when combined with periodized resistance training in older adults. Methods RCTs were identified through systematic searches of PubMed, Scopus, Embase, PEDro, Web of Science, the Cochrane Library, and CNKI from inception to January 2026. Eligible studies examined PBM delivered via low-level laser therapy or light-emitting diodes in combination with resistance training or other strength-oriented loading tasks. Prespecified meta-analyses were restricted to trials combining PBM with periodized resistance training that reported one-repetition maximum (1RM) outcomes; other studies were included in a narrative synthesis. Results Eleven RCTs ( n = 456) were included. Five trials (PBM plus resistance training: n = 74; control: n = 72) met the criteria for meta-analysis. PBM combined with resistance training did not significantly improve maximal muscle strength compared with sham PBM (SMD = 0.26, 95% CI -0.08 to 0.59; p = 0.14; I 2 = 4%). Subgroup analyses showed a nonsignificant trend favoring PBM for unilateral 1RM, with no effect for bilateral outcomes and no significant subgroup differences. Sensitivity analyses indicated that the unilateral effect was dependent on individual studies. In nonresistance training contexts, some studies reported potential benefits for fatigue-, recovery-, or function-related outcomes, particularly in frail or critically ill older adults, although findings were inconsistent. Conclusion Current evidence does not demonstrate a clear additional benefit of PBM on maximal strength when combined with resistance training in older adults, although a small effect cannot be excluded. PBM may have selective value in improving recovery-related outcomes and supporting training tolerance in vulnerable populations. Larger, well-designed RCTs are needed to clarify its role.",
+        "citation": "Chen, H., Eungpinichpong, W., Asawaphureekorn, S., Manimmanakorn, N., Yang, Y., Xie, Y., & Wang, X. (2026). Photobiomodulation as an Adjunct to Resistance Training in Older Adults: A Systematic Review and Meta-Analysis. Photobiomodulation, photomedicine, and laser surgery. https://doi.org/10.1177/25785478261469320",
+        "evidence_level": "systematic_review",
+        "relevance": "high",
+        "key_findings": [
+          {
+            "claim": "Across 11 RCTs, PBM combined with resistance training did not significantly improve maximal strength compared with sham PBM.",
+            "strength": "strong"
+          },
+          {
+            "claim": "A nonsignificant trend favoring PBM was seen for unilateral one-repetition maximum, but not for bilateral outcomes.",
+            "strength": "moderate"
+          },
+          {
+            "claim": "The review notes some nonresistance-training studies suggested potential benefits for fatigue-, recovery-, or function-related outcomes, but findings were inconsistent.",
+            "strength": "moderate"
+          }
+        ]
+      },
+      {
+        "marker": "E07",
+        "source_id": 60,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "Transcranial Photobiomodulation in Sports Medicine: Enhancing Athletic Performance and Injury Prevention",
+        "authors_short": "Iravani et al.",
+        "year": 2026,
+        "journal": "Photobiomodulation, photomedicine, and laser surgery",
+        "doi": "10.1177/25785478261429308",
+        "pmid": "41817276",
+        "nct_id": null,
+        "url": "https://doi.org/10.1177/25785478261429308",
+        "pub_types": [
+          "review",
+          "journal article"
+        ],
+        "abstract": "Objective In sports, achieving peak performance and overcoming injuries are critical for athletes at all levels. This narrative review, aligned with PRISMA guidelines, synthesizes evidence from 7 human and animal studies on the effects of transcranial photobiomodulation (tPBM) in sports medicine, focusing on athletic performance. Results tPBM, which uses red and near-infrared light, offers a noninvasive approach that has shown preliminary evidence of enhancing motor function, cognitive performance (e.g., attention, decision-making), and muscle strength while reducing neuroinflammation and aiding recovery from neurological damage. However, evidence for mitigating injury, particularly for traumatic brain injuries, is limited and primarily derived from animal models or human studies with methodological limitations, such as small sample sizes or lack of sham controls. Challenges include inconsistent protocols and limited research on elite athletes. tPBM may hold potential as a complementary tool to traditional approaches, but further rigorous trials are needed to establish standardized protocols and confirm its efficacy. Future trials should prioritize larger samples, sham-controlled designs, athlete-specific cohorts, standardized protocols, and outcome measures such as reaction time, executive function, grip strength, and balance control.",
+        "citation": "Iravani, M., Moghaddam Salimi, M., Jahan, A., Rastgar-Farajzadeh, L., Jamali, B., & Ebrahimi-Kalan, A. (2026). Transcranial Photobiomodulation in Sports Medicine: Enhancing Athletic Performance and Injury Prevention. Photobiomodulation, photomedicine, and laser surgery. https://doi.org/10.1177/25785478261429308",
+        "evidence_level": "review",
+        "relevance": "medium",
+        "key_findings": [
+          {
+            "claim": "Transcranial photobiomodulation showed preliminary evidence for improving motor function, cognitive performance, and muscle strength while reducing neuroinflammation and aiding neurological recovery.",
+            "strength": "limited"
+          },
+          {
+            "claim": "The review emphasizes that the evidence base is limited by small samples, methodological limitations, and inconsistent protocols.",
+            "strength": "moderate"
+          }
+        ]
+      },
+      {
+        "marker": "E09",
+        "source_id": 2,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "Efficacy of Adjunctive Photobiomodulation in Patellofemoral Pain Syndrome: A Systematic Review and Meta-Analysis",
+        "authors_short": "Chen et al.",
+        "year": 2026,
+        "journal": "Archives of rehabilitation research and clinical translation",
+        "doi": "10.1016/j.arrct.2026.100585",
+        "pmid": "42326590",
+        "nct_id": null,
+        "url": "https://doi.org/10.1016/j.arrct.2026.100585",
+        "pub_types": [
+          "review-article",
+          "review",
+          "journal article"
+        ],
+        "abstract": "Objective To evaluate the effectiveness and safety of adjunctive photobiomodulation (PBM) or low-level laser therapy (LLLT) combined with exercise-based rehabilitation in reducing pain and improving function in individuals with patellofemoral pain syndrome (PFPS). Data sources PubMed, Scopus, Embase, Web of Science, PEDro, the Cochrane Library, and China National Knowledge Infrastructure were searched from inception to October 2025. Study selection Randomized controlled trials (RCTs) were included if they examined PBM/LLLT with clearly reported parameters compared with placebo, sham, or no-intervention controls in individuals with PFPS. Studies with mixed knee pathologies or nonrandomized designs were excluded. Data extraction Two reviewers independently extracted data on participant features, PBM parameters, interventions, comparators, outcomes, and adverse events. Risk of bias was assessed using the Cochrane tool, with disagreements resolved by consensus. Data synthesis Four RCTs (n=162) were eligible. Meta-analysis using a random-effects model showed a statistically nonsignificant trend favoring PBM for pain reduction (effect size=-1.520; 95% confidence interval: -3.542 to 0.502; P =.097), with substantial heterogeneity (I 2 =91.1%) and a wide 95% prediction interval (-5.880 to 2.840). Importantly, the 4 included trials used distinct PBM delivery approaches, including laser acupuncture, PBM combined with trigger point therapy, classic PBM, and monochromatic infrared energy. This diversity may limit the validity of pooling these heterogeneous interventions within a single meta-analysis. Individually, PBM produced greater short-term pain reduction and some functional improvements in certain trials. No adverse events were reported. Conclusions PBM/LLLT may provide short-term pain relief and modest functional benefits for young adults with PFPS and appears to be safe. However, the considerable variability among PBM modalities, including acupuncture-based laser stimulation, PBM combined with trigger point therapy, conventional PBM, and monochromatic infrared energy, introduces important methodological heterogeneity and raises concerns regarding the appropriateness of aggregating these interventions. In addition, the limited sample sizes and heterogeneous PBM protocols reduce confidence in these findings. Larger, standardized RCTs are needed.",
+        "citation": "Chen, H., Asawaphureekorn, S., Manimmanakorn, N., Wang, X., & Eungpinichpong, W. (2026). Efficacy of Adjunctive Photobiomodulation in Patellofemoral Pain Syndrome: A Systematic Review and Meta-Analysis. Archives of rehabilitation research and clinical translation. https://doi.org/10.1016/j.arrct.2026.100585",
+        "evidence_level": "systematic_review",
+        "relevance": "medium",
+        "key_findings": [
+          {
+            "claim": "The meta-analysis found a statistically nonsignificant trend favoring PBM for pain reduction in patellofemoral pain syndrome.",
+            "strength": "moderate"
+          },
+          {
+            "claim": "Individually, some trials reported greater short-term pain reduction and functional improvements, but the pooled evidence was highly heterogeneous.",
+            "strength": "moderate"
+          }
+        ]
+      },
+      {
+        "marker": "E10",
+        "source_id": 5,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "Photobiomodulation Enhances Tendon Regeneration: A Systematic Review and Meta-analysis of Preclinical Studies",
+        "authors_short": "Waluyo et al.",
+        "year": 2026,
+        "journal": "Arthroscopy, sports medicine, and rehabilitation",
+        "doi": "10.1002/ars2.70029",
+        "pmid": "42500166",
+        "nct_id": null,
+        "url": "https://doi.org/10.1002/ars2.70029",
+        "pub_types": [
+          "review-article",
+          "review",
+          "journal article"
+        ],
+        "abstract": "Purpose To evaluate the preclinical evidence supporting the efficacy of photobiomodulation therapies in tendon regeneration. Methods A comprehensive literature search was conducted in MEDLINE, ScienceDirect, and Google Scholar to identify in vivo animal studies evaluating photobiomodulation therapies for tendon healing. Quantitative meta-analyses were performed for homogeneous outcomes using a random-effects model. Results Out of 4946 screened articles, 36 met the inclusion criteria. Pooled analyses revealed that photobiomodulation significantly downregulated proinflammatory IL-1β (mean difference [MD] = -46.14 pg/mL; 95% confidence interval [CI] = -66.45 to -25.84; P P P = .005) with photobiomodulation (low-level laser therapy and light-emitting diode), whereas photochemical tissue bonding showed higher tensile strength (MD = +0.57 MPa; 95% CI = 0.37-0.78; P Conclusions Photobiomodulation therapies promote tendon regeneration in both acute and chronic injury models, enhancing tendon regeneration at molecular, histological, and functional levels. Clinical relevance These findings support the potential of photobiomodulation therapies, providing a foundation for clinical trials in human populations to refine rehabilitation protocols and improve musculoskeletal outcomes.",
+        "citation": "Waluyo, Y., Islami Muchsin, D. N., Afifah, M. N., Rosadi, Y., & Aldi, M. S. A. (2026). Photobiomodulation Enhances Tendon Regeneration: A Systematic Review and Meta-analysis of Preclinical Studies. Arthroscopy, sports medicine, and rehabilitation. https://doi.org/10.1002/ars2.70029",
+        "evidence_level": "systematic_review",
+        "relevance": "medium",
+        "key_findings": [
+          {
+            "claim": "Preclinical studies suggest photobiomodulation promotes tendon regeneration in acute and chronic injury models.",
+            "strength": "limited"
+          },
+          {
+            "claim": "The review reports improvements at molecular, histological, and functional levels in animal tendon models.",
+            "strength": "limited"
+          }
+        ]
+      },
+      {
+        "marker": "E12",
+        "source_id": 44,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "Photobiomodulation and sleep quality: systematic review and meta-analysis",
+        "authors_short": "Vital de Azevedo et al.",
+        "year": 2026,
+        "journal": "Lasers in medical science",
+        "doi": "10.1007/s10103-026-04913-5",
+        "pmid": "42322437",
+        "nct_id": null,
+        "url": "https://doi.org/10.1007/s10103-026-04913-5",
+        "pub_types": [
+          "meta-analysis",
+          "systematic review",
+          "review-article",
+          "journal article"
+        ],
+        "abstract": "Sleep disturbances are increasingly prevalent and associated with altered brain metabolism and neuroinflammation. Photobiomodulation, a non-invasive technique using red or near-infrared light, can modulate mitochondrial activity, cerebral perfusion, and glial function, suggesting potential benefits for sleep regulation. This systematic review and meta-analysis evaluated the effects of photobiomodulation on sleep quality in clinical and experimental populations. A comprehensive search was performed in PubMed, Embase, and Cochrane databases through September 2025 using the terms (photobiomodulation OR \"low level laser therapy\") AND sleep. Five randomized controlled trials involving 240 participants met inclusion criteria. The pooled analysis suggested that photobiomodulation improved the Pittsburgh Sleep Quality Index (PSQI) scores compared with sham-control (MD = - 1.25; 95% CI - 2.38 to - 0.11; p = 0.03, I 2 = 36.2%), although the wide confidence intervals indicate limited precision of the estimate. Mechanistic and neuroimaging evidence supports that PBM enhances mitochondrial metabolism, modulates astrocytic activity, and reorganizes prefrontal networks involved in sleep regulation. Despite methodological heterogeneity among studies, these findings suggest that photobiomodulation may have potential as a non-pharmacological approach for improving sleep quality; however, the current evidence remains limited and should be interpreted with caution. Further large-scale, standardized, and multimodal trials are required to establish optimal stimulation parameters and confirm long-term efficacy and safety.",
+        "citation": "Vital de Azevedo, W. M., de Souza, K., Defante, M. L., Salgado, A. S. I., Lopes-Martins, R. Á. B., Gomes da Silva, S., Gonzalez-Lima, F., & Cardoso, F. D. S. (2026). Photobiomodulation and sleep quality: systematic review and meta-analysis. Lasers in medical science. https://doi.org/10.1007/s10103-026-04913-5",
+        "evidence_level": "systematic_review",
+        "relevance": "medium",
+        "key_findings": [
+          {
+            "claim": "The pooled analysis suggested photobiomodulation improved sleep quality versus sham control.",
+            "strength": "moderate"
+          },
+          {
+            "claim": "The authors caution that the evidence is limited and should be interpreted carefully because of methodological heterogeneity and limited precision.",
+            "strength": "moderate"
+          }
+        ]
+      },
+      {
+        "marker": "E13",
+        "source_id": 29,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "From light to healing: photobiomodulation therapy in medical disciplines",
+        "authors_short": "Shivappa et al.",
+        "year": 2025,
+        "journal": "Journal of translational medicine",
+        "doi": "10.1186/s12967-025-07466-3",
+        "pmid": "41466382",
+        "nct_id": null,
+        "url": "https://doi.org/10.1186/s12967-025-07466-3",
+        "pub_types": [
+          "research support, non-u.s. gov't",
+          "review-article",
+          "review",
+          "journal article"
+        ],
+        "abstract": "Background Photobiomodulation therapy (PBMT) represents a rapidly expanding area of translational research that bridges photophysics, mitochondrial biology, and clinical rehabilitation. It leverages low-level light to modulate cellular bioenergetics, inflammatory signaling, and tissue repair processes across various medical disciplines. Methods A systematic literature search was conducted using Google Scholar, Scopus, PubMed, and Web of Science to identify recent clinical and mechanistic studies on PBMT. The gathered evidence was analyzed to evaluate the influence of PBMT on cytochrome c oxidase-mediated energy transduction, reactive oxygen species modulation, nitric oxide signaling, and cytokine regulation. Results Current findings indicate that PBMT exerts multifaceted effects on metabolism and immune homeostasis. Clinical applications have expanded from dermatology and wound healing to musculoskeletal, neurological, ophthalmic, and oncologic conditions. PBMT shows potential for symptom alleviation, accelerated recovery, and tissue protection under oxidative or inflammatory stress. However, translation from preclinical evidence to consistent clinical outcomes remains constrained by non-standardized dosimetry, inconsistent energy delivery, and heterogeneous study endpoints. Negative or equivocal outcomes in trials involving trained or low-stress cohorts highlight the context-dependent efficacy of PBMT. Immunoregulatory insights further reveal links between redox-sensitive transcriptional control and systemic cytokine balance. Conclusions By integrating mechanistic and clinical perspectives, this review positions PBMT as a promising yet incompletely optimized platform for mechanism-guided phototherapy. Future directions include biomarker-guided treatment monitoring, advanced device engineering, and personalized PBMT modeling through optical and metabolic profiling to achieve its full translational and therapeutic potential.",
+        "citation": "Shivappa, P., Basha, S., Biswas, S., Prabhu, V., Prabhu, S. S., Pai, A. R., & Mahato, K. K. (2025). From light to healing: photobiomodulation therapy in medical disciplines. Journal of translational medicine. https://doi.org/10.1186/s12967-025-07466-3",
+        "evidence_level": "review",
+        "relevance": "medium",
+        "key_findings": [
+          {
+            "claim": "The review concludes PBMT shows potential for symptom alleviation, accelerated recovery, and tissue protection under oxidative or inflammatory stress.",
+            "strength": "limited"
+          },
+          {
+            "claim": "It also states that negative or equivocal outcomes occur in trained or low-stress cohorts and that inconsistent dosimetry limits translation.",
+            "strength": "moderate"
+          }
+        ]
+      },
+      {
+        "marker": "E14",
+        "source_id": 78,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "Associations of wearable photobiomodulation device use with mitochondrial bioenergetics and fatigue in athletes and individuals with chronic fatigue",
+        "authors_short": "Valeyeva-Frost & Eckel",
+        "year": 2026,
+        "journal": "Frontiers in sports and active living",
+        "doi": "10.3389/fspor.2026.1823212",
+        "pmid": "42465967",
+        "nct_id": null,
+        "url": "https://doi.org/10.3389/fspor.2026.1823212",
+        "pub_types": [
+          "research-article",
+          "journal article"
+        ],
+        "abstract": "This 30-day observational pilot study evaluated associations between wearable photobiomodulation use and changes in mitochondrial bioenergetics and perceived fatigue in two physiologically distinct cohorts: athletes ( n = 10) and individuals with chronic fatigue ( n = 10). Participants used a dual-wavelength LED photobiomodulation device six days per week, performing four sequential 10-minute placements per session. Mitochondrial function was assessed at baseline (Day 0), Day 15, and Day 30 using the validated meScreen™ bioenergetic assay from finger-prick blood samples. Subjective fatigue was measured using the FACIT-10a in the chronic fatigue cohort and the MFI-20 in athletes. Within-group changes were analyzed using non-parametric Wilcoxon signed-rank tests. By Day 15, early bioenergetic shifts were observed. The chronic fatigue cohort demonstrated significant increases in baseline respiration ( p = 0.0195) and mitochondrial potential ( p = 0.0352), consistent with changes in mitochondrial reserve capacity. Athletes demonstrated significant increases in mitochondrial efficiency ( p = 0.0195) and reduced glycolytic reliance ( p = 0.0488), consistent with shifts in metabolic efficiency rather than increased total energy output. By Day 30, these directional changes were largely maintained. Mitochondrial potential showed a non-significant trend toward increase across cohorts ( p = 0.0774). No increases in reactive oxygen species or mitochondrial network instability were observed at any timepoint. Subjective fatigue scores decreased by 37% in the chronic fatigue cohort and 12% in athletes, with approximately 63% of total reduction occurring within the first 15 days. Thirty days of wearable photobiomodulation use was associated with directional changes in selected bioenergetic parameters alongside reductions in perceived fatigue. These findings support further controlled studies to evaluate durability, dose-response relationships, and clinical relevance.",
+        "citation": "Valeyeva-Frost, Z., & Eckel, G. (2026). Associations of wearable photobiomodulation device use with mitochondrial bioenergetics and fatigue in athletes and individuals with chronic fatigue. Frontiers in sports and active living. https://doi.org/10.3389/fspor.2026.1823212",
+        "evidence_level": "observational",
+        "relevance": "medium",
+        "key_findings": [
+          {
+            "claim": "Wearable PBM use was associated with directional changes in mitochondrial bioenergetics in athletes and people with chronic fatigue over 30 days.",
+            "strength": "limited"
+          },
+          {
+            "claim": "Subjective fatigue scores decreased in both cohorts, with larger reductions in the chronic fatigue group.",
+            "strength": "limited"
+          }
+        ]
+      },
+      {
+        "marker": "E16",
+        "source_id": 6,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "Effect of photobiomodulation on pain and quality of life in fibromyalgia syndrome: a systematic review",
+        "authors_short": "G A et al.",
+        "year": 2026,
+        "journal": "Lasers in medical science",
+        "doi": "10.1007/s10103-026-04930-4",
+        "pmid": "42334638",
+        "nct_id": null,
+        "url": "https://doi.org/10.1007/s10103-026-04930-4",
+        "pub_types": [
+          "systematic review",
+          "review-article",
+          "journal article"
+        ],
+        "abstract": "Fibromyalgia Syndrome (FMS) is a chronic pain disorder characterized by widespread pain and central sensitization that significantly impacts the quality of life (QoL). For management to be effective, a multidisciplinary approach to care is typically required. Photobiomodulation therapy (PBMT), a non-pharmacological treatment, has garnered attention lately, though its clinical relevance and applications are not well defined. The objective of this review was to assess the effectiveness of PBMT in reducing FMS symptoms. This systematic review was registered at PROSPERO (CRD420251084730) and conducted following PRISMA (Preferred Reporting Items for Systematic Reviews and Meta-Analyses) reporting guidelines. A total of seven randomized controlled trials were identified following an extensive literature search across various databases, including PubMed, Scopus, Web of Science, the Cochrane Library, Embase, Ovid and ProQuest. To evaluate the methodological quality of these studies, the Cochrane Risk of Bias (RoB 2.0) tool was applied. PBMT demonstrated consistent short-term reductions in pain intensity and improvements in QoL. Additional positive effects on sleep quality and psychological well-being were observed, indicating that PBMT may provide additional therapeutic benefits beyond pain reduction, including improvements in sleep quality and psychological well-being. PBMT has shown promise as a safe, non-pharmacological adjunct therapy that may provide short-term improvements in pain levels and QoL, but substantial heterogeneity limits generalizability. Clinical trials with large samples and standardized methodologies should be conducted to better clarify the role of PBMT in multidisciplinary therapy for FMS.",
+        "citation": "G A, S., Maiya, G. A., Shetty, S., Abrahamse, H., Kadavigere, R., Bhat N, S., & K N, S. (2026). Effect of photobiomodulation on pain and quality of life in fibromyalgia syndrome: a systematic review. Lasers in medical science. https://doi.org/10.1007/s10103-026-04930-4",
+        "evidence_level": "systematic_review",
+        "relevance": "medium",
+        "key_findings": [
+          {
+            "claim": "PBMT demonstrated consistent short-term reductions in pain intensity and improvements in quality of life in fibromyalgia trials.",
+            "strength": "moderate"
+          },
+          {
+            "claim": "Some additional benefits on sleep quality and psychological well-being were reported, but heterogeneity limits generalizability.",
+            "strength": "moderate"
+          }
+        ]
+      },
+      {
+        "marker": "E19",
+        "source_id": 54,
+        "is_new": false,
+        "source_type": "literature",
+        "title": "Clinical efficacy study of LED red and infrared light therapy for chronic non-specific low back pain",
+        "authors_short": "Yi et al.",
+        "year": 2026,
+        "journal": "Lasers in medical science",
+        "doi": "10.1007/s10103-026-04994-2",
+        "pmid": "42631780",
+        "nct_id": null,
+        "url": "https://doi.org/10.1007/s10103-026-04994-2",
+        "pub_types": [
+          "research-article",
+          "randomized controlled trial",
+          "journal article"
+        ],
+        "abstract": "To evaluate the efficacy and safety of an LED red and infrared light therapy for the treatment of chronic nonspecific low back pain. From September to December 2022, 176 patients diagnosed with chronic non-specific low back pain were enrolled and randomly assigned to two groups: the experimental group (n = 89) and the control group (n = 87). The experimental group received treatment with the test device (630 + 850 nm, 15 + 6 mW/cm 2 ) combined with rehabilitation training, whereas the control group received a sham device (630 nm, 1 mW/cm 2 ) alongside rehabilitation training. After 28 days of treatment, clinical efficacy was assessed using the Visual Analogue Scale (VAS) score. The total effective rate was 80.90% in the experimental group and 27.59% in the control group, with a rate difference of 53.31%. The experimental group showed significantly better outcomes compared to the control group.(p < 0.0001). The Japanese Orthopaedic Association (JOA) score in the experimental group was significantly higher than that in the control group (p < 0.0001). No serious adverse events occurred during the trial, and all reported adverse events were unrelated to the device. The LED red and infrared light therapy device may serve as a safe and beneficial intervention for chronic nonspecific low back pain. Trial registration number: ChiCTR2600117704 (Retrospectively registered). Date of registration: 2026-01-28.",
+        "citation": "Yi, B., Kou, D., Cao, B., Jing, N., Wang, Y., Song, N., He, J., & Tang, X. (2026). Clinical efficacy study of LED red and infrared light therapy for chronic non-specific low back pain. Lasers in medical science. https://doi.org/10.1007/s10103-026-04994-2",
+        "evidence_level": "rct",
+        "relevance": "medium",
+        "key_findings": [
+          {
+            "claim": "LED red and infrared light therapy combined with rehabilitation training improved pain and disability outcomes more than sham plus rehabilitation training in chronic nonspecific low back pain.",
+            "strength": "moderate"
+          },
+          {
+            "claim": "No serious adverse events occurred in the trial.",
+            "strength": "moderate"
+          }
+        ]
+      }
+    ],
+    "analysis": {
+      "decision": "new_course",
+      "model_decision": "new_course",
+      "overrides": [],
+      "rationale": "There is enough exercise- and recovery-related human evidence to support a practical introductory course, especially from the CrossFit recovery trial, the resistance-training trial, and the 2026 systematic review. The evidence is mixed and protocol-dependent, so the course should focus on realistic expectations, use cases, and implementation limits rather than performance claims.",
+      "target_course_slug": null,
+      "safety_flags": [
+        "Evidence is inconsistent and highly protocol-dependent; results should not be presented as guaranteed recovery benefits.",
+        "Scope-of-practice concerns: fitness businesses should not frame PBM as treatment for medical conditions or injuries without appropriate licensure.",
+        "Parameters vary widely across studies, so device selection, dose, wavelength, timing, and supervision should be treated cautiously."
+      ],
+      "proposed_title": "Photobiomodulation for Exercise Recovery: Evidence, Protocols, and Practical Application",
+      "learning_objectives": [
+        "Describe the current human evidence for photobiomodulation in exercise recovery and performance contexts.",
+        "Differentiate between promising findings, mixed results, and areas where evidence is insufficient.",
+        "Identify key protocol variables that influence photobiomodulation delivery in recovery settings.",
+        "Explain appropriate professional scope, including when photobiomodulation should not be marketed as a medical treatment.",
+        "Apply evidence-based decision criteria to determine when photobiomodulation may be a reasonable recovery adjunct in a fitness or wellness setting."
+      ],
+      "counts": {
+        "total": 20,
+        "assessed": 20,
+        "relevant": 13
+      }
+    }
+  },
+  "Write Course Script": {
+    "output": {
+      "title": "Photobiomodulation for Exercise Recovery",
+      "subtitle": "Evidence, protocols, and practical application",
+      "learning_objectives": [
+        "Describe current human evidence for PBM in recovery and performance settings",
+        "Differentiate promising, mixed, and insufficient PBM findings",
+        "Identify protocol variables that influence PBM delivery decisions",
+        "Explain scope of practice and appropriate non-medical positioning",
+        "Apply evidence-based criteria for using PBM as a recovery adjunct"
+      ],
+      "intro_notes": "Welcome. In this course, you will learn what photobiomodulation is, what exercise recovery evidence currently shows, which protocol factors matter most, and how to discuss this service honestly and within scope.",
+      "slides": [
+        {
+          "title": "What PBM is",
+          "bullets": [
+            "Uses red or near-infrared light on the body [E04, E13]",
+            "Also called red light therapy or photobiomodulation [E04, E13]",
+            "Non-invasive approach with varied delivery methods [E04]"
+          ],
+          "notes": "Photobiomodulation uses red or near-infrared light delivered to the body with lasers or LEDs [E04, E13]. It is described as a non-invasive approach, but study methods and device parameters vary widely across the literature [E04]."
+        },
+        {
+          "title": "How it is thought to work",
+          "bullets": [
+            "Proposed effects involve cellular metabolism [E04, E13]",
+            "Mechanisms may include oxidative and inflammatory signaling [E13]",
+            "These mechanisms are proposed, not confirmed in every use case [E13]"
+          ],
+          "notes": "Reviews describe PBM as potentially modulating cellular metabolism, bioenergetics, and tissue microenvironments [E04, E13]. Proposed pathways include reactive oxygen species modulation, nitric oxide signaling, and cytokine regulation, but translation is limited by inconsistent dosimetry and mixed outcomes [E13]."
+        },
+        {
+          "title": "What recovery evidence shows",
+          "bullets": [
+            "Some sport studies report recovery benefits [E03, E04]",
+            "Findings are mixed and often protocol-dependent [E04, E06, E13]",
+            "Benefits are not guaranteed across outcomes [E03, E06]"
+          ],
+          "notes": "A review of sport performance research describes beneficial effects on exertion recovery, muscle strength, endurance, and reduced fatigue, but rates this evidence as limited [E04]. Other reviews report inconsistent findings, including no significant added maximal strength benefit in older adults when PBM was combined with resistance training [E06]."
+        },
+        {
+          "title": "Performance findings in context",
+          "bullets": [
+            "CrossFit trial showed no 1-hour jump advantage [E03]",
+            "The same trial found 24 and 48 hour jump gains vs passive recovery [E03]",
+            "Combined PBM plus manipulation showed limited trends [E01]"
+          ],
+          "notes": "In CrossFit athletes, PBMT with a static magnetic field did not differ from other recovery interventions for countermovement jump height at one hour after the workout [E03]. The same trial reported improved jump height at 24 and 48 hours compared with passive recovery, and one separate trial found limited exploratory trends for earlier recovery markers with combined care [E01, E03]."
+        },
+        {
+          "title": "Protocols matter",
+          "bullets": [
+            "Studies use different wavelengths, doses, timing, and devices [E01, E04]",
+            "One trial used 650 nm and 144 J before muscle damage [E01]",
+            "Do not assume one protocol fits all settings [E04, E13]"
+          ],
+          "notes": "Protocol choice is a major issue because wavelength, dose, timing, treatment area, and device type differ substantially across studies [E04, E13]. For example, one exercise-induced muscle damage trial used a 650 nanometer LED and 144 joules before the protocol, but that does not establish a universal standard [E01]."
+        },
+        {
+          "title": "Safety, scope, and client talks",
+          "bullets": [
+            "Position PBM as an optional recovery adjunct",
+            "Do not market it as treatment for injuries or disease",
+            "Use plain language about mixed evidence [E04, E06, E13]",
+            "Refer medical concerns to licensed clinicians"
+          ],
+          "notes": "Reviews describe PBM as posing few adverse risks, while also stressing that delivery parameters need clearer guidance [E04]. In fitness and wellness settings, present PBM as an optional recovery service, explain that results are mixed and protocol-dependent, and avoid medical treatment claims [E04, E06, E13]."
+        }
+      ],
+      "takeaways": [
+        "PBM is a non-invasive light-based recovery modality [E04, E13]",
+        "Evidence for exercise recovery is promising but mixed [E03, E04, E06]",
+        "Protocol details strongly influence what was studied [E01, E04, E13]",
+        "Use careful, non-medical language when discussing PBM"
+      ],
+      "takeaways_notes": "The practical message is simple. PBM may be a reasonable recovery adjunct for some settings, but the evidence is mixed, protocols vary widely, and honest communication and clear scope of practice matter most [E04, E06, E13]."
+    }
+  },
+  "Write Assessments": {
+    "output": {
+      "worksheet": {
+        "title": "Worksheet: Photobiomodulation for Exercise Recovery",
+        "instructions": "Answer each prompt in your own words using only what was covered in the course.",
+        "sections": [
+          {
+            "heading": "Section 1: Understanding the core content",
+            "prompts": [
+              "What is photobiomodulation, and what other name is commonly used for it in the course?",
+              "Describe how PBM is thought to work, including why the course says these mechanisms should be treated cautiously.",
+              "Summarise what the course says about the overall evidence for PBM in exercise recovery."
+            ]
+          },
+          {
+            "heading": "Section 2: Applying PBM in a fitness or recovery setting",
+            "prompts": [
+              "A client asks whether PBM will definitely improve their recovery after hard training. How would you answer using the course guidance?",
+              "Your facility wants to offer PBM as part of a recovery menu. Explain how you would position it appropriately to clients.",
+              "A coach wants to copy a PBM setup from one study and use it for every member. Based on the course, how would you respond?"
+            ]
+          },
+          {
+            "heading": "Section 3: Safety, scope, and referral",
+            "prompts": [
+              "What does the course say about PBM safety, and how should that influence the way you discuss it with clients?",
+              "Give two examples of statements or situations where you should avoid making medical claims about PBM.",
+              "When should a fitness professional refer a client to a licensed healthcare professional instead of handling the conversation alone?"
+            ]
+          }
+        ]
+      },
+      "quiz": {
+        "title": "Quiz: Photobiomodulation for Exercise Recovery",
+        "instructions": "Select the one best answer for each question.",
+        "questions": [
+          {
+            "question": "What does photobiomodulation use on the body?",
+            "options": [
+              "Red or near-infrared light",
+              "Electrical stimulation",
+              "Ultrasound waves",
+              "Cold water immersion"
+            ],
+            "answer_index": 0,
+            "rationale": "The course defines PBM as using red or near-infrared light on the body.",
+            "markers": [
+              "E04",
+              "E13"
+            ]
+          },
+          {
+            "question": "Which statement best reflects how PBM is described in the course?",
+            "options": [
+              "It is a surgical intervention for tissue repair",
+              "It is a non-invasive approach with varied delivery methods",
+              "It is only delivered through a single standard device",
+              "It is a guaranteed performance enhancer"
+            ],
+            "answer_index": 1,
+            "rationale": "The course describes PBM as non-invasive and notes varied delivery methods.",
+            "markers": [
+              "E04"
+            ]
+          },
+          {
+            "question": "According to the course, proposed PBM mechanisms may include:",
+            "options": [
+              "Only mechanical tissue compression",
+              "Only hydration changes",
+              "Oxidative and inflammatory signaling",
+              "Joint realignment"
+            ],
+            "answer_index": 2,
+            "rationale": "The script lists oxidative and inflammatory signaling among proposed mechanisms.",
+            "markers": [
+              "E13"
+            ]
+          },
+          {
+            "question": "How should the proposed mechanisms of PBM be viewed?",
+            "options": [
+              "As proven in every setting",
+              "As irrelevant to practice",
+              "As identical across all protocols",
+              "As proposed, not confirmed in every use case"
+            ],
+            "answer_index": 3,
+            "rationale": "The course states these mechanisms are proposed and not confirmed in every use case.",
+            "markers": [
+              "E13"
+            ]
+          },
+          {
+            "question": "How does the course summarise the recovery evidence for PBM?",
+            "options": [
+              "Promising but mixed",
+              "Uniformly negative",
+              "Conclusive for all outcomes",
+              "Too clear to question"
+            ],
+            "answer_index": 0,
+            "rationale": "The takeaway states evidence for exercise recovery is promising but mixed.",
+            "markers": [
+              "E03",
+              "E04",
+              "E06"
+            ]
+          },
+          {
+            "question": "In the CrossFit trial discussed, what happened at one hour after the workout for countermovement jump height?",
+            "options": [
+              "PBM clearly outperformed every intervention",
+              "PBM did not differ from other recovery interventions",
+              "Passive recovery was clearly best",
+              "The study did not assess jump height"
+            ],
+            "answer_index": 1,
+            "rationale": "The trial found no difference at one hour after the workout.",
+            "markers": [
+              "E03"
+            ]
+          },
+          {
+            "question": "What did the same CrossFit trial report at 24 and 48 hours?",
+            "options": [
+              "No changes from baseline",
+              "Worse jump height than passive recovery",
+              "Improved jump height versus passive recovery",
+              "A drop in endurance only"
+            ],
+            "answer_index": 2,
+            "rationale": "The course states jump height improved at 24 and 48 hours versus passive recovery.",
+            "markers": [
+              "E03"
+            ]
+          },
+          {
+            "question": "Why does the course say protocols matter with PBM?",
+            "options": [
+              "Because all studies use the same setup",
+              "Because only treatment area changes",
+              "Because devices are unimportant",
+              "Because wavelengths, doses, timing, and devices vary across studies"
+            ],
+            "answer_index": 3,
+            "rationale": "The script highlights major variation in wavelength, dose, timing, and device type.",
+            "markers": [
+              "E01",
+              "E04",
+              "E13"
+            ]
+          },
+          {
+            "question": "How should PBM be positioned in a fitness or wellness setting?",
+            "options": [
+              "As an optional recovery adjunct",
+              "As a medical treatment for injuries",
+              "As a replacement for clinical care",
+              "As a guaranteed cure for fatigue"
+            ],
+            "answer_index": 0,
+            "rationale": "The course says to present PBM as an optional recovery adjunct.",
+            "markers": [
+              "E04",
+              "E06",
+              "E13"
+            ]
+          },
+          {
+            "question": "What should you do if a client raises a medical concern related to PBM use?",
+            "options": [
+              "Recommend a universal PBM protocol",
+              "Refer the client to a licensed clinician",
+              "Promise PBM will treat the condition",
+              "Ignore the concern if PBM is non-invasive"
+            ],
+            "answer_index": 1,
+            "rationale": "The course directs professionals to refer medical concerns to licensed clinicians.",
+            "markers": []
+          }
+        ]
+      },
+      "exam": {
+        "title": "Certification Exam: Photobiomodulation for Exercise Recovery",
+        "instructions": "Choose the one best answer for each question. Read scenario questions carefully.",
+        "pass_mark_percent": 80,
+        "questions": [
+          {
+            "question": "Which description best matches PBM as taught in the course?",
+            "options": [
+              "A non-invasive approach using red or near-infrared light",
+              "A manual therapy technique for joint alignment",
+              "A medication-based recovery method",
+              "A stretching protocol for soreness"
+            ],
+            "answer_index": 0,
+            "rationale": "PBM is defined as a non-invasive light-based approach using red or near-infrared light.",
+            "markers": [
+              "E04",
+              "E13"
+            ]
+          },
+          {
+            "question": "Which statement is most accurate about PBM delivery in the literature?",
+            "options": [
+              "It is always delivered in the same way",
+              "Study methods and device parameters vary widely",
+              "Only lasers are used",
+              "Only LEDs are used"
+            ],
+            "answer_index": 1,
+            "rationale": "The course notes wide variation in methods and device parameters.",
+            "markers": [
+              "E04"
+            ]
+          },
+          {
+            "question": "Which of the following is named in the course as a proposed PBM pathway?",
+            "options": [
+              "Calcium-only restriction",
+              "Mechanical fascia release",
+              "Nitric oxide signaling",
+              "Vertebral decompression"
+            ],
+            "answer_index": 2,
+            "rationale": "Nitric oxide signaling is listed as a proposed pathway.",
+            "markers": [
+              "E13"
+            ]
+          },
+          {
+            "question": "What limitation does the course give when discussing PBM mechanisms and outcomes?",
+            "options": [
+              "All devices have identical effects",
+              "Outcomes are fully predictable",
+              "PBM is confirmed for every recovery goal",
+              "Translation is limited by inconsistent dosimetry and mixed outcomes"
+            ],
+            "answer_index": 3,
+            "rationale": "The narration states translation is limited by inconsistent dosimetry and mixed outcomes.",
+            "markers": [
+              "E13"
+            ]
+          },
+          {
+            "question": "A member asks, \"Is PBM proven to improve every recovery outcome?\" Which answer best fits the course?",
+            "options": [
+              "No, benefits are not guaranteed across outcomes",
+              "Yes, if used with any device",
+              "Yes, especially in all older adults",
+              "No, because it never helps recovery"
+            ],
+            "answer_index": 0,
+            "rationale": "The course says findings are mixed and benefits are not guaranteed across outcomes.",
+            "markers": [
+              "E03",
+              "E06"
+            ]
+          },
+          {
+            "question": "What did one review report about PBM combined with resistance training in older adults?",
+            "options": [
+              "It produced universal endurance gains",
+              "It showed no significant added maximal strength benefit",
+              "It replaced resistance training benefits",
+              "It established the ideal dose for all gyms"
+            ],
+            "answer_index": 1,
+            "rationale": "The course cites no significant added maximal strength benefit in that context.",
+            "markers": [
+              "E06"
+            ]
+          },
+          {
+            "question": "In the CrossFit trial mentioned in the course, which finding was reported?",
+            "options": [
+              "A clear one-hour jump advantage over all interventions",
+              "A reduction in soreness only",
+              "No one-hour countermovement jump advantage",
+              "No follow-up beyond one hour"
+            ],
+            "answer_index": 2,
+            "rationale": "The trial showed no one-hour jump advantage versus other recovery interventions.",
+            "markers": [
+              "E03"
+            ]
+          },
+          {
+            "question": "A recovery studio advertisement says, \"Our PBM service treats sports injuries and disease.\" Based on the course, this is:",
+            "options": [
+              "Appropriate if LEDs are used",
+              "Acceptable if clients consent",
+              "Best practice when evidence is mixed",
+              "Not appropriate because medical treatment claims should be avoided"
+            ],
+            "answer_index": 3,
+            "rationale": "The course says not to market PBM as treatment for injuries or disease.",
+            "markers": [
+              "E04",
+              "E06",
+              "E13"
+            ]
+          },
+          {
+            "question": "Why should a coach avoid assuming one PBM protocol fits all clients and settings?",
+            "options": [
+              "Studies differ in wavelength, dose, timing, area, and device type",
+              "PBM only works when paired with manipulation",
+              "All studies used the same standard protocol",
+              "Protocol details do not affect what was studied"
+            ],
+            "answer_index": 0,
+            "rationale": "The course stresses substantial differences across protocols.",
+            "markers": [
+              "E01",
+              "E04",
+              "E13"
+            ]
+          },
+          {
+            "question": "Which study detail is specifically mentioned in the course as an example rather than a universal standard?",
+            "options": [
+              "A 700 nm laser after exercise",
+              "A 650 nm LED and 144 J before muscle damage",
+              "An infrared pad during sleep",
+              "A static magnetic field only"
+            ],
+            "answer_index": 1,
+            "rationale": "That exact protocol is cited as one study example, not a standard.",
+            "markers": [
+              "E01"
+            ]
+          },
+          {
+            "question": "A client says, \"So this protocol will definitely work for me because it worked in one trial.\" What is the best response?",
+            "options": [
+              "Yes, one positive trial is enough",
+              "Yes, because dosimetry is already standardized",
+              "Not necessarily; findings are mixed and protocol-dependent",
+              "Not necessarily, because PBM is invasive"
+            ],
+            "answer_index": 2,
+            "rationale": "The course repeatedly states evidence is mixed and depends on protocol.",
+            "markers": [
+              "E04",
+              "E06",
+              "E13"
+            ]
+          },
+          {
+            "question": "How should you describe PBM to a general fitness client according to the course?",
+            "options": [
+              "As a medical cure with predictable outcomes",
+              "As a replacement for licensed care",
+              "As a way to diagnose training injuries",
+              "As an optional recovery service with mixed evidence explained in plain language"
+            ],
+            "answer_index": 3,
+            "rationale": "The course advises plain language, mixed-evidence framing, and optional recovery positioning.",
+            "markers": [
+              "E04",
+              "E06",
+              "E13"
+            ]
+          },
+          {
+            "question": "Which statement best reflects the course view of PBM safety?",
+            "options": [
+              "Reviews describe few adverse risks, but guidance on delivery parameters still needs clarity",
+              "PBM is high risk and should never be discussed",
+              "Safety concerns are settled because one protocol fits all",
+              "PBM is safe enough to justify medical claims"
+            ],
+            "answer_index": 0,
+            "rationale": "The script notes few adverse risks while stressing clearer parameter guidance is needed.",
+            "markers": [
+              "E04"
+            ]
+          },
+          {
+            "question": "A member asks you to use PBM to treat an ongoing medical condition. What should you do?",
+            "options": [
+              "Create a treatment plan yourself",
+              "Refer the member to a licensed clinician",
+              "Promise recovery if sessions are repeated",
+              "Use the protocol from any study you can find"
+            ],
+            "answer_index": 1,
+            "rationale": "Medical concerns should be referred to licensed clinicians.",
+            "markers": []
+          },
+          {
+            "question": "Which outcome pattern from the CrossFit trial is most accurate?",
+            "options": [
+              "Better at one hour and worse at 24 hours",
+              "No changes at any time point",
+              "No one-hour advantage, but improved jump height at 24 and 48 hours versus passive recovery",
+              "Only passive recovery was studied"
+            ],
+            "answer_index": 2,
+            "rationale": "That pattern is exactly how the course summarises the trial findings.",
+            "markers": [
+              "E03"
+            ]
+          },
+          {
+            "question": "A studio manager wants staff to tell every client, \"PBM boosts strength, endurance, and fatigue recovery in all cases.\" This message is:",
+            "options": [
+              "Supported because one review was positive",
+              "Fine if no numbers are mentioned",
+              "Appropriate for marketing optional recovery services",
+              "Too certain, because evidence is limited or inconsistent across outcomes"
+            ],
+            "answer_index": 3,
+            "rationale": "The course says evidence is limited, mixed, and not guaranteed across outcomes.",
+            "markers": [
+              "E03",
+              "E04",
+              "E06"
+            ]
+          },
+          {
+            "question": "What does the course call PBM besides photobiomodulation?",
+            "options": [
+              "Red light therapy",
+              "Deep tissue mobilization",
+              "Contrast therapy",
+              "Exercise immunotherapy"
+            ],
+            "answer_index": 0,
+            "rationale": "The course explicitly says PBM is also called red light therapy.",
+            "markers": [
+              "E04",
+              "E13"
+            ]
+          },
+          {
+            "question": "Which statement best fits the course discussion of combined PBM plus manipulation?",
+            "options": [
+              "It clearly outperformed all comparators",
+              "It showed limited exploratory trends for earlier recovery markers",
+              "It established a universal protocol",
+              "It removed the need for passive recovery comparison"
+            ],
+            "answer_index": 1,
+            "rationale": "The course describes only limited exploratory trends for combined care.",
+            "markers": [
+              "E01"
+            ]
+          },
+          {
+            "question": "A trainer says, \"Because PBM may affect cellular metabolism, its effects are confirmed for every use case.\" What is the best correction?",
+            "options": [
+              "Correct, because mechanisms guarantee outcomes",
+              "Correct, if near-infrared light is used",
+              "Incorrect; proposed mechanisms are not confirmed in every use case",
+              "Incorrect only for CrossFit athletes"
+            ],
+            "answer_index": 2,
+            "rationale": "The course says mechanisms are proposed, not confirmed in every use case.",
+            "markers": [
+              "E13"
+            ]
+          },
+          {
+            "question": "Which client communication best stays within scope?",
+            "options": [
+              "\"This will treat your injury.\"",
+              "\"This replaces medical advice.\"",
+              "\"This always works if timed before training.\"",
+              "\"This is an optional recovery adjunct, and results can vary by protocol.\""
+            ],
+            "answer_index": 3,
+            "rationale": "This wording matches the course guidance on scope and mixed evidence.",
+            "markers": [
+              "E04",
+              "E06",
+              "E13"
+            ]
+          },
+          {
+            "question": "Why does the course urge careful language when discussing PBM?",
+            "options": [
+              "Because evidence is mixed and professionals should avoid medical treatment claims",
+              "Because PBM is banned in fitness settings",
+              "Because all protocols are identical",
+              "Because only disease claims are allowed"
+            ],
+            "answer_index": 0,
+            "rationale": "The course links mixed evidence with the need for non-medical language.",
+            "markers": [
+              "E04",
+              "E06",
+              "E13"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

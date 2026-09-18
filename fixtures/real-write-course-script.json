@@ -1,0 +1,78 @@
+{
+  "output": {
+    "title": "Photobiomodulation for Exercise Recovery",
+    "subtitle": "Evidence, protocols and professional practice",
+    "learning_objectives": [
+      "Summarize current evidence for PBM in exercise recovery.",
+      "Differentiate PBM devices, wavelengths, timing and research combinations.",
+      "Identify outcomes with stronger, mixed or negative support.",
+      "Explain safety limits, scope boundaries and referral points.",
+      "Use honest, evidence-based language when discussing PBM with clients."
+    ],
+    "intro_notes": "Welcome. In this lesson, you will learn what photobiomodulation is, what recovery research reports, where findings are mixed, and how to discuss red light services clearly, safely, and within scope.",
+    "slides": [
+      {
+        "title": "What PBM is",
+        "bullets": [
+          "PBM uses red or near-infrared light on body tissues [E04, E09]",
+          "It is studied as a non-invasive recovery adjunct [E04, E09]",
+          "Research uses lasers, LEDs, and wearable devices [E01, E02, E18]"
+        ],
+        "notes": "Photobiomodulation, or PBM, uses red or near-infrared light applied to body tissues in a non-invasive way. [E04, E09] In sport and recovery research, it is studied as an adjunct rather than a standalone answer. [E04, E09] Studies use lasers, LEDs, and wearable devices. [E01, E02, E18]"
+      },
+      {
+        "title": "How it is thought to work",
+        "bullets": [
+          "Reviews propose effects on bioenergetics and signaling [E04, E09]",
+          "Dosimetry and endpoints vary widely across studies [E04, E09]",
+          "A human study found no rise in mitochondrial respiration [E14]"
+        ],
+        "notes": "Reviews propose that PBM may influence cellular bioenergetics, inflammatory signaling, and tissue microenvironments. [E04, E09] But research methods vary widely, especially treatment parameters and outcome measures. [E04, E09] One human study found a single PBM session did not increase mitochondrial respiration in skin or skeletal muscle. [E14]"
+      },
+      {
+        "title": "What recovery evidence shows",
+        "bullets": [
+          "Sport performance findings are promising but uneven [E04, E09]",
+          "Some studies report better delayed recovery markers [E01, E03]",
+          "Negative or equivocal results also appear [E09, E14]"
+        ],
+        "notes": "Across reviews, PBM shows promise for exertion recovery, muscle strength, endurance, and reduced fatigue, but the evidence is not consistent. [E04, E09] Some studies report better delayed recovery markers or performance after exercise stress. [E01, E03] Negative or equivocal findings also appear, especially in some trained or low-stress cohorts. [E09, E14]"
+      },
+      {
+        "title": "Examples from active populations",
+        "bullets": [
+          "CrossFit trial: no 1-hour jump difference [E03]",
+          "PBMT-sMF improved jump at 24 and 48 hours vs passive [E03]",
+          "PBM plus osteopathic work showed exploratory findings [E01]"
+        ],
+        "notes": "In CrossFit athletes, PBMT-sMF did not beat other recovery options for jump performance at one hour after the workout. [E03] It did outperform passive recovery on some secondary outcomes and improved jump performance at 24 and 48 hours. [E03] A combined PBM plus osteopathic study reported exploratory recovery patterns, not clear strength gains. [E01]"
+      },
+      {
+        "title": "Safety, limits and scope",
+        "bullets": [
+          "Protocols are highly variable across the literature [E04, E09]",
+          "Some modalities sit outside fitness-wellness scope [E01, E03, E05]",
+          "Reported adverse effects were few in some studies [E06, E16]"
+        ],
+        "notes": "A key practice issue is variability. Studies use different devices, wavelengths, timing, and combinations, which makes outcomes harder to predict. [E04, E09] Some research involves osteopathic manipulation, static magnetic fields, or transcranial use, which may sit outside standard fitness-wellness scope. [E01, E03, E05] Some studies reported no adverse events or only mild warmth. [E06, E16]"
+      },
+      {
+        "title": "How to discuss PBM honestly",
+        "bullets": [
+          "Describe PBM as a recovery service, not a cure",
+          "Set expectations: evidence is mixed and protocol-dependent [E04, E09]",
+          "Refer out for injury, pain, asthma, or medical concerns",
+          "Avoid claims beyond the study population or setup [E01, E03]"
+        ],
+        "notes": "Keep the message simple. PBM is a recovery service with mixed evidence, and results may depend on the protocol used in research. [E04, E09] Do not present it as a replacement for medical evaluation or treatment. When someone has injury, pain, asthma, or other medical concerns, refer appropriately. [E02, E06, E16]"
+      }
+    ],
+    "takeaways": [
+      "PBM is a non-invasive light-based recovery adjunct [E04, E09]",
+      "Best support is for some short-term recovery outcomes, not all [E03, E04]",
+      "Protocols vary, so expectations must stay careful [E04, E09]",
+      "Stay within scope and refer medical issues out"
+    ],
+    "takeaways_notes": "The practical bottom line is this. PBM may support some recovery outcomes, but results are mixed and protocol-dependent. [E03, E04, E09] Use careful language, avoid therapeutic claims, and keep medical issues with qualified clinicians."
+  }
+}

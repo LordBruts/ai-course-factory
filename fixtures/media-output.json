@@ -1,0 +1,60 @@
+{
+  "job_id": "zz-media-smoke-test-v99-dc1d5d",
+  "files": [
+    {
+      "kind": "pptx",
+      "filename": "course.pptx",
+      "bytes": 56866,
+      "path": "/jobs/zz-media-smoke-test-v99-dc1d5d/files/course.pptx",
+      "url": "http://localhost:8100/jobs/zz-media-smoke-test-v99-dc1d5d/files/course.pptx"
+    },
+    {
+      "kind": "mp4",
+      "filename": "course.mp4",
+      "bytes": 5254584,
+      "path": "/jobs/zz-media-smoke-test-v99-dc1d5d/files/course.mp4",
+      "url": "http://localhost:8100/jobs/zz-media-smoke-test-v99-dc1d5d/files/course.mp4",
+      "duration_seconds": 179.02
+    },
+    {
+      "kind": "worksheet",
+      "filename": "worksheet.docx",
+      "bytes": 37470,
+      "path": "/jobs/zz-media-smoke-test-v99-dc1d5d/files/worksheet.docx",
+      "url": "http://localhost:8100/jobs/zz-media-smoke-test-v99-dc1d5d/files/worksheet.docx"
+    },
+    {
+      "kind": "quiz",
+      "filename": "quiz.docx",
+      "bytes": 37913,
+      "path": "/jobs/zz-media-smoke-test-v99-dc1d5d/files/quiz.docx",
+      "url": "http://localhost:8100/jobs/zz-media-smoke-test-v99-dc1d5d/files/quiz.docx"
+    },
+    {
+      "kind": "exam",
+      "filename": "exam.docx",
+      "bytes": 39449,
+      "path": "/jobs/zz-media-smoke-test-v99-dc1d5d/files/exam.docx",
+      "url": "http://localhost:8100/jobs/zz-media-smoke-test-v99-dc1d5d/files/exam.docx"
+    },
+    {
+      "kind": "answer_key",
+      "filename": "answer-key.docx",
+      "bytes": 39958,
+      "path": "/jobs/zz-media-smoke-test-v99-dc1d5d/files/answer-key.docx",
+      "url": "http://localhost:8100/jobs/zz-media-smoke-test-v99-dc1d5d/files/answer-key.docx"
+    },
+    {
+      "kind": "sources",
+      "filename": "sources.md",
+      "bytes": 3911,
+      "path": "/jobs/zz-media-smoke-test-v99-dc1d5d/files/sources.md",
+      "url": "http://localhost:8100/jobs/zz-media-smoke-test-v99-dc1d5d/files/sources.md"
+    }
+  ],
+  "video_seconds": 179.02,
+  "slide_count": 9,
+  "tts_provider": "edge",
+  "tts_fallback_reason": null,
+  "storage_backend": "local"
+}

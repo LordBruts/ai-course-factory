@@ -1,0 +1,510 @@
+{
+  "output": {
+    "worksheet": {
+      "title": "Photobiomodulation for Exercise Recovery Worksheet",
+      "instructions": "Answer each prompt using only the course content. Keep responses clear, practical, and within scope.",
+      "sections": [
+        {
+          "heading": "Section 1: Core understanding",
+          "prompts": [
+            "What is photobiomodulation (PBM), and how is it positioned in the course as part of exercise recovery?",
+            "Summarise how PBM is thought to work, and explain one reason the evidence is hard to compare across studies.",
+            "What does the course say about the overall recovery evidence for PBM, including both positive and less certain findings?"
+          ]
+        },
+        {
+          "heading": "Section 2: Applying PBM in practice",
+          "prompts": [
+            "A client asks whether PBM will definitely improve their recovery after a hard training session. How would you explain the evidence honestly?",
+            "In a gym or recovery studio, how would you describe PBM to a member without presenting it as a cure or standalone answer?"
+          ]
+        },
+        {
+          "heading": "Section 3: Safety, scope, and referral",
+          "prompts": [
+            "List the kinds of situations or client concerns that should be referred to a healthcare professional rather than managed as a simple recovery service.",
+            "Give two examples from the course of PBM-related approaches that may sit outside a standard fitness-wellness scope."
+          ]
+        }
+      ]
+    },
+    "quiz": {
+      "title": "Photobiomodulation for Exercise Recovery Quiz",
+      "instructions": "Choose the best answer for each question.",
+      "questions": [
+        {
+          "question": "What does PBM use on body tissues?",
+          "options": [
+            "Red or near-infrared light",
+            "Ultrasound waves",
+            "Electrical stimulation",
+            "Cold water immersion"
+          ],
+          "answer_index": 0,
+          "rationale": "The course defines PBM as red or near-infrared light applied to body tissues.",
+          "markers": [
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "question": "How is PBM described in sport and recovery research?",
+          "options": [
+            "A replacement for medical care",
+            "A non-invasive recovery adjunct",
+            "A guaranteed performance enhancer",
+            "A diagnostic tool"
+          ],
+          "answer_index": 1,
+          "rationale": "The course describes PBM as a non-invasive recovery adjunct, not a standalone answer.",
+          "markers": [
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "question": "Which of the following is one reason PBM research findings are difficult to compare?",
+          "options": [
+            "PBM is only studied in one sport",
+            "Researchers avoid outcome measures",
+            "Dosimetry and endpoints vary widely",
+            "Only one device type is used"
+          ],
+          "answer_index": 2,
+          "rationale": "The course states treatment parameters and outcome measures vary widely across studies.",
+          "markers": [
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "question": "What did one human study report after a single PBM session?",
+          "options": [
+            "A large rise in endurance capacity",
+            "Complete pain resolution",
+            "Clear gains in strength",
+            "No increase in mitochondrial respiration"
+          ],
+          "answer_index": 3,
+          "rationale": "One human study found a single PBM session did not increase mitochondrial respiration.",
+          "markers": [
+            "E14"
+          ]
+        },
+        {
+          "question": "How does the course summarise the overall evidence for PBM and recovery?",
+          "options": [
+            "Promising but uneven",
+            "Consistently negative",
+            "Strong enough to guarantee results",
+            "Only useful for medical diagnosis"
+          ],
+          "answer_index": 0,
+          "rationale": "The course says sport performance findings are promising but uneven.",
+          "markers": [
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "question": "In the CrossFit trial, what was reported at 1 hour after the workout?",
+          "options": [
+            "PBMT-sMF clearly beat all recovery options for jump performance",
+            "There was no jump difference at 1 hour",
+            "Passive recovery produced the best 48-hour results",
+            "PBM showed clear strength gains"
+          ],
+          "answer_index": 1,
+          "rationale": "The course states there was no 1-hour jump difference in the CrossFit trial.",
+          "markers": [
+            "E03"
+          ]
+        },
+        {
+          "question": "Which finding was reported for PBMT-sMF in the CrossFit study versus passive recovery?",
+          "options": [
+            "Worse recovery at 24 and 48 hours",
+            "No secondary outcome differences at all",
+            "Improved jump performance at 24 and 48 hours",
+            "Immediate medical treatment effects"
+          ],
+          "answer_index": 2,
+          "rationale": "The course reports improved jump performance at 24 and 48 hours versus passive recovery.",
+          "markers": [
+            "E03"
+          ]
+        },
+        {
+          "question": "Which statement best reflects reported adverse effects in some studies?",
+          "options": [
+            "Severe adverse events were common",
+            "Every study reported burns",
+            "Adverse effects were not discussed",
+            "Some studies reported none or only mild warmth"
+          ],
+          "answer_index": 3,
+          "rationale": "The course notes some studies reported no adverse events or only mild warmth.",
+          "markers": [
+            "E06",
+            "E16"
+          ]
+        },
+        {
+          "question": "How should a professional describe PBM to clients?",
+          "options": [
+            "As a recovery service, not a cure",
+            "As a replacement for injury care",
+            "As proven for every population",
+            "As a guaranteed protocol"
+          ],
+          "answer_index": 0,
+          "rationale": "The course says to describe PBM as a recovery service, not a cure.",
+          "markers": [
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "question": "When should a client be referred appropriately rather than managed only with PBM discussion?",
+          "options": [
+            "When they want a faster warm-up",
+            "When they have injury, pain, asthma, or medical concerns",
+            "When they prefer wearable devices",
+            "When they train in a gym instead of a studio"
+          ],
+          "answer_index": 1,
+          "rationale": "The course says to refer for injury, pain, asthma, or other medical concerns.",
+          "markers": [
+            "E02",
+            "E06",
+            "E16"
+          ]
+        }
+      ]
+    },
+    "exam": {
+      "title": "Photobiomodulation for Exercise Recovery Certification Exam",
+      "instructions": "Choose the single best answer for each question. Read carefully: some items test scope, limitations, and how to communicate evidence honestly.",
+      "pass_mark_percent": 80,
+      "questions": [
+        {
+          "question": "Which description best matches PBM as presented in the course?",
+          "options": [
+            "A non-invasive recovery adjunct using red or near-infrared light",
+            "A medical diagnosis method using magnetic fields",
+            "A cure for exercise-induced fatigue",
+            "A breathing intervention for endurance athletes"
+          ],
+          "answer_index": 0,
+          "rationale": "The course defines PBM as non-invasive red or near-infrared light used as a recovery adjunct.",
+          "markers": [
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "question": "Which set of devices is specifically mentioned in PBM research?",
+          "options": [
+            "Cryotherapy chambers, saunas, and vibration plates",
+            "Lasers, LEDs, and wearable devices",
+            "Resistance bands, rollers, and massage guns",
+            "Ultrasound probes, ECG units, and spirometers"
+          ],
+          "answer_index": 1,
+          "rationale": "The course lists lasers, LEDs, and wearable devices in PBM research.",
+          "markers": [
+            "E01",
+            "E02",
+            "E18"
+          ]
+        },
+        {
+          "question": "Reviews propose PBM may influence which of the following?",
+          "options": [
+            "Only joint alignment",
+            "Only hydration status",
+            "Bioenergetics and signaling",
+            "Only bone density"
+          ],
+          "answer_index": 2,
+          "rationale": "The course says reviews propose effects on bioenergetics and signaling.",
+          "markers": [
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "question": "Which limitation is highlighted as a key reason PBM outcomes are harder to predict?",
+          "options": [
+            "Clients always receive the same timing",
+            "All studies use identical wavelengths",
+            "Research avoids combining methods",
+            "Protocols vary widely across the literature"
+          ],
+          "answer_index": 3,
+          "rationale": "The course identifies high protocol variability as a key practice issue.",
+          "markers": [
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "question": "Which statement best reflects the course view of PBM recovery outcomes?",
+          "options": [
+            "Some short-term recovery outcomes have support, but not all",
+            "All recovery outcomes are strongly supported",
+            "No recovery outcome has any support",
+            "Only long-term rehabilitation outcomes are discussed"
+          ],
+          "answer_index": 0,
+          "rationale": "The takeaway says best support is for some short-term recovery outcomes, not all.",
+          "markers": [
+            "E03",
+            "E04"
+          ]
+        },
+        {
+          "question": "What did the course report about negative or equivocal findings?",
+          "options": [
+            "They are absent from PBM research",
+            "They also appear in the literature",
+            "They only occur after passive recovery",
+            "They prove PBM never works"
+          ],
+          "answer_index": 1,
+          "rationale": "The course states negative or equivocal findings also appear.",
+          "markers": [
+            "E09",
+            "E14"
+          ]
+        },
+        {
+          "question": "In the CrossFit trial, which statement is accurate?",
+          "options": [
+            "PBMT-sMF produced clear 1-hour jump superiority",
+            "Passive recovery was best at every time point",
+            "There was no 1-hour jump difference",
+            "The study proved stronger muscles immediately after treatment"
+          ],
+          "answer_index": 2,
+          "rationale": "The course says there was no 1-hour jump difference after the workout.",
+          "markers": [
+            "E03"
+          ]
+        },
+        {
+          "question": "What was reported at 24 and 48 hours in the CrossFit study?",
+          "options": [
+            "Jump performance worsened versus passive recovery",
+            "Only medical outcomes improved",
+            "No outcomes changed after exercise stress",
+            "PBMT-sMF improved jump performance versus passive recovery"
+          ],
+          "answer_index": 3,
+          "rationale": "The course reports improved jump performance at 24 and 48 hours versus passive recovery.",
+          "markers": [
+            "E03"
+          ]
+        },
+        {
+          "question": "How should a practitioner discuss PBM with a client who wants certainty of results?",
+          "options": [
+            "Explain that evidence is mixed and may depend on protocol",
+            "Promise it will work if the client trains hard enough",
+            "Say all trained clients respond the same way",
+            "Present it as superior to medical evaluation"
+          ],
+          "answer_index": 0,
+          "rationale": "The course advises setting expectations because evidence is mixed and protocol-dependent.",
+          "markers": [
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "question": "A recovery studio member asks whether PBM can replace treatment for a painful shoulder. What is the best response?",
+          "options": [
+            "Yes, because PBM is a cure",
+            "No, PBM should not replace medical evaluation or treatment",
+            "Yes, if a wearable device is used",
+            "No, because PBM is only for endurance athletes"
+          ],
+          "answer_index": 1,
+          "rationale": "The course says not to present PBM as a replacement for medical evaluation or treatment.",
+          "markers": [
+            "E02",
+            "E06",
+            "E16"
+          ]
+        },
+        {
+          "question": "Which situation most clearly calls for referral based on the course?",
+          "options": [
+            "A client wants a general recovery service after training",
+            "A client asks what PBM stands for",
+            "A client reports asthma concerns",
+            "A client prefers a passive recovery option"
+          ],
+          "answer_index": 2,
+          "rationale": "The course specifically says to refer for asthma and other medical concerns.",
+          "markers": [
+            "E02",
+            "E06",
+            "E16"
+          ]
+        },
+        {
+          "question": "Which research combination may sit outside standard fitness-wellness scope?",
+          "options": [
+            "Stretching and hydration tracking",
+            "Treadmill intervals and mobility work",
+            "Basic resistance training and cool-down walking",
+            "PBM plus osteopathic manipulation"
+          ],
+          "answer_index": 3,
+          "rationale": "The course lists osteopathic manipulation as possibly outside standard fitness-wellness scope.",
+          "markers": [
+            "E01",
+            "E03",
+            "E05"
+          ]
+        },
+        {
+          "question": "Which additional approach mentioned in research may also sit outside standard fitness-wellness scope?",
+          "options": [
+            "Transcranial use",
+            "Foam rolling",
+            "Breath work",
+            "Dynamic warm-ups"
+          ],
+          "answer_index": 0,
+          "rationale": "The course mentions transcranial use as possibly outside standard fitness-wellness scope.",
+          "markers": [
+            "E01",
+            "E03",
+            "E05"
+          ]
+        },
+        {
+          "question": "What did one combined PBM plus osteopathic study report?",
+          "options": [
+            "Clear strength gains across all measures",
+            "Exploratory recovery patterns, not clear strength gains",
+            "Guaranteed improvement in trained athletes",
+            "No recovery outcomes of any kind"
+          ],
+          "answer_index": 1,
+          "rationale": "The course says the study found exploratory recovery patterns, not clear strength gains.",
+          "markers": [
+            "E01"
+          ]
+        },
+        {
+          "question": "A trainer wants to advertise PBM as proven for every athlete and every setup. Based on the course, what is the best correction?",
+          "options": [
+            "That is acceptable if a laser is used",
+            "That is fine when adverse effects are mild",
+            "Avoid claims beyond the study population or setup",
+            "Only avoid such claims in medical clinics"
+          ],
+          "answer_index": 2,
+          "rationale": "The course says to avoid claims beyond the study population or setup.",
+          "markers": [
+            "E01",
+            "E03"
+          ]
+        },
+        {
+          "question": "Which summary of adverse effects best matches the course?",
+          "options": [
+            "Severe events are expected in most studies",
+            "Moderate burns are standard findings",
+            "No studies mention safety observations",
+            "Some studies reported none or only mild warmth"
+          ],
+          "answer_index": 3,
+          "rationale": "The course notes some studies reported no adverse events or only mild warmth.",
+          "markers": [
+            "E06",
+            "E16"
+          ]
+        },
+        {
+          "question": "A client asks, 'How does PBM work?' Which answer best fits the course?",
+          "options": [
+            "It is thought to affect bioenergetics and signaling, but findings vary",
+            "It definitely increases mitochondrial respiration after one session",
+            "It works only by changing hydration levels",
+            "Its mechanism is fully confirmed in every study"
+          ],
+          "answer_index": 0,
+          "rationale": "The course proposes bioenergetic and signaling effects, while noting mixed findings.",
+          "markers": [
+            "E04",
+            "E09",
+            "E14"
+          ]
+        },
+        {
+          "question": "A practitioner says, 'Because one study found delayed recovery benefits, PBM always improves every outcome.' What is the best evaluation?",
+          "options": [
+            "Correct, because all findings are consistent",
+            "Incorrect, because evidence is mixed and not all outcomes improve",
+            "Correct, but only with passive recovery",
+            "Incorrect only if LEDs are used"
+          ],
+          "answer_index": 1,
+          "rationale": "The course stresses mixed evidence and says best support is not for all outcomes.",
+          "markers": [
+            "E03",
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "question": "A member with pain asks for PBM instead of seeing a clinician. What should the fitness professional do first?",
+          "options": [
+            "Offer PBM and avoid discussing referral",
+            "Use PBM plus transcranial techniques",
+            "Refer appropriately for the medical concern",
+            "Guarantee recovery because PBM is non-invasive"
+          ],
+          "answer_index": 2,
+          "rationale": "The course says to refer appropriately when someone has pain or other medical concerns.",
+          "markers": [
+            "E02",
+            "E06",
+            "E16"
+          ]
+        },
+        {
+          "question": "Which statement is most aligned with the course takeaway on expectations?",
+          "options": [
+            "PBM outcomes are easy to predict because protocols are standard",
+            "Protocol details do not matter if the client is trained",
+            "PBM should be sold as a cure when adverse effects are mild",
+            "Expectations should stay careful because protocols vary"
+          ],
+          "answer_index": 3,
+          "rationale": "The takeaway states protocols vary, so expectations must stay careful.",
+          "markers": [
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "question": "Which statement best reflects scope-conscious communication in a gym or studio?",
+          "options": [
+            "Present PBM as a recovery service within scope and refer medical issues out",
+            "Treat PBM as a replacement for all recovery methods",
+            "Use research combinations outside scope without caution",
+            "Promise outcomes beyond the studied setup"
+          ],
+          "answer_index": 0,
+          "rationale": "The course advises staying within scope and referring medical issues out.",
+          "markers": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "topic": "Red light therapy (photobiomodulation) for exercise recovery",
+  "audience": "Fitness, wellness and recovery professionals (health clubs, recovery centres, boutique studios)",
+  "search_hint": null,
+  "trigger": "course_factory",
+  "max_sources": 20,
+  "slug": "red-light-therapy-photobiomodulation-for-exercise-recovery",
+  "config": {
+    "worker_url": "http://host.docker.internal:8100",
+    "review_channel": "gmail",
+    "reviewer_email": "iyushau3@gmail.com",
+    "slack_channel_id": "",
+    "storage_backend": "local",
+    "supabase_url": "",
+    "supabase_bucket": "course-assets",
+    "default_audience": "Fitness, wellness and recovery professionals (health clubs, recovery centres, boutique studios)",
+    "max_sources": 20,
+    "min_relevant_sources": 3,
+    "max_slides": 16,
+    "max_tts_chars": 3000,
+    "tts_provider": "elevenlabs",
+    "quiz_questions": 10,
+    "exam_questions": 20,
+    "exam_pass_mark": 80,
+    "auto_produce": false
+  }
+}
