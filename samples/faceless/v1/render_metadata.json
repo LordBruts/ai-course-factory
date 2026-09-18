@@ -1,0 +1,66 @@
+{
+  "job_id": "rlt-v3-faceless",
+  "template": "faceless",
+  "course_slug": "red-light-therapy-for-exercise-recovery",
+  "version": 3,
+  "attempt": 3,
+  "qa_status": "pass",
+  "tools": {
+    "hyperframes": "0.8.42",
+    "chrome_headless_shell": "148.0.7778.167",
+    "ffmpeg": "ffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "gsap": "3.15.0 (vendored)",
+    "transcription": "ElevenLabs Scribe via video-use transcribe.py (cached)"
+  },
+  "render": {
+    "command": "hyperframes render project --quality looks --fps 30 --workers 2",
+    "low_memory_mode": "1",
+    "render_seconds": 1355.2,
+    "pipeline_seconds": 1741,
+    "note": "Parallel capture timed out once; HyperFrames re-captured 345 frames with one worker. Attempt 1 rendered in 711 s with no retry."
+  },
+  "captions": {
+    "style": "two-word uppercase (video-use build_master_srt), burned in last",
+    "cues": 197
+  },
+  "outputs": {
+    "final.mp4": {
+      "duration": 160.034,
+      "bytes": 9089462,
+      "video": "h264 1920x1080 30/1",
+      "audio": "aac",
+      "sha256": "c194e0d8d3778996d0aac2fd8d8dc20cb0cde901cab4b980cc15e31052b74cb4"
+    },
+    "preview.mp4": {
+      "duration": 160.043,
+      "bytes": 2972445,
+      "video": "h264 960x540 30/1",
+      "audio": "aac",
+      "sha256": "bccfb24b51e5e99f9e2fabfc8f21808ca0f5f98fee7d7f662f2012a0ffa99e1f"
+    },
+    "render/base.mp4": {
+      "duration": 160.034,
+      "bytes": 12335787,
+      "video": "h264 1920x1080 30/1",
+      "audio": "aac",
+      "sha256": "3532e0cd99a9099775c873b8d80ea21f238e46a9fc594c52010ca964aa5778c0"
+    }
+  },
+  "narration_sources": {
+    "audio_00.mp3": "c56f675ffac76c515c221151c5489b3379a245fd88981d45178cee1491e103b6",
+    "audio_01.mp3": "9be267660c49b30d2cb043d47271724333e552d3f66136d8556b496f42aafcfd",
+    "audio_02.mp3": "74de361731ccfcabbea26a6a56f218b2a38169ed55c15cafe01e859efcd64ab0",
+    "audio_03.mp3": "dbcd027ce53dd917b90d6eaa7f075b83a22b7b04f7bb50adcf03906ed6c65f61",
+    "audio_04.mp3": "868ad5a039139396948496bf2bba9e2335670a78c4609095f053e919282858ef",
+    "audio_05.mp3": "c1f33c8818791e8b69c5ad3989a58bde0d9ac7c2b96b5355c56cfe860456dacc",
+    "audio_06.mp3": "42363724e13c5a398584db9a5d944b4f6c527cd98477058a376746868b23bfa3",
+    "audio_07.mp3": "a2f77a1a245296621635a82bbdef9d6f1fea85803fc399bc549582a0791d387d",
+    "audio_08.mp3": "0c55c6058f5cc2aeb36059ddc49618a33bdaee76e9831f799246e800acb43800"
+  },
+  "storyboard_sha256": "5e8891ea5db1a4b2f4113b13123e149590776d340afa6b276934a84256a98627",
+  "paid_calls": {
+    "elevenlabs_tts": 0,
+    "elevenlabs_scribe_seconds": 160.0,
+    "llm_calls": 0
+  }
+}

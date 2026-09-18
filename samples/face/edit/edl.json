@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "template": "face",
+  "sources": {
+    "presenter": "/data/video-jobs/rlt-v3-face/presenter/edit.mp4"
+  },
+  "ranges": [
+    {
+      "source": "presenter",
+      "start": 0.0,
+      "end": 188.466,
+      "output_start": 0.0,
+      "beat_ids": [
+        "S001",
+        "S002",
+        "S003",
+        "S004",
+        "S005",
+        "S006",
+        "S007",
+        "S008",
+        "S009",
+        "S010",
+        "S011",
+        "S012",
+        "S013",
+        "S014",
+        "S015",
+        "S016",
+        "S017",
+        "S018",
+        "S019",
+        "S020",
+        "S021",
+        "S022",
+        "S023",
+        "S024",
+        "S025"
+      ],
+      "note": "presenter edit",
+      "reason": "Kept takes of the presenter recording, cut in presenter/edit.py (plan: presenter_edl.json)."
+    }
+  ],
+  "overlays": [],
+  "base_render": "render/base.mp4",
+  "subtitles": "master.srt",
+  "total_seconds": 188.466,
+  "presenter_edl": "presenter_edl.json",
+  "dropped_narration": [
+    {
+      "audio_index": 9,
+      "title": "References (2 of 3)",
+      "notes": "References, continued.",
+      "reason": "A second bibliography slide narrated as 'References, continued' adds no teaching; sources appear on the evidence cards instead."
+    },
+    {
+      "audio_index": 10,
+      "title": "References (3 of 3)",
+      "notes": "References, continued.",
+      "reason": "A second bibliography slide narrated as 'References, continued' adds no teaching; sources appear on the evidence cards instead."
+    }
+  ]
+}

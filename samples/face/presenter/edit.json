@@ -1,0 +1,12 @@
+{
+  "output": "/data/video-jobs/rlt-v3-face/presenter/edit.mp4",
+  "expected_duration": 188.46666666666667,
+  "duration": 188.474,
+  "video_duration": 188.473667,
+  "audio_duration": 188.466,
+  "frames": 5654,
+  "expected_frames": 5654,
+  "timestamp_holes": [],
+  "segments": 18,
+  "seconds": 384.9
+}

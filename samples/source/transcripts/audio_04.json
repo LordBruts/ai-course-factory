@@ -1,0 +1,625 @@
+{
+  "language_code": "eng",
+  "language_probability": 1.0,
+  "text": "Evidence on pain is mixed across conditions. A fibromyalgia review reported consistent short-term pain and quality of life improvements, though heterogeneity limited generalizability. In chronic trapezius myofascial pain, 808 nanometer laser was not superior to placebo for pain outcomes.",
+  "words": [
+    {
+      "text": "Evidence",
+      "start": 0.08,
+      "end": 0.46,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.005454419646412134
+    },
+    {
+      "text": " ",
+      "start": 0.46,
+      "end": 0.5,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -2.3841855067985307e-07
+    },
+    {
+      "text": "on",
+      "start": 0.5,
+      "end": 0.6,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -2.3841855067985307e-07
+    },
+    {
+      "text": " ",
+      "start": 0.6,
+      "end": 0.72,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -2.7894584491150454e-05
+    },
+    {
+      "text": "pain",
+      "start": 0.72,
+      "end": 0.98,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -2.7894584491150454e-05
+    },
+    {
+      "text": " ",
+      "start": 0.98,
+      "end": 1.04,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -1.1920922133867862e-06
+    },
+    {
+      "text": "is",
+      "start": 1.04,
+      "end": 1.18,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -1.1920922133867862e-06
+    },
+    {
+      "text": " ",
+      "start": 1.18,
+      "end": 1.24,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -1.597391747054644e-05
+    },
+    {
+      "text": "mixed",
+      "start": 1.24,
+      "end": 1.48,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -1.597391747054644e-05
+    },
+    {
+      "text": " ",
+      "start": 1.48,
+      "end": 1.54,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -2.145764938177308e-06
+    },
+    {
+      "text": "across",
+      "start": 1.54,
+      "end": 1.8,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -2.145764938177308e-06
+    },
+    {
+      "text": " ",
+      "start": 1.8,
+      "end": 1.86,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -2.622600959512056e-06
+    },
+    {
+      "text": "conditions.",
+      "start": 1.88,
+      "end": 2.5,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -4.627457160081989e-06
+    },
+    {
+      "text": " ",
+      "start": 2.5,
+      "end": 2.5,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -1.5497195136049413e-06
+    },
+    {
+      "text": "A",
+      "start": 3.34,
+      "end": 3.4,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -1.5497195136049413e-06
+    },
+    {
+      "text": " ",
+      "start": 3.4,
+      "end": 3.46,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -0.0005311747081577778
+    },
+    {
+      "text": "fibromyalgia",
+      "start": 3.46,
+      "end": 4.28,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.0005311747081577778
+    },
+    {
+      "text": " ",
+      "start": 4.28,
+      "end": 4.32,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -5.722029527532868e-06
+    },
+    {
+      "text": "review",
+      "start": 4.32,
+      "end": 4.68,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -5.722029527532868e-06
+    },
+    {
+      "text": " ",
+      "start": 4.68,
+      "end": 4.9,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -2.3841830625315197e-06
+    },
+    {
+      "text": "reported",
+      "start": 4.9,
+      "end": 5.32,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -2.3841830625315197e-06
+    },
+    {
+      "text": " ",
+      "start": 5.32,
+      "end": 5.36,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -4.172316494077677e-06
+    },
+    {
+      "text": "consistent",
+      "start": 5.36,
+      "end": 5.92,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -4.172316494077677e-06
+    },
+    {
+      "text": " ",
+      "start": 5.92,
+      "end": 6.0,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -3.4689302992774174e-05
+    },
+    {
+      "text": "short-term",
+      "start": 6.0,
+      "end": 6.5,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.0002123033269526786
+    },
+    {
+      "text": " ",
+      "start": 6.5,
+      "end": 6.62,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -8.344646857949556e-07
+    },
+    {
+      "text": "pain",
+      "start": 6.62,
+      "end": 6.9,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -8.344646857949556e-07
+    },
+    {
+      "text": " ",
+      "start": 6.9,
+      "end": 7.18,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -5.6622808187967166e-05
+    },
+    {
+      "text": "and",
+      "start": 7.18,
+      "end": 7.26,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -5.6622808187967166e-05
+    },
+    {
+      "text": " ",
+      "start": 7.26,
+      "end": 7.38,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -1.1920922133867862e-06
+    },
+    {
+      "text": "quality",
+      "start": 7.38,
+      "end": 7.7,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -1.1920922133867862e-06
+    },
+    {
+      "text": " ",
+      "start": 7.7,
+      "end": 7.74,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -0.06196761503815651
+    },
+    {
+      "text": "of",
+      "start": 7.74,
+      "end": 7.82,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.06196761503815651
+    },
+    {
+      "text": " ",
+      "start": 7.82,
+      "end": 7.88,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -1.0132738680113107e-05
+    },
+    {
+      "text": "life",
+      "start": 7.88,
+      "end": 8.06,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -1.0132738680113107e-05
+    },
+    {
+      "text": " ",
+      "start": 8.06,
+      "end": 8.1,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -5.006777428206988e-06
+    },
+    {
+      "text": "improvements,",
+      "start": 8.1,
+      "end": 8.76,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.00010455495290583573
+    },
+    {
+      "text": " ",
+      "start": 8.76,
+      "end": 8.76,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -6.198863957251888e-06
+    },
+    {
+      "text": "though",
+      "start": 9.34,
+      "end": 9.5,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -6.198863957251888e-06
+    },
+    {
+      "text": " ",
+      "start": 9.5,
+      "end": 9.54,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -7.116541382856667e-05
+    },
+    {
+      "text": "heterogeneity",
+      "start": 9.54,
+      "end": 10.44,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -7.116541382856667e-05
+    },
+    {
+      "text": " ",
+      "start": 10.44,
+      "end": 10.7,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -0.00014280252798926085
+    },
+    {
+      "text": "limited",
+      "start": 10.7,
+      "end": 11.02,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.00014280252798926085
+    },
+    {
+      "text": " ",
+      "start": 11.02,
+      "end": 11.12,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -0.00033802041434682906
+    },
+    {
+      "text": "generalizability.",
+      "start": 11.12,
+      "end": 12.16,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.00016550146841943977
+    },
+    {
+      "text": " ",
+      "start": 12.16,
+      "end": 12.16,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -1.311301275563892e-06
+    },
+    {
+      "text": "In",
+      "start": 12.84,
+      "end": 12.96,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -1.311301275563892e-06
+    },
+    {
+      "text": " ",
+      "start": 12.96,
+      "end": 13.0,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -2.777537883957848e-05
+    },
+    {
+      "text": "chronic",
+      "start": 13.0,
+      "end": 13.3,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -2.777537883957848e-05
+    },
+    {
+      "text": " ",
+      "start": 13.3,
+      "end": 13.36,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -0.00048458753735758364
+    },
+    {
+      "text": "trapezius",
+      "start": 13.38,
+      "end": 13.92,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.00017689366682007958
+    },
+    {
+      "text": " ",
+      "start": 13.92,
+      "end": 14.04,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -0.0005013877525925636
+    },
+    {
+      "text": "myofascial",
+      "start": 14.04,
+      "end": 14.66,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.0002909987058956176
+    },
+    {
+      "text": " ",
+      "start": 14.66,
+      "end": 14.76,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -7.748573807475623e-06
+    },
+    {
+      "text": "pain,",
+      "start": 14.76,
+      "end": 15.06,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.000253167165647028
+    },
+    {
+      "text": " ",
+      "start": 15.06,
+      "end": 15.06,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -0.1602916419506073
+    },
+    {
+      "text": "808",
+      "start": 15.62,
+      "end": 16.2,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.00012209767555759754
+    },
+    {
+      "text": " ",
+      "start": 16.2,
+      "end": 16.26,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -0.7187808156013489
+    },
+    {
+      "text": "nanometer",
+      "start": 16.26,
+      "end": 16.76,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.2416612198576331
+    },
+    {
+      "text": " ",
+      "start": 16.76,
+      "end": 16.86,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -8.821448318485636e-06
+    },
+    {
+      "text": "laser",
+      "start": 16.86,
+      "end": 17.4,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -8.821448318485636e-06
+    },
+    {
+      "text": " ",
+      "start": 17.4,
+      "end": 17.44,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -9.536738616588991e-07
+    },
+    {
+      "text": "was",
+      "start": 17.44,
+      "end": 17.56,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -9.536738616588991e-07
+    },
+    {
+      "text": " ",
+      "start": 17.56,
+      "end": 17.58,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -1.1920928244535389e-07
+    },
+    {
+      "text": "not",
+      "start": 17.6,
+      "end": 17.76,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -1.1920928244535389e-07
+    },
+    {
+      "text": " ",
+      "start": 17.76,
+      "end": 17.8,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -4.410734163684538e-06
+    },
+    {
+      "text": "superior",
+      "start": 17.8,
+      "end": 18.32,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -4.410734163684538e-06
+    },
+    {
+      "text": " ",
+      "start": 18.32,
+      "end": 18.34,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -1.4305104514278355e-06
+    },
+    {
+      "text": "to",
+      "start": 18.34,
+      "end": 18.44,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -1.4305104514278355e-06
+    },
+    {
+      "text": " ",
+      "start": 18.44,
+      "end": 18.46,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -3.576278118089249e-07
+    },
+    {
+      "text": "placebo",
+      "start": 18.46,
+      "end": 19.02,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -3.576278118089249e-07
+    },
+    {
+      "text": " ",
+      "start": 19.02,
+      "end": 19.08,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -2.7418097943154862e-06
+    },
+    {
+      "text": "for",
+      "start": 19.08,
+      "end": 19.2,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -2.7418097943154862e-06
+    },
+    {
+      "text": " ",
+      "start": 19.2,
+      "end": 19.24,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -2.3841855067985307e-07
+    },
+    {
+      "text": "pain",
+      "start": 19.24,
+      "end": 19.42,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -2.3841855067985307e-07
+    },
+    {
+      "text": " ",
+      "start": 19.42,
+      "end": 19.48,
+      "type": "spacing",
+      "speaker_id": "speaker_0",
+      "logprob": -2.3364747903542593e-05
+    },
+    {
+      "text": "outcomes.",
+      "start": 19.48,
+      "end": 19.98,
+      "type": "word",
+      "speaker_id": "speaker_0",
+      "logprob": -0.015900908002448786
+    }
+  ],
+  "transcription_id": "hXtrgpSaYxK0DfX9Tfjf",
+  "audio_duration_secs": 20.3406875
+}

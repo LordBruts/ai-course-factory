@@ -1,0 +1,45 @@
+{
+  "job": "/data/video-jobs/rlt-v3-faceless-v2",
+  "attempt": 2,
+  "started": 1789645555.6082382,
+  "steps": [
+    {
+      "step": "build",
+      "exit": 0,
+      "attempts": 1,
+      "seconds": 0.7,
+      "transient_failure": false
+    },
+    {
+      "step": "lint",
+      "exit": 0,
+      "attempts": 1,
+      "seconds": 2.6,
+      "transient_failure": false
+    },
+    {
+      "step": "render",
+      "exit": 0,
+      "attempts": 1,
+      "seconds": 366.6,
+      "transient_failure": false
+    },
+    {
+      "step": "timeline",
+      "exit": 0,
+      "attempts": 1,
+      "seconds": 134.3,
+      "transient_failure": false
+    },
+    {
+      "step": "qa",
+      "exit": 0,
+      "attempts": 1,
+      "seconds": 57.2,
+      "transient_failure": false
+    }
+  ],
+  "status": "ok",
+  "finished": 1789646117.0330975,
+  "seconds": 561.4
+}

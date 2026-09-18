@@ -1,0 +1,1556 @@
+{
+  "template": "face",
+  "decided_by": "rules",
+  "rules_version": 1,
+  "total_seconds": 187.92,
+  "sections": [
+    {
+      "id": "SEC01",
+      "title": "Red Light Therapy for Exercise Recovery",
+      "start": 0.0,
+      "end": 12.168,
+      "slide_indexes": [
+        0
+      ]
+    },
+    {
+      "id": "SEC02",
+      "title": "What PBM is",
+      "start": 12.995,
+      "end": 35.795,
+      "slide_indexes": [
+        1
+      ]
+    },
+    {
+      "id": "SEC03",
+      "title": "How it may work",
+      "start": 36.595,
+      "end": 56.921,
+      "slide_indexes": [
+        2
+      ]
+    },
+    {
+      "id": "SEC04",
+      "title": "Recovery and performance evidence",
+      "start": 57.707,
+      "end": 87.447,
+      "slide_indexes": [
+        3
+      ]
+    },
+    {
+      "id": "SEC05",
+      "title": "Pain and related outcomes",
+      "start": 88.24,
+      "end": 111.1,
+      "slide_indexes": [
+        4
+      ]
+    },
+    {
+      "id": "SEC06",
+      "title": "Protocols and device choices",
+      "start": 111.907,
+      "end": 138.467,
+      "slide_indexes": [
+        5
+      ]
+    },
+    {
+      "id": "SEC07",
+      "title": "Safety, scope, and client talk",
+      "start": 139.275,
+      "end": 165.315,
+      "slide_indexes": [
+        6
+      ]
+    },
+    {
+      "id": "SEC08",
+      "title": "Key Takeaways",
+      "start": 166.114,
+      "end": 180.24,
+      "slide_indexes": [
+        7
+      ]
+    },
+    {
+      "id": "SEC09",
+      "title": "Sources and next step",
+      "start": 181.04,
+      "end": 187.92,
+      "slide_indexes": [
+        8
+      ]
+    }
+  ],
+  "segments": [
+    {
+      "segment_id": "S001",
+      "section_id": "SEC01",
+      "slide_index": 0,
+      "start": 0.0,
+      "end": 12.168,
+      "narration": "Welcome.",
+      "beat_type": "opening",
+      "visual_type": "TITLE",
+      "visual_reason": "Opens the course: title, audience and identity establish what this is.",
+      "component": "TitleReveal",
+      "props": {
+        "title": "Red Light Therapy for Exercise Recovery",
+        "subtitle": ""
+      },
+      "animation": "subtle_reveal",
+      "emphasis_words": [
+        "Welcome"
+      ],
+      "citation_ids": [],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S002",
+      "section_id": "SEC01",
+      "slide_index": 0,
+      "start": 0.386,
+      "end": 12.168,
+      "narration": "In this course, you will learn what red light therapy is, what exercise recovery research reports, why protocols are hard to compare, and how to discuss this service honestly and within scope.",
+      "beat_type": "opening",
+      "visual_type": "NONE",
+      "visual_reason": "Held the previous visual: this beat is too short to justify a new one.",
+      "component": null,
+      "props": {},
+      "animation": "fade",
+      "emphasis_words": [],
+      "citation_ids": [],
+      "quiet": true,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S003",
+      "section_id": "SEC02",
+      "slide_index": 1,
+      "start": 12.995,
+      "end": 18.935,
+      "narration": "Photobiomodulation, or PBM, uses red or near-infrared light applied to the body [1, 2].",
+      "beat_type": "evidence",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "Defines the term being taught; the term itself is what should be on screen.",
+      "component": "KeywordHighlight",
+      "props": {
+        "term": "Photobiomodulation (PBM)",
+        "definition": "Photobiomodulation, or PBM, uses red or near-infrared light applied to the body."
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [
+        "near-infrared",
+        "light",
+        "Photobiomodulation"
+      ],
+      "citation_ids": [
+        "1",
+        "2"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S004",
+      "section_id": "SEC02",
+      "slide_index": 1,
+      "start": 19.715,
+      "end": 31.015,
+      "narration": "Reviews describe proposed effects on cellular metabolism, oxidative stress, and inflammatory signalling, but protocol differences make simple explanations difficult [1, 2].",
+      "beat_type": "evidence",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "Too long a stretch with nothing on screen; states the point being made.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "Reviews describe proposed effects on cellular metabolism, oxidative stress, and inflammatory signalling",
+        "source": "narration"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [],
+      "citation_ids": [
+        "1",
+        "2"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S005",
+      "section_id": "SEC02",
+      "slide_index": 1,
+      "start": 31.995,
+      "end": 35.795,
+      "narration": "Lasers and LED devices also differ technically [1].",
+      "beat_type": "evidence",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "The previous visual would otherwise hold for 17s; the screen should move with the narration.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "Lasers and LED devices also differ technically.",
+        "source": "narration"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [],
+      "citation_ids": [
+        "1"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S006",
+      "section_id": "SEC03",
+      "slide_index": 2,
+      "start": 36.595,
+      "end": 43.315,
+      "narration": "PBM is often described as influencing bioenergetics and immune or oxidative stress pathways [2].",
+      "beat_type": "evidence",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "Too long a stretch with nothing on screen; states the point being made.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "Often described as support for bioenergetics",
+        "source": "slide_bullet"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [],
+      "citation_ids": [
+        "2"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S007",
+      "section_id": "SEC03",
+      "slide_index": 2,
+      "start": 43.628,
+      "end": 52.448,
+      "narration": "But one human study found a single PBM session did not increase mitochondrial respiration in skeletal muscle or skin tissue [3].",
+      "beat_type": "evidence",
+      "visual_type": "EVIDENCE_CARD",
+      "visual_reason": "Reports what a study found; the finding leads and its source sits underneath.",
+      "component": "EvidenceCard",
+      "props": {
+        "marker": 3,
+        "citation": "Aussieker, T., Petrick, H. L., Kuin, L. M. E., Kaiser, J., Fuchs, C. J., Kornips, E., Tsintzas, K., Cooper, S., Lammers, S., Praet, S., Snijders, T., & van Loon, L. J. C. (2026). Photobiomodulation Does Not Increase Mitochondrial Respiration in Skeletal Muscle or Skin Tissue in Humans. Medicine and science in sports and exercise. https://doi.org/10.1249/mss.0000000000004120",
+        "design": "",
+        "year": null,
+        "journal": "",
+        "population": "",
+        "outcome": "",
+        "finding": "But one human study found a single PBM session did not increase mitochondrial respiration in skeletal muscle or skin tissue.",
+        "statistic": null
+      },
+      "animation": "subtle_reveal",
+      "emphasis_words": [
+        "Human",
+        "mitochondrial",
+        "respiration"
+      ],
+      "citation_ids": [
+        "3"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S008",
+      "section_id": "SEC03",
+      "slide_index": 2,
+      "start": 53.261,
+      "end": 56.921,
+      "narration": "That means mechanism claims should stay cautious [3].",
+      "beat_type": "evidence",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "The previous visual would otherwise hold for 14s; the screen should move with the narration.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "That means mechanism claims should stay cautious.",
+        "source": "narration"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [],
+      "citation_ids": [
+        "3"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S009",
+      "section_id": "SEC04",
+      "slide_index": 3,
+      "start": 57.707,
+      "end": 67.387,
+      "narration": "A review reports promising effects for exertion recovery, including muscle strength, endurance, and reduced fatigue in sport performance studies [1].",
+      "beat_type": "evidence",
+      "visual_type": "EVIDENCE_CARD",
+      "visual_reason": "Reports what a study found; the finding leads and its source sits underneath.",
+      "component": "EvidenceCard",
+      "props": {
+        "marker": 1,
+        "citation": "Lawrence, J., & Sorra, K. (2024). Photobiomodulation as Medicine: Low-Level Laser Therapy (LLLT) for Acute Tissue Injury or Sport Performance Recovery. Journal of functional morphology and kinesiology. https://doi.org/10.3390/jfmk9040181",
+        "design": "",
+        "year": null,
+        "journal": "",
+        "population": "",
+        "outcome": "",
+        "finding": "A review reports promising effects for exertion recovery, including muscle strength, endurance, and reduced fatigue in sport performance studies.",
+        "statistic": null
+      },
+      "animation": "subtle_reveal",
+      "emphasis_words": [
+        "Recovery",
+        "performance",
+        "Sport"
+      ],
+      "citation_ids": [
+        "1"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S010",
+      "section_id": "SEC04",
+      "slide_index": 3,
+      "start": 67.687,
+      "end": 87.447,
+      "narration": "In CrossFit athletes, PBMT-sMF did not beat other recovery methods for jump performance at one hour, but showed better jump results than passive recovery at 24 and 48 hours on secondary analysis [4].",
+      "beat_type": "evidence",
+      "visual_type": "EVIDENCE_CARD",
+      "visual_reason": "Reports what a study found; the finding leads and its source sits underneath.",
+      "component": "EvidenceCard",
+      "props": {
+        "marker": 4,
+        "citation": "Martins, P. H. G. N., Tomazoni, S. S., Machado, C. D. S. M., Pereira, A. L., Pinto, H. D., Lino, M. M. A., Ribeiro, N. F., Dias, L. B., Aleixo Junior, I. O., de Oliveira, M. F. D., de Ara\u00fajo-Silva, O. M., De Marchi, T., Casalechi, H. L., & Leal-Junior, E. C. P. (2026). A randomised crossover trial comparing photobiomodulation therapy with other recovery strategies in CrossFit athletes. PloS one. https://doi.org/10.1371/journal.pone.0349880",
+        "design": "",
+        "year": null,
+        "journal": "",
+        "population": "",
+        "outcome": "",
+        "finding": "In CrossFit athletes, PBMT-sMF did not beat other recovery methods for jump performance at one hour",
+        "statistic": null
+      },
+      "animation": "subtle_reveal",
+      "emphasis_words": [
+        "48 hours",
+        "Recovery",
+        "performance"
+      ],
+      "citation_ids": [
+        "4"
+      ],
+      "quiet": false,
+      "asset_requirements": [],
+      "hold_until": 81.687
+    },
+    {
+      "segment_id": "S011",
+      "section_id": "SEC05",
+      "slide_index": 4,
+      "start": 88.24,
+      "end": 90.82,
+      "narration": "Evidence on pain is mixed across conditions [5, 6, 7, 8].",
+      "beat_type": "evidence",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "The previous visual would otherwise hold for 24s; the screen should move with the narration.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "Pain findings vary by condition",
+        "source": "slide_bullet"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [],
+      "citation_ids": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S012",
+      "section_id": "SEC05",
+      "slide_index": 4,
+      "start": 91.4,
+      "end": 102.019,
+      "narration": "A fibromyalgia review reported consistent short-term pain and quality-of-life improvements, though heterogeneity limited generalizability [6].",
+      "beat_type": "evidence",
+      "visual_type": "EVIDENCE_CARD",
+      "visual_reason": "Reports what a study found; the finding leads and its source sits underneath.",
+      "component": "EvidenceCard",
+      "props": {
+        "marker": 6,
+        "citation": "G A, S., Maiya, G. A., Shetty, S., Abrahamse, H., Kadavigere, R., Bhat N, S., & K N, S. (2026). Effect of photobiomodulation on pain and quality of life in fibromyalgia syndrome: a systematic review. Lasers in medical science. https://doi.org/10.1007/s10103-026-04930-4",
+        "design": "",
+        "year": null,
+        "journal": "",
+        "population": "",
+        "outcome": "",
+        "finding": "A fibromyalgia review reported consistent short-term pain and quality-of-life improvements, though heterogeneity limited generalizability.",
+        "statistic": null
+      },
+      "animation": "subtle_reveal",
+      "emphasis_words": [
+        "report",
+        "short-term",
+        "generalizability"
+      ],
+      "citation_ids": [
+        "6"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S013",
+      "section_id": "SEC05",
+      "slide_index": 4,
+      "start": 102.48,
+      "end": 111.1,
+      "narration": "In chronic trapezius myofascial pain, 808 nanometre laser was not superior to placebo for pain outcomes [8].",
+      "beat_type": "evidence",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "Reports what was NOT shown; on screen so the negative finding is not misheard.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "In chronic trapezius myofascial pain, 808 nanometre laser was not superior to placebo for pain outcomes.",
+        "source": "narration"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [
+        "808 nanometre",
+        "outcomes",
+        "myofascial"
+      ],
+      "citation_ids": [
+        "8"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S014",
+      "section_id": "SEC06",
+      "slide_index": 5,
+      "start": 111.907,
+      "end": 119.287,
+      "narration": "Protocol design matters because studies vary in wavelength, energy dose, timing, and application target [1, 2].",
+      "beat_type": "evidence",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "Too long a stretch with nothing on screen; states the point being made.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "Key variables: wavelength, dose, timing, target",
+        "source": "slide_bullet"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [],
+      "citation_ids": [
+        "1",
+        "2"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S015",
+      "section_id": "SEC06",
+      "slide_index": 5,
+      "start": 119.594,
+      "end": 132.294,
+      "narration": "Examples in the brief include 650 nanometre LED use before exercise-induced muscle damage and 630 plus 850 nanometre LED use in low back pain research [7, 9].",
+      "beat_type": "evidence",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "Too long a stretch with nothing on screen; states the point being made.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "Examples range from 650 to 850 nm in studies",
+        "source": "slide_bullet"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [],
+      "citation_ids": [
+        "7",
+        "9"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S016",
+      "section_id": "SEC06",
+      "slide_index": 5,
+      "start": 132.587,
+      "end": 138.467,
+      "narration": "Transcranial protocols are preliminary and not routine fitness-business practice [10].",
+      "beat_type": "evidence",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "The previous visual would otherwise hold for 20s; the screen should move with the narration.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "Transcranial protocols are preliminary and not routine fitness-business practice.",
+        "source": "narration"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [],
+      "citation_ids": [
+        "10"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S017",
+      "section_id": "SEC07",
+      "slide_index": 6,
+      "start": 139.275,
+      "end": 151.175,
+      "narration": "Some included trials reported no adverse events or only mild and infrequent adverse effects, but safety reporting is not uniform across the literature [5, 7, 8].",
+      "beat_type": "evidence",
+      "visual_type": "EVIDENCE_CARD",
+      "visual_reason": "Reports what a study found; the finding leads and its source sits underneath.",
+      "component": "EvidenceCard",
+      "props": {
+        "marker": 5,
+        "citation": "Chen, H., Asawaphureekorn, S., Manimmanakorn, N., Wang, X., & Eungpinichpong, W. (2026). Efficacy of Adjunctive Photobiomodulation in Patellofemoral Pain Syndrome: A Systematic Review and Meta-Analysis. Archives of rehabilitation research and clinical translation. https://doi.org/10.1016/j.arrct.2026.100585",
+        "design": "",
+        "year": null,
+        "journal": "",
+        "population": "",
+        "outcome": "",
+        "finding": "Some included trials reported no adverse events or only mild and infrequent adverse effects, but safety reporting is not uniform across the literature.",
+        "statistic": null
+      },
+      "animation": "subtle_reveal",
+      "emphasis_words": [
+        "Safety",
+        "Adverse",
+        "events"
+      ],
+      "citation_ids": [
+        "5",
+        "7",
+        "8"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S018",
+      "section_id": "SEC07",
+      "slide_index": 6,
+      "start": 151.475,
+      "end": 158.135,
+      "narration": "Stay within scope.",
+      "beat_type": "practice",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "Holds one guidance card across both sentences: they state a single instruction, and cutting between them would add a change with no meaning.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "Present PBM as a wellness or recovery service, not a medical treatment.",
+        "source": "narration"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [
+        "scope"
+      ],
+      "citation_ids": [],
+      "quiet": false,
+      "asset_requirements": [],
+      "covers": [
+        "S019"
+      ]
+    },
+    {
+      "segment_id": "S019",
+      "section_id": "SEC07",
+      "slide_index": 6,
+      "start": 153.355,
+      "end": 158.135,
+      "narration": "Present PBM as a wellness or recovery service, not a medical treatment.",
+      "beat_type": "practice",
+      "visual_type": "NONE",
+      "visual_reason": "Covered by the guidance card already on screen.",
+      "component": null,
+      "props": {},
+      "animation": "highlight_sweep",
+      "emphasis_words": [],
+      "citation_ids": [],
+      "quiet": true,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S020",
+      "section_id": "SEC07",
+      "slide_index": 6,
+      "start": 158.975,
+      "end": 165.315,
+      "narration": "Be clear that evidence is promising in places, mixed in others, and not a guarantee [1, 4, 8].",
+      "beat_type": "evidence",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "The previous visual would otherwise hold for 15s; the screen should move with the narration.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "Be clear that evidence is promising in places, mixed in others, and not a guarantee.",
+        "source": "narration"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [],
+      "citation_ids": [
+        "1",
+        "4",
+        "8"
+      ],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S021",
+      "section_id": "SEC08",
+      "slide_index": 7,
+      "start": 166.114,
+      "end": 173.374,
+      "narration": "The main message is simple.",
+      "beat_type": "recap",
+      "visual_type": "RECAP",
+      "visual_reason": "Closing summary: the takeaways are worth seeing together, not only hearing.",
+      "component": "Recap",
+      "props": {
+        "items": [
+          "PBM research is promising, but results are mixed.",
+          "Protocol details drive outcomes and are not standardized.",
+          "Use cautious language and avoid medical claims.",
+          "Assess whether a published protocol fits your setting."
+        ],
+        "title": "Key Takeaways"
+      },
+      "animation": "stagger_children",
+      "emphasis_words": [
+        "message"
+      ],
+      "citation_ids": [],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S022",
+      "section_id": "SEC08",
+      "slide_index": 7,
+      "start": 168.134,
+      "end": 173.374,
+      "narration": "PBM may support recovery in some contexts, but the evidence is not uniform.",
+      "beat_type": "recap",
+      "visual_type": "NONE",
+      "visual_reason": "Held the previous visual: this beat is too short to justify a new one.",
+      "component": null,
+      "props": {},
+      "animation": "stagger_children",
+      "emphasis_words": [],
+      "citation_ids": [],
+      "quiet": true,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S023",
+      "section_id": "SEC08",
+      "slide_index": 7,
+      "start": 173.68,
+      "end": 180.24,
+      "narration": "Your role is to understand the protocol, stay in scope, and communicate uncertainty clearly.",
+      "beat_type": "recap",
+      "visual_type": "TEXT_EMPHASIS",
+      "visual_reason": "Too long a stretch with nothing on screen; states the point being made.",
+      "component": "KeyTakeaway",
+      "props": {
+        "text": "Your role is to understand the protocol, stay in scope, and communicate uncertainty clearly.",
+        "source": "narration"
+      },
+      "animation": "highlight_sweep",
+      "emphasis_words": [],
+      "citation_ids": [],
+      "quiet": false,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S024",
+      "section_id": "SEC09",
+      "slide_index": 8,
+      "start": 181.04,
+      "end": 183.82,
+      "narration": "Every claim in this course is linked to the sources listed here.",
+      "beat_type": "teaching",
+      "visual_type": "NONE",
+      "visual_reason": "The next card carries the same title; a section title here would repeat it.",
+      "component": null,
+      "props": {},
+      "animation": "wipe_up",
+      "emphasis_words": [],
+      "citation_ids": [],
+      "quiet": true,
+      "asset_requirements": []
+    },
+    {
+      "segment_id": "S025",
+      "section_id": "SEC09",
+      "slide_index": 8,
+      "start": 184.42,
+      "end": 187.92,
+      "narration": "Review them in the course materials before your certification exam.",
+      "beat_type": "closing",
+      "visual_type": "RECAP",
+      "visual_reason": "Closes the course and points to the sources and next step.",
+      "component": "Outro",
+      "props": {
+        "title": "Sources and next step",
+        "message": "Review them in the course materials before your certification exam.",
+        "course_code": ""
+      },
+      "animation": "stagger_children",
+      "emphasis_words": [
+        "certification",
+        "materials"
+      ],
+      "citation_ids": [],
+      "quiet": false,
+      "asset_requirements": []
+    }
+  ],
+  "version_id": null,
+  "course_slug": "red-light-therapy-photobiomodulation-for-exercise-recovery",
+  "content_hash": "b0f8da52aef62fab",
+  "narration_plan": [
+    {
+      "deck_position": 0,
+      "audio_index": 0,
+      "kind": "title",
+      "title": "Red Light Therapy for Exercise Recovery",
+      "seconds": 12.733
+    },
+    {
+      "deck_position": 1,
+      "audio_index": 1,
+      "kind": "content",
+      "title": "What PBM is",
+      "seconds": 23.6
+    },
+    {
+      "deck_position": 2,
+      "audio_index": 2,
+      "kind": "content",
+      "title": "How it may work",
+      "seconds": 21.133
+    },
+    {
+      "deck_position": 3,
+      "audio_index": 3,
+      "kind": "content",
+      "title": "Recovery and performance evidence",
+      "seconds": 30.533
+    },
+    {
+      "deck_position": 4,
+      "audio_index": 4,
+      "kind": "content",
+      "title": "Pain and related outcomes",
+      "seconds": 23.667
+    },
+    {
+      "deck_position": 5,
+      "audio_index": 5,
+      "kind": "content",
+      "title": "Protocols and device choices",
+      "seconds": 27.367
+    },
+    {
+      "deck_position": 6,
+      "audio_index": 6,
+      "kind": "content",
+      "title": "Safety, scope, and client talk",
+      "seconds": 26.833
+    },
+    {
+      "deck_position": 7,
+      "audio_index": 7,
+      "kind": "takeaways",
+      "title": "Key Takeaways",
+      "seconds": 14.933
+    },
+    {
+      "deck_position": 8,
+      "audio_index": 8,
+      "kind": "content",
+      "title": "Sources and next step",
+      "seconds": 7.667
+    }
+  ],
+  "dropped_narration": [
+    {
+      "audio_index": 9,
+      "title": "References (2 of 3)",
+      "notes": "References, continued.",
+      "reason": "A second bibliography slide narrated as 'References, continued' adds no teaching; sources appear on the evidence cards instead."
+    },
+    {
+      "audio_index": 10,
+      "title": "References (3 of 3)",
+      "notes": "References, continued.",
+      "reason": "A second bibliography slide narrated as 'References, continued' adds no teaching; sources appear on the evidence cards instead."
+    }
+  ],
+  "timing_source": "presenter_transcript_partial",
+  "timing_coverage": 0.96,
+  "boards": [
+    {
+      "board_id": "B01",
+      "kind": "hero",
+      "start": 0.0,
+      "end": 12.745,
+      "eyebrow": "",
+      "titles": [
+        {
+          "text": "Red Light Therapy for Exercise Recovery",
+          "at": 0.0,
+          "slide_index": 0
+        }
+      ],
+      "elements": [
+        {
+          "segment_id": "S002",
+          "enter_at": 1.288,
+          "speak_start": 0.386,
+          "speak_end": 12.168,
+          "sentence": "In this course, you will learn what red light therapy is, what exercise recovery research reports, why protocols are hard to compare, and how to discuss this service honestly and within scope.",
+          "slide_index": 0,
+          "kind": "infographic",
+          "spec": {
+            "kind": "roadmap",
+            "lead": "you will learn",
+            "link": null,
+            "items": [
+              {
+                "label": "what red light therapy is",
+                "icon": "lightbulb"
+              },
+              {
+                "label": "what exercise recovery research reports",
+                "icon": "microscope"
+              },
+              {
+                "label": "why protocols are hard to compare",
+                "icon": "sliders-horizontal"
+              },
+              {
+                "label": "how to discuss this service honestly and within scope",
+                "icon": "message-circle"
+              }
+            ]
+          },
+          "link": null,
+          "element_id": "B01-E01",
+          "item_times": [
+            2.288,
+            3.945,
+            6.461,
+            8.854
+          ]
+        }
+      ]
+    },
+    {
+      "board_id": "B02",
+      "kind": "stack",
+      "start": 12.745,
+      "end": 36.345,
+      "eyebrow": "",
+      "titles": [
+        {
+          "text": "What PBM is",
+          "at": 12.745,
+          "slide_index": 1
+        }
+      ],
+      "elements": [
+        {
+          "segment_id": "S003",
+          "enter_at": 12.895,
+          "speak_start": 12.995,
+          "speak_end": 18.935,
+          "sentence": "Photobiomodulation, or PBM, uses red or near-infrared light applied to the body.",
+          "slide_index": 1,
+          "kind": "term",
+          "term": "Photobiomodulation (PBM)",
+          "definition": "Photobiomodulation, or PBM, uses red or near-infrared light applied to the body.",
+          "spec": {
+            "kind": "light_band",
+            "labels": [
+              "red",
+              "near-infrared"
+            ]
+          },
+          "element_id": "B02-E01"
+        },
+        {
+          "segment_id": "S004",
+          "enter_at": 19.615,
+          "speak_start": 19.715,
+          "speak_end": 31.015,
+          "sentence": "Reviews describe proposed effects on cellular metabolism, oxidative stress, and inflammatory signalling, but protocol differences make simple explanations difficult.",
+          "slide_index": 1,
+          "kind": "infographic",
+          "spec": {
+            "kind": "enumeration",
+            "lead": "Reviews describe proposed effects",
+            "link": null,
+            "items": [
+              {
+                "label": "cellular metabolism",
+                "icon": "battery-charging"
+              },
+              {
+                "label": "oxidative stress",
+                "icon": "flame"
+              },
+              {
+                "label": "inflammatory signalling",
+                "icon": "activity"
+              }
+            ]
+          },
+          "link": null,
+          "element_id": "B02-E02",
+          "item_times": [
+            22.249,
+            23.687,
+            25.194
+          ]
+        },
+        {
+          "segment_id": "S005",
+          "enter_at": 31.895,
+          "speak_start": 31.995,
+          "speak_end": 35.795,
+          "sentence": "Lasers and LED devices also differ technically.",
+          "slide_index": 1,
+          "kind": "infographic",
+          "spec": {
+            "kind": "devices",
+            "items": [
+              {
+                "label": "Lasers",
+                "icon": "zap"
+              },
+              {
+                "label": "LED devices",
+                "icon": "lightbulb"
+              }
+            ],
+            "caption": "differ technically"
+          },
+          "link": null,
+          "element_id": "B02-E03"
+        }
+      ]
+    },
+    {
+      "board_id": "B03",
+      "kind": "stack",
+      "start": 36.345,
+      "end": 57.457,
+      "eyebrow": "",
+      "titles": [
+        {
+          "text": "How it may work",
+          "at": 36.345,
+          "slide_index": 2
+        }
+      ],
+      "elements": [
+        {
+          "segment_id": "S006",
+          "enter_at": 36.495,
+          "speak_start": 36.595,
+          "speak_end": 43.315,
+          "sentence": "PBM is often described as influencing bioenergetics and immune or oxidative stress pathways.",
+          "slide_index": 2,
+          "kind": "statement",
+          "text": "Often described as support for bioenergetics",
+          "source": "slide_bullet",
+          "link": null,
+          "icon": "battery-charging",
+          "element_id": "B03-E01"
+        },
+        {
+          "segment_id": "S007",
+          "enter_at": 43.528,
+          "speak_start": 43.628,
+          "speak_end": 52.448,
+          "sentence": "But one human study found a single PBM session did not increase mitochondrial respiration in skeletal muscle or skin tissue.",
+          "slide_index": 2,
+          "kind": "study",
+          "study": {
+            "markers": [
+              3
+            ],
+            "kind_label": "STUDY",
+            "title": "one human study",
+            "finding": "But one human study found a single PBM session did not increase mitochondrial respiration in skeletal muscle or skin tissue",
+            "outcome": "did not increase mitochondrial respiration",
+            "null_result": true,
+            "short_citation": "Aussieker et al.",
+            "year": "2026",
+            "journal": "Medicine and science in sports and exercise",
+            "spec": null
+          },
+          "element_id": "B03-E02",
+          "dock_at": 52.648,
+          "slot": 0
+        },
+        {
+          "segment_id": "S008",
+          "enter_at": 53.161,
+          "speak_start": 53.261,
+          "speak_end": 56.921,
+          "sentence": "That means mechanism claims should stay cautious.",
+          "slide_index": 2,
+          "kind": "statement",
+          "text": "mechanism claims should stay cautious",
+          "link": "That means",
+          "icon": "circle-alert",
+          "tone": "caution",
+          "element_id": "B03-E03"
+        }
+      ]
+    },
+    {
+      "board_id": "B04",
+      "kind": "gallery",
+      "start": 57.457,
+      "end": 111.657,
+      "eyebrow": "THE RESEARCH",
+      "titles": [
+        {
+          "text": "Recovery and performance evidence",
+          "at": 57.457,
+          "slide_index": 3
+        },
+        {
+          "text": "Pain and related outcomes",
+          "at": 88.04,
+          "slide_index": 4
+        }
+      ],
+      "elements": [
+        {
+          "segment_id": "S009",
+          "enter_at": 57.607,
+          "speak_start": 57.707,
+          "speak_end": 67.387,
+          "sentence": "A review reports promising effects for exertion recovery, including muscle strength, endurance, and reduced fatigue in sport performance studies.",
+          "slide_index": 3,
+          "kind": "study",
+          "study": {
+            "markers": [
+              1
+            ],
+            "kind_label": "REVIEW",
+            "title": "A review",
+            "finding": "A review reports promising effects for exertion recovery",
+            "outcome": "reports promising effects",
+            "null_result": false,
+            "short_citation": "Lawrence & Sorra",
+            "year": "2024",
+            "journal": "Journal of functional morphology and kinesiology",
+            "spec": {
+              "kind": "enumeration",
+              "lead": "A review reports promising effects for exertion recovery",
+              "link": null,
+              "items": [
+                {
+                  "label": "muscle strength",
+                  "icon": "dumbbell"
+                },
+                {
+                  "label": "endurance",
+                  "icon": "dumbbell"
+                },
+                {
+                  "label": "reduced fatigue",
+                  "icon": "battery-charging"
+                }
+              ]
+            }
+          },
+          "element_id": "B04-E01",
+          "dock_at": 67.237,
+          "slot": 0,
+          "item_times": [
+            62.247,
+            63.381,
+            64.383
+          ]
+        },
+        {
+          "segment_id": "S010",
+          "enter_at": 67.587,
+          "speak_start": 67.687,
+          "speak_end": 87.447,
+          "sentence": "In CrossFit athletes, PBMT-sMF did not beat other recovery methods for jump performance at one hour, but showed better jump results than passive recovery at 24 and 48 hours on secondary analysis.",
+          "slide_index": 3,
+          "kind": "study",
+          "study": {
+            "markers": [
+              4
+            ],
+            "kind_label": "STUDY",
+            "title": "CrossFit athletes",
+            "finding": null,
+            "outcome": "did not beat other recovery methods",
+            "null_result": true,
+            "short_citation": "Martins et al.",
+            "year": "2026",
+            "journal": "PloS one",
+            "spec": {
+              "kind": "time_points",
+              "points": [
+                {
+                  "at": "one hour",
+                  "text": "PBMT-sMF did not beat other recovery methods for jump performance"
+                },
+                {
+                  "at": "24 and 48 hours",
+                  "text": "showed better jump results than passive recovery"
+                }
+              ]
+            }
+          },
+          "element_id": "B04-E02",
+          "dock_at": 87.647,
+          "slot": 1,
+          "item_times": [
+            69.916,
+            78.327
+          ]
+        },
+        {
+          "segment_id": "S011",
+          "enter_at": 88.14,
+          "speak_start": 88.24,
+          "speak_end": 90.82,
+          "sentence": "Evidence on pain is mixed across conditions.",
+          "slide_index": 4,
+          "kind": "subtitle",
+          "text": "Evidence on pain is mixed across conditions",
+          "icon": "microscope",
+          "element_id": "B04-E03"
+        },
+        {
+          "segment_id": "S012",
+          "enter_at": 91.3,
+          "speak_start": 91.4,
+          "speak_end": 102.019,
+          "sentence": "A fibromyalgia review reported consistent short-term pain and quality-of-life improvements, though heterogeneity limited generalizability.",
+          "slide_index": 4,
+          "kind": "study",
+          "study": {
+            "markers": [
+              6
+            ],
+            "kind_label": "REVIEW",
+            "title": "A fibromyalgia review",
+            "finding": "A fibromyalgia review reported consistent short-term pain and quality-of-life improvements",
+            "outcome": "reported consistent short-term pain and quality-of-life improvements",
+            "null_result": false,
+            "short_citation": "Maiya et al.",
+            "year": "2026",
+            "journal": "Lasers in medical science",
+            "spec": {
+              "kind": "contrast",
+              "main": "A fibromyalgia review reported consistent short-term pain and quality-of-life improvements",
+              "turn": "though",
+              "caution": "heterogeneity limited generalizability"
+            }
+          },
+          "element_id": "B04-E04",
+          "dock_at": 102.03,
+          "slot": 2
+        },
+        {
+          "segment_id": "S013",
+          "enter_at": 102.38,
+          "speak_start": 102.48,
+          "speak_end": 111.1,
+          "sentence": "In chronic trapezius myofascial pain, 808 nanometre laser was not superior to placebo for pain outcomes.",
+          "slide_index": 4,
+          "kind": "study",
+          "study": {
+            "markers": [
+              8
+            ],
+            "kind_label": "STUDY",
+            "title": "chronic trapezius myofascial pain",
+            "finding": "In chronic trapezius myofascial pain, 808 nanometre laser was not superior to placebo for pain outcomes",
+            "outcome": "was not superior to placebo",
+            "null_result": true,
+            "short_citation": "Silva et al.",
+            "year": "2026",
+            "journal": "Lasers in medical science",
+            "spec": {
+              "kind": "wavelengths",
+              "marks": [
+                {
+                  "values": [
+                    808
+                  ],
+                  "context": "laser was not superior to placebo for pain outcomes",
+                  "source": "808 nanometre laser was not superior to placebo for pain outcomes"
+                }
+              ]
+            }
+          },
+          "element_id": "B04-E05",
+          "dock_at": 109.857,
+          "slot": 3,
+          "item_times": [
+            105.63
+          ]
+        }
+      ]
+    },
+    {
+      "board_id": "B05",
+      "kind": "stack",
+      "start": 111.657,
+      "end": 139.025,
+      "eyebrow": "",
+      "titles": [
+        {
+          "text": "Protocols and device choices",
+          "at": 111.657,
+          "slide_index": 5
+        }
+      ],
+      "elements": [
+        {
+          "segment_id": "S014",
+          "enter_at": 111.807,
+          "speak_start": 111.907,
+          "speak_end": 119.287,
+          "sentence": "Protocol design matters because studies vary in wavelength, energy dose, timing, and application target.",
+          "slide_index": 5,
+          "kind": "infographic",
+          "spec": {
+            "kind": "enumeration",
+            "lead": "Protocol design matters",
+            "link": "because",
+            "items": [
+              {
+                "label": "wavelength",
+                "icon": "waves"
+              },
+              {
+                "label": "energy dose",
+                "icon": "gauge"
+              },
+              {
+                "label": "timing",
+                "icon": "clock"
+              },
+              {
+                "label": "application target",
+                "icon": "crosshair"
+              }
+            ]
+          },
+          "link": "because",
+          "element_id": "B05-E01",
+          "item_times": [
+            115.313,
+            116.165,
+            117.087,
+            117.939
+          ]
+        },
+        {
+          "segment_id": "S015",
+          "enter_at": 119.494,
+          "speak_start": 119.594,
+          "speak_end": 132.294,
+          "sentence": "Examples in the brief include 650 nanometre LED use before exercise-induced muscle damage and 630 plus 850 nanometre LED use in low back pain research.",
+          "slide_index": 5,
+          "kind": "infographic",
+          "spec": {
+            "kind": "wavelengths",
+            "marks": [
+              {
+                "values": [
+                  650
+                ],
+                "context": "LED use before exercise-induced muscle damage",
+                "source": "650 nanometre LED use before exercise-induced muscle damage"
+              },
+              {
+                "values": [
+                  630,
+                  850
+                ],
+                "context": "LED use in low back pain research",
+                "source": "630 plus 850 nanometre LED use in low back pain research"
+              }
+            ]
+          },
+          "link": null,
+          "element_id": "B05-E02",
+          "item_times": [
+            122.117,
+            127.5
+          ]
+        },
+        {
+          "segment_id": "S016",
+          "enter_at": 132.487,
+          "speak_start": 132.587,
+          "speak_end": 138.467,
+          "sentence": "Transcranial protocols are preliminary and not routine fitness-business practice.",
+          "slide_index": 5,
+          "kind": "statement",
+          "text": "Transcranial protocols are preliminary and not routine fitness-business practice.",
+          "source": "narration",
+          "link": null,
+          "icon": "sliders-horizontal",
+          "element_id": "B05-E03"
+        }
+      ]
+    },
+    {
+      "board_id": "B06",
+      "kind": "stack",
+      "start": 139.025,
+      "end": 165.864,
+      "eyebrow": "",
+      "titles": [
+        {
+          "text": "Safety, scope, and client talk",
+          "at": 139.025,
+          "slide_index": 6
+        }
+      ],
+      "elements": [
+        {
+          "segment_id": "S017",
+          "enter_at": 139.175,
+          "speak_start": 139.275,
+          "speak_end": 151.175,
+          "sentence": "Some included trials reported no adverse events or only mild and infrequent adverse effects, but safety reporting is not uniform across the literature.",
+          "slide_index": 6,
+          "kind": "study",
+          "study": {
+            "markers": [
+              5,
+              7,
+              8
+            ],
+            "kind_label": "TRIALS",
+            "title": "Some included trials",
+            "finding": "Some included trials reported no adverse events or only mild and infrequent adverse effects",
+            "outcome": "reported no adverse events",
+            "null_result": false,
+            "short_citation": "Chen et al.",
+            "year": "2026",
+            "journal": "Archives of rehabilitation research and clinical translation",
+            "spec": {
+              "kind": "contrast",
+              "main": "Some included trials reported no adverse events or only mild and infrequent adverse effects",
+              "turn": "but",
+              "caution": "safety reporting is not uniform across the literature"
+            }
+          },
+          "element_id": "B06-E01",
+          "dock_at": 151.025,
+          "slot": 0
+        },
+        {
+          "segment_id": "S018",
+          "enter_at": 151.375,
+          "speak_start": 151.475,
+          "speak_end": 158.135,
+          "sentence": "Stay within scope.",
+          "slide_index": 6,
+          "kind": "chip",
+          "text": "Stay within scope",
+          "icon": "target",
+          "tone": "accent",
+          "element_id": "B06-E02"
+        },
+        {
+          "segment_id": "S019",
+          "enter_at": 153.255,
+          "speak_start": 153.355,
+          "speak_end": 158.135,
+          "sentence": "Present PBM as a wellness or recovery service, not a medical treatment.",
+          "slide_index": 6,
+          "kind": "infographic",
+          "spec": {
+            "kind": "do_dont",
+            "lead": "Present PBM as",
+            "do": "a wellness or recovery service",
+            "dont": "a medical treatment"
+          },
+          "link": null,
+          "element_id": "B06-E03"
+        },
+        {
+          "segment_id": "S020",
+          "enter_at": 158.875,
+          "speak_start": 158.975,
+          "speak_end": 165.315,
+          "sentence": "Be clear that evidence is promising in places, mixed in others, and not a guarantee.",
+          "slide_index": 6,
+          "kind": "infographic",
+          "spec": {
+            "kind": "scale",
+            "lead": "Be clear that evidence is",
+            "steps": [
+              {
+                "label": "promising in places"
+              },
+              {
+                "label": "mixed in others"
+              },
+              {
+                "label": "not a guarantee"
+              }
+            ]
+          },
+          "link": null,
+          "element_id": "B06-E04",
+          "item_times": [
+            160.937,
+            162.522,
+            164.107
+          ]
+        }
+      ]
+    },
+    {
+      "board_id": "B07",
+      "kind": "recap",
+      "start": 165.864,
+      "end": 180.79,
+      "eyebrow": "",
+      "titles": [
+        {
+          "text": "Key Takeaways",
+          "at": 165.864,
+          "slide_index": 7
+        }
+      ],
+      "elements": [
+        {
+          "segment_id": "S022",
+          "enter_at": 168.034,
+          "speak_start": 168.134,
+          "speak_end": 173.374,
+          "sentence": "PBM may support recovery in some contexts, but the evidence is not uniform.",
+          "slide_index": 7,
+          "kind": "infographic",
+          "spec": {
+            "kind": "contrast",
+            "main": "PBM may support recovery in some contexts",
+            "turn": "but",
+            "caution": "the evidence is not uniform"
+          },
+          "link": null,
+          "element_id": "B07-E01"
+        },
+        {
+          "segment_id": "S023",
+          "enter_at": 173.58,
+          "speak_start": 173.68,
+          "speak_end": 180.24,
+          "sentence": "Your role is to understand the protocol, stay in scope, and communicate uncertainty clearly.",
+          "slide_index": 7,
+          "kind": "infographic",
+          "spec": {
+            "kind": "enumeration",
+            "lead": "Your role is",
+            "link": null,
+            "items": [
+              {
+                "label": "understand the protocol",
+                "icon": "sliders-horizontal"
+              },
+              {
+                "label": "stay in scope",
+                "icon": "target"
+              },
+              {
+                "label": "communicate uncertainty clearly",
+                "icon": "message-circle"
+              }
+            ]
+          },
+          "link": null,
+          "element_id": "B07-E02",
+          "item_times": [
+            174.821,
+            176.603,
+            177.958
+          ]
+        }
+      ]
+    },
+    {
+      "board_id": "B08",
+      "kind": "outro",
+      "start": 180.79,
+      "end": 187.92,
+      "eyebrow": "",
+      "titles": [
+        {
+          "text": "Sources and next step",
+          "at": 180.79,
+          "slide_index": 8
+        }
+      ],
+      "elements": [
+        {
+          "segment_id": "S024",
+          "enter_at": 180.94,
+          "speak_start": 181.04,
+          "speak_end": 183.82,
+          "sentence": "Every claim in this course is linked to the sources listed here.",
+          "slide_index": 8,
+          "kind": "statement",
+          "text": "Every claim in this course is linked to the sources listed here",
+          "icon": "book-open",
+          "tone": "plain",
+          "element_id": "B08-E01"
+        },
+        {
+          "segment_id": "S025",
+          "enter_at": 184.32,
+          "speak_start": 184.42,
+          "speak_end": 187.92,
+          "sentence": "Review them in the course materials before your certification exam.",
+          "slide_index": 8,
+          "kind": "statement",
+          "text": "Review them in the course materials before your certification exam",
+          "icon": "graduation-cap",
+          "tone": "accent",
+          "element_id": "B08-E02"
+        }
+      ]
+    }
+  ]
+}

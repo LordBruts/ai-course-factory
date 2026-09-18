@@ -1,0 +1,237 @@
+{
+  "job_id": "rlt-v3-face",
+  "template": "face",
+  "layout": "boards",
+  "course_slug": "red-light-therapy-photobiomodulation-for-exercise-recovery",
+  "attempt": 1,
+  "qa_status": "fail",
+  "tools": {
+    "hyperframes": "0.8.42",
+    "chrome_headless_shell": "148.0.7778.167",
+    "ffmpeg": "ffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "gsap": "3.15.0 (vendored)",
+    "icons": "lucide-static 1.47.0 (ISC, vendored subset)",
+    "transcription": "ElevenLabs Scribe v1 (one call, presenter recording)"
+  },
+  "run": {
+    "job": "/data/video-jobs/rlt-v3-face",
+    "attempt": 1,
+    "started": 1789724394.0527582,
+    "steps": [
+      {
+        "step": "render",
+        "exit": 0,
+        "attempts": 3,
+        "seconds": 2269.5,
+        "transient_failure": false
+      },
+      {
+        "step": "composite",
+        "exit": 0,
+        "attempts": 1,
+        "seconds": 1510.5,
+        "transient_failure": false
+      },
+      {
+        "step": "timeline",
+        "exit": 0,
+        "attempts": 1,
+        "seconds": 357.6,
+        "transient_failure": false
+      },
+      {
+        "step": "qa",
+        "exit": 1,
+        "attempts": 1,
+        "seconds": 468.1,
+        "transient_failure": false
+      }
+    ],
+    "status": "qa_failed",
+    "finished": 1789729115.4251306,
+    "seconds": 4721.4
+  },
+  "boards": [
+    {
+      "board_id": "B01",
+      "kind": "hero",
+      "start": 0.0,
+      "end": 12.745,
+      "elements": 1
+    },
+    {
+      "board_id": "B02",
+      "kind": "stack",
+      "start": 12.745,
+      "end": 36.345,
+      "elements": 3
+    },
+    {
+      "board_id": "B03",
+      "kind": "stack",
+      "start": 36.345,
+      "end": 57.457,
+      "elements": 3
+    },
+    {
+      "board_id": "B04",
+      "kind": "gallery",
+      "start": 57.457,
+      "end": 111.657,
+      "elements": 5
+    },
+    {
+      "board_id": "B05",
+      "kind": "stack",
+      "start": 111.657,
+      "end": 139.025,
+      "elements": 3
+    },
+    {
+      "board_id": "B06",
+      "kind": "stack",
+      "start": 139.025,
+      "end": 165.864,
+      "elements": 4
+    },
+    {
+      "board_id": "B07",
+      "kind": "recap",
+      "start": 165.864,
+      "end": 180.79,
+      "elements": 2
+    },
+    {
+      "board_id": "B08",
+      "kind": "outro",
+      "start": 180.79,
+      "end": 187.92,
+      "elements": 2
+    }
+  ],
+  "captions": {
+    "style": "two-word uppercase (video-use build_master_srt), burned in last",
+    "cues": 198
+  },
+  "outputs": {
+    "final.mp4": {
+      "duration": 188.48,
+      "bytes": 64122344,
+      "video": "h264 1920x1080 30/1",
+      "audio": "aac",
+      "sha256": "1589bfebdc69b2a109df545d56ab6d064d8ff329ae1e368eda9d1ace3015f5a9"
+    },
+    "preview.mp4": {
+      "duration": 188.48,
+      "bytes": 4682277,
+      "video": "h264 960x540 30/1",
+      "audio": "aac",
+      "sha256": "f2598c7c59fab95db4822e3d290d48b19832b312432df6205a91e74afc3f48fe"
+    },
+    "render/base.mp4": {
+      "duration": 188.48,
+      "bytes": 85955362,
+      "video": "h264 1920x1080 30/1",
+      "audio": "aac",
+      "sha256": "11060a6fcd9216599611cd619167a7f0fed03502781b6ee9ecfb80df39fad86a"
+    }
+  },
+  "narration_sources": {},
+  "storyboard_sha256": "37068bb77593d5b89791153834cf545c2362089128f80cb52bbd488f64d5cd59",
+  "paid_calls": {
+    "elevenlabs_tts": 0,
+    "llm_calls": 0,
+    "elevenlabs_scribe": {
+      "audio_seconds": 246.74,
+      "model": "scribe_v1",
+      "estimated_credits": 271,
+      "balance_before": 8978,
+      "balance_after": 9252,
+      "credits_debited": 274,
+      "balance_read_at": "2026-09-17T15:54:15Z",
+      "cached_for_reuse": true
+    }
+  },
+  "note": "",
+  "presenter": {
+    "source": {
+      "kind": "human_recording",
+      "file": "recording.mp4",
+      "sha256": "ce9bea739147a01f10aa142077b507cb3796247df2db4a42a8dd42afba5b1a13",
+      "probe": {
+        "duration": 259.0307,
+        "width": 1920,
+        "height": 1080,
+        "video_codec": "hevc",
+        "fps": 29.854,
+        "vfr": true,
+        "pix_fmt": "yuv420p",
+        "color_transfer": "bt709",
+        "audio_codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2
+      }
+    },
+    "proxy": {
+      "sha256": "7b1d686ceb4434d50dcf5bb92083d7847163848ff299312221aafebc3311d8cb",
+      "probe": {
+        "duration": 259.034,
+        "width": 1920,
+        "height": 1080,
+        "video_codec": "h264",
+        "fps": 30.0,
+        "vfr": false,
+        "pix_fmt": "yuv420p",
+        "color_transfer": "bt709",
+        "audio_codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2
+      }
+    },
+    "edit": {
+      "output": "/data/video-jobs/rlt-v3-face/presenter/edit.mp4",
+      "expected_duration": 188.46666666666667,
+      "duration": 188.474,
+      "video_duration": 188.473667,
+      "audio_duration": 188.466,
+      "frames": 5654,
+      "expected_frames": 5654,
+      "timestamp_holes": [],
+      "segments": 18,
+      "seconds": 384.9,
+      "sha256": "a9e07a389f9da1530b4ad12181839c6459c8ab45ae78d5f7f20af9f4906503da"
+    },
+    "loudness_measured": {
+      "input_i": "-30.05",
+      "input_tp": "-5.43",
+      "input_lra": "7.90",
+      "input_thresh": "-41.49",
+      "output_i": "-16.92",
+      "output_tp": "-1.50",
+      "output_lra": "6.00",
+      "output_thresh": "-27.93",
+      "normalization_type": "dynamic",
+      "target_offset": "0.92"
+    },
+    "framing": {
+      "method": "motion energy, 32 strips, 2 fps, 320x180",
+      "subject_center_x": 0.3855,
+      "subject_extent_x": [
+        0.219,
+        0.469
+      ],
+      "subject_top_y": 0.433,
+      "subject_center_y": 0.6033
+    },
+    "takes": {
+      "sentences": 25,
+      "ok": 23,
+      "weak": 1,
+      "omitted": 1,
+      "missing": 0,
+      "retakes_dropped": 3,
+      "ranges": 18,
+      "jump_cuts": 9
+    }
+  }
+}

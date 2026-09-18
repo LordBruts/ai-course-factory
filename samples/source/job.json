@@ -1,0 +1,66 @@
+{
+  "job_id": "red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9",
+  "status": "done",
+  "stage": "complete",
+  "course_slug": "red-light-therapy-photobiomodulation-for-exercise-recovery",
+  "version": 3,
+  "detail": null,
+  "tts_provider": "elevenlabs",
+  "tts_fallback_reason": null,
+  "tts_characters_charged": 2428,
+  "files": [
+    {
+      "kind": "pptx",
+      "filename": "course.pptx",
+      "bytes": 61543,
+      "path": "/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/course.pptx",
+      "url": "http://localhost:8100/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/course.pptx"
+    },
+    {
+      "kind": "mp4",
+      "filename": "course.mp4",
+      "bytes": 5022412,
+      "path": "/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/course.mp4",
+      "url": "http://localhost:8100/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/course.mp4",
+      "duration_seconds": 170.7
+    },
+    {
+      "kind": "worksheet",
+      "filename": "worksheet.docx",
+      "bytes": 37697,
+      "path": "/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/worksheet.docx",
+      "url": "http://localhost:8100/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/worksheet.docx"
+    },
+    {
+      "kind": "quiz",
+      "filename": "quiz.docx",
+      "bytes": 37982,
+      "path": "/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/quiz.docx",
+      "url": "http://localhost:8100/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/quiz.docx"
+    },
+    {
+      "kind": "exam",
+      "filename": "exam.docx",
+      "bytes": 39581,
+      "path": "/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/exam.docx",
+      "url": "http://localhost:8100/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/exam.docx"
+    },
+    {
+      "kind": "answer_key",
+      "filename": "answer-key.docx",
+      "bytes": 40046,
+      "path": "/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/answer-key.docx",
+      "url": "http://localhost:8100/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/answer-key.docx"
+    },
+    {
+      "kind": "sources",
+      "filename": "sources.md",
+      "bytes": 3730,
+      "path": "/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/sources.md",
+      "url": "http://localhost:8100/jobs/red-light-therapy-photobiomodulation-for-exercise-recovery-v3-a68ea9/files/sources.md"
+    }
+  ],
+  "slide_count": 11,
+  "narration_characters": 2428,
+  "video_seconds": 170.7
+}

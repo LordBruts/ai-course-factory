@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "template": "faceless",
+  "sources": {
+    "audio_00": "/data/video-jobs/rlt-v3-faceless/source/audio_00.mp3",
+    "audio_01": "/data/video-jobs/rlt-v3-faceless/source/audio_01.mp3",
+    "audio_02": "/data/video-jobs/rlt-v3-faceless/source/audio_02.mp3",
+    "audio_03": "/data/video-jobs/rlt-v3-faceless/source/audio_03.mp3",
+    "audio_04": "/data/video-jobs/rlt-v3-faceless/source/audio_04.mp3",
+    "audio_05": "/data/video-jobs/rlt-v3-faceless/source/audio_05.mp3",
+    "audio_06": "/data/video-jobs/rlt-v3-faceless/source/audio_06.mp3",
+    "audio_07": "/data/video-jobs/rlt-v3-faceless/source/audio_07.mp3",
+    "audio_08": "/data/video-jobs/rlt-v3-faceless/source/audio_08.mp3"
+  },
+  "ranges": [
+    {
+      "source": "audio_00",
+      "start": 0.0,
+      "end": 12.46,
+      "output_start": 0.0,
+      "beat_ids": [
+        "S001",
+        "S002"
+      ],
+      "note": "Red Light Therapy for Exercise Recovery",
+      "reason": "Approved narration, played whole: the faceless template never cuts approved speech."
+    },
+    {
+      "source": "audio_01",
+      "start": 0.0,
+      "end": 21.238,
+      "output_start": 12.46,
+      "beat_ids": [
+        "S003",
+        "S004",
+        "S005"
+      ],
+      "note": "What PBM is",
+      "reason": "Approved narration, played whole: the faceless template never cuts approved speech."
+    },
+    {
+      "source": "audio_02",
+      "start": 0.0,
+      "end": 17.476,
+      "output_start": 33.698,
+      "beat_ids": [
+        "S006",
+        "S007",
+        "S008"
+      ],
+      "note": "How it may work",
+      "reason": "Approved narration, played whole: the faceless template never cuts approved speech."
+    },
+    {
+      "source": "audio_03",
+      "start": 0.0,
+      "end": 21.577,
+      "output_start": 51.174,
+      "beat_ids": [
+        "S009",
+        "S010"
+      ],
+      "note": "Recovery and performance evidence",
+      "reason": "Approved narration, played whole: the faceless template never cuts approved speech."
+    },
+    {
+      "source": "audio_04",
+      "start": 0.0,
+      "end": 20.402,
+      "output_start": 72.751,
+      "beat_ids": [
+        "S011",
+        "S012",
+        "S013"
+      ],
+      "note": "Pain and related outcomes",
+      "reason": "Approved narration, played whole: the faceless template never cuts approved speech."
+    },
+    {
+      "source": "audio_05",
+      "start": 0.0,
+      "end": 25.417,
+      "output_start": 93.153,
+      "beat_ids": [
+        "S014",
+        "S015",
+        "S016"
+      ],
+      "note": "Protocols and device choices",
+      "reason": "Approved narration, played whole: the faceless template never cuts approved speech."
+    },
+    {
+      "source": "audio_06",
+      "start": 0.0,
+      "end": 21.708,
+      "output_start": 118.57,
+      "beat_ids": [
+        "S017",
+        "S018",
+        "S019",
+        "S020"
+      ],
+      "note": "Safety, scope, and client talk",
+      "reason": "Approved narration, played whole: the faceless template never cuts approved speech."
+    },
+    {
+      "source": "audio_07",
+      "start": 0.0,
+      "end": 12.382,
+      "output_start": 140.278,
+      "beat_ids": [
+        "S021",
+        "S022",
+        "S023"
+      ],
+      "note": "Key Takeaways",
+      "reason": "Approved narration, played whole: the faceless template never cuts approved speech."
+    },
+    {
+      "source": "audio_08",
+      "start": 0.0,
+      "end": 7.367,
+      "output_start": 152.66,
+      "beat_ids": [
+        "S024",
+        "S025"
+      ],
+      "note": "Sources and next step",
+      "reason": "Approved narration, played whole: the faceless template never cuts approved speech."
+    }
+  ],
+  "overlays": [],
+  "base_render": "render/base.mp4",
+  "subtitles": "master.srt",
+  "total_seconds": 160.027,
+  "dropped_narration": [
+    {
+      "audio_index": 9,
+      "title": "References (2 of 3)",
+      "notes": "References, continued.",
+      "reason": "A second bibliography slide narrated as 'References, continued' adds no teaching; sources appear on the evidence cards instead."
+    },
+    {
+      "audio_index": 10,
+      "title": "References (3 of 3)",
+      "notes": "References, continued.",
+      "reason": "A second bibliography slide narrated as 'References, continued' adds no teaching; sources appear on the evidence cards instead."
+    }
+  ]
+}

@@ -1,0 +1,2581 @@
+{
+  "words": [
+    {
+      "text": "In",
+      "type": "word",
+      "start": 0.248,
+      "end": 0.348,
+      "slide": 0
+    },
+    {
+      "text": "this",
+      "type": "word",
+      "start": 0.408,
+      "end": 0.548,
+      "slide": 0
+    },
+    {
+      "text": "course,",
+      "type": "word",
+      "start": 0.608,
+      "end": 0.908,
+      "slide": 0
+    },
+    {
+      "text": "you",
+      "type": "word",
+      "start": 1.188,
+      "end": 1.248,
+      "slide": 0
+    },
+    {
+      "text": "will",
+      "type": "word",
+      "start": 1.288,
+      "end": 1.408,
+      "slide": 0
+    },
+    {
+      "text": "learn",
+      "type": "word",
+      "start": 1.468,
+      "end": 1.668,
+      "slide": 0
+    },
+    {
+      "text": "what",
+      "type": "word",
+      "start": 1.868,
+      "end": 1.988,
+      "slide": 0
+    },
+    {
+      "text": "red",
+      "type": "word",
+      "start": 2.088,
+      "end": 2.268,
+      "slide": 0
+    },
+    {
+      "text": "light",
+      "type": "word",
+      "start": 2.308,
+      "end": 2.428,
+      "slide": 0
+    },
+    {
+      "text": "therapy",
+      "type": "word",
+      "start": 2.488,
+      "end": 2.808,
+      "slide": 0
+    },
+    {
+      "text": "is,",
+      "type": "word",
+      "start": 2.928,
+      "end": 3.128,
+      "slide": 0
+    },
+    {
+      "text": "what",
+      "type": "word",
+      "start": 3.708,
+      "end": 3.828,
+      "slide": 0
+    },
+    {
+      "text": "exercise",
+      "type": "word",
+      "start": 3.888,
+      "end": 4.248,
+      "slide": 0
+    },
+    {
+      "text": "recovery",
+      "type": "word",
+      "start": 4.288,
+      "end": 4.688,
+      "slide": 0
+    },
+    {
+      "text": "research",
+      "type": "word",
+      "start": 4.708,
+      "end": 5.108,
+      "slide": 0
+    },
+    {
+      "text": "reports,",
+      "type": "word",
+      "start": 5.128,
+      "end": 5.628,
+      "slide": 0
+    },
+    {
+      "text": "why",
+      "type": "word",
+      "start": 6.228,
+      "end": 6.368,
+      "slide": 0
+    },
+    {
+      "text": "reports",
+      "type": "word",
+      "start": 6.408,
+      "end": 6.808,
+      "slide": 0
+    },
+    {
+      "text": "are",
+      "type": "word",
+      "start": 6.848,
+      "end": 6.948,
+      "slide": 0
+    },
+    {
+      "text": "hard",
+      "type": "word",
+      "start": 7.008,
+      "end": 7.288,
+      "slide": 0
+    },
+    {
+      "text": "to",
+      "type": "word",
+      "start": 7.348,
+      "end": 7.468,
+      "slide": 0
+    },
+    {
+      "text": "compare,",
+      "type": "word",
+      "start": 7.528,
+      "end": 7.928,
+      "slide": 0
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 8.608,
+      "end": 8.768,
+      "slide": 0
+    },
+    {
+      "text": "how",
+      "type": "word",
+      "start": 8.848,
+      "end": 9.048,
+      "slide": 0
+    },
+    {
+      "text": "to",
+      "type": "word",
+      "start": 9.088,
+      "end": 9.188,
+      "slide": 0
+    },
+    {
+      "text": "discuss",
+      "type": "word",
+      "start": 9.228,
+      "end": 9.628,
+      "slide": 0
+    },
+    {
+      "text": "this",
+      "type": "word",
+      "start": 9.668,
+      "end": 9.828,
+      "slide": 0
+    },
+    {
+      "text": "service",
+      "type": "word",
+      "start": 9.888,
+      "end": 10.248,
+      "slide": 0
+    },
+    {
+      "text": "honestly",
+      "type": "word",
+      "start": 10.488,
+      "end": 11.068,
+      "slide": 0
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 11.348,
+      "end": 11.488,
+      "slide": 0
+    },
+    {
+      "text": "within",
+      "type": "word",
+      "start": 11.528,
+      "end": 11.748,
+      "slide": 0
+    },
+    {
+      "text": "scope.",
+      "type": "word",
+      "start": 11.828,
+      "end": 12.168,
+      "slide": 0
+    },
+    {
+      "text": "Photobiomodulation",
+      "type": "word",
+      "start": 12.995,
+      "end": 14.235,
+      "slide": 1
+    },
+    {
+      "text": "or",
+      "type": "word",
+      "start": 14.455,
+      "end": 14.575,
+      "slide": 1
+    },
+    {
+      "text": "PBM",
+      "type": "word",
+      "start": 14.675,
+      "end": 15.235,
+      "slide": 1
+    },
+    {
+      "text": "uses",
+      "type": "word",
+      "start": 15.535,
+      "end": 15.895,
+      "slide": 1
+    },
+    {
+      "text": "red",
+      "type": "word",
+      "start": 16.075,
+      "end": 16.415,
+      "slide": 1
+    },
+    {
+      "text": "or",
+      "type": "word",
+      "start": 16.495,
+      "end": 16.655,
+      "slide": 1
+    },
+    {
+      "text": "near-infrared",
+      "type": "word",
+      "start": 16.755,
+      "end": 17.475,
+      "slide": 1
+    },
+    {
+      "text": "light",
+      "type": "word",
+      "start": 17.595,
+      "end": 17.835,
+      "slide": 1
+    },
+    {
+      "text": "applied",
+      "type": "word",
+      "start": 17.995,
+      "end": 18.355,
+      "slide": 1
+    },
+    {
+      "text": "to",
+      "type": "word",
+      "start": 18.395,
+      "end": 18.515,
+      "slide": 1
+    },
+    {
+      "text": "the",
+      "type": "word",
+      "start": 18.555,
+      "end": 18.615,
+      "slide": 1
+    },
+    {
+      "text": "body.",
+      "type": "word",
+      "start": 18.655,
+      "end": 18.935,
+      "slide": 1
+    },
+    {
+      "text": "Review",
+      "type": "word",
+      "start": 19.215,
+      "end": 19.675,
+      "slide": 1
+    },
+    {
+      "text": "describe",
+      "type": "word",
+      "start": 19.715,
+      "end": 20.215,
+      "slide": 1
+    },
+    {
+      "text": "proposed",
+      "type": "word",
+      "start": 20.255,
+      "end": 20.735,
+      "slide": 1
+    },
+    {
+      "text": "effects",
+      "type": "word",
+      "start": 20.815,
+      "end": 21.155,
+      "slide": 1
+    },
+    {
+      "text": "on",
+      "type": "word",
+      "start": 21.195,
+      "end": 21.315,
+      "slide": 1
+    },
+    {
+      "text": "cellular",
+      "type": "word",
+      "start": 21.375,
+      "end": 21.675,
+      "slide": 1
+    },
+    {
+      "text": "metabolism,",
+      "type": "word",
+      "start": 21.715,
+      "end": 22.375,
+      "slide": 1
+    },
+    {
+      "text": "oxidative",
+      "type": "word",
+      "start": 23.055,
+      "end": 23.655,
+      "slide": 1
+    },
+    {
+      "text": "stress,",
+      "type": "word",
+      "start": 23.775,
+      "end": 24.115,
+      "slide": 1
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 24.295,
+      "end": 24.495,
+      "slide": 1
+    },
+    {
+      "text": "inflammatory",
+      "type": "word",
+      "start": 24.555,
+      "end": 25.155,
+      "slide": 1
+    },
+    {
+      "text": "signaling.",
+      "type": "word",
+      "start": 25.255,
+      "end": 25.695,
+      "slide": 1
+    },
+    {
+      "text": "But",
+      "type": "word",
+      "start": 26.695,
+      "end": 27.095,
+      "slide": 1
+    },
+    {
+      "text": "protocol",
+      "type": "word",
+      "start": 27.675,
+      "end": 28.175,
+      "slide": 1
+    },
+    {
+      "text": "differences",
+      "type": "word",
+      "start": 28.235,
+      "end": 28.815,
+      "slide": 1
+    },
+    {
+      "text": "make",
+      "type": "word",
+      "start": 28.975,
+      "end": 29.115,
+      "slide": 1
+    },
+    {
+      "text": "simple",
+      "type": "word",
+      "start": 29.175,
+      "end": 29.575,
+      "slide": 1
+    },
+    {
+      "text": "explanations",
+      "type": "word",
+      "start": 29.695,
+      "end": 30.355,
+      "slide": 1
+    },
+    {
+      "text": "difficult.",
+      "type": "word",
+      "start": 30.555,
+      "end": 31.015,
+      "slide": 1
+    },
+    {
+      "text": "Lasers",
+      "type": "word",
+      "start": 31.995,
+      "end": 32.475,
+      "slide": 1
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 32.615,
+      "end": 32.795,
+      "slide": 1
+    },
+    {
+      "text": "LED",
+      "type": "word",
+      "start": 32.895,
+      "end": 33.255,
+      "slide": 1
+    },
+    {
+      "text": "devices",
+      "type": "word",
+      "start": 33.295,
+      "end": 33.815,
+      "slide": 1
+    },
+    {
+      "text": "also",
+      "type": "word",
+      "start": 33.995,
+      "end": 34.415,
+      "slide": 1
+    },
+    {
+      "text": "differ",
+      "type": "word",
+      "start": 34.475,
+      "end": 34.815,
+      "slide": 1
+    },
+    {
+      "text": "technically.",
+      "type": "word",
+      "start": 35.215,
+      "end": 35.795,
+      "slide": 1
+    },
+    {
+      "text": "PBM",
+      "type": "word",
+      "start": 36.595,
+      "end": 36.895,
+      "slide": 2
+    },
+    {
+      "text": "is",
+      "type": "word",
+      "start": 37.355,
+      "end": 37.495,
+      "slide": 2
+    },
+    {
+      "text": "often",
+      "type": "word",
+      "start": 37.535,
+      "end": 37.795,
+      "slide": 2
+    },
+    {
+      "text": "described",
+      "type": "word",
+      "start": 37.835,
+      "end": 38.335,
+      "slide": 2
+    },
+    {
+      "text": "as",
+      "type": "word",
+      "start": 38.415,
+      "end": 38.615,
+      "slide": 2
+    },
+    {
+      "text": "influencing",
+      "type": "word",
+      "start": 38.675,
+      "end": 39.295,
+      "slide": 2
+    },
+    {
+      "text": "bioenergetics",
+      "type": "word",
+      "start": 39.415,
+      "end": 40.215,
+      "slide": 2
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 40.615,
+      "end": 40.735,
+      "slide": 2
+    },
+    {
+      "text": "immune",
+      "type": "word",
+      "start": 40.855,
+      "end": 41.355,
+      "slide": 2
+    },
+    {
+      "text": "or",
+      "type": "word",
+      "start": 41.415,
+      "end": 41.495,
+      "slide": 2
+    },
+    {
+      "text": "oxidative",
+      "type": "word",
+      "start": 41.635,
+      "end": 42.115,
+      "slide": 2
+    },
+    {
+      "text": "stress",
+      "type": "word",
+      "start": 42.235,
+      "end": 42.555,
+      "slide": 2
+    },
+    {
+      "text": "pathways.",
+      "type": "word",
+      "start": 42.755,
+      "end": 43.315,
+      "slide": 2
+    },
+    {
+      "text": "But",
+      "type": "word",
+      "start": 43.628,
+      "end": 43.968,
+      "slide": 2
+    },
+    {
+      "text": "one",
+      "type": "word",
+      "start": 44.688,
+      "end": 44.888,
+      "slide": 2
+    },
+    {
+      "text": "human",
+      "type": "word",
+      "start": 44.948,
+      "end": 45.208,
+      "slide": 2
+    },
+    {
+      "text": "study",
+      "type": "word",
+      "start": 45.308,
+      "end": 45.588,
+      "slide": 2
+    },
+    {
+      "text": "found",
+      "type": "word",
+      "start": 45.688,
+      "end": 45.908,
+      "slide": 2
+    },
+    {
+      "text": "a",
+      "type": "word",
+      "start": 45.928,
+      "end": 46.008,
+      "slide": 2
+    },
+    {
+      "text": "single",
+      "type": "word",
+      "start": 46.068,
+      "end": 46.388,
+      "slide": 2
+    },
+    {
+      "text": "PBM",
+      "type": "word",
+      "start": 46.528,
+      "end": 46.988,
+      "slide": 2
+    },
+    {
+      "text": "session",
+      "type": "word",
+      "start": 47.048,
+      "end": 47.368,
+      "slide": 2
+    },
+    {
+      "text": "did",
+      "type": "word",
+      "start": 47.428,
+      "end": 47.568,
+      "slide": 2
+    },
+    {
+      "text": "not",
+      "type": "word",
+      "start": 47.768,
+      "end": 48.008,
+      "slide": 2
+    },
+    {
+      "text": "increase",
+      "type": "word",
+      "start": 48.068,
+      "end": 48.508,
+      "slide": 2
+    },
+    {
+      "text": "mitochondrial",
+      "type": "word",
+      "start": 48.568,
+      "end": 49.188,
+      "slide": 2
+    },
+    {
+      "text": "respiration",
+      "type": "word",
+      "start": 49.228,
+      "end": 49.828,
+      "slide": 2
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 50.008,
+      "end": 50.168,
+      "slide": 2
+    },
+    {
+      "text": "skeletal",
+      "type": "word",
+      "start": 50.188,
+      "end": 50.688,
+      "slide": 2
+    },
+    {
+      "text": "muscle",
+      "type": "word",
+      "start": 50.948,
+      "end": 51.348,
+      "slide": 2
+    },
+    {
+      "text": "or",
+      "type": "word",
+      "start": 51.888,
+      "end": 52.128,
+      "slide": 2
+    },
+    {
+      "text": "skin",
+      "type": "word",
+      "start": 52.168,
+      "end": 52.448,
+      "slide": 2
+    },
+    {
+      "text": "tissues.",
+      "type": "word",
+      "start": 52.488,
+      "end": 52.948,
+      "slide": 2
+    },
+    {
+      "text": "That",
+      "type": "word",
+      "start": 53.261,
+      "end": 53.481,
+      "slide": 2
+    },
+    {
+      "text": "means",
+      "type": "word",
+      "start": 53.541,
+      "end": 53.881,
+      "slide": 2
+    },
+    {
+      "text": "mechanisms",
+      "type": "word",
+      "start": 54.201,
+      "end": 54.781,
+      "slide": 2
+    },
+    {
+      "text": "claims",
+      "type": "word",
+      "start": 54.901,
+      "end": 55.281,
+      "slide": 2
+    },
+    {
+      "text": "should",
+      "type": "word",
+      "start": 55.441,
+      "end": 55.661,
+      "slide": 2
+    },
+    {
+      "text": "stay",
+      "type": "word",
+      "start": 55.781,
+      "end": 56.001,
+      "slide": 2
+    },
+    {
+      "text": "cautious.",
+      "type": "word",
+      "start": 56.321,
+      "end": 56.921,
+      "slide": 2
+    },
+    {
+      "text": "A",
+      "type": "word",
+      "start": 57.708,
+      "end": 57.768,
+      "slide": 3
+    },
+    {
+      "text": "review",
+      "type": "word",
+      "start": 57.808,
+      "end": 58.188,
+      "slide": 3
+    },
+    {
+      "text": "reports",
+      "type": "word",
+      "start": 58.228,
+      "end": 58.668,
+      "slide": 3
+    },
+    {
+      "text": "promising",
+      "type": "word",
+      "start": 58.808,
+      "end": 59.268,
+      "slide": 3
+    },
+    {
+      "text": "effects",
+      "type": "word",
+      "start": 59.308,
+      "end": 59.728,
+      "slide": 3
+    },
+    {
+      "text": "for",
+      "type": "word",
+      "start": 59.768,
+      "end": 59.908,
+      "slide": 3
+    },
+    {
+      "text": "exertion,",
+      "type": "word",
+      "start": 59.988,
+      "end": 60.528,
+      "slide": 3
+    },
+    {
+      "text": "recovery,",
+      "type": "word",
+      "start": 60.788,
+      "end": 61.388,
+      "slide": 3
+    },
+    {
+      "text": "including",
+      "type": "word",
+      "start": 62.408,
+      "end": 62.828,
+      "slide": 3
+    },
+    {
+      "text": "muscle",
+      "type": "word",
+      "start": 62.868,
+      "end": 63.148,
+      "slide": 3
+    },
+    {
+      "text": "strength,",
+      "type": "word",
+      "start": 63.228,
+      "end": 63.548,
+      "slide": 3
+    },
+    {
+      "text": "endurance,",
+      "type": "word",
+      "start": 64.008,
+      "end": 64.628,
+      "slide": 3
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 64.768,
+      "end": 64.868,
+      "slide": 3
+    },
+    {
+      "text": "reduced",
+      "type": "word",
+      "start": 64.908,
+      "end": 65.228,
+      "slide": 3
+    },
+    {
+      "text": "fatigue",
+      "type": "word",
+      "start": 65.288,
+      "end": 65.668,
+      "slide": 3
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 65.768,
+      "end": 65.848,
+      "slide": 3
+    },
+    {
+      "text": "sports",
+      "type": "word",
+      "start": 65.888,
+      "end": 66.308,
+      "slide": 3
+    },
+    {
+      "text": "performance",
+      "type": "word",
+      "start": 66.628,
+      "end": 67.008,
+      "slide": 3
+    },
+    {
+      "text": "studies.",
+      "type": "word",
+      "start": 67.048,
+      "end": 67.388,
+      "slide": 3
+    },
+    {
+      "text": "In",
+      "type": "word",
+      "start": 67.688,
+      "end": 67.788,
+      "slide": 3
+    },
+    {
+      "text": "CrossFit",
+      "type": "word",
+      "start": 67.948,
+      "end": 68.528,
+      "slide": 3
+    },
+    {
+      "text": "athletes,",
+      "type": "word",
+      "start": 68.688,
+      "end": 69.208,
+      "slide": 3
+    },
+    {
+      "text": "PBMT-SMF",
+      "type": "word",
+      "start": 69.828,
+      "end": 71.528,
+      "slide": 3
+    },
+    {
+      "text": "did",
+      "type": "word",
+      "start": 71.888,
+      "end": 72.128,
+      "slide": 3
+    },
+    {
+      "text": "not",
+      "type": "word",
+      "start": 72.148,
+      "end": 72.468,
+      "slide": 3
+    },
+    {
+      "text": "beat",
+      "type": "word",
+      "start": 72.508,
+      "end": 72.748,
+      "slide": 3
+    },
+    {
+      "text": "other",
+      "type": "word",
+      "start": 72.928,
+      "end": 73.148,
+      "slide": 3
+    },
+    {
+      "text": "recovery",
+      "type": "word",
+      "start": 73.188,
+      "end": 73.788,
+      "slide": 3
+    },
+    {
+      "text": "methods",
+      "type": "word",
+      "start": 74.188,
+      "end": 74.628,
+      "slide": 3
+    },
+    {
+      "text": "for",
+      "type": "word",
+      "start": 75.288,
+      "end": 75.408,
+      "slide": 3
+    },
+    {
+      "text": "jump",
+      "type": "word",
+      "start": 75.528,
+      "end": 75.708,
+      "slide": 3
+    },
+    {
+      "text": "performance",
+      "type": "word",
+      "start": 75.748,
+      "end": 76.228,
+      "slide": 3
+    },
+    {
+      "text": "at",
+      "type": "word",
+      "start": 76.308,
+      "end": 76.468,
+      "slide": 3
+    },
+    {
+      "text": "one",
+      "type": "word",
+      "start": 76.528,
+      "end": 76.688,
+      "slide": 3
+    },
+    {
+      "text": "hour,",
+      "type": "word",
+      "start": 76.728,
+      "end": 77.008,
+      "slide": 3
+    },
+    {
+      "text": "but",
+      "type": "word",
+      "start": 77.748,
+      "end": 78.108,
+      "slide": 3
+    },
+    {
+      "text": "showed",
+      "type": "word",
+      "start": 78.668,
+      "end": 78.928,
+      "slide": 3
+    },
+    {
+      "text": "better",
+      "type": "word",
+      "start": 79.108,
+      "end": 79.408,
+      "slide": 3
+    },
+    {
+      "text": "jump",
+      "type": "word",
+      "start": 79.508,
+      "end": 79.688,
+      "slide": 3
+    },
+    {
+      "text": "performances",
+      "type": "word",
+      "start": 79.748,
+      "end": 80.488,
+      "slide": 3
+    },
+    {
+      "text": "or",
+      "type": "word",
+      "start": 81.068,
+      "end": 81.148,
+      "slide": 3
+    },
+    {
+      "text": "better",
+      "type": "word",
+      "start": 81.268,
+      "end": 81.548,
+      "slide": 3
+    },
+    {
+      "text": "jump",
+      "type": "word",
+      "start": 81.668,
+      "end": 81.848,
+      "slide": 3
+    },
+    {
+      "text": "results",
+      "type": "word",
+      "start": 81.908,
+      "end": 82.508,
+      "slide": 3
+    },
+    {
+      "text": "than",
+      "type": "word",
+      "start": 82.868,
+      "end": 83.188,
+      "slide": 3
+    },
+    {
+      "text": "passive",
+      "type": "word",
+      "start": 83.228,
+      "end": 83.608,
+      "slide": 3
+    },
+    {
+      "text": "recovery",
+      "type": "word",
+      "start": 83.648,
+      "end": 84.208,
+      "slide": 3
+    },
+    {
+      "text": "at",
+      "type": "word",
+      "start": 84.248,
+      "end": 84.408,
+      "slide": 3
+    },
+    {
+      "text": "twenty-four",
+      "type": "word",
+      "start": 84.448,
+      "end": 85.208,
+      "slide": 3
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 85.248,
+      "end": 85.348,
+      "slide": 3
+    },
+    {
+      "text": "forty-eight",
+      "type": "word",
+      "start": 85.448,
+      "end": 85.868,
+      "slide": 3
+    },
+    {
+      "text": "hours",
+      "type": "word",
+      "start": 85.988,
+      "end": 86.208,
+      "slide": 3
+    },
+    {
+      "text": "on",
+      "type": "word",
+      "start": 86.248,
+      "end": 86.328,
+      "slide": 3
+    },
+    {
+      "text": "secondary",
+      "type": "word",
+      "start": 86.388,
+      "end": 86.788,
+      "slide": 3
+    },
+    {
+      "text": "analysis.",
+      "type": "word",
+      "start": 86.828,
+      "end": 87.448,
+      "slide": 3
+    },
+    {
+      "text": "Evidence",
+      "type": "word",
+      "start": 88.241,
+      "end": 88.621,
+      "slide": 4
+    },
+    {
+      "text": "on",
+      "type": "word",
+      "start": 88.701,
+      "end": 88.801,
+      "slide": 4
+    },
+    {
+      "text": "pain",
+      "type": "word",
+      "start": 88.901,
+      "end": 89.161,
+      "slide": 4
+    },
+    {
+      "text": "is",
+      "type": "word",
+      "start": 89.221,
+      "end": 89.421,
+      "slide": 4
+    },
+    {
+      "text": "mixed",
+      "type": "word",
+      "start": 89.501,
+      "end": 89.761,
+      "slide": 4
+    },
+    {
+      "text": "across",
+      "type": "word",
+      "start": 89.821,
+      "end": 90.121,
+      "slide": 4
+    },
+    {
+      "text": "conditions.",
+      "type": "word",
+      "start": 90.201,
+      "end": 90.821,
+      "slide": 4
+    },
+    {
+      "text": "A",
+      "type": "word",
+      "start": 91.401,
+      "end": 91.501,
+      "slide": 4
+    },
+    {
+      "text": "fibromyalgia",
+      "type": "word",
+      "start": 91.561,
+      "end": 92.501,
+      "slide": 4
+    },
+    {
+      "text": "review",
+      "type": "word",
+      "start": 92.621,
+      "end": 93.041,
+      "slide": 4
+    },
+    {
+      "text": "reported",
+      "type": "word",
+      "start": 93.861,
+      "end": 94.321,
+      "slide": 4
+    },
+    {
+      "text": "consistent",
+      "type": "word",
+      "start": 94.401,
+      "end": 95.061,
+      "slide": 4
+    },
+    {
+      "text": "short-term",
+      "type": "word",
+      "start": 95.221,
+      "end": 95.701,
+      "slide": 4
+    },
+    {
+      "text": "pain",
+      "type": "word",
+      "start": 95.781,
+      "end": 96.021,
+      "slide": 4
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 96.681,
+      "end": 96.801,
+      "slide": 4
+    },
+    {
+      "text": "quality",
+      "type": "word",
+      "start": 96.901,
+      "end": 97.241,
+      "slide": 4
+    },
+    {
+      "text": "of",
+      "type": "word",
+      "start": 97.301,
+      "end": 97.401,
+      "slide": 4
+    },
+    {
+      "text": "life",
+      "type": "word",
+      "start": 97.441,
+      "end": 97.601,
+      "slide": 4
+    },
+    {
+      "text": "improvements,",
+      "type": "word",
+      "start": 97.661,
+      "end": 98.301,
+      "slide": 4
+    },
+    {
+      "text": "though",
+      "type": "word",
+      "start": 98.801,
+      "end": 98.961,
+      "slide": 4
+    },
+    {
+      "text": "heterogeneity",
+      "type": "word",
+      "start": 99.601,
+      "end": 100.541,
+      "slide": 4
+    },
+    {
+      "text": "limited",
+      "type": "word",
+      "start": 100.941,
+      "end": 101.261,
+      "slide": 4
+    },
+    {
+      "text": "generalizability",
+      "type": "word",
+      "start": 101.301,
+      "end": 102.02,
+      "slide": 4
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 102.481,
+      "end": 102.601,
+      "slide": 4
+    },
+    {
+      "text": "chronic",
+      "type": "word",
+      "start": 102.661,
+      "end": 103.02,
+      "slide": 4
+    },
+    {
+      "text": "trapezius",
+      "type": "word",
+      "start": 103.08,
+      "end": 103.74,
+      "slide": 4
+    },
+    {
+      "text": "myofascial",
+      "type": "word",
+      "start": 104.101,
+      "end": 104.761,
+      "slide": 4
+    },
+    {
+      "text": "pain.",
+      "type": "word",
+      "start": 104.861,
+      "end": 105.081,
+      "slide": 4
+    },
+    {
+      "text": "Eight",
+      "type": "word",
+      "start": 105.861,
+      "end": 106.001,
+      "slide": 4
+    },
+    {
+      "text": "oh",
+      "type": "word",
+      "start": 106.061,
+      "end": 106.141,
+      "slide": 4
+    },
+    {
+      "text": "eight",
+      "type": "word",
+      "start": 106.181,
+      "end": 106.321,
+      "slide": 4
+    },
+    {
+      "text": "nanometer",
+      "type": "word",
+      "start": 106.361,
+      "end": 106.801,
+      "slide": 4
+    },
+    {
+      "text": "laser",
+      "type": "word",
+      "start": 106.841,
+      "end": 107.141,
+      "slide": 4
+    },
+    {
+      "text": "was",
+      "type": "word",
+      "start": 107.281,
+      "end": 107.481,
+      "slide": 4
+    },
+    {
+      "text": "not",
+      "type": "word",
+      "start": 107.721,
+      "end": 107.901,
+      "slide": 4
+    },
+    {
+      "text": "superior",
+      "type": "word",
+      "start": 107.961,
+      "end": 108.501,
+      "slide": 4
+    },
+    {
+      "text": "to",
+      "type": "word",
+      "start": 108.561,
+      "end": 108.661,
+      "slide": 4
+    },
+    {
+      "text": "placebo",
+      "type": "word",
+      "start": 108.701,
+      "end": 109.121,
+      "slide": 4
+    },
+    {
+      "text": "for",
+      "type": "word",
+      "start": 109.701,
+      "end": 109.821,
+      "slide": 4
+    },
+    {
+      "text": "p--",
+      "type": "word",
+      "start": 109.941,
+      "end": 109.961,
+      "slide": 4
+    },
+    {
+      "text": "for",
+      "type": "word",
+      "start": 110.261,
+      "end": 110.341,
+      "slide": 4
+    },
+    {
+      "text": "pain",
+      "type": "word",
+      "start": 110.421,
+      "end": 110.561,
+      "slide": 4
+    },
+    {
+      "text": "outcomes.",
+      "type": "word",
+      "start": 110.641,
+      "end": 111.101,
+      "slide": 4
+    },
+    {
+      "text": "Protocol",
+      "type": "word",
+      "start": 111.908,
+      "end": 112.308,
+      "slide": 5
+    },
+    {
+      "text": "design",
+      "type": "word",
+      "start": 112.368,
+      "end": 112.708,
+      "slide": 5
+    },
+    {
+      "text": "matters",
+      "type": "word",
+      "start": 112.788,
+      "end": 113.268,
+      "slide": 5
+    },
+    {
+      "text": "because",
+      "type": "word",
+      "start": 113.788,
+      "end": 114.148,
+      "slide": 5
+    },
+    {
+      "text": "studies",
+      "type": "word",
+      "start": 114.448,
+      "end": 114.848,
+      "slide": 5
+    },
+    {
+      "text": "vary",
+      "type": "word",
+      "start": 114.908,
+      "end": 115.168,
+      "slide": 5
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 115.248,
+      "end": 115.368,
+      "slide": 5
+    },
+    {
+      "text": "wavelength,",
+      "type": "word",
+      "start": 115.408,
+      "end": 115.888,
+      "slide": 5
+    },
+    {
+      "text": "energy",
+      "type": "word",
+      "start": 116.468,
+      "end": 116.788,
+      "slide": 5
+    },
+    {
+      "text": "dose,",
+      "type": "word",
+      "start": 116.828,
+      "end": 117.148,
+      "slide": 5
+    },
+    {
+      "text": "timing,",
+      "type": "word",
+      "start": 117.508,
+      "end": 117.948,
+      "slide": 5
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 118.248,
+      "end": 118.328,
+      "slide": 5
+    },
+    {
+      "text": "application",
+      "type": "word",
+      "start": 118.368,
+      "end": 118.848,
+      "slide": 5
+    },
+    {
+      "text": "target.",
+      "type": "word",
+      "start": 118.928,
+      "end": 119.288,
+      "slide": 5
+    },
+    {
+      "text": "Examples",
+      "type": "word",
+      "start": 119.595,
+      "end": 120.155,
+      "slide": 5
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 120.175,
+      "end": 120.255,
+      "slide": 5
+    },
+    {
+      "text": "the",
+      "type": "word",
+      "start": 120.295,
+      "end": 120.375,
+      "slide": 5
+    },
+    {
+      "text": "brief",
+      "type": "word",
+      "start": 120.395,
+      "end": 120.615,
+      "slide": 5
+    },
+    {
+      "text": "include",
+      "type": "word",
+      "start": 120.695,
+      "end": 121.075,
+      "slide": 5
+    },
+    {
+      "text": "six",
+      "type": "word",
+      "start": 121.235,
+      "end": 121.435,
+      "slide": 5
+    },
+    {
+      "text": "hundred",
+      "type": "word",
+      "start": 121.455,
+      "end": 121.555,
+      "slide": 5
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 121.615,
+      "end": 121.695,
+      "slide": 5
+    },
+    {
+      "text": "fifty",
+      "type": "word",
+      "start": 121.775,
+      "end": 122.015,
+      "slide": 5
+    },
+    {
+      "text": "nanometer",
+      "type": "word",
+      "start": 122.095,
+      "end": 122.595,
+      "slide": 5
+    },
+    {
+      "text": "LED",
+      "type": "word",
+      "start": 122.675,
+      "end": 122.975,
+      "slide": 5
+    },
+    {
+      "text": "use",
+      "type": "word",
+      "start": 123.095,
+      "end": 123.395,
+      "slide": 5
+    },
+    {
+      "text": "before",
+      "type": "word",
+      "start": 124.015,
+      "end": 124.475,
+      "slide": 5
+    },
+    {
+      "text": "exercise-induced",
+      "type": "word",
+      "start": 124.535,
+      "end": 125.655,
+      "slide": 5
+    },
+    {
+      "text": "muscle",
+      "type": "word",
+      "start": 125.695,
+      "end": 125.975,
+      "slide": 5
+    },
+    {
+      "text": "damage",
+      "type": "word",
+      "start": 126.015,
+      "end": 126.395,
+      "slide": 5
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 126.555,
+      "end": 126.655,
+      "slide": 5
+    },
+    {
+      "text": "six",
+      "type": "word",
+      "start": 126.935,
+      "end": 127.195,
+      "slide": 5
+    },
+    {
+      "text": "thirty",
+      "type": "word",
+      "start": 127.255,
+      "end": 127.595,
+      "slide": 5
+    },
+    {
+      "text": "plus",
+      "type": "word",
+      "start": 127.775,
+      "end": 128.075,
+      "slide": 5
+    },
+    {
+      "text": "eight",
+      "type": "word",
+      "start": 128.215,
+      "end": 128.375,
+      "slide": 5
+    },
+    {
+      "text": "fifty",
+      "type": "word",
+      "start": 128.415,
+      "end": 128.675,
+      "slide": 5
+    },
+    {
+      "text": "nanometer",
+      "type": "word",
+      "start": 128.755,
+      "end": 129.195,
+      "slide": 5
+    },
+    {
+      "text": "LED",
+      "type": "word",
+      "start": 129.255,
+      "end": 129.455,
+      "slide": 5
+    },
+    {
+      "text": "use",
+      "type": "word",
+      "start": 129.555,
+      "end": 129.795,
+      "slide": 5
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 130.435,
+      "end": 130.595,
+      "slide": 5
+    },
+    {
+      "text": "low",
+      "type": "word",
+      "start": 130.735,
+      "end": 130.995,
+      "slide": 5
+    },
+    {
+      "text": "back",
+      "type": "word",
+      "start": 131.135,
+      "end": 131.335,
+      "slide": 5
+    },
+    {
+      "text": "pain",
+      "type": "word",
+      "start": 131.455,
+      "end": 131.695,
+      "slide": 5
+    },
+    {
+      "text": "research.",
+      "type": "word",
+      "start": 131.755,
+      "end": 132.295,
+      "slide": 5
+    },
+    {
+      "text": "Transcranial",
+      "type": "word",
+      "start": 132.588,
+      "end": 133.348,
+      "slide": 5
+    },
+    {
+      "text": "protocols",
+      "type": "word",
+      "start": 133.468,
+      "end": 134.068,
+      "slide": 5
+    },
+    {
+      "text": "are",
+      "type": "word",
+      "start": 134.308,
+      "end": 134.548,
+      "slide": 5
+    },
+    {
+      "text": "preliminary",
+      "type": "word",
+      "start": 134.608,
+      "end": 135.508,
+      "slide": 5
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 135.588,
+      "end": 135.728,
+      "slide": 5
+    },
+    {
+      "text": "not",
+      "type": "word",
+      "start": 135.948,
+      "end": 136.148,
+      "slide": 5
+    },
+    {
+      "text": "routine",
+      "type": "word",
+      "start": 136.248,
+      "end": 136.608,
+      "slide": 5
+    },
+    {
+      "text": "fitness",
+      "type": "word",
+      "start": 136.708,
+      "end": 137.108,
+      "slide": 5
+    },
+    {
+      "text": "business",
+      "type": "word",
+      "start": 137.208,
+      "end": 137.648,
+      "slide": 5
+    },
+    {
+      "text": "practice.",
+      "type": "word",
+      "start": 137.908,
+      "end": 138.468,
+      "slide": 5
+    },
+    {
+      "text": "Some",
+      "type": "word",
+      "start": 139.275,
+      "end": 139.495,
+      "slide": 6
+    },
+    {
+      "text": "included",
+      "type": "word",
+      "start": 139.535,
+      "end": 139.935,
+      "slide": 6
+    },
+    {
+      "text": "trials",
+      "type": "word",
+      "start": 139.995,
+      "end": 140.415,
+      "slide": 6
+    },
+    {
+      "text": "reported",
+      "type": "word",
+      "start": 140.435,
+      "end": 140.995,
+      "slide": 6
+    },
+    {
+      "text": "no",
+      "type": "word",
+      "start": 141.055,
+      "end": 141.235,
+      "slide": 6
+    },
+    {
+      "text": "adverse",
+      "type": "word",
+      "start": 141.315,
+      "end": 141.755,
+      "slide": 6
+    },
+    {
+      "text": "events",
+      "type": "word",
+      "start": 141.815,
+      "end": 142.295,
+      "slide": 6
+    },
+    {
+      "text": "or",
+      "type": "word",
+      "start": 142.875,
+      "end": 143.135,
+      "slide": 6
+    },
+    {
+      "text": "only",
+      "type": "word",
+      "start": 143.815,
+      "end": 144.115,
+      "slide": 6
+    },
+    {
+      "text": "mild",
+      "type": "word",
+      "start": 144.315,
+      "end": 144.715,
+      "slide": 6
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 144.755,
+      "end": 145.015,
+      "slide": 6
+    },
+    {
+      "text": "infrequent",
+      "type": "word",
+      "start": 145.095,
+      "end": 145.695,
+      "slide": 6
+    },
+    {
+      "text": "adverse",
+      "type": "word",
+      "start": 145.775,
+      "end": 146.115,
+      "slide": 6
+    },
+    {
+      "text": "effects,",
+      "type": "word",
+      "start": 146.195,
+      "end": 146.515,
+      "slide": 6
+    },
+    {
+      "text": "but",
+      "type": "word",
+      "start": 147.035,
+      "end": 147.335,
+      "slide": 6
+    },
+    {
+      "text": "safety",
+      "type": "word",
+      "start": 147.715,
+      "end": 147.995,
+      "slide": 6
+    },
+    {
+      "text": "reporting",
+      "type": "word",
+      "start": 148.035,
+      "end": 148.575,
+      "slide": 6
+    },
+    {
+      "text": "is",
+      "type": "word",
+      "start": 148.655,
+      "end": 148.755,
+      "slide": 6
+    },
+    {
+      "text": "not",
+      "type": "word",
+      "start": 148.975,
+      "end": 149.175,
+      "slide": 6
+    },
+    {
+      "text": "uniform",
+      "type": "word",
+      "start": 149.275,
+      "end": 149.755,
+      "slide": 6
+    },
+    {
+      "text": "across",
+      "type": "word",
+      "start": 150.235,
+      "end": 150.515,
+      "slide": 6
+    },
+    {
+      "text": "the",
+      "type": "word",
+      "start": 150.555,
+      "end": 150.615,
+      "slide": 6
+    },
+    {
+      "text": "literature.",
+      "type": "word",
+      "start": 150.655,
+      "end": 151.175,
+      "slide": 6
+    },
+    {
+      "text": "Stay",
+      "type": "word",
+      "start": 151.475,
+      "end": 151.755,
+      "slide": 6
+    },
+    {
+      "text": "within",
+      "type": "word",
+      "start": 151.995,
+      "end": 152.315,
+      "slide": 6
+    },
+    {
+      "text": "scope.",
+      "type": "word",
+      "start": 152.575,
+      "end": 153.055,
+      "slide": 6
+    },
+    {
+      "text": "Present",
+      "type": "word",
+      "start": 153.355,
+      "end": 153.675,
+      "slide": 6
+    },
+    {
+      "text": "PBM",
+      "type": "word",
+      "start": 153.795,
+      "end": 154.355,
+      "slide": 6
+    },
+    {
+      "text": "as",
+      "type": "word",
+      "start": 154.435,
+      "end": 154.535,
+      "slide": 6
+    },
+    {
+      "text": "a",
+      "type": "word",
+      "start": 154.555,
+      "end": 154.655,
+      "slide": 6
+    },
+    {
+      "text": "wellness",
+      "type": "word",
+      "start": 154.695,
+      "end": 155.135,
+      "slide": 6
+    },
+    {
+      "text": "or",
+      "type": "word",
+      "start": 155.255,
+      "end": 155.355,
+      "slide": 6
+    },
+    {
+      "text": "recovery",
+      "type": "word",
+      "start": 155.375,
+      "end": 155.755,
+      "slide": 6
+    },
+    {
+      "text": "service,",
+      "type": "word",
+      "start": 155.835,
+      "end": 156.235,
+      "slide": 6
+    },
+    {
+      "text": "not",
+      "type": "word",
+      "start": 156.935,
+      "end": 157.175,
+      "slide": 6
+    },
+    {
+      "text": "a",
+      "type": "word",
+      "start": 157.235,
+      "end": 157.275,
+      "slide": 6
+    },
+    {
+      "text": "medical",
+      "type": "word",
+      "start": 157.335,
+      "end": 157.615,
+      "slide": 6
+    },
+    {
+      "text": "treatment.",
+      "type": "word",
+      "start": 157.675,
+      "end": 158.135,
+      "slide": 6
+    },
+    {
+      "text": "Be",
+      "type": "word",
+      "start": 158.975,
+      "end": 159.135,
+      "slide": 6
+    },
+    {
+      "text": "clear",
+      "type": "word",
+      "start": 159.195,
+      "end": 159.455,
+      "slide": 6
+    },
+    {
+      "text": "that",
+      "type": "word",
+      "start": 159.555,
+      "end": 159.715,
+      "slide": 6
+    },
+    {
+      "text": "evidence",
+      "type": "word",
+      "start": 159.775,
+      "end": 160.215,
+      "slide": 6
+    },
+    {
+      "text": "is",
+      "type": "word",
+      "start": 160.655,
+      "end": 160.795,
+      "slide": 6
+    },
+    {
+      "text": "promising",
+      "type": "word",
+      "start": 160.855,
+      "end": 161.295,
+      "slide": 6
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 161.355,
+      "end": 161.455,
+      "slide": 6
+    },
+    {
+      "text": "places,",
+      "type": "word",
+      "start": 161.495,
+      "end": 161.975,
+      "slide": 6
+    },
+    {
+      "text": "mixed",
+      "type": "word",
+      "start": 162.815,
+      "end": 163.055,
+      "slide": 6
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 163.095,
+      "end": 163.215,
+      "slide": 6
+    },
+    {
+      "text": "others,",
+      "type": "word",
+      "start": 163.295,
+      "end": 163.695,
+      "slide": 6
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 163.955,
+      "end": 164.115,
+      "slide": 6
+    },
+    {
+      "text": "not",
+      "type": "word",
+      "start": 164.315,
+      "end": 164.595,
+      "slide": 6
+    },
+    {
+      "text": "a",
+      "type": "word",
+      "start": 164.655,
+      "end": 164.675,
+      "slide": 6
+    },
+    {
+      "text": "guarantee.",
+      "type": "word",
+      "start": 164.795,
+      "end": 165.315,
+      "slide": 6
+    },
+    {
+      "text": "The",
+      "type": "word",
+      "start": 166.115,
+      "end": 166.235,
+      "slide": 7
+    },
+    {
+      "text": "main",
+      "type": "word",
+      "start": 166.315,
+      "end": 166.535,
+      "slide": 7
+    },
+    {
+      "text": "message",
+      "type": "word",
+      "start": 166.595,
+      "end": 166.875,
+      "slide": 7
+    },
+    {
+      "text": "is",
+      "type": "word",
+      "start": 166.935,
+      "end": 167.035,
+      "slide": 7
+    },
+    {
+      "text": "simple.",
+      "type": "word",
+      "start": 167.095,
+      "end": 167.415,
+      "slide": 7
+    },
+    {
+      "text": "PBM",
+      "type": "word",
+      "start": 168.135,
+      "end": 168.635,
+      "slide": 7
+    },
+    {
+      "text": "may",
+      "type": "word",
+      "start": 168.695,
+      "end": 168.815,
+      "slide": 7
+    },
+    {
+      "text": "support",
+      "type": "word",
+      "start": 168.875,
+      "end": 169.175,
+      "slide": 7
+    },
+    {
+      "text": "recovery",
+      "type": "word",
+      "start": 169.255,
+      "end": 169.875,
+      "slide": 7
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 169.935,
+      "end": 170.055,
+      "slide": 7
+    },
+    {
+      "text": "some",
+      "type": "word",
+      "start": 170.115,
+      "end": 170.275,
+      "slide": 7
+    },
+    {
+      "text": "contexts,",
+      "type": "word",
+      "start": 170.315,
+      "end": 170.855,
+      "slide": 7
+    },
+    {
+      "text": "but",
+      "type": "word",
+      "start": 171.535,
+      "end": 171.835,
+      "slide": 7
+    },
+    {
+      "text": "the",
+      "type": "word",
+      "start": 171.875,
+      "end": 171.935,
+      "slide": 7
+    },
+    {
+      "text": "evidence",
+      "type": "word",
+      "start": 171.995,
+      "end": 172.475,
+      "slide": 7
+    },
+    {
+      "text": "is",
+      "type": "word",
+      "start": 172.535,
+      "end": 172.655,
+      "slide": 7
+    },
+    {
+      "text": "not",
+      "type": "word",
+      "start": 172.715,
+      "end": 172.935,
+      "slide": 7
+    },
+    {
+      "text": "uniform.",
+      "type": "word",
+      "start": 172.995,
+      "end": 173.375,
+      "slide": 7
+    },
+    {
+      "text": "Your",
+      "type": "word",
+      "start": 173.681,
+      "end": 173.861,
+      "slide": 7
+    },
+    {
+      "text": "role",
+      "type": "word",
+      "start": 173.921,
+      "end": 174.281,
+      "slide": 7
+    },
+    {
+      "text": "is",
+      "type": "word",
+      "start": 174.341,
+      "end": 174.461,
+      "slide": 7
+    },
+    {
+      "text": "to",
+      "type": "word",
+      "start": 174.501,
+      "end": 174.641,
+      "slide": 7
+    },
+    {
+      "text": "understand",
+      "type": "word",
+      "start": 174.701,
+      "end": 175.181,
+      "slide": 7
+    },
+    {
+      "text": "the",
+      "type": "word",
+      "start": 175.221,
+      "end": 175.301,
+      "slide": 7
+    },
+    {
+      "text": "protocol,",
+      "type": "word",
+      "start": 175.341,
+      "end": 175.801,
+      "slide": 7
+    },
+    {
+      "text": "stay",
+      "type": "word",
+      "start": 176.361,
+      "end": 176.641,
+      "slide": 7
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 176.701,
+      "end": 176.761,
+      "slide": 7
+    },
+    {
+      "text": "scope,",
+      "type": "word",
+      "start": 176.821,
+      "end": 177.201,
+      "slide": 7
+    },
+    {
+      "text": "and",
+      "type": "word",
+      "start": 177.621,
+      "end": 177.721,
+      "slide": 7
+    },
+    {
+      "text": "communicate",
+      "type": "word",
+      "start": 177.841,
+      "end": 178.581,
+      "slide": 7
+    },
+    {
+      "text": "uncertainty",
+      "type": "word",
+      "start": 178.741,
+      "end": 179.341,
+      "slide": 7
+    },
+    {
+      "text": "clearly.",
+      "type": "word",
+      "start": 179.801,
+      "end": 180.241,
+      "slide": 7
+    },
+    {
+      "text": "Every",
+      "type": "word",
+      "start": 181.041,
+      "end": 181.261,
+      "slide": 8
+    },
+    {
+      "text": "claim",
+      "type": "word",
+      "start": 181.301,
+      "end": 181.501,
+      "slide": 8
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 181.541,
+      "end": 181.621,
+      "slide": 8
+    },
+    {
+      "text": "this",
+      "type": "word",
+      "start": 181.661,
+      "end": 181.781,
+      "slide": 8
+    },
+    {
+      "text": "source",
+      "type": "word",
+      "start": 181.821,
+      "end": 182.081,
+      "slide": 8
+    },
+    {
+      "text": "is",
+      "type": "word",
+      "start": 182.141,
+      "end": 182.281,
+      "slide": 8
+    },
+    {
+      "text": "linked",
+      "type": "word",
+      "start": 182.461,
+      "end": 182.681,
+      "slide": 8
+    },
+    {
+      "text": "to",
+      "type": "word",
+      "start": 182.721,
+      "end": 182.781,
+      "slide": 8
+    },
+    {
+      "text": "the",
+      "type": "word",
+      "start": 182.821,
+      "end": 182.901,
+      "slide": 8
+    },
+    {
+      "text": "source",
+      "type": "word",
+      "start": 182.941,
+      "end": 183.141,
+      "slide": 8
+    },
+    {
+      "text": "listed",
+      "type": "word",
+      "start": 183.261,
+      "end": 183.581,
+      "slide": 8
+    },
+    {
+      "text": "here.",
+      "type": "word",
+      "start": 183.641,
+      "end": 183.821,
+      "slide": 8
+    },
+    {
+      "text": "Review",
+      "type": "word",
+      "start": 184.421,
+      "end": 184.801,
+      "slide": 8
+    },
+    {
+      "text": "them",
+      "type": "word",
+      "start": 184.841,
+      "end": 185.001,
+      "slide": 8
+    },
+    {
+      "text": "in",
+      "type": "word",
+      "start": 185.061,
+      "end": 185.121,
+      "slide": 8
+    },
+    {
+      "text": "the",
+      "type": "word",
+      "start": 185.161,
+      "end": 185.241,
+      "slide": 8
+    },
+    {
+      "text": "course",
+      "type": "word",
+      "start": 185.281,
+      "end": 185.461,
+      "slide": 8
+    },
+    {
+      "text": "materials",
+      "type": "word",
+      "start": 185.501,
+      "end": 186.021,
+      "slide": 8
+    },
+    {
+      "text": "before",
+      "type": "word",
+      "start": 186.061,
+      "end": 186.541,
+      "slide": 8
+    },
+    {
+      "text": "certification",
+      "type": "word",
+      "start": 186.581,
+      "end": 187.281,
+      "slide": 8
+    },
+    {
+      "text": "exam.",
+      "type": "word",
+      "start": 187.521,
+      "end": 187.921,
+      "slide": 8
+    }
+  ],
+  "source": "presenter scribe, remapped to the edit"
+}

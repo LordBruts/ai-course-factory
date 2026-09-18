@@ -1,0 +1,1287 @@
+{
+  "index": "/data/video-jobs/rlt-v3-face/project/index.html",
+  "template": "face",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "duration": 188.466,
+  "clips": [
+    {
+      "segment_id": "S002",
+      "component": "infographic",
+      "clip_id": "B01-E01",
+      "start": 1.288,
+      "duration": 11.457,
+      "board_id": "B01",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S003",
+      "component": "term",
+      "clip_id": "B02-E01",
+      "start": 12.895,
+      "duration": 23.45,
+      "board_id": "B02",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S004",
+      "component": "infographic",
+      "clip_id": "B02-E02",
+      "start": 19.615,
+      "duration": 16.73,
+      "board_id": "B02",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S005",
+      "component": "infographic",
+      "clip_id": "B02-E03",
+      "start": 31.895,
+      "duration": 4.45,
+      "board_id": "B02",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S006",
+      "component": "statement",
+      "clip_id": "B03-E01",
+      "start": 36.495,
+      "duration": 20.962,
+      "board_id": "B03",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S007",
+      "component": "study",
+      "clip_id": "B03-E02",
+      "start": 43.528,
+      "duration": 13.929,
+      "board_id": "B03",
+      "dock_at": 52.648
+    },
+    {
+      "segment_id": "S008",
+      "component": "statement",
+      "clip_id": "B03-E03",
+      "start": 53.161,
+      "duration": 4.296,
+      "board_id": "B03",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S009",
+      "component": "study",
+      "clip_id": "B04-E01",
+      "start": 57.607,
+      "duration": 54.05,
+      "board_id": "B04",
+      "dock_at": 67.237
+    },
+    {
+      "segment_id": "S010",
+      "component": "study",
+      "clip_id": "B04-E02",
+      "start": 67.587,
+      "duration": 44.07,
+      "board_id": "B04",
+      "dock_at": 87.647
+    },
+    {
+      "segment_id": "S011",
+      "component": "subtitle",
+      "clip_id": "B04-E03",
+      "start": 88.14,
+      "duration": 23.517,
+      "board_id": "B04",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S012",
+      "component": "study",
+      "clip_id": "B04-E04",
+      "start": 91.3,
+      "duration": 20.357,
+      "board_id": "B04",
+      "dock_at": 102.03
+    },
+    {
+      "segment_id": "S013",
+      "component": "study",
+      "clip_id": "B04-E05",
+      "start": 102.38,
+      "duration": 9.277,
+      "board_id": "B04",
+      "dock_at": 109.857
+    },
+    {
+      "segment_id": "S014",
+      "component": "infographic",
+      "clip_id": "B05-E01",
+      "start": 111.807,
+      "duration": 27.218,
+      "board_id": "B05",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S015",
+      "component": "infographic",
+      "clip_id": "B05-E02",
+      "start": 119.494,
+      "duration": 19.531,
+      "board_id": "B05",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S016",
+      "component": "statement",
+      "clip_id": "B05-E03",
+      "start": 132.487,
+      "duration": 6.538,
+      "board_id": "B05",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S017",
+      "component": "study",
+      "clip_id": "B06-E01",
+      "start": 139.175,
+      "duration": 26.689,
+      "board_id": "B06",
+      "dock_at": 151.025
+    },
+    {
+      "segment_id": "S018",
+      "component": "chip",
+      "clip_id": "B06-E02",
+      "start": 151.375,
+      "duration": 14.489,
+      "board_id": "B06",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S019",
+      "component": "infographic",
+      "clip_id": "B06-E03",
+      "start": 153.255,
+      "duration": 12.609,
+      "board_id": "B06",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S020",
+      "component": "infographic",
+      "clip_id": "B06-E04",
+      "start": 158.875,
+      "duration": 6.989,
+      "board_id": "B06",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S022",
+      "component": "infographic",
+      "clip_id": "B07-E01",
+      "start": 168.034,
+      "duration": 12.756,
+      "board_id": "B07",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S023",
+      "component": "infographic",
+      "clip_id": "B07-E02",
+      "start": 173.58,
+      "duration": 7.21,
+      "board_id": "B07",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S024",
+      "component": "statement",
+      "clip_id": "B08-E01",
+      "start": 180.94,
+      "duration": 6.98,
+      "board_id": "B08",
+      "dock_at": null
+    },
+    {
+      "segment_id": "S025",
+      "component": "statement",
+      "clip_id": "B08-E02",
+      "start": 184.32,
+      "duration": 3.6,
+      "board_id": "B08",
+      "dock_at": null
+    }
+  ],
+  "boards": [
+    {
+      "board_id": "B01",
+      "kind": "hero",
+      "start": 0.0,
+      "end": 12.745,
+      "rects": [
+        {
+          "element_id": "bd-b01-t0",
+          "rect": {
+            "x": 994,
+            "y": 124,
+            "w": 826,
+            "h": 70
+          },
+          "from": 0.0,
+          "to": 12.745,
+          "kind": "title"
+        },
+        {
+          "element_id": "B01-E01",
+          "rect": {
+            "x": 994,
+            "y": 389,
+            "w": 826,
+            "h": 307
+          },
+          "from": 1.95,
+          "to": 12.745,
+          "kind": "nodes"
+        }
+      ],
+      "mode": "glass",
+      "surface": "glass",
+      "panel": {
+        "x": 994,
+        "y": 88,
+        "w": 826,
+        "h": 702
+      },
+      "forbidden": [
+        {
+          "x": 400,
+          "y": 0,
+          "w": 520,
+          "h": 1080
+        }
+      ]
+    },
+    {
+      "board_id": "B02",
+      "kind": "stack",
+      "start": 12.745,
+      "end": 36.345,
+      "rects": [
+        {
+          "element_id": "bd-b02-t0",
+          "rect": {
+            "x": 120,
+            "y": 80,
+            "w": 1320,
+            "h": 66
+          },
+          "from": 12.745,
+          "to": 36.345,
+          "kind": "title"
+        },
+        {
+          "element_id": "B02-E01",
+          "rect": {
+            "x": 120,
+            "y": 188,
+            "w": 628,
+            "h": 315
+          },
+          "from": 12.895,
+          "to": 36.345,
+          "kind": "term",
+          "hero_rect": {
+            "x": 466,
+            "y": 331,
+            "w": 628,
+            "h": 315
+          },
+          "hero_until": 19.365
+        },
+        {
+          "element_id": "B02-E02",
+          "rect": {
+            "x": 812,
+            "y": 188,
+            "w": 628,
+            "h": 284
+          },
+          "from": 20.065,
+          "to": 36.345,
+          "kind": "nodes"
+        },
+        {
+          "element_id": "B02-E03",
+          "rect": {
+            "x": 812,
+            "y": 496,
+            "w": 628,
+            "h": 210
+          },
+          "from": 31.895,
+          "to": 36.345,
+          "kind": "devices"
+        }
+      ],
+      "mode": "pip",
+      "surface": "page",
+      "panel": {
+        "x": 120,
+        "y": 80,
+        "w": 1320,
+        "h": 710
+      },
+      "forbidden": [
+        {
+          "x": 1480,
+          "y": 250,
+          "w": 360,
+          "h": 500
+        }
+      ]
+    },
+    {
+      "board_id": "B03",
+      "kind": "stack",
+      "start": 36.345,
+      "end": 57.457,
+      "rects": [
+        {
+          "element_id": "bd-b03-t0",
+          "rect": {
+            "x": 120,
+            "y": 80,
+            "w": 1000,
+            "h": 66
+          },
+          "from": 36.345,
+          "to": 57.457,
+          "kind": "title"
+        },
+        {
+          "element_id": "B03-E01",
+          "rect": {
+            "x": 120,
+            "y": 274,
+            "w": 1000,
+            "h": 113
+          },
+          "from": 36.495,
+          "to": 57.457,
+          "kind": "statement",
+          "hero_rect": {
+            "x": 120,
+            "y": 432,
+            "w": 1000,
+            "h": 113
+          },
+          "hero_until": 52.911,
+          "hidden": [
+            [
+              43.478,
+              52.898
+            ]
+          ]
+        },
+        {
+          "element_id": "B03-E03",
+          "rect": {
+            "x": 120,
+            "y": 429,
+            "w": 1000,
+            "h": 161
+          },
+          "from": 53.611,
+          "to": 57.457,
+          "kind": "statement"
+        },
+        {
+          "element_id": "B03-E02:focus",
+          "rect": {
+            "x": 120,
+            "y": 245,
+            "w": 1000,
+            "h": 488
+          },
+          "from": 43.528,
+          "to": 52.948,
+          "kind": "study_focus"
+        },
+        {
+          "element_id": "B03-E02:dock",
+          "rect": {
+            "x": 1176,
+            "y": 640,
+            "w": 680,
+            "h": 150
+          },
+          "from": 53.088,
+          "to": 57.457,
+          "kind": "study_mini",
+          "beside_presenter": true
+        }
+      ],
+      "mode": "split",
+      "surface": "page",
+      "panel": {
+        "x": 120,
+        "y": 80,
+        "w": 1000,
+        "h": 710
+      },
+      "forbidden": [
+        {
+          "x": 1176,
+          "y": 80,
+          "w": 680,
+          "h": 920
+        }
+      ]
+    },
+    {
+      "board_id": "B04",
+      "kind": "gallery",
+      "start": 57.457,
+      "end": 111.657,
+      "rects": [
+        {
+          "element_id": "bd-b04-t0",
+          "rect": {
+            "x": 120,
+            "y": 116,
+            "w": 1320,
+            "h": 66
+          },
+          "from": 57.457,
+          "to": 88.04,
+          "kind": "title"
+        },
+        {
+          "element_id": "bd-b04-t1",
+          "rect": {
+            "x": 120,
+            "y": 116,
+            "w": 1320,
+            "h": 66
+          },
+          "from": 88.04,
+          "to": 111.657,
+          "kind": "title"
+        },
+        {
+          "element_id": "B04-E03",
+          "rect": {
+            "x": 120,
+            "y": 180,
+            "w": 1320,
+            "h": 48
+          },
+          "from": 88.14,
+          "to": 111.657,
+          "kind": "subtitle"
+        },
+        {
+          "element_id": "B04-E01:focus",
+          "rect": {
+            "x": 120,
+            "y": 275,
+            "w": 940,
+            "h": 484
+          },
+          "from": 57.607,
+          "to": 67.537,
+          "kind": "study_focus"
+        },
+        {
+          "element_id": "B04-E01:dock",
+          "rect": {
+            "x": 1104,
+            "y": 244,
+            "w": 336,
+            "h": 264
+          },
+          "from": 67.677,
+          "to": 111.657,
+          "kind": "study_mini",
+          "beside_presenter": false
+        },
+        {
+          "element_id": "B04-E02:focus",
+          "rect": {
+            "x": 120,
+            "y": 273,
+            "w": 940,
+            "h": 488
+          },
+          "from": 67.587,
+          "to": 87.947,
+          "kind": "study_focus"
+        },
+        {
+          "element_id": "B04-E02:dock",
+          "rect": {
+            "x": 1104,
+            "y": 526,
+            "w": 336,
+            "h": 264
+          },
+          "from": 88.087,
+          "to": 111.657,
+          "kind": "study_mini",
+          "beside_presenter": false
+        },
+        {
+          "element_id": "B04-E04:focus",
+          "rect": {
+            "x": 120,
+            "y": 268,
+            "w": 940,
+            "h": 497
+          },
+          "from": 91.3,
+          "to": 102.33,
+          "kind": "study_focus"
+        },
+        {
+          "element_id": "B04-E04:dock",
+          "rect": {
+            "x": 120,
+            "y": 244,
+            "w": 336,
+            "h": 264
+          },
+          "from": 110.157,
+          "to": 111.657,
+          "kind": "study_mini",
+          "beside_presenter": false
+        },
+        {
+          "element_id": "B04-E05:focus",
+          "rect": {
+            "x": 120,
+            "y": 278,
+            "w": 940,
+            "h": 479
+          },
+          "from": 102.38,
+          "to": 110.157,
+          "kind": "study_focus"
+        },
+        {
+          "element_id": "B04-E05:dock",
+          "rect": {
+            "x": 120,
+            "y": 526,
+            "w": 336,
+            "h": 264
+          },
+          "from": 110.297,
+          "to": 111.657,
+          "kind": "study_mini",
+          "beside_presenter": false
+        }
+      ],
+      "mode": "pip",
+      "surface": "page",
+      "panel": {
+        "x": 120,
+        "y": 80,
+        "w": 1320,
+        "h": 710
+      },
+      "forbidden": [
+        {
+          "x": 1480,
+          "y": 250,
+          "w": 360,
+          "h": 500
+        }
+      ]
+    },
+    {
+      "board_id": "B05",
+      "kind": "stack",
+      "start": 111.657,
+      "end": 139.025,
+      "rects": [
+        {
+          "element_id": "bd-b05-t0",
+          "rect": {
+            "x": 120,
+            "y": 80,
+            "w": 1320,
+            "h": 66
+          },
+          "from": 111.657,
+          "to": 139.025,
+          "kind": "title"
+        },
+        {
+          "element_id": "B05-E01",
+          "rect": {
+            "x": 120,
+            "y": 188,
+            "w": 628,
+            "h": 304
+          },
+          "from": 111.807,
+          "to": 139.025,
+          "kind": "nodes",
+          "hero_rect": {
+            "x": 466,
+            "y": 337,
+            "w": 628,
+            "h": 304
+          },
+          "hero_until": 119.244
+        },
+        {
+          "element_id": "B05-E02",
+          "rect": {
+            "x": 812,
+            "y": 188,
+            "w": 628,
+            "h": 312
+          },
+          "from": 119.944,
+          "to": 139.025,
+          "kind": "wavelengths"
+        },
+        {
+          "element_id": "B05-E03",
+          "rect": {
+            "x": 812,
+            "y": 524,
+            "w": 628,
+            "h": 168
+          },
+          "from": 132.487,
+          "to": 139.025,
+          "kind": "statement"
+        }
+      ],
+      "mode": "pip",
+      "surface": "page",
+      "panel": {
+        "x": 120,
+        "y": 80,
+        "w": 1320,
+        "h": 710
+      },
+      "forbidden": [
+        {
+          "x": 1480,
+          "y": 250,
+          "w": 360,
+          "h": 500
+        }
+      ]
+    },
+    {
+      "board_id": "B06",
+      "kind": "stack",
+      "start": 139.025,
+      "end": 165.864,
+      "rects": [
+        {
+          "element_id": "bd-b06-t0",
+          "rect": {
+            "x": 120,
+            "y": 80,
+            "w": 1000,
+            "h": 66
+          },
+          "from": 139.025,
+          "to": 165.864,
+          "kind": "title"
+        },
+        {
+          "element_id": "B06-E02",
+          "rect": {
+            "x": 120,
+            "y": 215,
+            "w": 1000,
+            "h": 84
+          },
+          "from": 151.375,
+          "to": 165.864,
+          "kind": "chip",
+          "hero_rect": {
+            "x": 120,
+            "y": 447,
+            "w": 1000,
+            "h": 84
+          },
+          "hero_until": 153.005
+        },
+        {
+          "element_id": "B06-E03",
+          "rect": {
+            "x": 120,
+            "y": 323,
+            "w": 1000,
+            "h": 198
+          },
+          "from": 153.705,
+          "to": 165.864,
+          "kind": "do_dont"
+        },
+        {
+          "element_id": "B06-E04",
+          "rect": {
+            "x": 120,
+            "y": 545,
+            "w": 1000,
+            "h": 182
+          },
+          "from": 158.875,
+          "to": 165.864,
+          "kind": "scale"
+        },
+        {
+          "element_id": "B06-E01:focus",
+          "rect": {
+            "x": 120,
+            "y": 207,
+            "w": 1000,
+            "h": 565
+          },
+          "from": 139.175,
+          "to": 151.325,
+          "kind": "study_focus"
+        },
+        {
+          "element_id": "B06-E01:dock",
+          "rect": {
+            "x": 1176,
+            "y": 640,
+            "w": 680,
+            "h": 150
+          },
+          "from": 151.465,
+          "to": 165.864,
+          "kind": "study_mini",
+          "beside_presenter": true
+        }
+      ],
+      "mode": "split",
+      "surface": "page",
+      "panel": {
+        "x": 120,
+        "y": 80,
+        "w": 1000,
+        "h": 710
+      },
+      "forbidden": [
+        {
+          "x": 1176,
+          "y": 80,
+          "w": 680,
+          "h": 920
+        }
+      ]
+    },
+    {
+      "board_id": "B07",
+      "kind": "recap",
+      "start": 165.864,
+      "end": 180.79,
+      "rects": [
+        {
+          "element_id": "bd-b07-t0",
+          "rect": {
+            "x": 994,
+            "y": 88,
+            "w": 826,
+            "h": 66
+          },
+          "from": 165.864,
+          "to": 180.79,
+          "kind": "title"
+        },
+        {
+          "element_id": "B07-E01",
+          "rect": {
+            "x": 994,
+            "y": 212,
+            "w": 826,
+            "h": 203
+          },
+          "from": 168.034,
+          "to": 180.79,
+          "kind": "contrast",
+          "hero_rect": {
+            "x": 994,
+            "y": 392,
+            "w": 826,
+            "h": 203
+          },
+          "hero_until": 173.33
+        },
+        {
+          "element_id": "B07-E02",
+          "rect": {
+            "x": 994,
+            "y": 440,
+            "w": 826,
+            "h": 312
+          },
+          "from": 174.03,
+          "to": 180.79,
+          "kind": "nodes"
+        }
+      ],
+      "mode": "glass",
+      "surface": "glass",
+      "panel": {
+        "x": 994,
+        "y": 88,
+        "w": 826,
+        "h": 702
+      },
+      "forbidden": [
+        {
+          "x": 400,
+          "y": 0,
+          "w": 520,
+          "h": 1080
+        }
+      ]
+    },
+    {
+      "board_id": "B08",
+      "kind": "outro",
+      "start": 180.79,
+      "end": 187.92,
+      "rects": [
+        {
+          "element_id": "bd-b08-t0",
+          "rect": {
+            "x": 994,
+            "y": 124,
+            "w": 826,
+            "h": 70
+          },
+          "from": 180.79,
+          "to": 187.92,
+          "kind": "title"
+        },
+        {
+          "element_id": "B08-E01",
+          "rect": {
+            "x": 994,
+            "y": 303,
+            "w": 826,
+            "h": 166
+          },
+          "from": 182.74,
+          "to": 187.92,
+          "kind": "statement",
+          "hero_rect": {
+            "x": 994,
+            "y": 435,
+            "w": 826,
+            "h": 166
+          },
+          "hero_until": 184.07
+        },
+        {
+          "element_id": "B08-E02",
+          "rect": {
+            "x": 994,
+            "y": 492,
+            "w": 826,
+            "h": 166
+          },
+          "from": 184.77,
+          "to": 187.92,
+          "kind": "statement"
+        }
+      ],
+      "mode": "glass",
+      "surface": "glass",
+      "panel": {
+        "x": 994,
+        "y": 88,
+        "w": 826,
+        "h": 702
+      },
+      "forbidden": [
+        {
+          "x": 400,
+          "y": 0,
+          "w": 520,
+          "h": 1080
+        }
+      ]
+    }
+  ],
+  "layout_modes": [
+    {
+      "board_id": "B01",
+      "mode": "glass",
+      "start": 0.0,
+      "end": 12.745,
+      "presenter": {
+        "window": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 1080
+        },
+        "radius": 0,
+        "scale": 1.0,
+        "x": 0,
+        "y": 0,
+        "punch_origin": "39% 38%"
+      }
+    },
+    {
+      "board_id": "B02",
+      "mode": "pip",
+      "start": 12.745,
+      "end": 36.345,
+      "presenter": {
+        "window": {
+          "x": 1480,
+          "y": 250,
+          "w": 360,
+          "h": 500
+        },
+        "radius": 24,
+        "scale": 0.625,
+        "x": -282.6,
+        "y": -175.0,
+        "punch_origin": "50% 38%"
+      }
+    },
+    {
+      "board_id": "B03",
+      "mode": "split",
+      "start": 36.345,
+      "end": 57.457,
+      "presenter": {
+        "window": {
+          "x": 1176,
+          "y": 80,
+          "w": 680,
+          "h": 920
+        },
+        "radius": 28,
+        "scale": 0.937,
+        "x": -353.6,
+        "y": -92.0,
+        "punch_origin": "50% 38%"
+      }
+    },
+    {
+      "board_id": "B04",
+      "mode": "pip",
+      "start": 57.457,
+      "end": 111.657,
+      "presenter": {
+        "window": {
+          "x": 1480,
+          "y": 250,
+          "w": 360,
+          "h": 500
+        },
+        "radius": 24,
+        "scale": 0.625,
+        "x": -282.6,
+        "y": -175.0,
+        "punch_origin": "50% 38%"
+      }
+    },
+    {
+      "board_id": "B05",
+      "mode": "pip",
+      "start": 111.657,
+      "end": 139.025,
+      "presenter": {
+        "window": {
+          "x": 1480,
+          "y": 250,
+          "w": 360,
+          "h": 500
+        },
+        "radius": 24,
+        "scale": 0.625,
+        "x": -282.6,
+        "y": -175.0,
+        "punch_origin": "50% 38%"
+      }
+    },
+    {
+      "board_id": "B06",
+      "mode": "split",
+      "start": 139.025,
+      "end": 165.864,
+      "presenter": {
+        "window": {
+          "x": 1176,
+          "y": 80,
+          "w": 680,
+          "h": 920
+        },
+        "radius": 28,
+        "scale": 0.937,
+        "x": -353.6,
+        "y": -92.0,
+        "punch_origin": "50% 38%"
+      }
+    },
+    {
+      "board_id": "B07",
+      "mode": "glass",
+      "start": 165.864,
+      "end": 180.79,
+      "presenter": {
+        "window": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 1080
+        },
+        "radius": 0,
+        "scale": 1.0,
+        "x": 0,
+        "y": 0,
+        "punch_origin": "39% 38%"
+      }
+    },
+    {
+      "board_id": "B08",
+      "mode": "glass",
+      "start": 180.79,
+      "end": 187.92,
+      "presenter": {
+        "window": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 1080
+        },
+        "radius": 0,
+        "scale": 1.0,
+        "x": 0,
+        "y": 0,
+        "punch_origin": "39% 38%"
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "at": 12.395,
+      "duration": 0.75,
+      "from": "glass",
+      "to": "pip",
+      "board_id": "B02"
+    },
+    {
+      "at": 35.995,
+      "duration": 0.75,
+      "from": "pip",
+      "to": "split",
+      "board_id": "B03"
+    },
+    {
+      "at": 52.598,
+      "duration": 0.6,
+      "from": "split",
+      "to": "split_docked",
+      "board_id": "B03",
+      "within_board": true
+    },
+    {
+      "at": 57.107,
+      "duration": 0.75,
+      "from": "split_docked",
+      "to": "pip",
+      "board_id": "B04"
+    },
+    {
+      "at": 138.675,
+      "duration": 0.75,
+      "from": "pip",
+      "to": "split",
+      "board_id": "B06"
+    },
+    {
+      "at": 150.975,
+      "duration": 0.6,
+      "from": "split",
+      "to": "split_docked",
+      "board_id": "B06",
+      "within_board": true
+    },
+    {
+      "at": 165.514,
+      "duration": 0.75,
+      "from": "split_docked",
+      "to": "glass",
+      "board_id": "B07"
+    }
+  ],
+  "punch_ins": [
+    43.5,
+    153.233,
+    173.567
+  ],
+  "ending_hold": {
+    "at": 187.266,
+    "duration": 0.5
+  },
+  "presenter_states": {
+    "glass": {
+      "window": {
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080
+      },
+      "radius": 0,
+      "scale": 1.0,
+      "x": 0,
+      "y": 0,
+      "punch_origin": "39% 38%"
+    },
+    "pip": {
+      "window": {
+        "x": 1480,
+        "y": 250,
+        "w": 360,
+        "h": 500
+      },
+      "radius": 24,
+      "scale": 0.625,
+      "x": -282.6,
+      "y": -175.0,
+      "punch_origin": "50% 38%"
+    },
+    "split": {
+      "window": {
+        "x": 1176,
+        "y": 80,
+        "w": 680,
+        "h": 920
+      },
+      "radius": 28,
+      "scale": 0.937,
+      "x": -353.6,
+      "y": -92.0,
+      "punch_origin": "50% 38%"
+    },
+    "split_docked": {
+      "window": {
+        "x": 1176,
+        "y": 80,
+        "w": 680,
+        "h": 540
+      },
+      "radius": 28,
+      "scale": 0.55,
+      "x": -67.1,
+      "y": -54.0,
+      "punch_origin": "50% 38%"
+    }
+  },
+  "audio": [
+    {
+      "file": "presenter.mp4",
+      "start": 0.0,
+      "seconds": 188.466
+    }
+  ],
+  "quiet_segments": [],
+  "presenter_layer": false,
+  "punch_steps": [
+    {
+      "at": 12.395,
+      "scale": 1.0
+    },
+    {
+      "at": 35.995,
+      "scale": 1.0
+    },
+    {
+      "at": 43.5,
+      "scale": 1.06
+    },
+    {
+      "at": 52.598,
+      "scale": 1.0
+    },
+    {
+      "at": 57.107,
+      "scale": 1.0
+    },
+    {
+      "at": 138.675,
+      "scale": 1.0
+    },
+    {
+      "at": 150.975,
+      "scale": 1.0
+    },
+    {
+      "at": 153.233,
+      "scale": 1.06
+    },
+    {
+      "at": 165.514,
+      "scale": 1.0
+    },
+    {
+      "at": 173.567,
+      "scale": 1.06
+    },
+    {
+      "at": 180.8,
+      "scale": 1.0
+    }
+  ],
+  "punch_origins": {
+    "glass": [
+      960,
+      486
+    ],
+    "split": [
+      1516,
+      494
+    ],
+    "split_docked": [
+      1516,
+      323
+    ],
+    "pip": [
+      1660,
+      475
+    ],
+    "full": [
+      960,
+      486
+    ]
+  },
+  "mode_chrome": {
+    "glass": 0,
+    "split": 1,
+    "split_docked": 1,
+    "pip": 1,
+    "full": 0
+  },
+  "first_mode": "glass",
+  "ease": "cubic-bezier(0.22,0.61,0.36,1)",
+  "page_color": "#F2F4F7",
+  "edge": {
+    "color": [
+      255,
+      255,
+      255
+    ],
+    "alpha": 0.92,
+    "width": 3
+  }
+}

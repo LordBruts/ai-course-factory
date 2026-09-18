@@ -1,0 +1,125 @@
+{
+  "status": "pass",
+  "job_id": "rlt-v3-faceless",
+  "version_id": null,
+  "template": "faceless",
+  "attempt": 3,
+  "checks": {
+    "approved_wording_intact": "pass",
+    "assets_present": "pass",
+    "audio_pops": "pass",
+    "audio_stream": "pass",
+    "black_frames": "pass",
+    "caption_occlusion": "pass",
+    "captions_match_narration": "pass",
+    "captions_visible": "pass",
+    "citations_supported": "pass",
+    "container_valid": "pass",
+    "cut_boundaries": "pass",
+    "duration_matches_edl": "pass",
+    "frame_rate": "pass",
+    "frozen_frames": "pass",
+    "narration_matches_script": "pass",
+    "no_clipped_sentences": "pass",
+    "no_duplicated_audio": "pass",
+    "no_new_claims": "pass",
+    "overlay_timing": "pass",
+    "presenter_visible": "skipped",
+    "resolution": "pass",
+    "text_contrast": "pass",
+    "text_overflow": "pass",
+    "video_stream": "pass"
+  },
+  "metrics": {
+    "duration_seconds": 160.034,
+    "expected_seconds": 160.027,
+    "transcript_similarity": 1.0,
+    "words_checked": 375,
+    "caption_cue_count": 197,
+    "black_frame_count": 0,
+    "longest_frozen_seconds": 12.3,
+    "scene_count": 19
+  },
+  "warnings": [],
+  "errors": [],
+  "advisories": [
+    {
+      "code": "timeline_track_too_dense",
+      "message": "Track 1 has 19 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+      "why_accepted": "authoring-style tip; the composition is generated, not hand-maintained"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-00\" is 12.40s but its slot (data-duration) is 12.46s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~12.40s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-01\" is 21.18s but its slot (data-duration) is 21.24s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~21.18s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-02\" is 17.41s but its slot (data-duration) is 17.48s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~17.41s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-03\" is 21.50s but its slot (data-duration) is 21.58s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~21.50s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-04\" is 20.34s but its slot (data-duration) is 20.40s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~20.34s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-05\" is 25.36s but its slot (data-duration) is 25.42s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~25.36s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-06\" is 21.64s but its slot (data-duration) is 21.71s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~21.64s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-07\" is 12.31s but its slot (data-duration) is 12.38s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~12.31s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-08\" is 7.29s but its slot (data-duration) is 7.37s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~7.29s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    }
+  ],
+  "corrections_applied": [
+    {
+      "attempt": 1,
+      "check": "frozen_frames",
+      "action": "S015 had no approved screen text, so S014 held 19.4 s. Bullet matching now understands numbers and units ('650 nanometre' = '650 nm'); S015 shows its approved slide bullet."
+    },
+    {
+      "attempt": 1,
+      "check": "text_overflow",
+      "action": "Removed the decorative GYMRAMP mark from the base layer: it sat under every opaque scene (occluded) and failed WCAG contrast."
+    },
+    {
+      "attempt": 1,
+      "check": "caption_occlusion",
+      "action": "Same mark touched the reserved caption band; removed with it."
+    },
+    {
+      "attempt": 2,
+      "check": "editorial_review (frames inspected)",
+      "action": "Evidence card S010 showed '48 hours' above a finding that, as displayed, reported a null result at one hour. Headline figures are now taken only from the text on the card, and the validator rejects a figure the finding does not contain."
+    },
+    {
+      "attempt": 2,
+      "check": "editorial_review (frames inspected)",
+      "action": "'Sources and next step' appeared twice in a row (section title then outro). A section title followed by a card with the same title is now left out."
+    }
+  ],
+  "generated_at": "2026-09-17T09:53:11+00:00"
+}

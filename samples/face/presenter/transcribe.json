@@ -1,0 +1,26 @@
+{
+  "source": "scribe",
+  "paid": true,
+  "model": "scribe_v1",
+  "audio_seconds": 246.74,
+  "estimated_credits": 271,
+  "seconds": 12.3,
+  "balance_before": {
+    "character_count": 8978,
+    "character_limit": 10000,
+    "at": "2026-09-17T15:15:42Z"
+  },
+  "balance_checks": [
+    {
+      "character_count": 8978,
+      "character_limit": 10000,
+      "at": "2026-09-17T15:15:55Z"
+    },
+    {
+      "character_count": 9252,
+      "character_limit": 10000,
+      "at": "2026-09-17T15:54:15Z"
+    }
+  ],
+  "words": 418
+}

@@ -1,0 +1,987 @@
+{
+  "fps": 30,
+  "source": "/data/video-jobs/rlt-v3-face/presenter/proxy.mp4",
+  "source_duration": 259.034,
+  "output_duration": 188.46666666666667,
+  "ranges": [
+    {
+      "slide": 0,
+      "src_start": 13.2,
+      "src_end": 25.933333333333334,
+      "first_word": 0,
+      "last_word": 31,
+      "sentences": [
+        [
+          0,
+          1
+        ]
+      ],
+      "slide_end": true,
+      "frames": 382,
+      "out_start": 0.0,
+      "out_end": 12.733333333333333,
+      "jump_cut_before": false
+    },
+    {
+      "slide": 1,
+      "src_start": 27.366666666666667,
+      "src_end": 33.733333333333334,
+      "first_word": 32,
+      "last_word": 43,
+      "sentences": [
+        [
+          1,
+          0
+        ]
+      ],
+      "slide_end": false,
+      "frames": 191,
+      "out_start": 12.733333333333333,
+      "out_end": 19.1,
+      "jump_cut_before": false
+    },
+    {
+      "slide": 1,
+      "src_start": 34.63333333333333,
+      "src_end": 51.86666666666667,
+      "first_word": 44,
+      "last_word": 69,
+      "sentences": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "slide_end": true,
+      "frames": 517,
+      "out_start": 19.1,
+      "out_end": 36.333333333333336,
+      "jump_cut_before": true
+    },
+    {
+      "slide": 2,
+      "src_start": 53.36666666666667,
+      "src_end": 60.53333333333333,
+      "first_word": 70,
+      "last_word": 82,
+      "sentences": [
+        [
+          2,
+          0
+        ]
+      ],
+      "slide_end": false,
+      "frames": 215,
+      "out_start": 36.333333333333336,
+      "out_end": 43.5,
+      "jump_cut_before": false
+    },
+    {
+      "slide": 2,
+      "src_start": 67.1,
+      "src_end": 76.73333333333333,
+      "first_word": 93,
+      "last_word": 112,
+      "sentences": [
+        [
+          2,
+          1
+        ]
+      ],
+      "slide_end": false,
+      "frames": 289,
+      "out_start": 43.5,
+      "out_end": 53.13333333333333,
+      "jump_cut_before": true
+    },
+    {
+      "slide": 2,
+      "src_start": 88.0,
+      "src_end": 92.33333333333333,
+      "first_word": 133,
+      "last_word": 139,
+      "sentences": [
+        [
+          2,
+          2
+        ]
+      ],
+      "slide_end": true,
+      "frames": 130,
+      "out_start": 53.13333333333333,
+      "out_end": 57.46666666666667,
+      "jump_cut_before": true
+    },
+    {
+      "slide": 3,
+      "src_start": 93.36666666666666,
+      "src_end": 103.46666666666667,
+      "first_word": 140,
+      "last_word": 158,
+      "sentences": [
+        [
+          3,
+          0
+        ]
+      ],
+      "slide_end": false,
+      "frames": 303,
+      "out_start": 57.46666666666667,
+      "out_end": 67.56666666666666,
+      "jump_cut_before": false
+    },
+    {
+      "slide": 3,
+      "src_start": 104.36666666666666,
+      "src_end": 124.8,
+      "first_word": 159,
+      "last_word": 194,
+      "sentences": [
+        [
+          3,
+          1
+        ]
+      ],
+      "slide_end": true,
+      "frames": 613,
+      "out_start": 67.56666666666666,
+      "out_end": 88.0,
+      "jump_cut_before": true
+    },
+    {
+      "slide": 4,
+      "src_start": 126.96666666666667,
+      "src_end": 150.63333333333333,
+      "first_word": 195,
+      "last_word": 237,
+      "sentences": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "slide_end": true,
+      "frames": 710,
+      "out_start": 88.0,
+      "out_end": 111.66666666666667,
+      "jump_cut_before": false
+    },
+    {
+      "slide": 5,
+      "src_start": 153.26666666666668,
+      "src_end": 161.06666666666666,
+      "first_word": 238,
+      "last_word": 251,
+      "sentences": [
+        [
+          5,
+          0
+        ]
+      ],
+      "slide_end": false,
+      "frames": 234,
+      "out_start": 111.66666666666667,
+      "out_end": 119.46666666666667,
+      "jump_cut_before": false
+    },
+    {
+      "slide": 5,
+      "src_start": 161.9,
+      "src_end": 174.9,
+      "first_word": 252,
+      "last_word": 281,
+      "sentences": [
+        [
+          5,
+          1
+        ]
+      ],
+      "slide_end": false,
+      "frames": 390,
+      "out_start": 119.46666666666667,
+      "out_end": 132.46666666666667,
+      "jump_cut_before": true
+    },
+    {
+      "slide": 5,
+      "src_start": 176.56666666666666,
+      "src_end": 183.13333333333333,
+      "first_word": 282,
+      "last_word": 291,
+      "sentences": [
+        [
+          5,
+          2
+        ]
+      ],
+      "slide_end": true,
+      "frames": 197,
+      "out_start": 132.46666666666667,
+      "out_end": 139.03333333333333,
+      "jump_cut_before": true
+    },
+    {
+      "slide": 6,
+      "src_start": 185.86666666666667,
+      "src_end": 198.2,
+      "first_word": 292,
+      "last_word": 314,
+      "sentences": [
+        [
+          6,
+          0
+        ]
+      ],
+      "slide_end": false,
+      "frames": 370,
+      "out_start": 139.03333333333333,
+      "out_end": 151.36666666666667,
+      "jump_cut_before": false
+    },
+    {
+      "slide": 6,
+      "src_start": 199.7,
+      "src_end": 201.56666666666666,
+      "first_word": 315,
+      "last_word": 317,
+      "sentences": [
+        [
+          6,
+          1
+        ]
+      ],
+      "slide_end": false,
+      "frames": 56,
+      "out_start": 151.36666666666667,
+      "out_end": 153.23333333333332,
+      "jump_cut_before": true
+    },
+    {
+      "slide": 6,
+      "src_start": 208.96666666666667,
+      "src_end": 221.6,
+      "first_word": 326,
+      "last_word": 352,
+      "sentences": [
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "slide_end": true,
+      "frames": 379,
+      "out_start": 153.23333333333332,
+      "out_end": 165.86666666666667,
+      "jump_cut_before": true
+    },
+    {
+      "slide": 7,
+      "src_start": 224.9,
+      "src_end": 232.6,
+      "first_word": 355,
+      "last_word": 372,
+      "sentences": [
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          1
+        ]
+      ],
+      "slide_end": false,
+      "frames": 231,
+      "out_start": 165.86666666666667,
+      "out_end": 173.56666666666666,
+      "jump_cut_before": false
+    },
+    {
+      "slide": 7,
+      "src_start": 233.33333333333334,
+      "src_end": 240.56666666666666,
+      "first_word": 373,
+      "last_word": 386,
+      "sentences": [
+        [
+          7,
+          2
+        ]
+      ],
+      "slide_end": true,
+      "frames": 217,
+      "out_start": 173.56666666666666,
+      "out_end": 180.8,
+      "jump_cut_before": true
+    },
+    {
+      "slide": 8,
+      "src_start": 242.56666666666666,
+      "src_end": 250.23333333333332,
+      "first_word": 387,
+      "last_word": 407,
+      "sentences": [
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          1
+        ]
+      ],
+      "slide_end": true,
+      "frames": 230,
+      "out_start": 180.8,
+      "out_end": 188.46666666666667,
+      "jump_cut_before": false
+    }
+  ],
+  "takes": [
+    {
+      "slide": 0,
+      "sentence": 0,
+      "text": "Welcome.",
+      "status": "omitted",
+      "chosen": null,
+      "rejected": []
+    },
+    {
+      "slide": 0,
+      "sentence": 1,
+      "text": "In this course, you will learn what red light therapy is, what exercise recovery research reports, why protocols are hard to compare, and how to discuss this service honestly and within scope.",
+      "status": "ok",
+      "chosen": {
+        "start": 13.448,
+        "end": 25.368,
+        "score": 0.969,
+        "coverage": 0.969,
+        "text": "In this course, you will learn what red light therapy is, what exercise recovery research reports, why reports are hard to compare, and how to discuss this service honestly and within scope."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 1,
+      "sentence": 0,
+      "text": "Photobiomodulation, or PBM, uses red or near-infrared light applied to the body.",
+      "status": "ok",
+      "chosen": {
+        "start": 27.628,
+        "end": 33.568,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Photobiomodulation or PBM uses red or near-infrared light applied to the body."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 1,
+      "sentence": 1,
+      "text": "Reviews describe proposed effects on cellular metabolism, oxidative stress, and inflammatory signalling, but protocol differences make simple explanations difficult.",
+      "status": "ok",
+      "chosen": {
+        "start": 34.748,
+        "end": 46.548,
+        "score": 0.973,
+        "coverage": 0.947,
+        "text": "Review describe proposed effects on cellular metabolism, oxidative stress, and inflammatory signaling. But protocol differences make simple explanations difficult."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 1,
+      "sentence": 2,
+      "text": "Lasers and LED devices also differ technically.",
+      "status": "ok",
+      "chosen": {
+        "start": 47.528,
+        "end": 51.328,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Lasers and LED devices also differ technically."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 2,
+      "sentence": 0,
+      "text": "PBM is often described as influencing bioenergetics and immune or oxidative stress pathways.",
+      "status": "ok",
+      "chosen": {
+        "start": 53.628,
+        "end": 60.348,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "PBM is often described as influencing bioenergetics and immune or oxidative stress pathways."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 2,
+      "sentence": 1,
+      "text": "But one human study found a single PBM session did not increase mitochondrial respiration in skeletal muscle or skin tissue.",
+      "status": "ok",
+      "chosen": {
+        "start": 67.228,
+        "end": 76.548,
+        "score": 0.974,
+        "coverage": 0.95,
+        "text": "But one human study found a single PBM session did not increase mitochondrial respiration in skeletal muscle or skin tissues."
+      },
+      "rejected": [
+        {
+          "start": 61.488,
+          "end": 66.268,
+          "score": 0.6,
+          "coverage": 0.45,
+          "text": "But one human study found a single PM-- PBM session--"
+        },
+        {
+          "start": 78.848,
+          "end": 87.048,
+          "score": 0.923,
+          "coverage": 0.9,
+          "text": "But one human study found a single PBM session did not increase mitochondrial respiration in skeletal muscles or skin tissues."
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "sentence": 2,
+      "text": "That means mechanism claims should stay cautious.",
+      "status": "ok",
+      "chosen": {
+        "start": 88.128,
+        "end": 91.788,
+        "score": 0.857,
+        "coverage": 0.857,
+        "text": "That means mechanisms claims should stay cautious."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 3,
+      "sentence": 0,
+      "text": "A review reports promising effects for exertion recovery, including muscle strength, endurance, and reduced fatigue in sport performance studies.",
+      "status": "ok",
+      "chosen": {
+        "start": 93.608,
+        "end": 103.288,
+        "score": 0.947,
+        "coverage": 0.947,
+        "text": "A review reports promising effects for exertion, recovery, including muscle strength, endurance, and reduced fatigue in sports performance studies."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 3,
+      "sentence": 1,
+      "text": "In CrossFit athletes, PBMT-sMF did not beat other recovery methods for jump performance at one hour, but showed better jump results than passive recovery at 24 and 48 hours on secondary analysis.",
+      "status": "ok",
+      "chosen": {
+        "start": 104.488,
+        "end": 124.248,
+        "score": 0.943,
+        "coverage": 1.0,
+        "text": "In CrossFit athletes, PBMT-SMF did not beat other recovery methods for jump performance at one hour, but showed better jump performances or better jump results than passive recovery at twenty-four and forty-eight hours on secondary analysis."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 4,
+      "sentence": 0,
+      "text": "Evidence on pain is mixed across conditions.",
+      "status": "ok",
+      "chosen": {
+        "start": 127.208,
+        "end": 129.788,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Evidence on pain is mixed across conditions."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 4,
+      "sentence": 1,
+      "text": "A fibromyalgia review reported consistent short-term pain and quality-of-life improvements, though heterogeneity limited generalizability.",
+      "status": "ok",
+      "chosen": {
+        "start": 130.368,
+        "end": 140.987,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "A fibromyalgia review reported consistent short-term pain and quality of life improvements, though heterogeneity limited generalizability"
+      },
+      "rejected": []
+    },
+    {
+      "slide": 4,
+      "sentence": 2,
+      "text": "In chronic trapezius myofascial pain, 808 nanometre laser was not superior to placebo for pain outcomes.",
+      "status": "ok",
+      "chosen": {
+        "start": 141.448,
+        "end": 150.068,
+        "score": 0.882,
+        "coverage": 0.938,
+        "text": "in chronic trapezius myofascial pain. Eight oh eight nanometer laser was not superior to placebo for p-- for pain outcomes."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 5,
+      "sentence": 0,
+      "text": "Protocol design matters because studies vary in wavelength, energy dose, timing, and application target.",
+      "status": "ok",
+      "chosen": {
+        "start": 153.508,
+        "end": 160.888,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Protocol design matters because studies vary in wavelength, energy dose, timing, and application target."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 5,
+      "sentence": 1,
+      "text": "Examples in the brief include 650 nanometre LED use before exercise-induced muscle damage and 630 plus 850 nanometre LED use in low back pain research.",
+      "status": "ok",
+      "chosen": {
+        "start": 162.028,
+        "end": 174.728,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Examples in the brief include six hundred and fifty nanometer LED use before exercise-induced muscle damage and six thirty plus eight fifty nanometer LED use in low back pain research."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 5,
+      "sentence": 2,
+      "text": "Transcranial protocols are preliminary and not routine fitness-business practice.",
+      "status": "ok",
+      "chosen": {
+        "start": 176.688,
+        "end": 182.568,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Transcranial protocols are preliminary and not routine fitness business practice."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 6,
+      "sentence": 0,
+      "text": "Some included trials reported no adverse events or only mild and infrequent adverse effects, but safety reporting is not uniform across the literature.",
+      "status": "ok",
+      "chosen": {
+        "start": 186.108,
+        "end": 198.008,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Some included trials reported no adverse events or only mild and infrequent adverse effects, but safety reporting is not uniform across the literature."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 6,
+      "sentence": 1,
+      "text": "Stay within scope.",
+      "status": "ok",
+      "chosen": {
+        "start": 199.808,
+        "end": 201.388,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Stay within scope."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 6,
+      "sentence": 2,
+      "text": "Present PBM as a wellness or recovery service, not a medical treatment.",
+      "status": "ok",
+      "chosen": {
+        "start": 209.088,
+        "end": 213.868,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Present PBM as a wellness or recovery service, not a medical treatment."
+      },
+      "rejected": [
+        {
+          "start": 203.448,
+          "end": 208.188,
+          "score": 0.762,
+          "coverage": 0.667,
+          "text": "Present PBM as a wellness or recovery servi-service."
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "sentence": 3,
+      "text": "Be clear that evidence is promising in places, mixed in others, and not a guarantee.",
+      "status": "ok",
+      "chosen": {
+        "start": 214.708,
+        "end": 221.048,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Be clear that evidence is promising in places, mixed in others, and not a guarantee."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 7,
+      "sentence": 0,
+      "text": "The main message is simple.",
+      "status": "ok",
+      "chosen": {
+        "start": 225.148,
+        "end": 226.448,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "The main message is simple."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 7,
+      "sentence": 1,
+      "text": "PBM may support recovery in some contexts, but the evidence is not uniform.",
+      "status": "ok",
+      "chosen": {
+        "start": 227.168,
+        "end": 232.408,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "PBM may support recovery in some contexts, but the evidence is not uniform."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 7,
+      "sentence": 2,
+      "text": "Your role is to understand the protocol, stay in scope, and communicate uncertainty clearly.",
+      "status": "ok",
+      "chosen": {
+        "start": 233.448,
+        "end": 240.008,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Your role is to understand the protocol, stay in scope, and communicate uncertainty clearly."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 8,
+      "sentence": 0,
+      "text": "Every claim in this course is linked to the sources listed here.",
+      "status": "weak",
+      "chosen": {
+        "start": 242.808,
+        "end": 245.588,
+        "score": 0.833,
+        "coverage": 0.833,
+        "text": "Every claim in this source is linked to the source listed here."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 8,
+      "sentence": 1,
+      "text": "Review them in the course materials before your certification exam.",
+      "status": "ok",
+      "chosen": {
+        "start": 246.188,
+        "end": 249.688,
+        "score": 0.947,
+        "coverage": 0.9,
+        "text": "Review them in the course materials before certification exam."
+      },
+      "rejected": []
+    }
+  ],
+  "cut_words": [
+    {
+      "text": "But",
+      "start": 61.488,
+      "end": 61.868
+    },
+    {
+      "text": "one",
+      "start": 62.488,
+      "end": 62.648
+    },
+    {
+      "text": "human",
+      "start": 62.728,
+      "end": 62.968
+    },
+    {
+      "text": "study",
+      "start": 63.068,
+      "end": 63.288
+    },
+    {
+      "text": "found",
+      "start": 63.468,
+      "end": 63.688
+    },
+    {
+      "text": "a",
+      "start": 63.728,
+      "end": 63.808
+    },
+    {
+      "text": "single",
+      "start": 63.888,
+      "end": 64.168
+    },
+    {
+      "text": "PM--",
+      "start": 64.268,
+      "end": 64.568
+    },
+    {
+      "text": "PBM",
+      "start": 64.728,
+      "end": 65.528
+    },
+    {
+      "text": "session--",
+      "start": 65.888,
+      "end": 66.268
+    },
+    {
+      "text": "But",
+      "start": 78.848,
+      "end": 79.248
+    },
+    {
+      "text": "one",
+      "start": 79.568,
+      "end": 79.768
+    },
+    {
+      "text": "human",
+      "start": 79.828,
+      "end": 80.108
+    },
+    {
+      "text": "study",
+      "start": 80.228,
+      "end": 80.588
+    },
+    {
+      "text": "found",
+      "start": 80.668,
+      "end": 80.888
+    },
+    {
+      "text": "a",
+      "start": 80.948,
+      "end": 81.028
+    },
+    {
+      "text": "single",
+      "start": 81.088,
+      "end": 81.368
+    },
+    {
+      "text": "PBM",
+      "start": 81.508,
+      "end": 81.988
+    },
+    {
+      "text": "session",
+      "start": 82.048,
+      "end": 82.368
+    },
+    {
+      "text": "did",
+      "start": 82.448,
+      "end": 82.608
+    },
+    {
+      "text": "not",
+      "start": 82.788,
+      "end": 83.048
+    },
+    {
+      "text": "increase",
+      "start": 83.088,
+      "end": 83.508
+    },
+    {
+      "text": "mitochondrial",
+      "start": 83.568,
+      "end": 84.108
+    },
+    {
+      "text": "respiration",
+      "start": 84.108,
+      "end": 84.648
+    },
+    {
+      "text": "in",
+      "start": 84.688,
+      "end": 84.768
+    },
+    {
+      "text": "skeletal",
+      "start": 84.808,
+      "end": 85.208
+    },
+    {
+      "text": "muscles",
+      "start": 85.268,
+      "end": 85.628
+    },
+    {
+      "text": "or",
+      "start": 86.168,
+      "end": 86.308
+    },
+    {
+      "text": "skin",
+      "start": 86.368,
+      "end": 86.608
+    },
+    {
+      "text": "tissues.",
+      "start": 86.648,
+      "end": 87.048
+    },
+    {
+      "text": "Present",
+      "start": 203.448,
+      "end": 203.788
+    },
+    {
+      "text": "PBM",
+      "start": 203.908,
+      "end": 204.448
+    },
+    {
+      "text": "as",
+      "start": 204.728,
+      "end": 204.848
+    },
+    {
+      "text": "a",
+      "start": 204.868,
+      "end": 204.948
+    },
+    {
+      "text": "wellness",
+      "start": 204.988,
+      "end": 205.528
+    },
+    {
+      "text": "or",
+      "start": 205.808,
+      "end": 206.088
+    },
+    {
+      "text": "recovery",
+      "start": 206.468,
+      "end": 206.868
+    },
+    {
+      "text": "servi-service.",
+      "start": 206.968,
+      "end": 208.188
+    },
+    {
+      "text": "Key",
+      "start": 223.108,
+      "end": 223.248
+    },
+    {
+      "text": "takeaways.",
+      "start": 223.308,
+      "end": 223.828
+    },
+    {
+      "text": "When",
+      "start": 251.328,
+      "end": 251.488
+    },
+    {
+      "text": "done,",
+      "start": 251.588,
+      "end": 251.788
+    },
+    {
+      "text": "save",
+      "start": 252.468,
+      "end": 252.668
+    },
+    {
+      "text": "the",
+      "start": 252.708,
+      "end": 252.788
+    },
+    {
+      "text": "file",
+      "start": 252.828,
+      "end": 253.048
+    },
+    {
+      "text": "anywhere",
+      "start": 253.108,
+      "end": 253.528
+    },
+    {
+      "text": "and",
+      "start": 254.988,
+      "end": 255.108
+    },
+    {
+      "text": "share",
+      "start": 255.148,
+      "end": 255.308
+    },
+    {
+      "text": "the",
+      "start": 255.328,
+      "end": 255.428
+    },
+    {
+      "text": "path.",
+      "start": 255.448,
+      "end": 255.808
+    }
+  ],
+  "summary": {
+    "sentences": 25,
+    "ok": 23,
+    "weak": 1,
+    "omitted": 1,
+    "missing": 0,
+    "retakes_dropped": 3,
+    "ranges": 18,
+    "jump_cuts": 9
+  }
+}

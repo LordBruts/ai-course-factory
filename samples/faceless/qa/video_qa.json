@@ -1,0 +1,105 @@
+{
+  "status": "pass",
+  "job_id": "rlt-v3-faceless-v2",
+  "version_id": null,
+  "template": "faceless",
+  "attempt": 2,
+  "checks": {
+    "approved_wording_intact": "pass",
+    "assets_present": "pass",
+    "audio_pops": "pass",
+    "audio_stream": "pass",
+    "black_frames": "pass",
+    "caption_occlusion": "pass",
+    "captions_match_narration": "pass",
+    "captions_visible": "pass",
+    "citations_supported": "pass",
+    "container_valid": "pass",
+    "cut_boundaries": "pass",
+    "duration_matches_edl": "pass",
+    "frame_rate": "pass",
+    "frozen_frames": "pass",
+    "narration_matches_script": "pass",
+    "no_clipped_sentences": "pass",
+    "no_duplicated_audio": "pass",
+    "no_new_claims": "pass",
+    "overlay_timing": "pass",
+    "presenter_visible": "skipped",
+    "resolution": "pass",
+    "text_contrast": "pass",
+    "text_overflow": "pass",
+    "video_stream": "pass"
+  },
+  "metrics": {
+    "duration_seconds": 160.034,
+    "expected_seconds": 160.027,
+    "transcript_similarity": 1.0,
+    "words_checked": 375,
+    "caption_cue_count": 197,
+    "black_frame_count": 0,
+    "longest_frozen_seconds": 7.03,
+    "scene_count": 23
+  },
+  "warnings": [],
+  "errors": [],
+  "advisories": [
+    {
+      "code": "timeline_track_too_dense",
+      "message": "Track 1 has 8 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+      "why_accepted": "authoring-style tip; the composition is generated, not hand-maintained"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-00\" is 12.40s but its slot (data-duration) is 12.46s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~12.40s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-01\" is 21.18s but its slot (data-duration) is 21.24s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~21.18s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-02\" is 17.41s but its slot (data-duration) is 17.48s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~17.41s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-03\" is 21.50s but its slot (data-duration) is 21.58s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~21.50s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-04\" is 20.34s but its slot (data-duration) is 20.40s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~20.34s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-05\" is 25.36s but its slot (data-duration) is 25.42s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~25.36s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-06\" is 21.64s but its slot (data-duration) is 21.71s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~21.64s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-07\" is 12.31s but its slot (data-duration) is 12.38s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~12.31s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    },
+    {
+      "code": "clip_media_fit",
+      "message": "Audio \"aud-08\" is 7.29s but its slot (data-duration) is 7.37s \u2014 the slot is shortened to the media length when rendered. Set data-duration to ~7.29s if that isn't intended.",
+      "why_accepted": "MP3 encoder padding: the frame-count duration exceeds the decoded length by under 150 ms, leaving a silent gap between files, not drift"
+    }
+  ],
+  "corrections_applied": [
+    {
+      "attempt": 1,
+      "check": "text_contrast",
+      "action": "White or orange small text on the bright accent measured 2.58-2.84:1 (roadmap number badges, the 650 nm pin and legend key, the scope chip). These now use the deep accent (#C74E17): 4.64:1 with white, 4.21:1 on the page."
+    }
+  ],
+  "generated_at": "2026-09-17T11:55:16+00:00"
+}

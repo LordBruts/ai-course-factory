@@ -1,0 +1,465 @@
+{
+  "status": "fail",
+  "job_id": "rlt-v3-face",
+  "version_id": null,
+  "template": "face",
+  "attempt": 1,
+  "checks": {
+    "approved_wording_intact": "pass",
+    "assets_present": "pass",
+    "audio_pops": "pass",
+    "audio_stream": "pass",
+    "black_frames": "pass",
+    "caption_occlusion": "pass",
+    "captions_match_narration": "pass",
+    "captions_visible": "pass",
+    "citations_supported": "pass",
+    "container_valid": "pass",
+    "cut_boundaries": "pass",
+    "duration_matches_edl": "pass",
+    "frame_rate": "pass",
+    "frozen_frames": "pass",
+    "loudness": "pass",
+    "narration_matches_script": "pass",
+    "no_clipped_sentences": "pass",
+    "no_duplicated_audio": "pass",
+    "no_new_claims": "pass",
+    "overlay_timing": "pass",
+    "presenter_visible": "pass",
+    "resolution": "pass",
+    "sections_match_script": "fail",
+    "takes_complete": "warn",
+    "text_contrast": "pass",
+    "text_overflow": "pass",
+    "video_stream": "pass"
+  },
+  "metrics": {
+    "duration_seconds": 188.48,
+    "expected_seconds": 188.466,
+    "transcript_similarity": 0.9495,
+    "words_checked": 361,
+    "caption_cue_count": 198,
+    "black_frame_count": 0,
+    "longest_frozen_seconds": 0.0,
+    "scene_count": 23,
+    "takes": {
+      "sentences": 25,
+      "ok": 23,
+      "weak": 1,
+      "omitted": 1,
+      "missing": 0,
+      "retakes_dropped": 3,
+      "ranges": 18,
+      "jump_cuts": 9
+    },
+    "section_similarity": {
+      "Red Light Therapy for Exercise Recovery": 0.954,
+      "What PBM is": 0.974,
+      "How it may work": 0.95,
+      "Recovery and performance evidence": 0.944,
+      "Pain and related outcomes": 0.951,
+      "Protocols and device choices": 1.0,
+      "Safety, scope, and client talk": 1.0,
+      "Key Takeaways": 1.0,
+      "Sources and next step": 0.884
+    },
+    "av_drift_seconds": 0.008,
+    "integrated_lufs": -16.5,
+    "true_peak_dbfs": -0.7
+  },
+  "warnings": [
+    {
+      "check": "takes_complete",
+      "message": "not said in the recording (short, no claim): \"Welcome.\""
+    },
+    {
+      "check": "takes_complete",
+      "message": "no clean take: \"Every claim in this course is linked to the sources listed here.\" was read as \"Every claim in this source is linked to the source listed here.\""
+    }
+  ],
+  "errors": [
+    {
+      "check": "sections_match_script",
+      "message": "sections below 92%: Sources and next step 88.4% (course -> source; sources -> source; your -> )",
+      "auto_correctable": false
+    }
+  ],
+  "advisories": [
+    {
+      "code": "timeline_track_too_dense",
+      "message": "Track 1 has 8 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+      "why_accepted": "authoring-style tip; the composition is generated, not hand-maintained"
+    }
+  ],
+  "corrections_applied": [],
+  "takes": [
+    {
+      "slide": 0,
+      "sentence": 0,
+      "text": "Welcome.",
+      "status": "omitted",
+      "chosen": null,
+      "rejected": []
+    },
+    {
+      "slide": 0,
+      "sentence": 1,
+      "text": "In this course, you will learn what red light therapy is, what exercise recovery research reports, why protocols are hard to compare, and how to discuss this service honestly and within scope.",
+      "status": "ok",
+      "chosen": {
+        "start": 13.448,
+        "end": 25.368,
+        "score": 0.969,
+        "coverage": 0.969,
+        "text": "In this course, you will learn what red light therapy is, what exercise recovery research reports, why reports are hard to compare, and how to discuss this service honestly and within scope."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 1,
+      "sentence": 0,
+      "text": "Photobiomodulation, or PBM, uses red or near-infrared light applied to the body.",
+      "status": "ok",
+      "chosen": {
+        "start": 27.628,
+        "end": 33.568,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Photobiomodulation or PBM uses red or near-infrared light applied to the body."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 1,
+      "sentence": 1,
+      "text": "Reviews describe proposed effects on cellular metabolism, oxidative stress, and inflammatory signalling, but protocol differences make simple explanations difficult.",
+      "status": "ok",
+      "chosen": {
+        "start": 34.748,
+        "end": 46.548,
+        "score": 0.973,
+        "coverage": 0.947,
+        "text": "Review describe proposed effects on cellular metabolism, oxidative stress, and inflammatory signaling. But protocol differences make simple explanations difficult."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 1,
+      "sentence": 2,
+      "text": "Lasers and LED devices also differ technically.",
+      "status": "ok",
+      "chosen": {
+        "start": 47.528,
+        "end": 51.328,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Lasers and LED devices also differ technically."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 2,
+      "sentence": 0,
+      "text": "PBM is often described as influencing bioenergetics and immune or oxidative stress pathways.",
+      "status": "ok",
+      "chosen": {
+        "start": 53.628,
+        "end": 60.348,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "PBM is often described as influencing bioenergetics and immune or oxidative stress pathways."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 2,
+      "sentence": 1,
+      "text": "But one human study found a single PBM session did not increase mitochondrial respiration in skeletal muscle or skin tissue.",
+      "status": "ok",
+      "chosen": {
+        "start": 67.228,
+        "end": 76.548,
+        "score": 0.974,
+        "coverage": 0.95,
+        "text": "But one human study found a single PBM session did not increase mitochondrial respiration in skeletal muscle or skin tissues."
+      },
+      "rejected": [
+        {
+          "start": 61.488,
+          "end": 66.268,
+          "score": 0.6,
+          "coverage": 0.45,
+          "text": "But one human study found a single PM-- PBM session--"
+        },
+        {
+          "start": 78.848,
+          "end": 87.048,
+          "score": 0.923,
+          "coverage": 0.9,
+          "text": "But one human study found a single PBM session did not increase mitochondrial respiration in skeletal muscles or skin tissues."
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "sentence": 2,
+      "text": "That means mechanism claims should stay cautious.",
+      "status": "ok",
+      "chosen": {
+        "start": 88.128,
+        "end": 91.788,
+        "score": 0.857,
+        "coverage": 0.857,
+        "text": "That means mechanisms claims should stay cautious."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 3,
+      "sentence": 0,
+      "text": "A review reports promising effects for exertion recovery, including muscle strength, endurance, and reduced fatigue in sport performance studies.",
+      "status": "ok",
+      "chosen": {
+        "start": 93.608,
+        "end": 103.288,
+        "score": 0.947,
+        "coverage": 0.947,
+        "text": "A review reports promising effects for exertion, recovery, including muscle strength, endurance, and reduced fatigue in sports performance studies."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 3,
+      "sentence": 1,
+      "text": "In CrossFit athletes, PBMT-sMF did not beat other recovery methods for jump performance at one hour, but showed better jump results than passive recovery at 24 and 48 hours on secondary analysis.",
+      "status": "ok",
+      "chosen": {
+        "start": 104.488,
+        "end": 124.248,
+        "score": 0.943,
+        "coverage": 1.0,
+        "text": "In CrossFit athletes, PBMT-SMF did not beat other recovery methods for jump performance at one hour, but showed better jump performances or better jump results than passive recovery at twenty-four and forty-eight hours on secondary analysis."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 4,
+      "sentence": 0,
+      "text": "Evidence on pain is mixed across conditions.",
+      "status": "ok",
+      "chosen": {
+        "start": 127.208,
+        "end": 129.788,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Evidence on pain is mixed across conditions."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 4,
+      "sentence": 1,
+      "text": "A fibromyalgia review reported consistent short-term pain and quality-of-life improvements, though heterogeneity limited generalizability.",
+      "status": "ok",
+      "chosen": {
+        "start": 130.368,
+        "end": 140.987,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "A fibromyalgia review reported consistent short-term pain and quality of life improvements, though heterogeneity limited generalizability"
+      },
+      "rejected": []
+    },
+    {
+      "slide": 4,
+      "sentence": 2,
+      "text": "In chronic trapezius myofascial pain, 808 nanometre laser was not superior to placebo for pain outcomes.",
+      "status": "ok",
+      "chosen": {
+        "start": 141.448,
+        "end": 150.068,
+        "score": 0.882,
+        "coverage": 0.938,
+        "text": "in chronic trapezius myofascial pain. Eight oh eight nanometer laser was not superior to placebo for p-- for pain outcomes."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 5,
+      "sentence": 0,
+      "text": "Protocol design matters because studies vary in wavelength, energy dose, timing, and application target.",
+      "status": "ok",
+      "chosen": {
+        "start": 153.508,
+        "end": 160.888,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Protocol design matters because studies vary in wavelength, energy dose, timing, and application target."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 5,
+      "sentence": 1,
+      "text": "Examples in the brief include 650 nanometre LED use before exercise-induced muscle damage and 630 plus 850 nanometre LED use in low back pain research.",
+      "status": "ok",
+      "chosen": {
+        "start": 162.028,
+        "end": 174.728,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Examples in the brief include six hundred and fifty nanometer LED use before exercise-induced muscle damage and six thirty plus eight fifty nanometer LED use in low back pain research."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 5,
+      "sentence": 2,
+      "text": "Transcranial protocols are preliminary and not routine fitness-business practice.",
+      "status": "ok",
+      "chosen": {
+        "start": 176.688,
+        "end": 182.568,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Transcranial protocols are preliminary and not routine fitness business practice."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 6,
+      "sentence": 0,
+      "text": "Some included trials reported no adverse events or only mild and infrequent adverse effects, but safety reporting is not uniform across the literature.",
+      "status": "ok",
+      "chosen": {
+        "start": 186.108,
+        "end": 198.008,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Some included trials reported no adverse events or only mild and infrequent adverse effects, but safety reporting is not uniform across the literature."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 6,
+      "sentence": 1,
+      "text": "Stay within scope.",
+      "status": "ok",
+      "chosen": {
+        "start": 199.808,
+        "end": 201.388,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Stay within scope."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 6,
+      "sentence": 2,
+      "text": "Present PBM as a wellness or recovery service, not a medical treatment.",
+      "status": "ok",
+      "chosen": {
+        "start": 209.088,
+        "end": 213.868,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Present PBM as a wellness or recovery service, not a medical treatment."
+      },
+      "rejected": [
+        {
+          "start": 203.448,
+          "end": 208.188,
+          "score": 0.762,
+          "coverage": 0.667,
+          "text": "Present PBM as a wellness or recovery servi-service."
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "sentence": 3,
+      "text": "Be clear that evidence is promising in places, mixed in others, and not a guarantee.",
+      "status": "ok",
+      "chosen": {
+        "start": 214.708,
+        "end": 221.048,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Be clear that evidence is promising in places, mixed in others, and not a guarantee."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 7,
+      "sentence": 0,
+      "text": "The main message is simple.",
+      "status": "ok",
+      "chosen": {
+        "start": 225.148,
+        "end": 226.448,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "The main message is simple."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 7,
+      "sentence": 1,
+      "text": "PBM may support recovery in some contexts, but the evidence is not uniform.",
+      "status": "ok",
+      "chosen": {
+        "start": 227.168,
+        "end": 232.408,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "PBM may support recovery in some contexts, but the evidence is not uniform."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 7,
+      "sentence": 2,
+      "text": "Your role is to understand the protocol, stay in scope, and communicate uncertainty clearly.",
+      "status": "ok",
+      "chosen": {
+        "start": 233.448,
+        "end": 240.008,
+        "score": 1.0,
+        "coverage": 1.0,
+        "text": "Your role is to understand the protocol, stay in scope, and communicate uncertainty clearly."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 8,
+      "sentence": 0,
+      "text": "Every claim in this course is linked to the sources listed here.",
+      "status": "weak",
+      "chosen": {
+        "start": 242.808,
+        "end": 245.588,
+        "score": 0.833,
+        "coverage": 0.833,
+        "text": "Every claim in this source is linked to the source listed here."
+      },
+      "rejected": []
+    },
+    {
+      "slide": 8,
+      "sentence": 1,
+      "text": "Review them in the course materials before your certification exam.",
+      "status": "ok",
+      "chosen": {
+        "start": 246.188,
+        "end": 249.688,
+        "score": 0.947,
+        "coverage": 0.9,
+        "text": "Review them in the course materials before certification exam."
+      },
+      "rejected": []
+    }
+  ],
+  "generated_at": "2026-09-18T11:03:35+00:00"
+}

@@ -1,0 +1,662 @@
+{
+  "course_slug": "red-light-therapy-photobiomodulation-for-exercise-recovery",
+  "version": 3,
+  "title": "Red Light Therapy for Exercise Recovery",
+  "subtitle": "Evidence, protocols, and professional practice",
+  "audience": "Fitness, wellness and recovery professionals (health clubs, recovery centres, boutique studios)",
+  "intro_notes": "Welcome. In this course, you will learn what red light therapy is, what exercise recovery research reports, why protocols are hard to compare, and how to discuss this service honestly and within scope.",
+  "slides": [
+    {
+      "title": "What PBM is",
+      "bullets": [
+        "PBM uses red or near-infrared light on body tissues [1, 2]",
+        "Lasers and LEDs differ in technical features [1]",
+        "Research protocols vary widely across settings [1, 2]"
+      ],
+      "notes": "Photobiomodulation, or PBM, uses red or near-infrared light applied to the body [1, 2]. Reviews describe proposed effects on cellular metabolism, oxidative stress, and inflammatory signalling, but protocol differences make simple explanations difficult [1, 2]. Lasers and LED devices also differ technically [1].",
+      "refs": [
+        1,
+        2
+      ]
+    },
+    {
+      "title": "How it may work",
+      "bullets": [
+        "Often described as support for bioenergetics [2]",
+        "Proposed pathways include oxidative stress signalling [2]",
+        "Human mechanism evidence is not settled [3]"
+      ],
+      "notes": "PBM is often described as influencing bioenergetics and immune or oxidative stress pathways [2]. But one human study found a single PBM session did not increase mitochondrial respiration in skeletal muscle or skin tissue [3]. That means mechanism claims should stay cautious [3].",
+      "refs": [
+        2,
+        3
+      ]
+    },
+    {
+      "title": "Recovery and performance evidence",
+      "bullets": [
+        "Sport recovery findings are promising but mixed [1, 4]",
+        "Some studies report better later recovery markers [4]",
+        "Primary short-term performance results may not differ [4]"
+      ],
+      "notes": "A review reports promising effects for exertion recovery, including muscle strength, endurance, and reduced fatigue in sport performance studies [1]. In CrossFit athletes, PBMT-sMF did not beat other recovery methods for jump performance at one hour, but showed better jump results than passive recovery at 24 and 48 hours on secondary analysis [4].",
+      "refs": [
+        1,
+        4
+      ]
+    },
+    {
+      "title": "Pain and related outcomes",
+      "bullets": [
+        "Pain findings vary by condition [5, 6, 7, 8]",
+        "Some reviews report short-term pain benefits [6]",
+        "Other trials show no pain advantage over sham [8]"
+      ],
+      "notes": "Evidence on pain is mixed across conditions [5, 6, 7, 8]. A fibromyalgia review reported consistent short-term pain and quality-of-life improvements, though heterogeneity limited generalizability [6]. In chronic trapezius myofascial pain, 808 nanometre laser was not superior to placebo for pain outcomes [8].",
+      "refs": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "title": "Protocols and device choices",
+      "bullets": [
+        "Key variables: wavelength, dose, timing, target [1, 2]",
+        "Examples range from 650 to 850 nm in studies [7, 9]",
+        "Not all published PBM methods suit fitness settings [10]"
+      ],
+      "notes": "Protocol design matters because studies vary in wavelength, energy dose, timing, and application target [1, 2]. Examples in the brief include 650 nanometre LED use before exercise-induced muscle damage and 630 plus 850 nanometre LED use in low back pain research [7, 9]. Transcranial protocols are preliminary and not routine fitness-business practice [10].",
+      "refs": [
+        1,
+        2,
+        7,
+        9,
+        10
+      ]
+    },
+    {
+      "title": "Safety, scope, and client talk",
+      "bullets": [
+        "Adverse events were few in some trials [5, 7, 8]",
+        "Do not promise recovery, pain relief, or performance gains [1, 4, 8]",
+        "Keep disease and injury care outside fitness scope"
+      ],
+      "notes": "Some included trials reported no adverse events or only mild and infrequent adverse effects, but safety reporting is not uniform across the literature [5, 7, 8]. Stay within scope. Present PBM as a wellness or recovery service, not a medical treatment. Be clear that evidence is promising in places, mixed in others, and not a guarantee [1, 4, 8].",
+      "refs": [
+        1,
+        4,
+        5,
+        7,
+        8
+      ]
+    }
+  ],
+  "takeaways": [
+    "PBM research is promising, but results are mixed.",
+    "Protocol details drive outcomes and are not standardized.",
+    "Use cautious language and avoid medical claims.",
+    "Assess whether a published protocol fits your setting."
+  ],
+  "takeaways_notes": "The main message is simple. PBM may support recovery in some contexts, but the evidence is not uniform. Your role is to understand the protocol, stay in scope, and communicate uncertainty clearly.",
+  "references": [
+    {
+      "n": 1,
+      "citation": "Lawrence, J., & Sorra, K. (2024). Photobiomodulation as Medicine: Low-Level Laser Therapy (LLLT) for Acute Tissue Injury or Sport Performance Recovery. Journal of functional morphology and kinesiology. https://doi.org/10.3390/jfmk9040181",
+      "url": "https://doi.org/10.3390/jfmk9040181"
+    },
+    {
+      "n": 2,
+      "citation": "Shivappa, P., Basha, S., Biswas, S., Prabhu, V., Prabhu, S. S., Pai, A. R., & Mahato, K. K. (2025). From light to healing: photobiomodulation therapy in medical disciplines. Journal of translational medicine. https://doi.org/10.1186/s12967-025-07466-3",
+      "url": "https://doi.org/10.1186/s12967-025-07466-3"
+    },
+    {
+      "n": 3,
+      "citation": "Aussieker, T., Petrick, H. L., Kuin, L. M. E., Kaiser, J., Fuchs, C. J., Kornips, E., Tsintzas, K., Cooper, S., Lammers, S., Praet, S., Snijders, T., & van Loon, L. J. C. (2026). Photobiomodulation Does Not Increase Mitochondrial Respiration in Skeletal Muscle or Skin Tissue in Humans. Medicine and science in sports and exercise. https://doi.org/10.1249/mss.0000000000004120",
+      "url": "https://doi.org/10.1249/mss.0000000000004120"
+    },
+    {
+      "n": 4,
+      "citation": "Martins, P. H. G. N., Tomazoni, S. S., Machado, C. D. S. M., Pereira, A. L., Pinto, H. D., Lino, M. M. A., Ribeiro, N. F., Dias, L. B., Aleixo Junior, I. O., de Oliveira, M. F. D., de Araújo-Silva, O. M., De Marchi, T., Casalechi, H. L., & Leal-Junior, E. C. P. (2026). A randomised crossover trial comparing photobiomodulation therapy with other recovery strategies in CrossFit athletes. PloS one. https://doi.org/10.1371/journal.pone.0349880",
+      "url": "https://doi.org/10.1371/journal.pone.0349880"
+    },
+    {
+      "n": 5,
+      "citation": "Chen, H., Asawaphureekorn, S., Manimmanakorn, N., Wang, X., & Eungpinichpong, W. (2026). Efficacy of Adjunctive Photobiomodulation in Patellofemoral Pain Syndrome: A Systematic Review and Meta-Analysis. Archives of rehabilitation research and clinical translation. https://doi.org/10.1016/j.arrct.2026.100585",
+      "url": "https://doi.org/10.1016/j.arrct.2026.100585"
+    },
+    {
+      "n": 6,
+      "citation": "G A, S., Maiya, G. A., Shetty, S., Abrahamse, H., Kadavigere, R., Bhat N, S., & K N, S. (2026). Effect of photobiomodulation on pain and quality of life in fibromyalgia syndrome: a systematic review. Lasers in medical science. https://doi.org/10.1007/s10103-026-04930-4",
+      "url": "https://doi.org/10.1007/s10103-026-04930-4"
+    },
+    {
+      "n": 7,
+      "citation": "Yi, B., Kou, D., Cao, B., Jing, N., Wang, Y., Song, N., He, J., & Tang, X. (2026). Clinical efficacy study of LED red and infrared light therapy for chronic non-specific low back pain. Lasers in medical science. https://doi.org/10.1007/s10103-026-04994-2",
+      "url": "https://doi.org/10.1007/s10103-026-04994-2"
+    },
+    {
+      "n": 8,
+      "citation": "Silva, R. K. D. N., Rocha, A. M. M. F., Oliveira, V. M. A., Santos, J. D. N. M. D., Nascimento, J. D. S. D., & Andrade, P. R. (2026). Effect of photobiomodulation on trapezius myofascial pain: a randomized, sham-controlled, double-blind clinical trial. Lasers in medical science. https://doi.org/10.1007/s10103-026-04964-8",
+      "url": "https://doi.org/10.1007/s10103-026-04964-8"
+    },
+    {
+      "n": 9,
+      "citation": "Freitas, J. C., Bocchi, M., Rodrigues Junior, B. A., Machado, M. R. F., Rezende, H. H. A., de Oliveira, D. M., & Fernandes, E. V. (2026). Combined effects of photobiomodulation and osteopathic manipulation on the physical performance of young adults subjected to exercise-induced muscle damage: a randomized placebo-controlled trial. Lasers in medical science. https://doi.org/10.1007/s10103-026-04907-3",
+      "url": "https://doi.org/10.1007/s10103-026-04907-3"
+    },
+    {
+      "n": 10,
+      "citation": "Iravani, M., Moghaddam Salimi, M., Jahan, A., Rastgar-Farajzadeh, L., Jamali, B., & Ebrahimi-Kalan, A. (2026). Transcranial Photobiomodulation in Sports Medicine: Enhancing Athletic Performance and Injury Prevention. Photobiomodulation, photomedicine, and laser surgery. https://doi.org/10.1177/25785478261429308",
+      "url": "https://doi.org/10.1177/25785478261429308"
+    }
+  ],
+  "worksheet": {
+    "title": "Worksheet: Red Light Therapy for Exercise Recovery",
+    "instructions": "Answer each prompt using only what was covered in the course. Keep your answers practical, cautious, and within fitness scope.",
+    "sections": [
+      {
+        "heading": "Section 1: Understanding the core ideas",
+        "prompts": [
+          "In your own words, describe what photobiomodulation (PBM) is and what types of light it uses.",
+          "Summarize what the course said about how PBM may work, including why mechanism claims should be kept cautious.",
+          "Explain why the evidence for recovery and performance should be described as promising but mixed."
+        ]
+      },
+      {
+        "heading": "Section 2: Applying the content in practice",
+        "prompts": [
+          "A gym member asks whether red light therapy will definitely improve their recovery after hard training. Write a short response that stays accurate to the course.",
+          "You are reviewing a published PBM protocol before offering a recovery service in a studio. What variables would you check, and why does fit-for-setting matter?",
+          "A coach wants to market PBM as a way to treat pain and boost performance for everyone. How would you reframe this service so it stays within scope and reflects the evidence?"
+        ]
+      },
+      {
+        "heading": "Section 3: Safety, screening, contraindications, and referral",
+        "prompts": [
+          "What did the course say about safety reporting and adverse events, and how should that affect the way you talk to clients?",
+          "Give two examples of client situations where you should avoid stepping outside fitness scope and refer them to an appropriate healthcare professional.",
+          "If a client asks you to use PBM as treatment for a disease or injury, how should you respond based on the course?"
+        ]
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Quiz: Red Light Therapy for Exercise Recovery",
+    "instructions": "Choose the best answer for each question.",
+    "pass_mark_percent": null,
+    "questions": [
+      {
+        "question": "What does PBM use on body tissues?",
+        "options": [
+          "Red or near-infrared light",
+          "Ultraviolet light only",
+          "Electrical stimulation",
+          "Visible blue light only"
+        ],
+        "answer_index": 0,
+        "rationale": "The course defines PBM as using red or near-infrared light on body tissues.",
+        "refs": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "What did the course say about lasers and LEDs in PBM?",
+        "options": [
+          "They always produce identical results",
+          "They differ in technical features",
+          "LEDs are described as medical devices in all cases",
+          "Lasers are the only devices used in PBM research"
+        ],
+        "answer_index": 1,
+        "rationale": "The script states that lasers and LEDs differ in technical features.",
+        "refs": [
+          1
+        ]
+      },
+      {
+        "question": "Which statement best reflects the course on PBM mechanisms in humans?",
+        "options": [
+          "Human mechanism evidence is fully settled",
+          "A single session always increases mitochondrial respiration",
+          "Mechanism claims should stay cautious",
+          "PBM works only through one proven pathway"
+        ],
+        "answer_index": 2,
+        "rationale": "The course says human mechanism evidence is not settled, so claims should remain cautious.",
+        "refs": [
+          2,
+          3
+        ]
+      },
+      {
+        "question": "How did the course describe the evidence for sport recovery and performance?",
+        "options": [
+          "Uniformly negative",
+          "Strong enough to guarantee results",
+          "Too limited to discuss",
+          "Promising but mixed"
+        ],
+        "answer_index": 3,
+        "rationale": "The script repeatedly describes the recovery and performance evidence as promising but mixed.",
+        "refs": [
+          1,
+          4
+        ]
+      },
+      {
+        "question": "In the CrossFit example, what was reported at one hour for jump performance?",
+        "options": [
+          "PBMT-sMF did not beat other recovery methods",
+          "PBMT-sMF was clearly superior to every comparison",
+          "Passive recovery was better than all other methods",
+          "No performance outcome was measured"
+        ],
+        "answer_index": 0,
+        "rationale": "The course says PBMT-sMF did not beat other recovery methods at one hour.",
+        "refs": [
+          4
+        ]
+      },
+      {
+        "question": "What did the course say about pain findings?",
+        "options": [
+          "PBM always outperforms sham for pain",
+          "Pain findings vary by condition",
+          "Pain research is limited to athletes",
+          "Pain outcomes are consistent across all studies"
+        ],
+        "answer_index": 1,
+        "rationale": "The script states that pain findings are mixed and vary by condition.",
+        "refs": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "question": "Which group of factors was identified as key protocol variables?",
+        "options": [
+          "Room temperature, music, and clothing",
+          "Trainer experience, flooring, and hydration",
+          "Wavelength, dose, timing, and target",
+          "Brand, price, color, and marketing"
+        ],
+        "answer_index": 2,
+        "rationale": "The course lists wavelength, dose, timing, and target as key protocol variables.",
+        "refs": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which statement best matches the course guidance on published PBM methods?",
+        "options": [
+          "Every published method is suitable for gyms",
+          "Transcranial protocols are routine fitness practice",
+          "Protocol details do not affect outcomes",
+          "Not all published PBM methods suit fitness settings"
+        ],
+        "answer_index": 3,
+        "rationale": "The course says not all published PBM methods are appropriate for fitness settings.",
+        "refs": [
+          10
+        ]
+      },
+      {
+        "question": "How should a fitness professional present PBM to clients?",
+        "options": [
+          "As a wellness or recovery service, not a medical treatment",
+          "As a guaranteed treatment for pain",
+          "As a replacement for injury care",
+          "As a proven way to improve every performance outcome"
+        ],
+        "answer_index": 0,
+        "rationale": "The course says to present PBM as a wellness or recovery service, not medical treatment.",
+        "refs": [
+          1,
+          4,
+          8
+        ]
+      },
+      {
+        "question": "What did the course say about adverse events and safety reporting?",
+        "options": [
+          "Serious adverse events were common in all trials",
+          "Some trials reported few or mild adverse events, but safety reporting is not uniform",
+          "Safety reporting was complete and standardized across the literature",
+          "The course stated PBM has no risks"
+        ],
+        "answer_index": 1,
+        "rationale": "The script notes few or mild adverse events in some trials, but uneven safety reporting.",
+        "refs": [
+          5,
+          7,
+          8
+        ]
+      }
+    ]
+  },
+  "exam": {
+    "title": "Certification Exam: Red Light Therapy for Exercise Recovery",
+    "instructions": "Choose the single best answer for each question. Read scenario questions carefully and base your answers only on the course content.",
+    "pass_mark_percent": 80,
+    "questions": [
+      {
+        "question": "Which description of PBM is most accurate according to the course?",
+        "options": [
+          "It uses red or near-infrared light applied to body tissues",
+          "It uses electrical current to stimulate muscle recovery",
+          "It uses ultraviolet light to reduce inflammation",
+          "It uses heat only to change circulation"
+        ],
+        "answer_index": 0,
+        "rationale": "PBM was defined as red or near-infrared light applied to body tissues.",
+        "refs": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Why did the course caution against simple explanations of PBM effects?",
+        "options": [
+          "Because PBM has no proposed mechanisms",
+          "Because protocol differences and technical variation complicate interpretation",
+          "Because only one device type has been studied",
+          "Because all studies show identical results"
+        ],
+        "answer_index": 1,
+        "rationale": "The course says protocol variation and device differences make simple explanations difficult.",
+        "refs": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which statement best reflects the course on bioenergetics and mechanism?",
+        "options": [
+          "PBM has one proven human mechanism",
+          "Mechanisms are irrelevant to practice",
+          "PBM is often described as supporting bioenergetics, but human evidence is not settled",
+          "A single PBM session clearly increases mitochondrial respiration"
+        ],
+        "answer_index": 2,
+        "rationale": "The script says PBM is often described that way, but mechanism evidence remains unsettled.",
+        "refs": [
+          2,
+          3
+        ]
+      },
+      {
+        "question": "What is the best summary of the recovery evidence presented in the course?",
+        "options": [
+          "Primary short-term performance always improves",
+          "Recovery evidence is too weak to mention",
+          "PBM is superior to all methods at every time point",
+          "Findings are promising but mixed, with some better later recovery markers"
+        ],
+        "answer_index": 3,
+        "rationale": "The course describes promising but mixed recovery findings, including later secondary improvements in some studies.",
+        "refs": [
+          1,
+          4
+        ]
+      },
+      {
+        "question": "In the CrossFit athlete example, what was found at 24 and 48 hours on secondary analysis?",
+        "options": [
+          "Better jump results than passive recovery",
+          "No outcomes were recorded after one hour",
+          "Worse results than passive recovery",
+          "Equal results across all recovery methods"
+        ],
+        "answer_index": 0,
+        "rationale": "The course states jump results were better than passive recovery at 24 and 48 hours on secondary analysis.",
+        "refs": [
+          4
+        ]
+      },
+      {
+        "question": "A client says, \"So this definitely fixes pain, right?\" Which reply best matches the course?",
+        "options": [
+          "Yes, PBM consistently outperforms placebo for pain",
+          "The evidence on pain varies by condition, so I would not promise that",
+          "Yes, especially for every myofascial pain case",
+          "Pain relief is guaranteed if wavelength is correct"
+        ],
+        "answer_index": 1,
+        "rationale": "The course says pain findings vary by condition and should not be promised.",
+        "refs": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "question": "Which study example from the course showed no pain advantage over placebo?",
+        "options": [
+          "The fibromyalgia review",
+          "The sport recovery review",
+          "The chronic trapezius myofascial pain trial",
+          "The CrossFit jump study"
+        ],
+        "answer_index": 2,
+        "rationale": "The course states the chronic trapezius myofascial pain trial found no superiority over placebo for pain outcomes.",
+        "refs": [
+          8
+        ]
+      },
+      {
+        "question": "Which statement about protocol design is most consistent with the course?",
+        "options": [
+          "Only device brand matters",
+          "Protocol variables are minor details",
+          "One fixed protocol should be copied into every setting",
+          "Wavelength, dose, timing, and target are key variables"
+        ],
+        "answer_index": 3,
+        "rationale": "The script specifically identifies wavelength, dose, timing, and target as key protocol variables.",
+        "refs": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which wavelength example appeared in the course materials?",
+        "options": [
+          "650 nanometre LED use before exercise-induced muscle damage",
+          "520 nanometre laser for joint instability",
+          "940 nanometre transcranial routine gym use",
+          "405 nanometre LED for endurance performance"
+        ],
+        "answer_index": 0,
+        "rationale": "The course gave 650 nanometre LED use before exercise-induced muscle damage as an example.",
+        "refs": [
+          9
+        ]
+      },
+      {
+        "question": "A studio owner wants to copy a transcranial PBM method from a paper into normal member sessions. What is the best response?",
+        "options": [
+          "Use it because all published protocols suit fitness settings",
+          "Avoid treating it as routine fitness practice because those protocols are preliminary",
+          "Use it only for pain treatment claims",
+          "Market it as standard recovery care immediately"
+        ],
+        "answer_index": 1,
+        "rationale": "The course says transcranial protocols are preliminary and not routine fitness-business practice.",
+        "refs": [
+          10
+        ]
+      },
+      {
+        "question": "Why should a professional assess whether a published protocol fits their setting?",
+        "options": [
+          "Because protocol details never affect outcomes",
+          "Because any protocol can be simplified without consequence",
+          "Because not all published PBM methods suit fitness settings",
+          "Because only healthcare settings can use PBM devices"
+        ],
+        "answer_index": 2,
+        "rationale": "The course takeaway says to assess whether a published protocol fits the setting.",
+        "refs": [
+          1,
+          2,
+          10
+        ]
+      },
+      {
+        "question": "Which client message best stays within scope?",
+        "options": [
+          "This will treat your injury",
+          "This will restore performance by tomorrow",
+          "This is a guaranteed pain-relief method",
+          "This is offered as a wellness or recovery service, and results are not guaranteed"
+        ],
+        "answer_index": 3,
+        "rationale": "The course advises presenting PBM as wellness or recovery, not guaranteed treatment.",
+        "refs": [
+          1,
+          4,
+          8
+        ]
+      },
+      {
+        "question": "What did the course say about adverse events in some included trials?",
+        "options": [
+          "Some trials reported no adverse events or only mild and infrequent effects",
+          "Severe adverse events were consistently reported",
+          "Adverse events were never monitored",
+          "All trials used identical safety reporting"
+        ],
+        "answer_index": 0,
+        "rationale": "The script states some trials reported no adverse events or only mild and infrequent ones.",
+        "refs": [
+          5,
+          7,
+          8
+        ]
+      },
+      {
+        "question": "How should uneven safety reporting across the literature influence client communication?",
+        "options": [
+          "It means safety can be presented as fully established",
+          "It supports cautious communication rather than overconfident claims",
+          "It proves PBM should be marketed as risk-free treatment",
+          "It allows guarantees when adverse events seem few"
+        ],
+        "answer_index": 1,
+        "rationale": "Because safety reporting is not uniform, communication should remain cautious.",
+        "refs": [
+          5,
+          7,
+          8
+        ]
+      },
+      {
+        "question": "A recovery coach says, \"I can use PBM to manage your disease.\" What is the best evaluation of this statement?",
+        "options": [
+          "It is correct if the device uses LEDs",
+          "It is acceptable if the client requests it",
+          "It is outside fitness scope",
+          "It is encouraged when evidence is mixed"
+        ],
+        "answer_index": 2,
+        "rationale": "The course says disease and injury care should stay outside fitness scope.",
+        "refs": []
+      },
+      {
+        "question": "Which statement best reflects the course's guidance on promises to clients?",
+        "options": [
+          "Promise recovery if later markers improve in one study",
+          "Promise pain relief when protocols match published examples",
+          "Promise performance gains if using near-infrared light",
+          "Do not promise recovery, pain relief, or performance gains"
+        ],
+        "answer_index": 3,
+        "rationale": "The course explicitly says not to promise recovery, pain relief, or performance gains.",
+        "refs": [
+          1,
+          4,
+          8
+        ]
+      },
+      {
+        "question": "A member asks why two PBM devices may not behave the same way. Which answer is best?",
+        "options": [
+          "Lasers and LEDs differ in technical features",
+          "All PBM devices are technically identical",
+          "Only the room setup changes outcomes",
+          "The course said device type is irrelevant"
+        ],
+        "answer_index": 0,
+        "rationale": "The course notes that lasers and LEDs differ in technical features.",
+        "refs": [
+          1
+        ]
+      },
+      {
+        "question": "Which summary best matches the fibromyalgia review mentioned in the course?",
+        "options": [
+          "It found no quality-of-life changes",
+          "It reported consistent short-term pain and quality-of-life improvements, with heterogeneity limiting generalizability",
+          "It proved PBM works the same across all pain conditions",
+          "It showed placebo was always better"
+        ],
+        "answer_index": 1,
+        "rationale": "That is the exact cautionary summary given for the fibromyalgia review.",
+        "refs": [
+          6
+        ]
+      },
+      {
+        "question": "A gym is preparing a member handout on PBM. Which statement belongs in it?",
+        "options": [
+          "Results are guaranteed when timing is correct",
+          "Pain and performance outcomes are fully standardized",
+          "Research protocols vary widely across settings",
+          "All studies use the same wavelength and dose"
+        ],
+        "answer_index": 2,
+        "rationale": "The course says research protocols vary widely across settings.",
+        "refs": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which service description is least consistent with the course?",
+        "options": [
+          "A cautious recovery option",
+          "A wellness-focused service",
+          "A method with mixed evidence",
+          "A medical treatment for injury care in a fitness business"
+        ],
+        "answer_index": 3,
+        "rationale": "The course says injury care should remain outside fitness scope.",
+        "refs": []
+      },
+      {
+        "question": "A trainer reads one positive study and wants to advertise PBM as proven. What is the best course-based response?",
+        "options": [
+          "Avoid that claim because research is promising but mixed",
+          "Use the claim because one positive study is enough",
+          "Advertise only pain claims, not recovery claims",
+          "Say mechanisms are settled so outcomes are certain"
+        ],
+        "answer_index": 0,
+        "rationale": "The course takeaway is that research is promising, but results are mixed.",
+        "refs": [
+          1,
+          4
+        ]
+      }
+    ]
+  },
+  "disclaimer": "Educational content for fitness and wellness professionals. Not medical advice.",
+  "tts_provider": "elevenlabs"
+}
